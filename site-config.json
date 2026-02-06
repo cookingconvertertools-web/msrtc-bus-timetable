@@ -1,0 +1,38 @@
+{
+  "base_url": "https://bustimely-mh.com",
+  "site_name": "BusTimely Maharashtra",
+  "theme": {
+    "primary": "#DB2777",
+    "secondary": "#E11D48",
+    "bg_gradient_start": "#FEF2F8",
+    "bg_gradient_end": "#FCE7F3",
+    "text_primary": "#701A75",
+    "text_secondary": "#9D174D",
+    "border_light": "#FBCFE8",
+    "border_dark": "#F9A8D4"
+  },
+  "ads": {
+    "top_ad": {
+      "enabled": false,
+      "label": "Advertisement",
+      "mobile_code": "<div class='ad-content'><i class='bi bi-phone'></i><span>Download Official MSRTC App</span><button class='ad-btn'>Download Now</button></div>",
+      "desktop_code": "<div class='ad-content'><i class='bi bi-phone' style='font-size: 1.5rem;'></i><div><strong>MSRTC Official App</strong><p>Book tickets, check schedules & more</p></div><button class='ad-btn'>Get App</button></div>"
+    },
+    "middle_ad": {
+      "enabled": false,
+      "label": "Sponsored",
+      "mobile_code": "<div class='ad-content'><i class='bi bi-cup-hot'></i><span>Refreshments Available at Bus Stand</span><small>Snacks & Drinks</small></div>",
+      "desktop_code": "<div class='ad-content'><i class='bi bi-cup-hot'></i><div><strong>Travel Refreshments</strong><p>Food stalls available at all major bus stands</p></div></div>"
+    },
+    "footer_ad": {
+      "enabled": false,
+      "code": "<div class='ad-content'><i class='bi bi-shield-check'></i><span>Safe Travel with Insurance</span><small>Coverage up to ₹10 Lakhs</small></div>"
+    }
+  },
+  "seo": {
+    "default_description": "Official MSRTC bus schedules, timetables, and departure times for Maharashtra state transport",
+    "default_keywords": "MSRTC, Maharashtra Bus, Bus Schedule, Bus Timings, State Transport, Bus Timetable",
+    "twitter_handle": "@MSRTC_Maharashtra",
+    "fb_app_id": ""
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "msrtc-bus-timetable",
+  "version": "1.0.0",
+  "description": "Static site generator for MSRTC bus timetables",
+  "main": "generate-site.js",
+  "scripts": {
+    "generate": "node generate-site.js",
+    "dev": "node generate-site.js && serve public"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

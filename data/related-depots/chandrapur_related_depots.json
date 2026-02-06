@@ -1,0 +1,34 @@
+[
+  {
+    "depots_id": "warora_bus_stand_depot",
+    "related_depots_id": [
+      "ballarpur_bus_stand_depot",
+      "chandrapur_bus_stand_depot",
+      "bhadravati_bus_stand_depot"
+    ]
+  },
+  {
+    "depots_id": "chandrapur_bus_stand_depot",
+    "related_depots_id": [
+      "ballarpur_bus_stand_depot",
+      "warora_bus_stand_depot",
+      "bhadravati_bus_stand_depot"
+    ]
+  },
+  {
+    "depots_id": "ballarpur_bus_stand_depot",
+    "related_depots_id": [
+      "warora_bus_stand_depot",
+      "chandrapur_bus_stand_depot",
+      "bhadravati_bus_stand_depot"
+    ]
+  },
+  {
+    "depots_id": "bhadravati_bus_stand_depot",
+    "related_depots_id": [
+      "warora_bus_stand_depot",
+      "chandrapur_bus_stand_depot",
+      "ballarpur_bus_stand_depot"
+    ]
+  }
+]

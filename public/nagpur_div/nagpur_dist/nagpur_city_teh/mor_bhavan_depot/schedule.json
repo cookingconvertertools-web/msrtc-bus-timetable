@@ -1,0 +1,52 @@
+{
+  "id": "mor_bhavan_depot",
+  "name": "Mor Bhavan Depot",
+  "type": "depot",
+  "tehsil_id": "nagpur_city_teh",
+  "address": "Mor Bhavan, Nagpur - 440001",
+  "contact": "0712-2546789",
+  "total_buses": 32,
+  "villages": {
+    "h": {
+      "name": "Hingna",
+      "schedule": [
+        "06:00",
+        "08:00",
+        "10:30",
+        "13:00",
+        "15:30",
+        "18:00",
+        "20:30"
+      ],
+      "bus_count": 7
+    },
+    "k": {
+      "name": "Koradi",
+      "schedule": [
+        "05:45",
+        "07:30",
+        "09:45",
+        "12:15",
+        "14:45",
+        "17:15",
+        "19:45",
+        "22:15"
+      ],
+      "bus_count": 8
+    },
+    "s": {
+      "name": "Sakkardara",
+      "schedule": [
+        "03:40",
+        "06:30",
+        "09:00",
+        "11:30",
+        "14:00",
+        "16:30",
+        "19:00",
+        "21:30"
+      ],
+      "bus_count": 7
+    }
+  }
+}

@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /data/
+Sitemap: https://bustimely-mh.com/sitemap.xml
+
+# Crawl-delay: 10
+# Allow bots from search engines
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

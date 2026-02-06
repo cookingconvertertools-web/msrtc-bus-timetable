@@ -1,0 +1,49 @@
+{
+  "homepage": {
+    "title": "MSRTC Bus Timetable",
+    "description": "Real-time bus schedules for Maharashtra State Road Transport Corporation",
+    "subtitle": "Find accurate bus timings from all depots across Maharashtra",
+    "content": "<p>Welcome to the official MSRTC bus timetable portal. Get real-time bus schedules, departure times, and route information for all Maharashtra state transport buses.</p><p>Select your division to begin:</p>",
+    "seo": {
+      "title": "MSRTC Bus Schedule - Maharashtra State Road Transport Timetable",
+      "description": "Complete MSRTC bus schedules, timings, and routes for all Maharashtra divisions. Find real-time bus departure times from your nearest depot.",
+      "keywords": "MSRTC bus timing, Maharashtra bus schedule, state transport timetable, bus departure times, MSRTC online"
+    }
+  },
+  "about": {
+    "title": "About BusTimely Maharashtra",
+    "content": "<h2>Our Mission</h2><p>To provide accurate, real-time bus schedule information for Maharashtra State Road Transport Corporation (MSRTC) to help millions of daily commuters.</p><h2>Data Accuracy</h2><p>All schedules are verified with MSRTC depot information and updated regularly.</p><h2>Coverage</h2><p>We cover all 35 divisions, 36 districts, and thousands of depots across Maharashtra.</p>",
+    "seo": {
+      "title": "About Us - MSRTC Bus Timetable",
+      "description": "Learn about BusTimely Maharashtra and our mission to provide accurate MSRTC bus schedules across Maharashtra state.",
+      "keywords": "about MSRTC timetable, bus schedule information, Maharashtra transport info"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "content": "<h2>Report Inaccuracies</h2><p>If you find any incorrect schedule information, please contact us:</p><ul><li>Email: info@bustimely-mh.com</li><li>Phone: 1800-XXX-XXXX (Toll-free)</li><li>Address: MSRTC Headquarters, Mumbai</li></ul><h2>Feedback</h2><p>We welcome suggestions to improve our service.</p>",
+    "seo": {
+      "title": "Contact - MSRTC Bus Schedule Support",
+      "description": "Contact MSRTC bus timetable support for schedule corrections, feedback, and inquiries.",
+      "keywords": "contact MSRTC, bus schedule support, report incorrect timings"
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "content": "<h2>Disclaimer</h2><p>While we strive for accuracy, bus timings may change without notice. Always verify with the local depot.</p><h2>Usage</h2><p>This service is provided free of charge for informational purposes only.</p>",
+    "seo": {
+      "title": "Terms of Service - MSRTC Bus Timetable",
+      "description": "Terms and conditions for using the MSRTC bus timetable service.",
+      "keywords": "MSRTC terms, bus schedule disclaimer, usage terms"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "content": "<h2>Data Collection</h2><p>We do not collect personal data. All schedule information is publicly available.</p><h2>Cookies</h2><p>We use minimal cookies only for functionality.</p>",
+    "seo": {
+      "title": "Privacy Policy - MSRTC Bus Schedule",
+      "description": "Privacy policy for the MSRTC bus timetable website.",
+      "keywords": "MSRTC privacy, bus schedule privacy policy"
+    }
+  }
+}

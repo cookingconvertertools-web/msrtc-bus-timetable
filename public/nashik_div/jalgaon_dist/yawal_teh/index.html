@@ -1,0 +1,3382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yawal Tehsil Tehsil - Jalgaon District - BusTimely Maharashtra</title>
+    <meta name="description" content="MSRTC bus schedules for Yawal Tehsil tehsil in Jalgaon District district">
+    <meta name="keywords" content="MSRTC, Yawal Tehsil tehsil, Jalgaon District district, bus schedule">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Inline CSS -->
+    <style>
+        /* ==========================================================================
+       MSRTC BUS TIMETABLE - INLINE STYLES
+       ========================================================================== */
+
+    /* Reset & Base */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 14px;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 300;
+        background: linear-gradient(135deg, #FEF2F8 0%, #FCE7F3 100%);
+        color: #4C1D95;
+        line-height: 1.5;
+        min-height: 100vh;
+        -webkit-tap-highlight-color: transparent;
+        padding-bottom: 60px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #5B21B6;
+        margin-bottom: 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    a {
+        color: #493dd5;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    a:hover {
+        color: #3a2fc1;
+    }
+
+    /* Layout */
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-3 { margin-top: 1rem; }
+    .mt-4 { margin-top: 1.5rem; }
+
+    /* Header */
+    .site-header {
+        background: white;
+        box-shadow: 0 2px 10px rgba(73, 61, 213, 0.08);
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        padding: 0.4rem 0;
+        border-bottom: 2px solid #493dd5 !important;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.2rem 0;
+    }
+
+    .logo {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #5B21B6 !important;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        text-decoration: none;
+    }
+
+    .logo i {
+        color: #493dd5 !important;
+        font-size: 1.3rem;
+    }
+
+    /* Digital Clock - THEME COLORS */
+    .time-display.digital-clock {
+        font-family: 'Orbitron', monospace;
+        font-weight: 600;
+        font-size: 1.1rem;
+        background: linear-gradient(145deg, #0a0e17 0%, #1a1f2e 100%);
+        color: #ffffff !important;
+        padding: 0.4rem 0.8rem;
+        border-radius: 10px;
+        min-width: 120px;
+        text-align: center;
+        border: 2px solid #1e293b !important;
+        text-shadow: 0 0 5px #4ecdc4, 0 0 10px rgba(78, 205, 196, 0.5);
+        letter-spacing: 1px;
+        box-shadow:
+            inset 0 1px 3px rgba(0, 0, 0, 0.5),
+            0 4px 8px rgba(0, 0, 0, 0.3),
+            0 0 0 1px rgba(78, 205, 196, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .time-display.digital-clock::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg,
+            rgba(78, 205, 196, 0.1) 0%,
+            rgba(78, 205, 196, 0.05) 50%,
+            rgba(78, 205, 196, 0) 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .digital-hours,
+    .digital-minutes,
+    .digital-seconds {
+        color: #ffffff !important;
+        font-weight: 800;
+        position: relative;
+        z-index: 2;
+        text-shadow:
+            0 0 5px #4ecdc4,
+            0 0 8px rgba(78, 205, 196, 0.7),
+            0 0 12px rgba(78, 205, 196, 0.3);
+    }
+
+    .digital-ampm {
+        font-size: 0.85rem;
+        color: #ffffff !important;
+        margin-left: 0.2rem;
+        font-weight: 700;
+        position: relative;
+        z-index: 2;
+        text-shadow:
+            0 0 3px #4ecdc4,
+            0 0 5px rgba(78, 205, 196, 0.5);
+    }
+
+    /* Quick Jump Navigation - FIXED PADDING & NO SCROLL */
+    .quick-jump-nav {
+        position: sticky;
+        top: 48px;
+        z-index: 190;
+        background: white;
+        border-bottom: 2px solid #C4B5FD;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        padding: 0.3rem 0;
+        overflow: hidden;
+    }
+
+    .quick-jump-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.2rem 0;
+        width: 100%;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: auto;
+        flex-wrap: nowrap;
+    }
+
+    /* Remove scrollbar completely */
+    .quick-jump-content::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+        background: transparent;
+    }
+
+    .quick-jump-content {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Quick Jump Buttons - COMPACT DESIGN */
+    .quick-jump-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.1rem;
+        padding: 0.35rem 0.5rem;
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        color: #4C1D95;
+        font-size: 0.7rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        min-width: 60px;
+        max-width: 70px;
+        text-decoration: none;
+        flex-shrink: 0;
+        border: none;
+        font-family: inherit;
+        flex: 1;
+        height: 55px;
+    }
+
+    .quick-jump-btn i {
+        font-size: 0.9rem;
+        color: #493dd5;
+    }
+
+    .quick-jump-btn:hover {
+        background: #FCE7F3;
+        border-color: #A78BFA;
+        transform: translateY(-2px);
+    }
+
+    .quick-jump-btn.active {
+        background: #493dd5;
+        color: white;
+        border-color: #493dd5;
+    }
+
+    .quick-jump-btn.active i {
+        color: white;
+    }
+
+    /* Search button specific styling to prevent overflow */
+    .quick-jump-btn.search-trigger {
+        min-width: 65px;
+        max-width: 75px;
+    }
+
+    /* Navigation Buttons Container - TWO BUTTONS SIDE BY SIDE */
+    .navigation-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    /* Back Buttons - SAME STYLE FOR ALL */
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.2rem;
+        background: white;
+        border: 2px solid #C4B5FD;
+        border-radius: 8px;
+        color: #4C1D95;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        text-decoration: none;
+        flex-shrink: 0;
+        border: 2px solid #C4B5FD !important;
+    }
+
+    .back-btn:hover {
+        background: #FCE7F3;
+        color: #493dd5;
+        border-color: #A78BFA !important;
+        transform: translateX(-3px);
+    }
+
+    .back-btn i {
+        font-size: 1rem;
+        transition: transform 0.3s;
+    }
+
+    .back-btn:hover i {
+        transform: translateX(-2px);
+    }
+
+    /* Depot About Section */
+    .depot-about-section {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 2px solid #C4B5FD;
+        margin-top: 2rem;
+    }
+
+    .depot-about-section h2 {
+        color: #5B21B6;
+        margin-bottom: 1rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .depot-about-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #493dd5, #A78BFA);
+        border-radius: 3px;
+    }
+
+    .about-content {
+        color: #4B5563;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .about-content p {
+        margin-bottom: 1rem;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 2px solid #C4B5FD;
+        margin-top: 2rem;
+    }
+
+    .faq-section h2 {
+        color: #5B21B6;
+        margin-bottom: 1rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .faq-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #493dd5, #A78BFA);
+        border-radius: 3px;
+    }
+
+    .faq-container {
+        margin-top: 1rem;
+    }
+
+    .faq-item {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background: #F8FAFC;
+        border-radius: 8px;
+        border: 1px solid #C4B5FD;
+    }
+
+    .faq-question {
+        color: #5B21B6;
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .faq-question i {
+        color: #493dd5;
+    }
+
+    .faq-answer {
+        color: #4B5563;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-left: 1.8rem;
+    }
+
+    /* FAQ FIX: Ensure question marks don't show as bullets */
+    .faq-question span::before {
+        content: none !important;
+    }
+
+    .faq-question span {
+        display: inline-block;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    /* Related Links Section */
+    .related-links-section {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 2px solid #C4B5FD;
+        margin-top: 2rem;
+    }
+
+    .related-links-section h2 {
+        color: #5B21B6;
+        margin-bottom: 1rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .related-links-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #493dd5, #A78BFA);
+        border-radius: 3px;
+    }
+
+    .related-links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .related-depot-card {
+        background: white;
+        border: 2px solid #C4B5FD;
+        border-radius: 10px;
+        padding: 1.2rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: block;
+    }
+
+    .related-depot-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(73, 61, 213, 0.15);
+        border-color: #493dd5;
+    }
+
+    .related-depot-card h3 {
+        color: #5B21B6;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .related-depot-card p {
+        color: #4C1D95;
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 0.5rem;
+    }
+
+    .related-depot-location {
+        color: #4C1D95;
+        font-size: 0.85rem;
+        opacity: 0.7;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .related-depot-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #493dd5;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .related-depot-link i {
+        transition: transform 0.3s;
+    }
+
+    .related-depot-card:hover .related-depot-link i {
+        transform: translateX(3px);
+    }
+
+    /* Advertising */
+    .ad-container {
+        margin: 1.5rem 0;
+        text-align: center;
+    }
+
+    .ad-content {
+        background: white;
+        border: 2px solid #C4B5FD !important;
+        border-radius: 8px;
+        padding: 1rem;
+        min-height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ad-desktop {
+        display: none;
+    }
+
+    .ad-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .ad-placeholder {
+        color: #4C1D95;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .ad-placeholder span {
+        font-size: 0.8rem;
+        color: #64748B;
+    }
+
+    .ad-btn {
+        background: #493dd5;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .ad-btn:hover {
+        background: #3a2fc1;
+    }
+
+    /* Tab Navigation */
+    .tabs-container {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 2px solid #C4B5FD !important;
+        margin: 1.5rem 0;
+    }
+
+    .tabs-header {
+        display: flex;
+        background: #FCE7F3;
+        border-bottom: 2px solid #C4B5FD !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tabs-header::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .tabs-header::-webkit-scrollbar-track {
+        background: #C4B5FD;
+        border-radius: 2px;
+    }
+
+    .tabs-header::-webkit-scrollbar-thumb {
+        background: #493dd5;
+        border-radius: 2px;
+    }
+
+    .tab-btn {
+        flex: 1;
+        min-width: 100px;
+        padding: 0.7rem 0.3rem;
+        background: none;
+        border: none;
+        border-right: 1px solid #C4B5FD !important;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        color: #4C1D95;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .tab-btn:last-child {
+        border-right: none !important;
+    }
+
+    .tab-btn:hover {
+        background: rgba(73, 61, 213, 0.05);
+    }
+
+    .tab-btn.active {
+        background: #493dd5;
+        color: white;
+    }
+
+    .tab-count {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.1rem 0.4rem;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .tab-btn.active .tab-count {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .tab-content {
+        display: none;
+        padding: 1.2rem;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    /* RECTANGULAR CARDS */
+    .division-grid, .district-grid, .tehsil-grid, .depot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 0.8rem;
+        margin: 1rem 0;
+    }
+
+    .rectangular-card {
+        background: white;
+        border: 2px solid #C4B5FD !important;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        display: block;
+        cursor: pointer;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .rectangular-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(73, 61, 213, 0.1);
+        border-color: #493dd5 !important;
+        background: #FEF2F8;
+    }
+
+    .rectangular-card h3 {
+        color: #5B21B6 !important;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .card-meta {
+        color: #4C1D95;
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+        opacity: 0.8;
+    }
+
+    .rectangular-card .stats {
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .rectangular-card .stat {
+        background: #FCE7F3;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        color: #5B21B6 !important;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        border: 1px solid #C4B5FD !important;
+    }
+
+    .rectangular-card .stat i {
+        color: #493dd5 !important;
+        font-size: 0.8rem;
+    }
+
+    /* Alphabet Quick Access */
+    .alphabet-quick-access {
+        background: white;
+        border: 2px solid #C4B5FD;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .alphabet-quick-access h3 {
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        color: #5B21B6;
+    }
+
+    .alphabet-mini-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .alphabet-mini-btn {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #C4B5FD;
+        background: white;
+        color: #5B21B6;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        padding: 0;
+        touch-action: manipulation;
+    }
+
+    .alphabet-mini-btn:hover {
+        background: #FCE7F3;
+        border-color: #A78BFA;
+        transform: translateY(-1px);
+    }
+
+    .alphabet-mini-btn.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        background: #F8FAFC;
+    }
+
+    .alphabet-mini-btn.disabled:hover {
+        transform: none;
+        background: #F8FAFC;
+        border-color: #C4B5FD;
+    }
+
+    /* Floating Bus Stop Letters */
+    .floating-bus-stop-letters {
+        position: sticky;
+        top: 100px;
+        z-index: 180;
+        background: white;
+        border: 2px solid #493dd5;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        box-shadow: 0 4px 12px rgba(73, 61, 213, 0.1);
+    }
+
+    .floating-letters-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.8rem;
+    }
+
+    .floating-letters-header h3 {
+        margin: 0;
+        font-size: 1rem;
+        color: #5B21B6;
+    }
+
+    .bus-stop-count {
+        background: #493dd5;
+        color: white;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .floating-letters-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+        gap: 0.4rem;
+    }
+
+    .floating-letter-btn {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #C4B5FD;
+        background: white;
+        color: #5B21B6;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        padding: 0;
+        touch-action: manipulation;
+    }
+
+    .floating-letter-btn:hover {
+        background: #FCE7F3;
+        border-color: #A78BFA;
+        transform: translateY(-1px);
+    }
+
+    .floating-letter-btn.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        background: #F8FAFC;
+    }
+
+    .floating-letter-btn.disabled:hover {
+        transform: none;
+        background: #F8FAFC;
+        border-color: #C4B5FD;
+    }
+
+    /* Quick Search Modal */
+    .quick-search-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1001;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-modal-content {
+        background: white;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .search-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background: #493dd5;
+        color: white;
+    }
+
+    .search-modal-header h3 {
+        margin: 0;
+        color: white;
+    }
+
+    .close-search {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        line-height: 1;
+        touch-action: manipulation;
+    }
+
+    .search-modal-body {
+        padding: 1.5rem;
+    }
+
+    .global-search-input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #C4B5FD;
+        border-radius: 8px;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .global-search-input:focus {
+        outline: none;
+        border-color: #493dd5;
+    }
+
+    .search-results {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .search-result-item {
+        padding: 0.8rem;
+        border-bottom: 1px solid #C4B5FD;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .search-result-item:hover {
+        background: #FCE7F3;
+    }
+
+    .search-result-item h4 {
+        margin: 0 0 0.3rem 0;
+        color: #5B21B6;
+        font-size: 1rem;
+    }
+
+    .search-result-item p {
+        margin: 0;
+        color: #4C1D95;
+        font-size: 0.85rem;
+        opacity: 0.8;
+    }
+
+    /* Alphabet Quick View - FIXED FOR 100% ZOOM */
+    .alphabet-quick-view {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-top: 3px solid #493dd5;
+        border-radius: 12px 12px 0 0;
+        z-index: 1002;
+        max-height: 70vh;
+        overflow: hidden;
+        touch-action: manipulation;
+    }
+
+    .alphabet-view-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background: #493dd5;
+        color: white;
+        touch-action: manipulation;
+    }
+
+    .alphabet-view-header h4 {
+        margin: 0;
+        color: white;
+    }
+
+    .close-alphabet {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        line-height: 1;
+        touch-action: manipulation;
+        z-index: 1003;
+        position: relative;
+    }
+
+    .alphabet-view-grid {
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 0.8rem;
+        max-height: 50vh;
+        overflow-y: auto;
+        touch-action: manipulation;
+    }
+
+    .alphabet-btn {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #C4B5FD;
+        background: white;
+        color: #5B21B6;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 1.1rem;
+        padding: 0;
+        touch-action: manipulation;
+    }
+
+    .alphabet-btn:hover {
+        background: #FCE7F3;
+        border-color: #A78BFA;
+        transform: translateY(-2px);
+    }
+
+    .alphabet-btn.active {
+        background: #493dd5;
+        color: white;
+        border-color: #493dd5;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(73, 61, 213, 0.2);
+    }
+
+    /* Depot Header */
+    .depot-header {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border: 2px solid #C4B5FD;
+        text-align: center;
+    }
+
+    .depot-info {
+        display: flex;
+        justify-content: center;
+        gap: 1.2rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: #5B21B6;
+        font-size: 0.85rem;
+        background: #F8FAFC;
+        padding: 0.4rem 1rem;
+        border-radius: 8px;
+        border: 1px solid #C4B5FD;
+    }
+
+    .info-item i {
+        color: #493dd5;
+        font-size: 0.9rem;
+    }
+
+    /* Search Box */
+    .search-container {
+        margin: 1.5rem 0;
+    }
+
+    .search-box {
+        width: 100%;
+        padding: 0.8rem 1.2rem;
+        border: 2px solid #C4B5FD;
+        border-radius: 10px;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        background: white;
+        transition: all 0.3s;
+    }
+
+    .search-box:focus {
+        outline: none;
+        border-color: #493dd5;
+        box-shadow: 0 0 0 3px rgba(73, 61, 213, 0.1);
+    }
+
+    /* Time Filters */
+    .time-filters {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .time-filters::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .time-filters::-webkit-scrollbar-track {
+        background: #C4B5FD;
+        border-radius: 2px;
+    }
+
+    .time-filters::-webkit-scrollbar-thumb {
+        background: #493dd5;
+        border-radius: 2px;
+    }
+
+    .filter-btn {
+        padding: 0.6rem 1rem;
+        border: 2px solid #C4B5FD;
+        background: white;
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        color: #4C1D95;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.3s;
+        flex-shrink: 0;
+        font-weight: 500;
+    }
+
+    .filter-btn:hover {
+        border-color: #493dd5;
+        color: #493dd5;
+    }
+
+    .filter-btn.active {
+        background: #493dd5;
+        color: white;
+        border-color: #493dd5;
+        font-weight: 600;
+    }
+
+    /* Bus Stop Sections */
+    .bus-stop-section {
+        margin-bottom: 1.5rem;
+        scroll-margin-top: 130px;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 2px solid #C4B5FD;
+    }
+
+    .bus-stop-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.2rem;
+        background: linear-gradient(90deg, #FCE7F3 0%, white 100%);
+        border-bottom: 1px solid #C4B5FD;
+    }
+
+    .bus-stop-name {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #5B21B6;
+        font-size: 1.1rem;
+    }
+
+    .bus-count {
+        background: #493dd5;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        min-width: 70px;
+        text-align: center;
+    }
+
+    /* Schedule Grid - ADJUSTED FOR BADGES */
+    .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.8rem;
+        padding: 1.2rem;
+    }
+
+    /* Time Bubbles - ONLY NEXT BUS SPARKLES */
+    .time-bubble {
+        position: relative;
+        padding: 0.8rem 0.5rem;
+        border-radius: 8px;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        min-height: 58px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        font-size: 0.9rem;
+        border: 2px solid transparent;
+        overflow: visible;
+        margin: 0.1rem;
+    }
+
+    .time-bubble.morning {
+        background: #FEF3C7;
+        color: #92400E;
+        border-color: #FBBF24;
+    }
+
+    .time-bubble.afternoon {
+        background: #D1FAE5;
+        color: #065F46;
+        border-color: #10B981;
+    }
+
+    .time-bubble.evening {
+        background: #E0E7FF;
+        color: #3730A3;
+        border-color: #6366F1;
+    }
+
+    .time-bubble.night {
+        background: #F3E8FF;
+        color: #5B21B6;
+        border-color: #8B5CF6;
+    }
+
+    .time-bubble:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Ensure time bubble has enough space for badge */
+    .time-bubble.next-bus {
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+
+    /* Next Bus Badge - FIXED POSITIONING */
+    .next-badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #493dd5;
+        color: white;
+        font-size: 0.65rem;
+        padding: 2px 5px;
+        border-radius: 10px;
+        font-weight: 600;
+        z-index: 20;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        animation: pulse 2s infinite;
+        white-space: nowrap;
+        min-width: 35px;
+        text-align: center;
+        border: 1px solid white;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(73, 61, 213, 0.7);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px rgba(73, 61, 213, 0);
+        }
+    }
+
+    /* Next Bus Sparkle Effect - ONLY FOR NEXT BUS */
+    .next-bus-sparkle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        animation: sparkle 2s infinite;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    @keyframes sparkle {
+        0%, 100% {
+            opacity: 0;
+            border-color: transparent;
+            box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+        }
+        50% {
+            opacity: 1;
+            border-color: #FFD700;
+            box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.7);
+        }
+    }
+
+    .time-bubble.next-bus .next-bus-sparkle {
+        opacity: 1;
+    }
+
+    /* Alphabet First Match Highlight */
+    .alphabet-highlight-first {
+        position: relative;
+    }
+
+    .alphabet-highlight-first::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 3px;
+        background: #493dd5;
+        border-radius: 3px;
+        animation: highlightPulse 1.5s infinite;
+    }
+
+    @keyframes highlightPulse {
+        0%, 100% {
+            opacity: 0.7;
+            width: 20px;
+        }
+        50% {
+            opacity: 1;
+            width: 25px;
+        }
+    }
+
+    /* Footer */
+    .site-footer {
+        background: white;
+        border-top: 2px solid #C4B5FD;
+        padding: 2rem 0;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .footer-section h3 {
+        color: #5B21B6;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer-links a {
+        color: #4C1D95;
+        font-size: 0.9rem;
+        padding: 0.3rem 0;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+
+    .footer-links a:hover {
+        color: #493dd5;
+        padding-left: 0.5rem;
+    }
+
+    .copyright {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: #4C1D95;
+        font-size: 0.85rem;
+        opacity: 0.8;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #C4B5FD;
+    }
+
+    .copyright a {
+        color: #493dd5;
+        text-decoration: underline;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 0.6rem 1rem;
+        border-bottom: 1px solid #C4B5FD;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .breadcrumb a {
+        color: #5B21B6;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .breadcrumb span {
+        color: #493dd5;
+        margin: 0 0.3rem;
+        font-weight: 600;
+    }
+
+    /* SEO Content Section */
+    .seo-content {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        border: 2px solid #C4B5FD;
+    }
+
+    .seo-content h2 {
+        color: #5B21B6;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .seo-content h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #493dd5, #A78BFA);
+        border-radius: 3px;
+    }
+
+    .seo-content h3 {
+        color: #4C1D95;
+        margin: 1.5rem 0 1rem;
+        font-size: 1.1rem;
+    }
+
+    .seo-content p {
+        color: #4B5563;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .seo-content ul, .seo-content ol {
+        color: #4B5563;
+        line-height: 1.7;
+        padding-left: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    .seo-content li {
+        margin-bottom: 0.5rem;
+    }
+
+    .seo-content strong {
+        color: #5B21B6;
+        font-weight: 600;
+    }
+
+    .seo-content a {
+        color: #493dd5;
+        text-decoration: underline;
+        font-weight: 500;
+    }
+
+    .faq-item {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #C4B5FD;
+    }
+
+    .faq-item:last-child {
+        border-bottom: none;
+    }
+
+    .faq-question {
+        color: #5B21B6;
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .faq-question::before {
+        content: '❓';
+        font-size: 0.9rem;
+    }
+
+    .faq-answer {
+        color: #4B5563;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        padding-left: 1.5rem;
+    }
+
+    /* Blog Page Styles */
+    .blog-page {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .blog-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .blog-date {
+        color: #94A3B8;
+        font-size: 0.9rem;
+        margin: 0.5rem 0 1.5rem;
+    }
+
+    .blog-author {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background: #F8FAFC;
+        border-radius: 8px;
+        border: 2px solid #C4B5FD;
+    }
+
+    .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #493dd5, #A78BFA);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+    }
+
+    .author-info h4 {
+        margin-bottom: 0.3rem;
+        color: #4C1D95;
+    }
+
+    .author-info p {
+        color: #94A3B8;
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    .blog-content {
+        font-size: 1rem;
+        line-height: 1.8;
+        padding: 0 0.5rem;
+    }
+
+    .blog-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        margin: 1.5rem 0;
+    }
+
+    .blog-content h1,
+    .blog-content h2,
+    .blog-content h3,
+    .blog-content h4,
+    .blog-content h5,
+    .blog-content h6 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .blog-content p {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .blog-content ul,
+    .blog-content ol {
+        padding-left: 2rem;
+        padding-right: 0.5rem;
+    }
+
+    .blog-content table {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .blog-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+    }
+
+    .blog-tag {
+        background: #FCE7F3;
+        color: #493dd5;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    /* Blog specific styles - Markdown elements */
+    .blog-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        border: 2px solid #E2E8F0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .blog-table th {
+        background: linear-gradient(135deg, #493dd5, #3a2fc1);
+        color: white;
+        font-weight: 600;
+        padding: 0.8rem;
+        text-align: left;
+        border-bottom: 2px solid #E2E8F0;
+    }
+
+    .blog-table td {
+        padding: 0.8rem;
+        border-bottom: 1px solid #E2E8F0;
+        vertical-align: top;
+    }
+
+    .blog-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .blog-table tr:nth-child(even) {
+        background: #F8FAFC;
+    }
+
+    .blog-table tr:hover {
+        background: #EDF2F7;
+    }
+
+    pre {
+        background: #2D3748;
+        color: #E2E8F0;
+        padding: 1.2rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        border-left: 4px solid #493dd5;
+    }
+
+    code {
+        background: #EDF2F7;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        color: #2D3748;
+    }
+
+    pre code {
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+        color: inherit;
+        font-size: inherit;
+    }
+
+    blockquote {
+        border-left: 4px solid #493dd5;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        background: linear-gradient(90deg, #F8FAFC, #FFFFFF);
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+        color: #4A5568;
+        position: relative;
+    }
+
+    blockquote::before {
+        content: '"';
+        font-size: 3rem;
+        color: #493dd5;
+        opacity: 0.2;
+        position: absolute;
+        top: -1rem;
+        left: 0.5rem;
+    }
+
+    hr {
+        border: none;
+        border-top: 3px solid #E2E8F0;
+        margin: 2.5rem auto;
+        width: 80%;
+    }
+
+    /* Blog Listing */
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .blog-card {
+        background: white;
+        border: 2px solid #C4B5FD;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: block;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(73, 61, 213, 0.12);
+        border-color: #493dd5;
+    }
+
+    .blog-card-image {
+        height: 180px;
+        background: linear-gradient(135deg, #FCE7F3, #C4B5FD);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #493dd5;
+        font-size: 3rem;
+    }
+
+    .blog-card-content {
+        padding: 1.5rem;
+    }
+
+    .blog-card h3 {
+        color: #5B21B6;
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .blog-card-excerpt {
+        color: #64748B;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .blog-card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #94A3B8;
+        font-size: 0.8rem;
+    }
+
+    .blog-card-date {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: #5B21B6;
+        background: white;
+        border-radius: 12px;
+        border: 2px solid #C4B5FD;
+        margin: 2rem 0;
+    }
+
+    .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #A78BFA;
+    }
+
+    .empty-state h3 {
+        margin-bottom: 0.8rem;
+        color: #5B21B6;
+    }
+
+    .empty-state p {
+        color: #4C1D95;
+        opacity: 0.8;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Utility Classes */
+    .hidden {
+        display: none !important;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 767px) {
+        .division-grid,
+        .district-grid,
+        .tehsil-grid,
+        .depot-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.7rem;
+        }
+
+        .rectangular-card {
+            padding: 0.8rem;
+            min-height: 90px;
+        }
+
+        .rectangular-card h3 {
+            font-size: 1rem;
+        }
+
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 0.7rem;
+            padding: 1rem;
+        }
+
+        .time-bubble {
+            min-height: 55px;
+            padding: 0.7rem 0.4rem;
+            font-size: 0.85rem;
+        }
+
+        .next-badge {
+            font-size: 0.6rem;
+            padding: 1px 3px;
+            top: -8px;
+            right: -8px;
+            min-width: 30px;
+        }
+
+        .floating-bus-stop-letters {
+            top: 90px;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .seo-content {
+            padding: 1.2rem;
+        }
+
+        .ad-desktop {
+            display: none !important;
+        }
+
+        .ad-mobile {
+            display: flex !important;
+        }
+
+        .tab-btn {
+            min-width: 80px;
+            padding: 0.6rem 0.2rem;
+            font-size: 0.8rem;
+        }
+
+        .tab-count {
+            font-size: 0.7rem;
+            padding: 0.1rem 0.3rem;
+        }
+
+        /* Mobile: Even more compact quick jump */
+        .quick-jump-btn {
+            min-width: 55px;
+            max-width: 65px;
+            padding: 0.3rem 0.4rem;
+            font-size: 0.65rem;
+            height: 50px;
+        }
+
+        .quick-jump-btn i {
+            font-size: 0.8rem;
+        }
+
+        .quick-jump-btn.search-trigger {
+            min-width: 60px;
+            max-width: 70px;
+        }
+
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 0.6rem;
+        }
+
+        .alphabet-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Mobile digital clock adjustments */
+        .time-display.digital-clock {
+            font-size: 1rem;
+            min-width: 110px;
+            padding: 0.3rem 0.6rem;
+        }
+
+        /* Mobile blog content padding */
+        .blog-content {
+            padding: 0 1rem;
+        }
+
+        .blog-content h1,
+        .blog-content h2,
+        .blog-content h3,
+        .blog-content h4,
+        .blog-content h5,
+        .blog-content h6 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .blog-content p {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            padding-left: 2.5rem;
+            padding-right: 1rem;
+        }
+
+        .blog-content table {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+
+        /* Mobile navigation buttons */
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .back-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .division-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .district-grid,
+        .tehsil-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+        }
+
+        .blog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .ad-desktop {
+            display: none !important;
+        }
+
+        .ad-mobile {
+            display: flex !important;
+        }
+
+        .tab-btn {
+            min-width: 90px;
+        }
+
+        /* Tablet: Compact quick jump */
+        .quick-jump-btn {
+            min-width: 60px;
+            max-width: 70px;
+            padding: 0.4rem 0.5rem;
+            font-size: 0.75rem;
+            height: 60px;
+        }
+
+        .quick-jump-btn i {
+            font-size: 0.9rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        /* Tablet blog content padding */
+        .blog-content {
+            padding: 0 1.5rem;
+        }
+
+        .blog-content h1,
+        .blog-content h2,
+        .blog-content h3,
+        .blog-content h4,
+        .blog-content h5,
+        .blog-content h6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .blog-content p {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            padding-left: 3rem;
+            padding-right: 1.5rem;
+        }
+
+        .blog-content table {
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+        }
+    }
+
+    @media (min-width: 1025px) {
+        html {
+            font-size: 15px;
+        }
+
+        .division-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        .district-grid,
+        .tehsil-grid {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        }
+
+        .blog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        }
+
+        .ad-desktop {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .ad-mobile {
+            display: none !important;
+        }
+
+        .tab-btn {
+            min-width: 100px;
+            padding: 0.8rem 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Desktop: Normal quick jump buttons */
+        .quick-jump-btn {
+            min-width: 70px;
+            max-width: 80px;
+            padding: 0.5rem 0.6rem;
+            font-size: 0.75rem;
+            height: 65px;
+        }
+
+        .quick-jump-btn i {
+            font-size: 1rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        /* Desktop digital clock enhancements */
+        .time-display.digital-clock {
+            font-size: 1.2rem;
+            min-width: 140px;
+        }
+
+        /* Desktop blog content padding */
+        .blog-content {
+            padding: 0 2rem;
+        }
+
+        .blog-content h1,
+        .blog-content h2,
+        .blog-content h3,
+        .blog-content h4,
+        .blog-content h5,
+        .blog-content h6 {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .blog-content p {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            padding-left: 3.5rem;
+            padding-right: 2rem;
+        }
+
+        .blog-content table {
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+
+        /* Desktop: Larger back buttons */
+        .back-btn {
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            gap: 0.6rem;
+        }
+
+        .back-btn i {
+            font-size: 1.1rem;
+        }
+    }
+
+    /* Print Styles */
+    @media print {
+        .site-header,
+        .quick-jump-nav,
+        .floating-bus-stop-letters,
+        .filter-btn,
+        .search-container,
+        .time-filters,
+        .back-btn,
+        .ad-container,
+        .quick-search-modal,
+        .alphabet-quick-view {
+            display: none !important;
+        }
+
+        body {
+            background: white;
+            color: black;
+            padding: 0;
+            font-size: 12pt;
+        }
+
+        .time-bubble {
+            break-inside: avoid;
+            border: 1px solid #ccc !important;
+            background: white !important;
+            color: black !important;
+        }
+    }
+
+    /* Fix for 100% zoom - ensure buttons are clickable */
+    @media (max-width: 1000px) {
+        .quick-jump-btn,
+        .alphabet-btn,
+        .alphabet-mini-btn,
+        .floating-letter-btn,
+        .filter-btn,
+        .tab-btn,
+        .close-search,
+        .close-alphabet {
+            min-height: 44px;
+            min-width: 44px;
+            padding: 8px 12px;
+        }
+
+        /* Ensure alphabet drawer opens properly */
+        .alphabet-quick-view {
+            z-index: 1002 !important;
+            touch-action: pan-y !important;
+        }
+
+        .alphabet-view-header,
+        .alphabet-view-grid {
+            touch-action: manipulation !important;
+        }
+    }
+
+    /* Force no horizontal scroll on any zoom level */
+    body, html {
+        overflow-x: hidden;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .container, .quick-jump-content, .tabs-header, .time-filters {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../../../index.html" class="logo">
+                    <i class="bi bi-bus-front"></i>
+                    <span>BusTimely Maharashtra</span>
+                </a>
+                <div class="time-display digital-clock">
+                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
+                    <span class="digital-ampm">AM</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Jump Navigation -->
+    <div class="quick-jump-nav">
+        <div class="container">
+            <div class="quick-jump-content">
+                <a href="../../../index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
+                    <i class="bi bi-buildings"></i>
+                    <span>Divisions</span>
+                </a>
+                <a href="../../../index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
+                    <i class="bi bi-map"></i>
+                    <span>Districts</span>
+                </a>
+                <a href="../../../index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
+                    <i class="bi bi-building"></i>
+                    <span>Tehsils</span>
+                </a>
+                <a href="../../../index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
+                    <i class="bi bi-bus-front"></i>
+                    <span>Depots</span>
+                </a>
+                <button class="quick-jump-btn alphabet-trigger">
+                    <i class="bi bi-sort-alpha-down"></i>
+                    <span>A-Z</span>
+                </button>
+                <button class="quick-jump-btn search-trigger">
+                    <i class="bi bi-search"></i>
+                    <span>Search</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Ad -->
+    
+
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="../../../index.html">Home</a>
+            <span>→</span>
+            <a href="../../index.html">Nashik Division</a>
+            <span>→</span>
+            <a href="../index.html">Jalgaon District</a>
+            <span>→</span>
+            <span>Yawal Tehsil</span>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="navigation-buttons">
+                <a href="../index.html" class="back-btn">
+                    <i class="bi bi-arrow-left"></i> Back to Jalgaon District
+                </a>
+                <a href="../../../index.html" class="back-btn">
+                    <i class="bi bi-house"></i> Back to Bus Schedule
+                </a>
+            </div>
+
+            <div class="depot-header">
+                <h1>Yawal Tehsil</h1>
+                <p>MSRTC bus schedules tehsil</p>
+                <div class="depot-info">
+                    <div class="info-item">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>Jalgaon District District</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-bus-front"></i>
+                        <span>0 Depots</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Ad -->
+            
+
+            <!-- Alphabet Quick Access for Depots -->
+            <div class="alphabet-quick-access">
+                <h3>Quick Jump to Depots</h3>
+                <div class="alphabet-mini-grid">
+                    <button class="alphabet-mini-btn disabled" data-letter="A">A</button><button class="alphabet-mini-btn disabled" data-letter="B">B</button><button class="alphabet-mini-btn disabled" data-letter="C">C</button><button class="alphabet-mini-btn disabled" data-letter="D">D</button><button class="alphabet-mini-btn disabled" data-letter="E">E</button><button class="alphabet-mini-btn disabled" data-letter="F">F</button><button class="alphabet-mini-btn disabled" data-letter="G">G</button><button class="alphabet-mini-btn disabled" data-letter="H">H</button><button class="alphabet-mini-btn disabled" data-letter="I">I</button><button class="alphabet-mini-btn disabled" data-letter="J">J</button><button class="alphabet-mini-btn disabled" data-letter="K">K</button><button class="alphabet-mini-btn disabled" data-letter="L">L</button><button class="alphabet-mini-btn disabled" data-letter="M">M</button><button class="alphabet-mini-btn disabled" data-letter="N">N</button><button class="alphabet-mini-btn disabled" data-letter="O">O</button><button class="alphabet-mini-btn disabled" data-letter="P">P</button><button class="alphabet-mini-btn disabled" data-letter="Q">Q</button><button class="alphabet-mini-btn disabled" data-letter="R">R</button><button class="alphabet-mini-btn disabled" data-letter="S">S</button><button class="alphabet-mini-btn disabled" data-letter="T">T</button><button class="alphabet-mini-btn disabled" data-letter="U">U</button><button class="alphabet-mini-btn disabled" data-letter="V">V</button><button class="alphabet-mini-btn disabled" data-letter="W">W</button><button class="alphabet-mini-btn disabled" data-letter="X">X</button><button class="alphabet-mini-btn disabled" data-letter="Y">Y</button><button class="alphabet-mini-btn disabled" data-letter="Z">Z</button>
+                </div>
+            </div>
+
+            <!-- Depots Grid -->
+            <div class="depot-grid">
+                <div class="empty-state"><i class="bi bi-bus-front"></i><h3>No depots available</h3><p>Add depot data for this tehsil</p></div>
+            </div>
+
+            <!-- SEO Content -->
+            
+        </div>
+    </main>
+
+    <!-- Footer Ad -->
+    
+
+    <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <div class="footer-links">
+                            <a href="../../../index.html">Home</a>
+                            <a href="../../../about.html">About Us</a>
+                            <a href="../../../contact.html">Contact</a>
+                            <a href="../../../blogs/index.html">Blogs & Updates</a>
+                            <a href="../../../terms.html">Terms of Service</a>
+                            <a href="../../../privacy.html">Privacy Policy</a>
+                            <a href="../../../disclaimer.html">Disclaimer</a>
+                        </div>
+                    </div>
+
+                    <!-- MSRTC Info -->
+                    <div class="footer-section">
+                        <h3>MSRTC Information</h3>
+                        <div class="footer-links">
+                            <a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official MSRTC Website</a>
+                            <a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Online Ticket Booking</a>
+                            <a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a>
+                            <a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Lodge Complaint</a>
+                        </div>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="copyright">
+                        © 2026 BusTimely Maharashtra. All rights reserved.<br>
+                        This is an unofficial timetable portal. For official schedules, please visit <a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">msrtc.maharashtra.gov.in</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Quick Search Modal -->
+    <div class="quick-search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="bi bi-search"></i> Quick Search Yawal Tehsil Tehsil</h3>
+                <button class="close-search">&times;</button>
+            </div>
+            <div class="search-modal-body">
+                <input type="text" class="global-search-input" placeholder="Type to search depots in Yawal Tehsil...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alphabet Quick View -->
+    <div class="alphabet-quick-view" id="alphabetView">
+        <div class="alphabet-view-header">
+            <h4>Jump to Depot</h4>
+            <button class="close-alphabet">&times;</button>
+        </div>
+        <div class="alphabet-view-grid">
+            <button class="alphabet-btn" data-letter="A">A</button><button class="alphabet-btn" data-letter="B">B</button><button class="alphabet-btn" data-letter="C">C</button><button class="alphabet-btn" data-letter="D">D</button><button class="alphabet-btn" data-letter="E">E</button><button class="alphabet-btn" data-letter="F">F</button><button class="alphabet-btn" data-letter="G">G</button><button class="alphabet-btn" data-letter="H">H</button><button class="alphabet-btn" data-letter="I">I</button><button class="alphabet-btn" data-letter="J">J</button><button class="alphabet-btn" data-letter="K">K</button><button class="alphabet-btn" data-letter="L">L</button><button class="alphabet-btn" data-letter="M">M</button><button class="alphabet-btn" data-letter="N">N</button><button class="alphabet-btn" data-letter="O">O</button><button class="alphabet-btn" data-letter="P">P</button><button class="alphabet-btn" data-letter="Q">Q</button><button class="alphabet-btn" data-letter="R">R</button><button class="alphabet-btn" data-letter="S">S</button><button class="alphabet-btn" data-letter="T">T</button><button class="alphabet-btn" data-letter="U">U</button><button class="alphabet-btn" data-letter="V">V</button><button class="alphabet-btn" data-letter="W">W</button><button class="alphabet-btn" data-letter="X">X</button><button class="alphabet-btn" data-letter="Y">Y</button><button class="alphabet-btn" data-letter="Z">Z</button>
+        </div>
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // MSRTC Bus Timetable Application
+class BusTimetableApp {
+    constructor() {
+        this.istOffset = 5.5 * 60 * 60 * 1000;
+        this.activeFilter = 'all';
+        this.searchTerm = '';
+        this.init();
+    }
+
+    init() {
+        console.log('🚌 MSRTC Bus Timetable App Initialized');
+
+        // Handle hash navigation on page load
+        if (window.location.hash) {
+            setTimeout(() => {
+                this.handleHashNavigation();
+            }, 100);
+        }
+
+        // Update digital clock display with IST time
+        this.updateDigitalClock();
+        setInterval(() => this.updateDigitalClock(), 1000);
+
+        // Initialize tabs
+        this.initAllTabs();
+
+        // Initialize quick jump navigation
+        this.initQuickJump();
+
+        // Initialize alphabet navigation - FIXED FOR 100% ZOOM
+        this.initAlphabetNavigation();
+
+        // Initialize search functionality
+        this.initSearch();
+
+        // Initialize depot-specific features
+        if (document.querySelector('.time-filters')) {
+            this.initFilters();
+            this.initTimeClick();
+            setTimeout(() => {
+                this.highlightNextBus();
+                this.applyFilters();
+            }, 100);
+        }
+
+        // Initialize back button
+        this.initBackButton();
+
+        // Initialize scroll highlighting
+        if (document.querySelector('.bus-stop-section') || document.querySelector('.rectangular-card')) {
+            this.initScrollHighlighting();
+        }
+
+        // Initialize blog navigation if on blog page
+        if (document.querySelector('.blog-grid')) {
+            this.initBlogNavigation();
+        }
+
+        // Initialize bus stop alphabet navigation
+        this.initBusStopAlphabetNavigation();
+
+        // Highlight first matching alphabet
+        setTimeout(() => this.highlightFirstAlphabetMatch(), 300);
+
+        // Prevent horizontal scroll
+        this.preventHorizontalScroll();
+    }
+
+    preventHorizontalScroll() {
+        // Ensure no horizontal scroll
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflowX = 'hidden';
+
+        window.addEventListener('resize', () => {
+            document.body.style.overflowX = 'hidden';
+            document.documentElement.style.overflowX = 'hidden';
+        });
+    }
+
+    handleHashNavigation() {
+        // If we're on homepage and have a hash, switch to appropriate tab
+        if (window.location.pathname.endsWith('index.html') ||
+            window.location.pathname.endsWith('/')) {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['divisions', 'districts', 'tehsils', 'depots'].includes(hash)) {
+                // Find and click the tab button
+                const tabButton = document.querySelector(`.tab-btn[data-tab="${hash}"]`);
+                if (tabButton) {
+                    tabButton.click();
+                }
+            }
+        }
+    }
+
+    highlightFirstAlphabetMatch() {
+        // Highlight the first visible alphabet button
+        const alphabetButtons = document.querySelectorAll('.alphabet-mini-btn:not(.disabled), .alphabet-btn:not(.disabled), .floating-letter-btn:not(.disabled)');
+        if (alphabetButtons.length > 0) {
+            // Remove any existing highlights
+            document.querySelectorAll('.alphabet-highlight-first').forEach(el => {
+                el.classList.remove('alphabet-highlight-first');
+            });
+
+            // Add highlight to first matching button
+            alphabetButtons[0].classList.add('alphabet-highlight-first');
+        }
+    }
+
+    updateDigitalClock() {
+        // Get current IST time
+        const now = new Date();
+        const istTime = new Date(now.getTime() + this.istOffset);
+
+        let hours = istTime.getUTCHours();
+        const minutes = istTime.getUTCMinutes().toString().padStart(2, '0');
+        const seconds = istTime.getUTCSeconds().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        // Convert to 12-hour format
+        hours = hours % 12 || 12;
+        const displayHours = hours.toString().padStart(2, '0');
+
+        document.querySelectorAll('.digital-clock').forEach(clock => {
+            const hoursSpan = clock.querySelector('.digital-hours');
+            const minutesSpan = clock.querySelector('.digital-minutes');
+            const secondsSpan = clock.querySelector('.digital-seconds');
+            const ampmSpan = clock.querySelector('.digital-ampm');
+
+            if (hoursSpan) hoursSpan.textContent = displayHours;
+            if (minutesSpan) minutesSpan.textContent = minutes;
+            if (secondsSpan) secondsSpan.textContent = seconds;
+            if (ampmSpan) ampmSpan.textContent = ampm;
+        });
+
+        // Update next bus highlight every 30 seconds
+        if (document.querySelector('.time-filters') && now.getSeconds() % 30 === 0) {
+            this.highlightNextBus();
+        }
+    }
+
+    initAllTabs() {
+        // Handle main tabs (content tabs)
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+
+                // Update main tab button
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Show corresponding tab content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tabId}-tab`) {
+                        content.classList.add('active');
+                    }
+                });
+
+                // Update top navigation buttons
+                document.querySelectorAll('.quick-jump-btn[data-tab]').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.tab === tabId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Update URL hash for bookmarking
+                if (window.location.pathname.endsWith('index.html') ||
+                    window.location.pathname.endsWith('/')) {
+                    window.history.replaceState(null, null, `#${tabId}`);
+                }
+
+                // Store active tab in localStorage
+                localStorage.setItem('activeTab', tabId);
+
+                // Re-highlight first alphabet match
+                setTimeout(() => this.highlightFirstAlphabetMatch(), 100);
+            });
+        });
+
+        // Restore active tab from localStorage
+        const savedTab = localStorage.getItem('activeTab') || 'divisions';
+        const savedButton = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
+        if (savedButton) {
+            savedButton.click();
+        }
+    }
+
+    initQuickJump() {
+        // Search trigger
+        document.querySelectorAll('.search-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showSearchModal();
+            });
+        });
+
+        // Alphabet trigger - FIXED FOR 100% ZOOM
+        document.querySelectorAll('.alphabet-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.showAlphabetView();
+            });
+        });
+
+        // Bus stop alphabet trigger (specific for depot pages)
+        document.querySelectorAll('.bus-stop-alphabet-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.scrollToBusStopSection('A');
+            });
+        });
+
+        // Handle top navigation tab clicks
+        document.querySelectorAll('.quick-jump-btn[data-tab]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = btn.dataset.tab;
+                const hash = btn.dataset.hash || tabId;
+
+                // Check if we're on homepage
+                const isHomepage = window.location.pathname.endsWith('index.html') ||
+                                  window.location.pathname.endsWith('/');
+
+                if (isHomepage) {
+                    // On homepage, just switch tabs
+                    const mainTabButton = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+                    if (mainTabButton) {
+                        mainTabButton.click();
+
+                        // Scroll to tabs section
+                        setTimeout(() => {
+                            const tabsSection = document.querySelector('.tabs-container');
+                            if (tabsSection) {
+                                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                                   document.querySelector('.quick-jump-nav').offsetHeight;
+                                const sectionTop = tabsSection.offsetTop - headerHeight - 20;
+
+                                window.scrollTo({
+                                    top: sectionTop,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100);
+                    }
+                } else {
+                    // Not on homepage, navigate to homepage with correct tab hash
+                    window.location.href = `index.html#${hash}`;
+                }
+            });
+        });
+    }
+
+    initAlphabetNavigation() {
+        // Initialize all alphabet buttons - FIXED FOR TOUCH/CLICK
+        const alphabetButtons = document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn');
+        alphabetButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.classList.contains('disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const letter = button.dataset.letter;
+                this.jumpToLetter(letter);
+
+                // Update active state
+                alphabetButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.remove('alphabet-highlight-first');
+                    if (btn.dataset.letter === letter) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Close alphabet view if open
+                this.hideAlphabetView();
+            });
+
+            // Add touch events for better mobile support
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                button.click();
+            });
+        });
+    }
+
+    initBusStopAlphabetNavigation() {
+        const floatingButtons = document.querySelectorAll('.floating-letter-btn');
+        floatingButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.classList.contains('disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const letter = button.dataset.letter;
+                this.scrollToBusStopSection(letter);
+
+                // Update active state
+                floatingButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.remove('alphabet-highlight-first');
+                    if (btn.dataset.letter === letter) {
+                        btn.classList.add('active');
+                    }
+                });
+            });
+
+            // Add touch events for better mobile support
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                button.click();
+            });
+        });
+    }
+
+    scrollToBusStopSection(letter) {
+        // Convert to lowercase for lookup
+        const lookupLetter = letter.toLowerCase();
+
+        // Try all bus stop sections with this letter
+        const busStopSections = document.querySelectorAll(`.bus-stop-section[data-letter="${lookupLetter}"]`);
+
+        if (busStopSections.length > 0) {
+            const headerHeight = document.querySelector('.site-header').offsetHeight +
+                               document.querySelector('.quick-jump-nav').offsetHeight + 20;
+            const sectionTop = busStopSections[0].offsetTop - headerHeight;
+
+            window.scrollTo({
+                top: sectionTop,
+                behavior: 'smooth'
+            });
+
+            // Highlight briefly
+            this.highlightElement(busStopSections[0]);
+            return true;
+        }
+
+        // Try by bus stop name first letter (case-insensitive)
+        const allSections = document.querySelectorAll('.bus-stop-section');
+        for (const section of allSections) {
+            const busStopName = section.querySelector('.bus-stop-name')?.textContent.trim();
+            if (busStopName && busStopName.charAt(0).toLowerCase() === lookupLetter) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 20;
+                const sectionTop = section.offsetTop - headerHeight;
+
+                window.scrollTo({
+                    top: sectionTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(section);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    jumpToLetter(letter) {
+        // Try bus stop sections first (for depot pages)
+        if (this.scrollToBusStopSection(letter)) {
+            return;
+        }
+
+        // Try cards (for division/district/tehsil/depot pages)
+        const cards = document.querySelectorAll('.rectangular-card');
+        for (const card of cards) {
+            const cardAlphabet = card.dataset.alphabet;
+            const cardTitle = card.querySelector('h3');
+            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
+                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 20;
+                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: cardTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(card);
+                return;
+            }
+        }
+
+        // Try headings
+        const headings = document.querySelectorAll('h1, h2, h3, h4');
+        for (const heading of headings) {
+            if (heading.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 20;
+                const headingTop = heading.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: headingTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(heading);
+                return;
+            }
+        }
+    }
+
+    highlightElement(element) {
+        const originalBoxShadow = element.style.boxShadow;
+        const originalBackground = element.style.backgroundColor;
+
+        element.style.boxShadow = '0 0 0 3px rgba(73, 61, 213, 0.3)';
+        element.style.backgroundColor = 'rgba(237, 233, 254, 0.5)';
+
+        setTimeout(() => {
+            element.style.boxShadow = originalBoxShadow;
+            element.style.backgroundColor = originalBackground;
+        }, 1500);
+    }
+
+    showSearchModal() {
+        const modal = document.getElementById('searchModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            modal.querySelector('.global-search-input').focus();
+
+            // Close button
+            const closeBtn = modal.querySelector('.close-search');
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Add touch event for mobile
+            closeBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                modal.style.display = 'none';
+            });
+
+            // Close on outside click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Initialize search functionality
+            this.initGlobalSearch();
+        }
+    }
+
+    initGlobalSearch() {
+        const searchInput = document.querySelector('.global-search-input');
+        const searchResults = document.getElementById('searchResults');
+
+        if (!searchInput || !searchResults) return;
+
+        // Load search index if available
+        if (typeof window.searchIndex === 'undefined') {
+            // Try to load search index
+            const script = document.createElement('script');
+            script.src = 'search-index.js';
+            script.onload = () => this.performGlobalSearch(searchInput, searchResults);
+            document.head.appendChild(script);
+        } else {
+            this.performGlobalSearch(searchInput, searchResults);
+        }
+    }
+
+    performGlobalSearch(searchInput, searchResults) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (query.length < 1) {
+                searchResults.innerHTML = '<div class="search-result-item"><p>Type to search...</p></div>';
+                return;
+            }
+
+            // Search across all data types from search-index.js
+            const allResults = [];
+
+            // Search divisions
+            if (window.searchIndex && window.searchIndex.divisions) {
+                window.searchIndex.divisions.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            // Search districts
+            if (window.searchIndex && window.searchIndex.districts) {
+                window.searchIndex.districts.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            // Search tehsils
+            if (window.searchIndex && window.searchIndex.tehsils) {
+                window.searchIndex.tehsils.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.district.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            // Search depots
+            if (window.searchIndex && window.searchIndex.depots) {
+                window.searchIndex.depots.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.district.toLowerCase().includes(query) ||
+                        item.tehsil.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            // Sort results by relevance (exact matches first, then partial matches)
+            allResults.sort((a, b) => {
+                const aExact = a.name.toLowerCase() === query;
+                const bExact = b.name.toLowerCase() === query;
+                if (aExact && !bExact) return -1;
+                if (!aExact && bExact) return 1;
+                return a.name.localeCompare(b.name);
+            });
+
+            // Display results (limit to 30)
+            const filteredItems = allResults.slice(0, 30);
+
+            if (filteredItems.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item"><p>No results found</p></div>';
+            } else {
+                searchResults.innerHTML = filteredItems.map(item => {
+                    let description = `${item.type}`;
+                    if (item.division) description += ` • ${item.division}`;
+                    if (item.district) description += ` • ${item.district}`;
+                    if (item.tehsil) description += ` • ${item.tehsil}`;
+                    if (item.busStops) description += ` • ${item.busStops} bus stops`;
+                    if (item.buses) description += ` • ${item.buses} bus schedules`;
+                    if (item.districts) description += ` • ${item.districts} districts`;
+                    if (item.depots) description += ` • ${item.depots} depots`;
+                    if (item.tehsils) description += ` • ${item.tehsils} tehsils`;
+
+                    return `
+                    <div class="search-result-item" data-url="${item.path}">
+                        <h4>${item.name}</h4>
+                        <p>${description}</p>
+                    </div>
+                    `;
+                }).join('');
+
+                // Add click handlers
+                searchResults.querySelectorAll('.search-result-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const url = item.dataset.url;
+                        if (url) {
+                            // FIX: Handle blog URLs correctly
+                            if (url.includes('/blogs/')) {
+                                window.location.href = url;
+                            } else {
+                                window.location.href = url;
+                            }
+                            document.getElementById('searchModal').style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
+
+        // Enter key to select first result
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const firstResult = searchResults.querySelector('.search-result-item');
+                if (firstResult) {
+                    firstResult.click();
+                }
+            }
+        });
+
+        // Escape key to close modal
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('searchModal').style.display = 'none';
+            }
+        });
+    }
+
+    showAlphabetView() {
+        const view = document.getElementById('alphabetView');
+        if (view) {
+            view.style.display = 'block';
+
+            // Close button - FIXED FOR 100% ZOOM
+            const closeBtn = view.querySelector('.close-alphabet');
+            closeBtn.addEventListener('click', () => {
+                this.hideAlphabetView();
+            });
+
+            // Add touch event for mobile
+            closeBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this.hideAlphabetView();
+            });
+
+            // Close on outside click
+            view.addEventListener('click', (e) => {
+                if (e.target === view) {
+                    this.hideAlphabetView();
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && view.style.display === 'block') {
+                    this.hideAlphabetView();
+                }
+            });
+
+            // Ensure alphabet buttons are clickable
+            setTimeout(() => {
+                this.initAlphabetNavigation();
+            }, 100);
+        }
+    }
+
+    hideAlphabetView() {
+        const view = document.getElementById('alphabetView');
+        if (view) {
+            view.style.display = 'none';
+        }
+    }
+
+    initSearch() {
+        const searchBox = document.querySelector('.search-box');
+        if (searchBox) {
+            searchBox.addEventListener('input', (e) => {
+                this.searchTerm = e.target.value.toLowerCase().trim();
+                this.applyFilters();
+            });
+
+            searchBox.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchBox.value = '';
+                    this.searchTerm = '';
+                    this.applyFilters();
+                }
+            });
+        }
+    }
+
+    initBackButton() {
+        // Handle blog navigation
+        const blogBackBtn = document.querySelector('.back-btn[href="index.html"]');
+        if (blogBackBtn && window.location.pathname.includes('/blogs/')) {
+            blogBackBtn.href = 'index.html';
+        }
+    }
+
+    initFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                this.activeFilter = button.dataset.filter;
+                this.applyFilters();
+            });
+        });
+    }
+
+    initScrollHighlighting() {
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                this.updateActiveAlphabet();
+            }, 50);
+        });
+
+        setTimeout(() => this.updateActiveAlphabet(), 200);
+    }
+
+    updateActiveAlphabet() {
+        // Check for bus stop sections
+        const busStopSections = document.querySelectorAll('.bus-stop-section:not(.hidden)');
+        if (busStopSections.length > 0) {
+            let currentLetter = '';
+            const scrollPosition = window.scrollY + 150;
+
+            for (const section of busStopSections) {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+                    currentLetter = section.dataset.letter;
+                    break;
+                }
+            }
+
+            if (currentLetter) {
+                this.updateAlphabetActiveState(currentLetter);
+            }
+            return;
+        }
+
+        // Check for cards
+        const cards = document.querySelectorAll('.rectangular-card');
+        let closestCard = null;
+        let closestDistance = Infinity;
+        const scrollPosition = window.scrollY + 100;
+
+        cards.forEach(card => {
+            const cardTop = card.offsetTop;
+            const cardBottom = cardTop + card.offsetHeight;
+
+            if (scrollPosition >= cardTop && scrollPosition <= cardBottom) {
+                const distance = Math.abs(scrollPosition - cardTop);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestCard = card;
+                }
+            }
+        });
+
+        if (closestCard) {
+            const cardAlphabet = closestCard.dataset.alphabet || closestCard.querySelector('h3').textContent.trim().charAt(0).toUpperCase();
+            this.updateAlphabetActiveState(cardAlphabet);
+        }
+    }
+
+    updateAlphabetActiveState(letter) {
+        // Update all alphabet buttons
+        document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn, .floating-letter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.letter.toLowerCase() === letter.toLowerCase()) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    applyFilters() {
+        const sections = document.querySelectorAll('.bus-stop-section');
+        let hasVisibleContent = false;
+
+        sections.forEach(section => {
+            const busStopName = section.querySelector('.bus-stop-name').textContent.toLowerCase();
+            const timeBubbles = section.querySelectorAll('.time-bubble');
+            let visibleBubbles = 0;
+
+            // Filter by search term
+            if (this.searchTerm && !busStopName.includes(this.searchTerm)) {
+                section.classList.add('hidden');
+                return;
+            }
+
+            // Filter by time category
+            timeBubbles.forEach(bubble => {
+                const time = bubble.dataset.time;
+                const timeCategory = this.getTimeCategory(time);
+
+                if (this.activeFilter === 'all' || timeCategory === this.activeFilter) {
+                    bubble.classList.remove('hidden');
+                    visibleBubbles++;
+                } else {
+                    bubble.classList.add('hidden');
+                }
+            });
+
+            if (visibleBubbles > 0) {
+                section.classList.remove('hidden');
+                hasVisibleContent = true;
+            } else {
+                section.classList.add('hidden');
+            }
+
+            // Update bus count display
+            const busCount = section.querySelector('.bus-count');
+            if (busCount) {
+                busCount.textContent = `${visibleBubbles} bus${visibleBubbles !== 1 ? 'es' : ''}`;
+            }
+        });
+
+        // Show/hide empty state
+        const emptyState = document.querySelector('.empty-state');
+        if (emptyState) {
+            emptyState.classList.toggle('hidden', hasVisibleContent);
+        }
+
+        // Update floating bus stop letters visibility
+        this.updateFloatingLettersVisibility();
+
+        setTimeout(() => this.highlightNextBus(), 50);
+        setTimeout(() => this.updateActiveAlphabet(), 100);
+    }
+
+    updateFloatingLettersVisibility() {
+        const floatingButtons = document.querySelectorAll('.floating-letter-btn');
+        const visibleLetters = new Set();
+
+        document.querySelectorAll('.bus-stop-section:not(.hidden)').forEach(section => {
+            const letter = section.dataset.letter;
+            if (letter) visibleLetters.add(letter.toLowerCase());
+        });
+
+        floatingButtons.forEach(btn => {
+            const letter = btn.dataset.letter.toLowerCase();
+            if (visibleLetters.has(letter)) {
+                btn.classList.remove('disabled');
+            } else {
+                btn.classList.add('disabled');
+            }
+        });
+    }
+
+    getTimeCategory(timeString) {
+        const [hours] = timeString.split(':').map(Number);
+        if (hours >= 5 && hours < 12) return 'morning';
+        if (hours >= 12 && hours < 17) return 'afternoon';
+        if (hours >= 17 && hours < 22) return 'evening';
+        return 'night';
+    }
+
+    highlightNextBus() {
+        document.querySelectorAll('.next-badge').forEach(badge => badge.remove());
+        document.querySelectorAll('.time-bubble.next-bus').forEach(bubble => {
+            bubble.classList.remove('next-bus');
+            const sparkle = bubble.querySelector('.next-bus-sparkle');
+            if (sparkle) sparkle.remove();
+        });
+
+        // Get current IST time
+        const now = new Date();
+        const currentHours = now.getHours();
+        const currentMinutes = now.getMinutes();
+        const currentTotalMinutes = currentHours * 60 + currentMinutes;
+
+        const allBubbles = Array.from(document.querySelectorAll('.time-bubble:not(.hidden)'));
+        const upcomingBubbles = [];
+
+        allBubbles.forEach(bubble => {
+            const [hours, minutes] = bubble.dataset.time.split(':').map(Number);
+            const bubbleTotalMinutes = hours * 60 + minutes;
+
+            let timeDiff = bubbleTotalMinutes - currentTotalMinutes;
+            if (timeDiff < 0) {
+                timeDiff += 24 * 60;
+            }
+
+            if (timeDiff >= 0 && timeDiff <= 360) {
+                upcomingBubbles.push({
+                    bubble,
+                    timeDiff,
+                    bubbleTotalMinutes
+                });
+            }
+        });
+
+        upcomingBubbles.sort((a, b) => a.timeDiff - b.timeDiff);
+
+        if (upcomingBubbles.length > 0) {
+            const nextBus = upcomingBubbles[0].bubble;
+            const badge = document.createElement('div');
+            badge.className = 'next-badge';
+            badge.textContent = 'NEXT';
+            badge.title = 'Next upcoming bus';
+
+            // Add sparkle effect to next bus bubble
+            nextBus.classList.add('next-bus');
+
+            const sparkle = document.createElement('div');
+            sparkle.className = 'next-bus-sparkle';
+            nextBus.appendChild(sparkle);
+
+            nextBus.style.position = 'relative';
+            nextBus.appendChild(badge);
+        }
+    }
+
+    initTimeClick() {
+        document.addEventListener('click', (e) => {
+            const timeBubble = e.target.closest('.time-bubble');
+            if (timeBubble) {
+                const time = timeBubble.dataset.time;
+                const busStop = timeBubble.closest('.bus-stop-section').querySelector('.bus-stop-name').textContent;
+                this.showBusDetails(time, busStop);
+            }
+        });
+    }
+
+    showBusDetails(time, busStop) {
+        const [hours, minutes] = time.split(':').map(Number);
+        const timeCategory = this.getTimeCategory(time);
+
+        const categoryNames = {
+            morning: '🌅 Morning Bus',
+            afternoon: '☀️ Afternoon Bus',
+            evening: '🌇 Evening Bus',
+            night: '🌙 Night Bus'
+        };
+
+        // Convert to 12-hour format for display
+        const hour12 = hours % 12 || 12;
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedTime = `${hour12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+
+        const period = categoryNames[timeCategory];
+
+        // Get current IST time
+        const now = new Date();
+        const busTime = new Date(now);
+        busTime.setHours(hours, minutes, 0, 0);
+
+        if (busTime < now) {
+            busTime.setDate(busTime.getDate() + 1);
+        }
+
+        const timeDiff = Math.floor((busTime - now) / (1000 * 60));
+        let timeMessage = '';
+        if (timeDiff < 60) {
+            timeMessage = `in ${timeDiff} minutes`;
+        } else {
+            const hoursLeft = Math.floor(timeDiff / 60);
+            const minutesLeft = timeDiff % 60;
+            timeMessage = `in ${hoursLeft}h ${minutesLeft}m`;
+        }
+
+        const message = `🚌 **Bus Details**\n\n📍 **Bus Stop:** ${busStop}\n🕐 **Time:** ${formattedTime}\n⏰ **${period}** (${timeMessage})\n\n💡 *Please arrive 10-15 minutes before departure*`;
+
+        alert(message);
+    }
+
+    initBlogNavigation() {
+        console.log('📝 Blog page initialized');
+    }
+}
+
+// Initialize app when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.busApp = new BusTimetableApp();
+});
+    </script>
+</body>
+</html>
