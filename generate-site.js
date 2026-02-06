@@ -71,7 +71,10 @@ class SiteGenerator {
                     const filePath = path.join(relatedDepotsDir, file);
                     const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
-                    // Support both single object and array of objects
+                    // Support both formats:
+                    // 1. New format with full hierarchy
+                    // 2. Old format with just depot IDs
+
                     if (Array.isArray(content)) {
                         content.forEach(item => {
                             const depotId = item.depots_id || item.depot_id || item.depot;
@@ -81,13 +84,34 @@ class SiteGenerator {
                                     relatedDepots[depotId] = [];
                                 }
 
-                                // Add related depot IDs
-                                const relatedIds = item.related_depots_id || item.related_depots || item.related || [];
-                                if (Array.isArray(relatedIds)) {
-                                    relatedDepots[depotId].push(...relatedIds);
-                                } else if (typeof relatedIds === 'string') {
-                                    // Handle comma-separated string
-                                    relatedDepots[depotId].push(...relatedIds.split(',').map(id => id.trim()));
+                                // Check if it's the new format (with hierarchy)
+                                if (item.related_depots && Array.isArray(item.related_depots)) {
+                                    // New format: array of objects with hierarchy
+                                    relatedDepots[depotId].push(...item.related_depots.map(related => {
+                                        // Ensure all required fields
+                                        return {
+                                            depot_id: related.depot_id || related.depots_id || related.depot,
+                                            division_id: related.division_id || null,
+                                            district_id: related.district_id || null,
+                                            tehsil_id: related.tehsil_id || null
+                                        };
+                                    }));
+                                } else if (item.related_depots_id) {
+                                    // Old format: just array of depot IDs
+                                    const relatedIds = item.related_depots_id;
+                                    if (Array.isArray(relatedIds)) {
+                                        relatedDepots[depotId].push(...relatedIds.map(depotId => ({
+                                            depot_id: depotId
+                                            // hierarchy will be looked up later
+                                        })));
+                                    } else if (typeof relatedIds === 'string') {
+                                        // Handle comma-separated string
+                                        relatedDepots[depotId].push(
+                                            ...relatedIds.split(',').map(id => id.trim()).map(depotId => ({
+                                                depot_id: depotId
+                                            }))
+                                        );
+                                    }
                                 }
                             }
                         });
@@ -95,12 +119,28 @@ class SiteGenerator {
                         // Single object format
                         const depotId = content.depots_id || content.depot_id || content.depot;
                         if (depotId) {
-                            relatedDepots[depotId] = content.related_depots_id || content.related_depots || content.related || [];
-                            if (!Array.isArray(relatedDepots[depotId])) {
-                                // Convert to array if it's a string
-                                relatedDepots[depotId] = typeof relatedDepots[depotId] === 'string'
-                                    ? [relatedDepots[depotId]]
-                                    : [];
+                            relatedDepots[depotId] = [];
+
+                            if (content.related_depots && Array.isArray(content.related_depots)) {
+                                // New format
+                                relatedDepots[depotId] = content.related_depots.map(related => ({
+                                    depot_id: related.depot_id || related.depots_id || related.depot,
+                                    division_id: related.division_id || null,
+                                    district_id: related.district_id || null,
+                                    tehsil_id: related.tehsil_id || null
+                                }));
+                            } else if (content.related_depots_id) {
+                                // Old format
+                                const relatedIds = content.related_depots_id;
+                                if (Array.isArray(relatedIds)) {
+                                    relatedDepots[depotId] = relatedIds.map(depotId => ({
+                                        depot_id: depotId
+                                    }));
+                                } else if (typeof relatedIds === 'string') {
+                                    relatedDepots[depotId] = relatedIds.split(',').map(id => id.trim()).map(depotId => ({
+                                        depot_id: depotId
+                                    }));
+                                }
                             }
                         }
                     }
@@ -111,9 +151,47 @@ class SiteGenerator {
                 }
             });
 
-            // Remove duplicates from each depot's related list
+            // Now, for any related depots that don't have hierarchy info,
+            // try to find it from the actual depot data
             Object.keys(relatedDepots).forEach(depotId => {
-                relatedDepots[depotId] = [...new Set(relatedDepots[depotId])];
+                relatedDepots[depotId] = relatedDepots[depotId].map(related => {
+                    // If already has full hierarchy, return as-is
+                    if (related.division_id && related.district_id && related.tehsil_id) {
+                        return related;
+                    }
+
+                    // Try to find the depot and get its hierarchy
+                    const depot = this.data.depots[related.depot_id];
+                    if (depot) {
+                        const tehsil = this.data.tehsils[depot.tehsil_id];
+                        const district = tehsil ? this.data.districts[tehsil.district_id] : null;
+                        const division = district ? this.data.divisions[district.division_id] : null;
+
+                        return {
+                            depot_id: related.depot_id,
+                            division_id: division ? division.id : null,
+                            district_id: district ? district.id : null,
+                            tehsil_id: tehsil ? tehsil.id : null
+                        };
+                    }
+
+                    // If depot not found, return with null hierarchy
+                    return related;
+                }).filter(related => related.depot_id); // Remove any null depot IDs
+            });
+
+            // Remove duplicates
+            Object.keys(relatedDepots).forEach(depotId => {
+                const unique = [];
+                const seen = new Set();
+                relatedDepots[depotId].forEach(related => {
+                    const key = `${related.depot_id}-${related.division_id}-${related.district_id}-${related.tehsil_id}`;
+                    if (!seen.has(key)) {
+                        seen.add(key);
+                        unique.push(related);
+                    }
+                });
+                relatedDepots[depotId] = unique;
             });
 
             console.log(`   Loaded related depots for ${Object.keys(relatedDepots).length} depots`);
@@ -1747,7 +1825,8 @@ class SiteGenerator {
         const relatedDepots = this.getRelatedDepots(depot.id);
 
         // If no specific related depots, get other depots in the same tehsil
-        const fallbackRelatedDepots = relatedDepots.length === 0 ? this.getRelatedDepotsInTehsil(depot.id, tehsil.id) : [];
+        const fallbackRelatedDepots = relatedDepots.length === 0 ?
+            this.getRelatedDepotsInTehsil(depot.id, tehsil.id) : [];
 
         return `<!DOCTYPE html>
 <html lang="en">
@@ -1967,8 +2046,14 @@ class SiteGenerator {
                 <div class="related-links-section mt-4">
                     <h2>${relatedDepots.length > 0 ? 'Related Depots' : 'Other Depots in ' + tehsil.name}</h2>
                     <div class="related-links-grid">
-                        ${relatedDepots.length > 0 ? relatedDepots.map(relatedDepot => this.renderRelatedDepotCard(relatedDepot, division.id, district.id, tehsil.id)).join('') : ''}
-                        ${relatedDepots.length === 0 ? fallbackRelatedDepots.map(relatedDepot => this.renderRelatedDepotCard(relatedDepot, division.id, district.id, tehsil.id)).join('') : ''}
+                        ${relatedDepots.length > 0 ?
+                            relatedDepots.map(relatedData =>
+                                this.renderRelatedDepotCard(relatedData, division.id, district.id, tehsil.id, depot.id)).join('') :
+                            ''}
+                        ${relatedDepots.length === 0 ?
+                            fallbackRelatedDepots.map(relatedData =>
+                                this.renderRelatedDepotCard(relatedData, division.id, district.id, tehsil.id, depot.id)).join('') :
+                            ''}
                     </div>
                 </div>
             ` : ''}
@@ -2006,13 +2091,34 @@ class SiteGenerator {
     }
 
     getRelatedDepots(depotId) {
-        const relatedDepotIds = this.relatedDepotsData[depotId] || [];
+        const relatedDepotItems = this.relatedDepotsData[depotId] || [];
         const relatedDepots = [];
 
-        relatedDepotIds.forEach(relatedDepotId => {
-            const relatedDepot = this.data.depots[relatedDepotId];
+        relatedDepotItems.forEach(relatedItem => {
+            const relatedDepot = this.data.depots[relatedItem.depot_id];
             if (relatedDepot) {
-                relatedDepots.push(relatedDepot);
+                // Get hierarchy information from the related item or from depot data
+                const tehsilId = relatedItem.tehsil_id || relatedDepot.tehsil_id;
+                const tehsil = tehsilId ? this.data.tehsils[tehsilId] : null;
+                const districtId = relatedItem.district_id || (tehsil ? tehsil.district_id : null);
+                const district = districtId ? this.data.districts[districtId] : null;
+                const divisionId = relatedItem.division_id || (district ? district.division_id : null);
+                const division = divisionId ? this.data.divisions[divisionId] : null;
+
+                if (division && district && tehsil) {
+                    relatedDepots.push({
+                        depot: relatedDepot,
+                        hierarchy: {
+                            division,
+                            district,
+                            tehsil
+                        }
+                    });
+                } else {
+                    console.warn(`   ⚠️  Incomplete hierarchy for related depot: ${relatedDepot.name}`);
+                }
+            } else {
+                console.warn(`   ⚠️  Related depot not found: ${relatedItem.depot_id}`);
             }
         });
 
@@ -2023,23 +2129,41 @@ class SiteGenerator {
         // Get other depots in the same tehsil (excluding the current depot)
         return Object.values(this.data.depots).filter(d =>
             d.tehsil_id === tehsilId && d.id !== depotId
-        ).slice(0, 4); // Limit to 4 depots
+        ).map(depot => {
+            const tehsil = this.data.tehsils[depot.tehsil_id];
+            const district = tehsil ? this.data.districts[tehsil.district_id] : null;
+            const division = district ? this.data.divisions[district.division_id] : null;
+
+            return {
+                depot: depot,
+                hierarchy: {
+                    division: division,
+                    district: district,
+                    tehsil: tehsil
+                }
+            };
+        }).slice(0, 4); // Limit to 4 depots
     }
 
-    renderRelatedDepotCard(relatedDepot, divisionId, districtId, tehsilId) {
-        if (!relatedDepot) return '';
+    renderRelatedDepotCard(relatedData, currentDivisionId, currentDistrictId, currentTehsilId, currentDepotId) {
+        if (!relatedData || !relatedData.depot || !relatedData.hierarchy) return '';
 
-        const relatedTehsil = this.data.tehsils[relatedDepot.tehsil_id];
-        const relatedDistrict = relatedTehsil ? this.data.districts[relatedTehsil.district_id] : null;
-        const relatedDivision = relatedDistrict ? this.data.divisions[relatedDistrict.division_id] : null;
+        const { depot, hierarchy } = relatedData;
+        const { division, district, tehsil } = hierarchy;
 
-        if (!relatedTehsil || !relatedDistrict || !relatedDivision) return '';
+        // Don't show the current depot in related depots
+        if (depot.id === currentDepotId) return '';
+
+        if (!division || !district || !tehsil) {
+            console.warn(`   ⚠️  Missing hierarchy data for related depot: ${depot.name}`);
+            return '';
+        }
 
         // Calculate stats for the related depot
         let busStopCount = 0;
         let busCount = 0;
-        if (relatedDepot.villages) {
-            Object.values(relatedDepot.villages).forEach(busStopList => {
+        if (depot.villages) {
+            Object.values(depot.villages).forEach(busStopList => {
                 busStopCount += busStopList.length;
                 busStopList.forEach(busStop => {
                     busCount += busStop.schedule ? busStop.schedule.length : 0;
@@ -2047,13 +2171,21 @@ class SiteGenerator {
             });
         }
 
-        // Build the correct path
-        const path = `${relatedDivision.id}/${relatedDistrict.id}/${relatedTehsil.id}/${relatedDepot.id}/index.html`;
+        // Build the correct relative path based on current location
+        let relativePath = '';
 
-        return `<a href="${path}" class="related-depot-card">
-            <h3>${relatedDepot.name}</h3>
+        // Count how many directory levels we need to go up
+        // Current location: /division/district/tehsil/depot/index.html
+        // We always need to go up to the root first
+        const baseUps = '../../../..'; // Go from depot page to site root
+
+        // Build the path to the related depot
+        relativePath = `${baseUps}/${division.id}/${district.id}/${tehsil.id}/${depot.id}/index.html`;
+
+        return `<a href="${relativePath}" class="related-depot-card">
+            <h3>${depot.name}</h3>
             <p>${busStopCount} bus stops • ${busCount} bus schedules</p>
-            <p class="related-depot-location">${relatedTehsil.name}, ${relatedDistrict.name}</p>
+            <p class="related-depot-location">${tehsil.name}, ${district.name}, ${division.name}</p>
             <span class="related-depot-link">
                 <i class="bi bi-arrow-right"></i> View Schedule
             </span>
@@ -6040,6 +6172,7 @@ Allow: /`;
         console.log('14. ✅ SAME BUTTON STYLE: Back to Bus Schedule now looks same as Back to Blogs');
         console.log('15. ✅ SEPARATE FROM NAVIGATION: Buttons look distinct from top navigation border');
         console.log('16. ✅ RESPONSIVE BUTTONS: Larger on desktop, compact on mobile');
+        console.log('17. ✅ FIXED RELATED DEPOT LINKS: Links now correctly navigate to related depots');
 
         console.log('\n🔧 KEY IMPROVEMENTS:');
         console.log('• Header padding: Reduced from 0.6rem to 0.4rem');
@@ -6059,6 +6192,7 @@ Allow: /`;
         console.log('• Flexible format: Supports array of objects or single object format');
         console.log('• Fallback: Shows other depots in same tehsil if no related depots specified');
         console.log('• Error handling: Gracefully handles missing depots or invalid data');
+        console.log('• Link fix: Related depot links now work correctly with simplified path logic');
     }
 
     countHTMLFiles(dir) {

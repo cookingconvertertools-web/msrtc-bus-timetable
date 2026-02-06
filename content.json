@@ -2,48 +2,57 @@
   "homepage": {
     "title": "MSRTC Bus Timetable",
     "description": "Real-time bus schedules for Maharashtra State Road Transport Corporation",
-    "subtitle": "Find accurate bus timings from all depots across Maharashtra",
-    "content": "<p>Welcome to the official MSRTC bus timetable portal. Get real-time bus schedules, departure times, and route information for all Maharashtra state transport buses.</p><p>Select your division to begin:</p>",
+    "subtitle": "Find accurate MSRTC bus timings from all depots across Maharashtra",
+    "content": "<p>Welcome to the MSRTC Timetable portal. This platform helps passengers find updated bus timings, routes, and departure schedules for Maharashtra State Road Transport Corporation buses.</p><p>You can easily check MSRTC time table details from home or anywhere, plan your journey in advance, and avoid last-minute confusion at bus stands.</p><p>Select your division to begin and explore schedules for Lal Pari (ST buses), Shivshahi, and other MSRTC services.</p>",
     "seo": {
-      "title": "MSRTC Bus Schedule - Maharashtra State Road Transport Timetable",
-      "description": "Complete MSRTC bus schedules, timings, and routes for all Maharashtra divisions. Find real-time bus departure times from your nearest depot.",
-      "keywords": "MSRTC bus timing, Maharashtra bus schedule, state transport timetable, bus departure times, MSRTC online"
+      "title": "MSRTC Time Table 2025 – Maharashtra ST Bus Timings Online",
+      "description": "Check MSRTC time table 2025, Shivshahi and Lal Pari ST buses timetable, Maharashtra bus schedules, depot-wise timings, and routes online.",
+      "keywords": "msrtc time table, msrtc timetable 2025, shivshahi 2025 st buses timetable, mahamandal bus timing, lal pari bus time table, msrtc bus schedule, maharashtra st timetable"
     }
   },
   "about": {
-    "title": "About BusTimely Maharashtra",
-    "content": "<h2>Our Mission</h2><p>To provide accurate, real-time bus schedule information for Maharashtra State Road Transport Corporation (MSRTC) to help millions of daily commuters.</p><h2>Data Accuracy</h2><p>All schedules are verified with MSRTC depot information and updated regularly.</p><h2>Coverage</h2><p>We cover all 35 divisions, 36 districts, and thousands of depots across Maharashtra.</p>",
+    "title": "About MSRTC Timetable",
+    "content": "<h2>Who We Are</h2><p>MSRTC Timetable is an independent and unofficial public-utility platform created with a single goal: to make MSRTC bus timetable information easily accessible to everyone. Millions of passengers across Maharashtra depend on Maharashtra State Road Transport Corporation (MSRTC), also known as ST Mahamandal or Lal Pari, for daily travel. However, accessing clear, structured, and searchable timetable information online has traditionally been difficult.</p><p>This platform bridges that gap by organizing publicly available MSRTC bus timing data into a clean, easy-to-use format that can be accessed from home, offices, villages, or while traveling.</p><h2>Unofficial but Public-Focused</h2><p>We want to clearly state that MSRTC Timetable is not an official MSRTC website. We are not owned, operated, endorsed, or managed by Maharashtra State Road Transport Corporation or any government authority. This is a completely independent initiative built to help passengers plan their journeys better.</p><p>All timetable data displayed on this website is collected from publicly available sources such as bus stand notice boards, depot schedules, passenger information desks, and openly shared MSRTC resources.</p><h2>Why This Platform Exists</h2><p>For many passengers, especially those from rural areas, students, senior citizens, daily wage workers, and office commuters, visiting a bus stand just to check timings is inconvenient and time-consuming. By putting MSRTC bus timetables online, we help users:</p><ul><li>Plan travel from home or workplace</li><li>Avoid long waiting hours at bus stands</li><li>Compare routes and departure timings</li><li>Coordinate connecting journeys</li><li>Reduce uncertainty during peak travel seasons</li></ul><h2>Coverage Across Maharashtra</h2><p>The platform aims to cover all MSRTC divisions, districts, and major depots across Maharashtra. This includes long-distance routes, district-level routes, taluka connectivity, and village routes wherever data is available.</p><p>We include schedules for Lal Pari (ordinary ST buses), Shivshahi, and other MSRTC services when publicly listed.</p><h2>Data Accuracy and Updates</h2><p>We continuously work to keep information updated. However, MSRTC schedules can change due to operational requirements, festivals, weather conditions, road situations, strikes, or administrative decisions. While we try our best to reflect the latest available data, passengers should always treat the information as indicative.</p><h2>Community-Driven Improvement</h2><p>This platform grows stronger with community support. If you notice missing routes, outdated timings, or incorrect information, we encourage you to contact us. Your feedback directly helps improve accuracy for thousands of other travelers.</p><h2>Our Commitment</h2><p>MSRTC Timetable is built with the belief that public transport information should be simple, accessible, and free. We do not charge users, do not require sign-ups, and do not lock essential information behind paywalls.</p><p>Our mission is to support everyday travel planning and make MSRTC bus usage easier, especially for people who rely on it the most.</p>",
     "seo": {
-      "title": "About Us - MSRTC Bus Timetable",
-      "description": "Learn about BusTimely Maharashtra and our mission to provide accurate MSRTC bus schedules across Maharashtra state.",
-      "keywords": "about MSRTC timetable, bus schedule information, Maharashtra transport info"
+      "title": "About Us – MSRTC Time Table & Lal Pari Bus Schedules",
+      "description": "Learn about MSRTC Timetable, an unofficial platform providing MSRTC time table, Shivshahi and Lal Pari ST buses timetable to help passengers plan travel easily.",
+      "keywords": "about msrtc timetable, msrtc time table online, lal pari bus information, shivshahi timetable, mahamandal bus schedule"
     }
   },
   "contact": {
     "title": "Contact Us",
-    "content": "<h2>Report Inaccuracies</h2><p>If you find any incorrect schedule information, please contact us:</p><ul><li>Email: info@bustimely-mh.com</li><li>Phone: 1800-XXX-XXXX (Toll-free)</li><li>Address: MSRTC Headquarters, Mumbai</li></ul><h2>Feedback</h2><p>We welcome suggestions to improve our service.</p>",
+    "content": "<h2>Get in Touch</h2><p>If you find any incorrect bus timing, missing route, or outdated schedule, please let us know. Your feedback helps keep this platform useful for everyone.</p><ul><li>Email: sbmsrtc@gmail.com</li></ul><h2>Suggestions & Feedback</h2><p>We welcome ideas to improve usability, coverage, and accuracy. Whether it is a small correction or a major update, feel free to reach out.</p>",
     "seo": {
-      "title": "Contact - MSRTC Bus Schedule Support",
-      "description": "Contact MSRTC bus timetable support for schedule corrections, feedback, and inquiries.",
-      "keywords": "contact MSRTC, bus schedule support, report incorrect timings"
+      "title": "Contact – MSRTC Bus Timetable Support",
+      "description": "Contact us for MSRTC time table corrections, feedback, or suggestions related to Maharashtra ST bus schedules.",
+      "keywords": "contact msrtc timetable, bus timing correction, msrtc feedback"
     }
   },
   "terms": {
     "title": "Terms of Service",
-    "content": "<h2>Disclaimer</h2><p>While we strive for accuracy, bus timings may change without notice. Always verify with the local depot.</p><h2>Usage</h2><p>This service is provided free of charge for informational purposes only.</p>",
+    "content": "<h2>Unofficial Service Disclaimer</h2><p>MSRTC Timetable is an unofficial informational website. It is not affiliated with, endorsed by, or connected to Maharashtra State Road Transport Corporation (MSRTC), ST Mahamandal, or any government authority.</p><h2>Information Source</h2><p>All bus timetable information is collected from publicly available MSRTC sources such as depot schedules, bus stand displays, and passenger information channels. We do not generate or modify official timings.</p><h2>No Guarantee of Accuracy</h2><p>While we make every effort to present accurate and up-to-date information, MSRTC bus schedules may change without prior notice due to operational, administrative, or external factors. Therefore, we do not guarantee the correctness, completeness, or reliability of any timetable.</p><h2>User Responsibility</h2><p>Passengers are strongly encouraged to verify bus timings directly with the respective MSRTC depot, bus stand, or official MSRTC communication channels before starting their journey.</p><h2>Limitation of Liability</h2><p>MSRTC Timetable shall not be held responsible for any loss, inconvenience, missed connections, delays, or damages resulting from reliance on the information provided on this website.</p><h2>Service Availability</h2><p>This platform is provided free of charge for public benefit. We reserve the right to modify, suspend, or discontinue any part of the service without prior notice.</p><h2>Acceptance of Terms</h2><p>By using this website, you agree to these terms and conditions and acknowledge that the service is provided on an “as-is” basis.</p>",
     "seo": {
-      "title": "Terms of Service - MSRTC Bus Timetable",
-      "description": "Terms and conditions for using the MSRTC bus timetable service.",
-      "keywords": "MSRTC terms, bus schedule disclaimer, usage terms"
+      "title": "Terms of Service – MSRTC Time Table Disclaimer",
+      "description": "Read the terms and disclaimer for using the unofficial MSRTC bus timetable website.",
+      "keywords": "msrtc disclaimer, bus timetable terms, unofficial msrtc website"
     }
   },
   "privacy": {
     "title": "Privacy Policy",
-    "content": "<h2>Data Collection</h2><p>We do not collect personal data. All schedule information is publicly available.</p><h2>Cookies</h2><p>We use minimal cookies only for functionality.</p>",
+    "content": "<h2>No Personal Data Collection</h2><p>MSRTC Timetable is designed as a simple public utility. We do not collect, store, or process any personal data from users.</p><h2>No Sign-Up or Login</h2><p>There is no requirement to sign up, log in, register, or provide personal information. You can access all timetable information freely without sharing any details.</p><h2>No Tracking of Individuals</h2><p>We do not track individual users, journeys, locations, or browsing behavior. Our goal is only to display publicly available MSRTC timetable information.</p><h2>Cookies</h2><p>If cookies are used, they are minimal and only for basic website functionality or performance. We do not use cookies for advertising personalization or user profiling.</p><h2>Third-Party Services</h2><p>This website may use basic analytics or hosting services to ensure performance and uptime. These services do not receive personal user data from us.</p><h2>Data Security</h2><p>Since we do not collect personal information, there is no risk of personal data misuse or exposure.</p><h2>Policy Updates</h2><p>This privacy policy may be updated to reflect changes in website functionality. Any updates will be published on this page.</p><h2>User Trust</h2><p>Our commitment is simple: we want nothing from you except to help you find MSRTC bus timings easily and reliably.</p>",
     "seo": {
-      "title": "Privacy Policy - MSRTC Bus Schedule",
-      "description": "Privacy policy for the MSRTC bus timetable website.",
-      "keywords": "MSRTC privacy, bus schedule privacy policy"
+      "title": "Privacy Policy – MSRTC Bus Timetable Website",
+      "description": "Privacy policy explaining that no personal data is collected on the MSRTC time table utility website.",
+      "keywords": "msrtc privacy policy, bus timetable privacy, no data collection"
+    }
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "content": "<h2>Unofficial Website Notice</h2><p>MSRTC Timetable is an unofficial and independent informational website created to help the public access MSRTC bus timetable information online. This website is not affiliated with, authorized by, sponsored by, or endorsed by the Maharashtra State Road Transport Corporation (MSRTC), ST Mahamandal, or any Government of Maharashtra department.</p><p>All references to MSRTC, Lal Pari, Shivshahi, ST buses, depots, divisions, routes, or services are used strictly for informational and identification purposes only.</p><h2>Source of Information</h2><p>The bus schedules, timings, routes, and related details displayed on this website are collected from publicly available sources, including bus stand notice boards, depot-level timetable displays, and other openly shared MSRTC information. We do not create, modify, approve, or control official MSRTC schedules.</p><h2>No Guarantee of Accuracy</h2><p>While we make reasonable efforts to keep information accurate and updated, MSRTC bus timings and routes may change at any time due to operational requirements, traffic conditions, weather, festivals, strikes, or administrative decisions. Therefore, we do not guarantee the accuracy, completeness, or reliability of any information presented.</p><h2>Passenger Responsibility</h2><p>Passengers are strongly advised to verify bus timings directly with the respective MSRTC bus stand, depot, or official MSRTC communication channels before starting their journey. This website should be used only as a planning and reference tool.</p><h2>Limitation of Liability</h2><p>MSRTC Timetable shall not be held responsible for any loss, inconvenience, missed connections, delays, cancellations, or damages arising from reliance on the information provided on this website. Use of this service is entirely at the user’s own risk.</p><h2>No Official or Professional Advice</h2><p>The information provided on this website does not constitute official, professional, or legal advice and is intended solely for general informational purposes.</p><h2>External Links</h2><p>This website may contain links to external websites for reference or convenience. We do not control or endorse the content, accuracy, or privacy practices of any third-party websites.</p><h2>Acceptance of Disclaimer</h2><p>By using this website, you acknowledge that you understand this is an unofficial service and agree to verify information independently before travel.</p>",
+    "seo": {
+      "title": "Disclaimer – MSRTC Bus Timetable Website",
+      "description": "Disclaimer for the unofficial MSRTC bus timetable website explaining data sources, limitations, and passenger responsibility.",
+      "keywords": "msrtc disclaimer, unofficial msrtc website, bus timetable disclaimer, lal pari timetable notice"
     }
   }
 }

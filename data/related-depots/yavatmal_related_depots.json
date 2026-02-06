@@ -1,0 +1,30 @@
+[
+  {
+    "depots_id": "pandharkawda_bus_stand_depot",
+    "division_id": "amravati_div",
+    "district_id": "yavatmal_dist",
+    "tehsil_id": "pandharkawada_teh",
+    "related_depots": [
+      {
+        "depot_id": "wani_bus_stand_depot",
+        "division_id": "amravati_div",
+        "district_id": "yavatmal_dist",
+        "tehsil_id": "wani_teh"
+      }
+    ]
+  },
+  {
+    "depots_id": "wani_bus_stand_depot",
+    "division_id": "amravati_div",
+    "district_id": "yavatmal_dist",
+    "tehsil_id": "wani_teh",
+    "related_depots": [
+      {
+        "depot_id": "pandharkawda_bus_stand_depot",
+        "division_id": "amravati_div",
+        "district_id": "yavatmal_dist",
+        "tehsil_id": "pandharkawada_teh"
+      }
+    ]
+  }
+]

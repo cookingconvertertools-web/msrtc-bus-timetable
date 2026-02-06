@@ -50,6 +50,30 @@ window.searchIndex = {
       "alphabet": "C"
     },
     {
+      "id": "chimur_bus_stand_depot",
+      "name": "Chimur Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/chandrapur_dist/chimur_teh/chimur_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Chandrapur District",
+      "tehsil": "Chimur Tehsil",
+      "busStops": 23,
+      "buses": 102,
+      "alphabet": "C"
+    },
+    {
+      "id": "ghuggus_bus_stand_depot",
+      "name": "Ghuggus Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/chandrapur_dist/chandrapur_teh/ghuggus_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Chandrapur District",
+      "tehsil": "Chandrapur Tehsil",
+      "busStops": 4,
+      "buses": 44,
+      "alphabet": "G"
+    },
+    {
       "id": "mor_bhavan_depot",
       "name": "Mor Bhavan Depot",
       "type": "Depot",
@@ -62,6 +86,42 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
+      "id": "mul_bus_stand_depot",
+      "name": "Mul Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/chandrapur_dist/mul_teh/mul_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Chandrapur District",
+      "tehsil": "Mul Tehsil",
+      "busStops": 42,
+      "buses": 213,
+      "alphabet": "M"
+    },
+    {
+      "id": "pandharkawda_bus_stand_depot",
+      "name": "Pandharkawda Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/pandharkawada_teh/pandharkawda_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Pandharkawda Tehsil",
+      "busStops": 19,
+      "buses": 115,
+      "alphabet": "P"
+    },
+    {
+      "id": "rajura_bus_stand_depot",
+      "name": "Rajura Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/chandrapur_dist/rajura_teh/rajura_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Chandrapur District",
+      "tehsil": "Rajura Tehsil",
+      "busStops": 34,
+      "buses": 170,
+      "alphabet": "R"
+    },
+    {
       "id": "sitabuldi_depot",
       "name": "Sitabuldi Main Depot",
       "type": "Depot",
@@ -72,6 +132,18 @@ window.searchIndex = {
       "busStops": 5,
       "buses": 46,
       "alphabet": "S"
+    },
+    {
+      "id": "wani_bus_stand_depot",
+      "name": "Wani Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/wani_teh/wani_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Wani Tehsil",
+      "busStops": 44,
+      "buses": 148,
+      "alphabet": "W"
     },
     {
       "id": "warora_bus_stand_depot",
@@ -93,7 +165,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "amravati_div/index.html",
       "districts": 5,
-      "depots": 1,
+      "depots": 3,
       "alphabet": "A"
     },
     {
@@ -120,7 +192,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "nagpur_div/index.html",
       "districts": 6,
-      "depots": 6,
+      "depots": 10,
       "alphabet": "N"
     },
     {
@@ -210,7 +282,7 @@ window.searchIndex = {
       "path": "nagpur_div/chandrapur_dist/index.html",
       "division": "Nagpur Division",
       "tehsils": 15,
-      "depots": 4,
+      "depots": 8,
       "alphabet": "C"
     },
     {
@@ -499,8 +571,8 @@ window.searchIndex = {
       "type": "District",
       "path": "amravati_div/yavatmal_dist/index.html",
       "division": "Amravati Division",
-      "tehsils": 0,
-      "depots": 0,
+      "tehsils": 2,
+      "depots": 2,
       "alphabet": "Y"
     }
   ],
@@ -1002,7 +1074,7 @@ window.searchIndex = {
       "path": "nagpur_div/chandrapur_dist/chandrapur_teh/index.html",
       "division": "Nagpur Division",
       "district": "Chandrapur District",
-      "depots": 1,
+      "depots": 2,
       "alphabet": "C"
     },
     {
@@ -1052,7 +1124,7 @@ window.searchIndex = {
       "path": "nagpur_div/chandrapur_dist/chimur_teh/index.html",
       "division": "Nagpur Division",
       "district": "Chandrapur District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "C"
     },
     {
@@ -2172,7 +2244,7 @@ window.searchIndex = {
       "path": "nagpur_div/chandrapur_dist/mul_teh/index.html",
       "division": "Nagpur Division",
       "district": "Chandrapur District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "M"
     },
     {
@@ -2423,6 +2495,16 @@ window.searchIndex = {
       "division": "Pune Division",
       "district": "Sangli District",
       "depots": 0,
+      "alphabet": "P"
+    },
+    {
+      "id": "pandharkawada_teh",
+      "name": "Pandharkawda Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/pandharkawada_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
       "alphabet": "P"
     },
     {
@@ -2722,7 +2804,7 @@ window.searchIndex = {
       "path": "nagpur_div/chandrapur_dist/rajura_teh/index.html",
       "division": "Nagpur Division",
       "district": "Chandrapur District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "R"
     },
     {
@@ -3353,6 +3435,16 @@ window.searchIndex = {
       "division": "Pune Division",
       "district": "Sangli District",
       "depots": 0,
+      "alphabet": "W"
+    },
+    {
+      "id": "wani_teh",
+      "name": "Wani Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/wani_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
       "alphabet": "W"
     },
     {

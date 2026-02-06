@@ -1,34 +1,164 @@
 [
   {
     "depots_id": "warora_bus_stand_depot",
-    "related_depots_id": [
-      "ballarpur_bus_stand_depot",
-      "chandrapur_bus_stand_depot",
-      "bhadravati_bus_stand_depot"
+    "division_id": "nagpur_div",
+    "district_id": "chandrapur_dist",
+    "tehsil_id": "warora_teh",
+    "related_depots": [
+      {
+        "depot_id": "ballarpur_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "ballarpur_teh"
+      },
+      {
+        "depot_id": "wani_bus_stand_depot",
+        "division_id": "amravati_div",
+        "district_id": "yavatmal_dist",
+        "tehsil_id": "wani_teh"
+      },
+      {
+        "depot_id": "chandrapur_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "chandrapur_teh"
+      },
+      {
+        "depot_id": "bhadravati_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "bhadravati_teh"
+      }
+    ]
+  },
+  {
+    "depots_id": "ghuggus_bus_stand_depot",
+    "division_id": "nagpur_div",
+    "district_id": "chandrapur_dist",
+    "tehsil_id": "chandrapur_teh",
+    "related_depots": [
+      {
+        "depot_id": "wani_bus_stand_depot",
+        "division_id": "amravati_div",
+        "district_id": "yavatmal_dist",
+        "tehsil_id": "wani_teh"
+      },
+      {
+        "depot_id": "chandrapur_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "chandrapur_teh"
+      }
     ]
   },
   {
     "depots_id": "chandrapur_bus_stand_depot",
-    "related_depots_id": [
-      "ballarpur_bus_stand_depot",
-      "warora_bus_stand_depot",
-      "bhadravati_bus_stand_depot"
+    "division_id": "nagpur_div",
+    "district_id": "chandrapur_dist",
+    "tehsil_id": "chandrapur_teh",
+    "related_depots": [
+      {
+        "depot_id": "ballarpur_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "ballarpur_teh"
+      },
+      {
+        "depot_id": "warora_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "warora_teh"
+      },
+      {
+        "depot_id": "bhadravati_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "bhadravati_teh"
+      }
     ]
   },
   {
     "depots_id": "ballarpur_bus_stand_depot",
-    "related_depots_id": [
-      "warora_bus_stand_depot",
-      "chandrapur_bus_stand_depot",
-      "bhadravati_bus_stand_depot"
+    "division_id": "nagpur_div",
+    "district_id": "chandrapur_dist",
+    "tehsil_id": "ballarpur_teh",
+    "related_depots": [
+      {
+        "depot_id": "warora_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "warora_teh"
+      },
+      {
+        "depot_id": "chandrapur_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "chandrapur_teh"
+      },
+      {
+        "depot_id": "bhadravati_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "bhadravati_teh"
+      },
+      {
+        "depot_id": "rajura_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "rajura_teh"
+      }
     ]
   },
   {
     "depots_id": "bhadravati_bus_stand_depot",
-    "related_depots_id": [
-      "warora_bus_stand_depot",
-      "chandrapur_bus_stand_depot",
-      "ballarpur_bus_stand_depot"
+    "division_id": "nagpur_div",
+    "district_id": "chandrapur_dist",
+    "tehsil_id": "bhadravati_teh",
+    "related_depots": [
+      {
+        "depot_id": "warora_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "warora_teh"
+      },
+      {
+        "depot_id": "chandrapur_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "chandrapur_teh"
+      },
+      {
+        "depot_id": "ballarpur_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "ballarpur_teh"
+      }
+    ]
+  },
+  {
+    "depots_id": "chimur_bus_stand_depot",
+    "division_id": "nagpur_div",
+    "district_id": "chandrapur_dist",
+    "tehsil_id": "chimur_teh",
+    "related_depots": [
+      {
+        "depot_id": "warora_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "warora_teh"
+      },
+      {
+        "depot_id": "chandrapur_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "chandrapur_teh"
+      },
+      {
+        "depot_id": "bhadravati_bus_stand_depot",
+        "division_id": "nagpur_div",
+        "district_id": "chandrapur_dist",
+        "tehsil_id": "bhadravati_teh"
+      }
     ]
   }
 ]

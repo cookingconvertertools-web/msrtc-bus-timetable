@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /data/
-Sitemap: https://bustimely-mh.com/sitemap.xml
+Sitemap: https://msrtcbusinfo.org/sitemap.xml
 
 # Crawl-delay: 10
 # Allow bots from search engines
