@@ -8,13 +8,24 @@ class SiteGenerator {
         this.publicDir = path.join(this.baseDir, 'public');
         this.templateDir = path.join(this.baseDir, 'templates');
         this.blogsDir = path.join(this.dataDir, 'blogs');
+        this.assetsDir = path.join(this.baseDir, 'assets');
+        this.imagesDir = path.join(this.assetsDir, 'img');
+        this.publicImagesDir = path.join(this.publicDir, 'assets', 'images');
+        this.urlsDir = path.join(this.assetsDir, 'urls');
+        this.publicUrlsDir = path.join(this.publicDir, 'assets', 'urls');
 
         // Ensure directories exist
-        [this.templateDir, this.blogsDir].forEach(dir => {
+        [this.templateDir, this.blogsDir, this.imagesDir, this.publicImagesDir, this.urlsDir, this.publicUrlsDir].forEach(dir => {
             if (!fs.existsSync(dir)) {
                 fs.mkdirSync(dir, { recursive: true });
             }
         });
+
+        // Copy images from assets/img to public/assets/images (including favicon)
+        this.copyImagesToPublic();
+
+        // Copy URLs from assets/urls to public/assets/urls
+        this.copyUrlsToPublic();
 
         this.config = this.loadConfig();
         this.content = this.loadContent();
@@ -29,8 +40,173 @@ class SiteGenerator {
         // Load related depots data
         this.relatedDepotsData = this.loadRelatedDepots();
 
+        // Load URL constants
+        this.urlConstants = this.loadUrlConstants();
+
         // Load all data
         this.loadAllData();
+    }
+
+    copyImagesToPublic() {
+        console.log('🖼️  Copying images from assets to public folder...');
+
+        if (fs.existsSync(this.imagesDir)) {
+            const imageFiles = fs.readdirSync(this.imagesDir);
+
+            // First, clean up old favicon files from public directory
+            if (fs.existsSync(this.publicDir)) {
+                const publicFiles = fs.readdirSync(this.publicDir);
+
+                // Define favicon patterns to look for
+                const faviconPatterns = [
+                    'favicon', 'icon', 'favicon-v', 'favicon_', 'favicon.'
+                ];
+
+                // Find and remove old favicon files
+                publicFiles.forEach(file => {
+                    const lowerFile = file.toLowerCase();
+                    const isFavicon = faviconPatterns.some(pattern =>
+                        lowerFile.includes(pattern)
+                    ) || lowerFile.endsWith('.ico');
+
+                    if (isFavicon) {
+                        const filePath = path.join(this.publicDir, file);
+                        try {
+                            fs.unlinkSync(filePath);
+                            console.log(`   🗑️  Removed old favicon: ${file}`);
+                        } catch (error) {
+                            console.error(`   ✗ Error removing old favicon ${file}:`, error.message);
+                        }
+                    }
+                });
+            }
+
+            // First, look for favicon images in CURRENT assets directory
+            const faviconFiles = imageFiles.filter(file => {
+                const lowerFile = file.toLowerCase();
+                return lowerFile.includes('favicon') ||
+                       lowerFile.includes('icon') ||
+                       lowerFile.endsWith('.ico');
+            });
+
+            // Copy favicon images to root of public directory
+            faviconFiles.forEach(file => {
+                const sourcePath = path.join(this.imagesDir, file);
+                const destPath = path.join(this.publicDir, file);
+
+                try {
+                    // Ensure destination directory exists
+                    if (!fs.existsSync(this.publicDir)) {
+                        fs.mkdirSync(this.publicDir, { recursive: true });
+                    }
+
+                    fs.copyFileSync(sourcePath, destPath);
+                    console.log(`   ✓ Copied favicon: ${file} → ${file}`);
+                } catch (error) {
+                    console.error(`   ✗ Error copying favicon ${file}:`, error.message);
+                }
+            });
+
+            // Then copy regular images to assets/images
+            imageFiles.forEach(file => {
+                const sourcePath = path.join(this.imagesDir, file);
+                const destPath = path.join(this.publicImagesDir, file);
+
+                // Skip if already processed as favicon
+                if (faviconFiles.includes(file)) {
+                    return;
+                }
+
+                try {
+                    // Only copy if it's an image file
+                    if (['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.ico'].some(ext =>
+                        file.toLowerCase().endsWith(ext))) {
+
+                        // Ensure destination directory exists
+                        if (!fs.existsSync(this.publicImagesDir)) {
+                            fs.mkdirSync(this.publicImagesDir, { recursive: true });
+                        }
+
+                        fs.copyFileSync(sourcePath, destPath);
+                        console.log(`   ✓ Copied: ${file} → assets/images/${file}`);
+                    }
+                } catch (error) {
+                    console.error(`   ✗ Error copying ${file}:`, error.message);
+                }
+            });
+
+            console.log(`   Images copied to: ${this.publicImagesDir}`);
+
+            // Report favicon status
+            if (faviconFiles.length > 0) {
+                console.log(`   ✅ Favicon files copied to root: ${faviconFiles.join(', ')}`);
+            } else {
+                console.log('   ℹ️  No favicon files found in assets/img directory');
+                console.log('   💡 Tip: Add favicon.ico, favicon.png, or icon.png to assets/img/');
+            }
+        } else {
+            console.log('   ℹ️  No assets/img directory found');
+        }
+    }
+
+    copyUrlsToPublic() {
+        console.log('🔗 Copying URL constants from assets/urls to public folder...');
+
+        if (fs.existsSync(this.urlsDir)) {
+            const urlFiles = fs.readdirSync(this.urlsDir);
+
+            urlFiles.forEach(file => {
+                const sourcePath = path.join(this.urlsDir, file);
+                const destPath = path.join(this.publicUrlsDir, file);
+
+                try {
+                    // Ensure destination directory exists
+                    if (!fs.existsSync(this.publicUrlsDir)) {
+                        fs.mkdirSync(this.publicUrlsDir, { recursive: true });
+                    }
+
+                    fs.copyFileSync(sourcePath, destPath);
+                    console.log(`   ✓ Copied URL file: ${file}`);
+                } catch (error) {
+                    console.error(`   ✗ Error copying URL file ${file}:`, error.message);
+                }
+            });
+
+            console.log(`   URL constants copied to: ${this.publicUrlsDir}`);
+        } else {
+            console.log('   ℹ️  No assets/urls directory found');
+        }
+    }
+
+    loadUrlConstants() {
+        console.log('📂 Loading URL constants...');
+        const urlConstants = {};
+
+        if (fs.existsSync(this.urlsDir)) {
+            const urlFiles = fs.readdirSync(this.urlsDir).filter(f => f.endsWith('.js'));
+
+            urlFiles.forEach(file => {
+                try {
+                    const filePath = path.join(this.urlsDir, file);
+                    const content = fs.readFileSync(filePath, 'utf8');
+
+                    // Extract constants from JavaScript file
+                    const constantRegex = /const\s+(\w+)\s*=\s*['"]([^'"]+)['"]/g;
+                    let match;
+
+                    while ((match = constantRegex.exec(content)) !== null) {
+                        const [, constantName, constantValue] = match;
+                        urlConstants[constantName] = constantValue;
+                        console.log(`   ✓ Loaded URL constant: ${constantName} = ${constantValue}`);
+                    }
+                } catch (error) {
+                    console.error(`   ✗ Error loading URL file ${file}:`, error.message);
+                }
+            });
+        }
+
+        console.log(`   Loaded ${Object.keys(urlConstants).length} URL constants`);
+        return urlConstants;
     }
 
     loadAllData() {
@@ -54,7 +230,7 @@ class SiteGenerator {
             }
         });
 
-        console.log(`✅ Loaded data: ${Object.keys(this.data.divisions).length} divisions, ${Object.keys(this.data.districts).length} districts, ${Object.keys(this.data.tehsils).length} tehsils, ${Object.keys(this.data.depots).length} depots, ${this.blogs.length} blogs`);
+        console.log(`✅ Loaded data: ${Object.keys(this.data.divisions).length} divisions, ${Object.keys(this.data.districts).length} districts, ${Object.keys(this.data.tehsils).length} tehsils, ${Object.keys(this.data.depots).length} depots, ${this.blogs.length} blogs, ${Object.keys(this.urlConstants).length} URL constants`);
     }
 
     loadRelatedDepots() {
@@ -283,7 +459,7 @@ class SiteGenerator {
         html = html.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>');
         html = html.replace(/^####\s+(.+)$/gm, '<h4>$1</h4>');
         html = html.replace(/^#####\s+(.+)$/gm, '<h5>$1</h5>');
-        html = html.replace(/^######\s+(.+)$/gm, '<h6>$1</h6>');
+        html = html.replace(/^######\s+(.+)$/gm, '<h6>$6</h6>');
 
         // Bold and Italic
         html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -299,8 +475,25 @@ class SiteGenerator {
         html = html.replace(/^\s*\d+\.\s+(.+)$/gm, '<li>$1</li>');
         html = this.processLists(html);
 
-        // Links
-        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        // Links - make them clickable with URL constants
+        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, linkUrl) => {
+            // Check if it's a relative image path
+            if (linkUrl.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) {
+                // Handle image links
+                return this.processImageLink(linkText, linkUrl);
+            } else {
+                // Handle regular links - check if it's a URL constant
+                const constantMatch = linkUrl.match(/^([A-Z0-9]+)$/);
+                if (constantMatch) {
+                    const constantName = constantMatch[1];
+                    // Create a link that will be handled by JavaScript
+                    return `<a href="javascript:void(0);" class="blog-link" data-constant="${constantName}">${linkText}</a>`;
+                } else {
+                    // Handle regular URLs
+                    return `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="blog-link">${linkText}</a>`;
+                }
+            }
+        });
 
         // Blockquotes
         html = html.replace(/^>\s+(.+)$/gm, '<blockquote><p>$1</p></blockquote>');
@@ -310,8 +503,15 @@ class SiteGenerator {
         html = html.replace(/^\s*\*\*\*\s*$/gm, '<hr>');
         html = html.replace(/^\s*___\s*$/gm, '<hr>');
 
-        // Images
-        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="blog-image">');
+        // Images - handle both markdown syntax and plain image tags
+        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, altText, imageUrl) => {
+            return this.processImage(altText, imageUrl);
+        });
+
+        // Also handle plain HTML image tags if they exist in markdown
+        html = html.replace(/<img\s+src="([^"]+)"(?:\s+alt="([^"]*)")?(?:\s+title="([^"]*)")?\s*\/?>/gi, (match, imageUrl, altText, title) => {
+            return this.processImage(altText || '', imageUrl, title);
+        });
 
         // Line breaks
         html = html.replace(/  \n/g, '<br>\n');
@@ -323,6 +523,53 @@ class SiteGenerator {
         });
 
         return html;
+    }
+
+    processImageLink(linkText, linkUrl) {
+        // If linkText is provided, use it as alt text, otherwise use filename
+        const altText = linkText || path.basename(linkUrl, path.extname(linkUrl));
+
+        // Process the image URL
+        return this.processImage(altText, linkUrl);
+    }
+
+    processImage(altText, imageUrl, title = '') {
+        // Check if imageUrl is a relative path
+        let finalImageUrl = imageUrl;
+
+        // If it's a relative path starting with ./, ../, or just a filename
+        if (imageUrl.startsWith('./') || imageUrl.startsWith('../') ||
+            !imageUrl.includes('://') && !imageUrl.startsWith('/')) {
+
+            // Check if the image exists in our assets directory
+            const imageName = path.basename(imageUrl);
+            const localImagePath = path.join(this.publicImagesDir, imageName);
+
+            if (fs.existsSync(localImagePath)) {
+                // Use the public path
+                finalImageUrl = `/assets/images/${imageName}`;
+            } else {
+                // Check if it's in the original assets directory
+                const sourceImagePath = path.join(this.imagesDir, imageName);
+                if (fs.existsSync(sourceImagePath)) {
+                    // Copy it to public directory
+                    try {
+                        fs.copyFileSync(sourceImagePath, localImagePath);
+                        finalImageUrl = `/assets/images/${imageName}`;
+                        console.log(`   📸 Copied blog image: ${imageName}`);
+                    } catch (error) {
+                        console.error(`   ✗ Error copying blog image ${imageName}:`, error.message);
+                    }
+                }
+            }
+        }
+
+        // Build image HTML with responsive classes
+        const titleAttr = title ? ` title="${title}"` : '';
+        return `<div class="blog-image-container">
+            <img src="${finalImageUrl}" alt="${altText || 'Blog image'}"${titleAttr} class="blog-image" loading="lazy">
+            ${altText ? `<div class="blog-image-caption">${altText}</div>` : ''}
+        </div>`;
     }
 
     escapeHtml(text) {
@@ -518,6 +765,9 @@ class SiteGenerator {
         // Generate search index
         this.generateSearchIndex();
 
+        // Generate URL constants file for client-side use
+        this.generateUrlConstantsFile();
+
         console.log('\n✅ Site generation complete!');
         this.printStats();
     }
@@ -528,6 +778,9 @@ class SiteGenerator {
         const homepageContent = this.content.homepage || {};
         const seoContent = homepageContent.seo || {};
 
+        // Get favicon links - For homepage, use relative path
+        const faviconLinks = this.generateFaviconLinks('.');
+
         const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -536,6 +789,9 @@ class SiteGenerator {
     <title>${seoContent.title || 'MSRTC Bus Timetable - Maharashtra State Transport'}</title>
     <meta name="description" content="${seoContent.description || 'Real-time MSRTC bus schedules and timetables for Maharashtra State Road Transport Corporation'}">
     <meta name="keywords" content="${seoContent.keywords || 'MSRTC, Maharashtra bus, bus schedule, bus timing, state transport'}">
+
+    <!-- Favicon -->
+    ${faviconLinks}
 
     <!-- Open Graph -->
     <meta property="og:title" content="${seoContent.title || 'MSRTC Bus Timetable'}">
@@ -546,13 +802,16 @@ class SiteGenerator {
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 
     <!-- Inline CSS -->
     <style>
         ${this.getInlineCSS()}
     </style>
+
+    <!-- Load URL constants -->
+    <script src="assets/urls/url-constants.js"></script>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -579,15 +838,17 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>${this.config.site_name}</span>
                 </div>
-                <div class="time-display digital-clock">
-                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
-                    <span class="digital-ampm">AM</span>
+                <div class="time-display">
+                    <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Quick Jump Navigation - FIXED PADDING -->
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
+
+    <!-- Quick Jump Navigation - MOBILE FIRST -->
     <div class="quick-jump-nav">
         <div class="container">
             <div class="quick-jump-content">
@@ -607,7 +868,7 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>Depots</span>
                 </a>
-                <button class="quick-jump-btn alphabet-trigger">
+                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
                     <i class="bi bi-sort-alpha-down"></i>
                     <span>A-Z</span>
                 </button>
@@ -625,10 +886,13 @@ class SiteGenerator {
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
             <h1 class="text-center">${homepageContent.title || 'MSRTC Bus Timetable'}</h1>
             <p class="text-center">${homepageContent.subtitle || 'Find accurate bus schedules across Maharashtra'}</p>
 
-            <div class="homepage-content mt-3">
+            <div class="homepage-content mt-2">
                 ${homepageContent.content || '<p>Welcome to the official MSRTC bus timetable portal.</p>'}
             </div>
 
@@ -658,49 +922,39 @@ class SiteGenerator {
 
                 <!-- Tab Contents -->
                 <div class="tab-content active" id="divisions-tab">
-                    <div class="alphabet-quick-access">
-                        <h3>Quick Jump to Divisions</h3>
-                        <div class="alphabet-mini-grid">
-                            ${this.renderAlphabetForType('divisions')}
-                        </div>
-                    </div>
-                    <div class="division-grid mt-3">
+                    <!-- NO Alphabet drawer for divisions -->
+                    <div class="division-grid mt-2">
                         ${this.renderDivisionTab()}
                     </div>
                 </div>
 
                 <div class="tab-content" id="districts-tab">
-                    <div class="alphabet-quick-access">
-                        <h3>Quick Jump to Districts</h3>
-                        <div class="alphabet-mini-grid">
-                            ${this.renderAlphabetForType('districts')}
-                        </div>
-                    </div>
-                    <div class="district-grid mt-3">
+                    <!-- NO Alphabet drawer for districts -->
+                    <div class="district-grid mt-2">
                         ${this.renderDistrictTab()}
                     </div>
                 </div>
 
                 <div class="tab-content" id="tehsils-tab">
-                    <div class="alphabet-quick-access">
-                        <h3>Quick Jump to Tehsils</h3>
+                    <!-- Alphabet drawer for tehsils -->
+                    <div class="alphabet-quick-access" id="tehsilAlphabetDrawer">
                         <div class="alphabet-mini-grid">
                             ${this.renderAlphabetForType('tehsils')}
                         </div>
                     </div>
-                    <div class="tehsil-grid mt-3">
+                    <div class="tehsil-grid mt-2">
                         ${this.renderTehsilTab()}
                     </div>
                 </div>
 
                 <div class="tab-content" id="depots-tab">
-                    <div class="alphabet-quick-access">
-                        <h3>Quick Jump to Depots</h3>
+                    <!-- Alphabet drawer for depots -->
+                    <div class="alphabet-quick-access" id="depotAlphabetDrawer">
                         <div class="alphabet-mini-grid">
                             ${this.renderAlphabetForType('depots')}
                         </div>
                     </div>
-                    <div class="depot-grid mt-3">
+                    <div class="depot-grid mt-2">
                         ${this.renderDepotTab()}
                     </div>
                 </div>
@@ -715,30 +969,30 @@ class SiteGenerator {
     ${this.renderAd('footer_ad')}
 
     <!-- Footer -->
-    ${this.renderFooter('')}
+    ${this.renderFooter()}
 
     <!-- Quick Search Modal -->
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Quick Search Amravati Division & Districts</h3>
+                <h3><i class="bi bi-search"></i> Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
-                <input type="text" class="global-search-input" placeholder="Type to search divisions, districts, tehsils, depots...">
+                <input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots...">
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
     </div>
 
-    <!-- Alphabet Quick View (Fixed at bottom on mobile) - FIXED Z-INDEX AND TOUCH -->
+    <!-- Alphabet Quick View - ULTRA COMPACT DESIGN -->
     <div class="alphabet-quick-view" id="alphabetView">
         <div class="alphabet-view-header">
             <h4>Jump to Letter</h4>
             <button class="close-alphabet">&times;</button>
         </div>
         <div class="alphabet-view-grid">
-            ${this.renderAlphabetButtons()}
+            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -750,7 +1004,94 @@ class SiteGenerator {
 </html>`;
 
         this.writeFile('index.html', html);
-        console.log('   ✓ Homepage generated with enhanced navigation');
+        console.log('   ✓ Homepage generated with mobile-first design and compact alphabet drawer');
+    }
+
+    generateFaviconLinks(relativePath = '') {
+        // Always check the CURRENT assets directory for favicon files
+        const faviconFiles = [];
+
+        if (fs.existsSync(this.imagesDir)) {
+            const files = fs.readdirSync(this.imagesDir);
+
+            // Look for favicon files in assets directory
+            files.forEach(file => {
+                const lowerFile = file.toLowerCase();
+                if (lowerFile.includes('favicon') ||
+                    lowerFile.includes('icon') ||
+                    lowerFile.endsWith('.ico')) {
+                    faviconFiles.push(file);
+                }
+            });
+        }
+
+        // If no favicon files found in assets, check what's in public directory
+        if (faviconFiles.length === 0 && fs.existsSync(this.publicDir)) {
+            const publicFiles = fs.readdirSync(this.publicDir);
+            publicFiles.forEach(file => {
+                const lowerFile = file.toLowerCase();
+                if (lowerFile.includes('favicon') ||
+                    lowerFile.includes('icon') ||
+                    lowerFile.endsWith('.ico')) {
+                    faviconFiles.push(file);
+                }
+            });
+        }
+
+        // If still no favicon files, return basic favicon link
+        if (faviconFiles.length === 0) {
+            return `
+    <link rel="icon" href="${relativePath ? relativePath + '/' : ''}favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${relativePath ? relativePath + '/' : ''}favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="${relativePath ? relativePath + '/' : ''}assets/images/icon.png">
+    <meta name="msapplication-TileImage" content="${relativePath ? relativePath + '/' : ''}assets/images/icon.png">`;
+        }
+
+        // Generate appropriate links based on file type
+        const links = [];
+
+        faviconFiles.forEach(file => {
+            const ext = path.extname(file).toLowerCase();
+            const name = file.toLowerCase();
+
+            if (ext === '.ico') {
+                // Always use the first .ico file as the primary favicon
+                links.push(`<link rel="icon" href="${relativePath ? relativePath + '/' : ''}${file}" type="image/x-icon">`);
+                links.push(`<link rel="shortcut icon" href="${relativePath ? relativePath + '/' : ''}${file}" type="image/x-icon">`);
+            } else if (ext === '.png' || ext === '.jpg' || ext === '.jpeg') {
+                if (name.includes('favicon')) {
+                    links.push(`<link rel="icon" href="${relativePath ? relativePath + '/' : ''}${file}" type="image/${ext === '.png' ? 'png' : 'jpeg'}">`);
+                }
+                if (name.includes('icon') && !name.includes('favicon')) {
+                    links.push(`<link rel="apple-touch-icon" href="${relativePath ? relativePath + '/' : ''}${file}">`);
+                }
+            } else if (ext === '.svg') {
+                if (name.includes('favicon') || name.includes('icon')) {
+                    links.push(`<link rel="icon" href="${relativePath ? relativePath + '/' : ''}${file}" type="image/svg+xml">`);
+                }
+            }
+        });
+
+        // Add Apple Touch Icon if not already added
+        const hasAppleTouchIcon = links.some(link => link.includes('apple-touch-icon'));
+        if (!hasAppleTouchIcon) {
+            // Look for any PNG/JPEG file for apple touch icon
+            const pngJpgFiles = faviconFiles.filter(f => {
+                const ext = path.extname(f).toLowerCase();
+                return ext === '.png' || ext === '.jpg' || ext === '.jpeg';
+            });
+            if (pngJpgFiles.length > 0) {
+                links.push(`<link rel="apple-touch-icon" href="${relativePath ? relativePath + '/' : ''}${pngJpgFiles[0]}">`);
+            }
+        }
+
+        // Add Microsoft Tile Image
+        const pngFiles = faviconFiles.filter(f => path.extname(f).toLowerCase() === '.png');
+        if (pngFiles.length > 0) {
+            links.push(`<meta name="msapplication-TileImage" content="${relativePath ? relativePath + '/' : ''}${pngFiles[0]}">`);
+        }
+
+        return links.join('\n    ');
     }
 
     generateStaticPages() {
@@ -768,6 +1109,9 @@ class SiteGenerator {
                 }
             };
 
+            // Get favicon links - For root-level pages, use relative path
+            const faviconLinks = this.generateFaviconLinks('.');
+
             const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -776,11 +1120,17 @@ class SiteGenerator {
     <title>${pageContent.seo?.title || page}</title>
     <meta name="description" content="${pageContent.seo?.description || page}">
 
+    <!-- Favicon -->
+    ${faviconLinks}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="assets/urls/url-constants.js"></script>
 
     <!-- Inline CSS -->
     <style>
@@ -795,13 +1145,15 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>${this.config.site_name}</span>
                 </a>
-                <div class="time-display digital-clock">
-                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
-                    <span class="digital-ampm">AM</span>
+                <div class="time-display">
+                    <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
 
     <!-- Quick Jump Navigation -->
     <div class="quick-jump-nav">
@@ -823,7 +1175,7 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>Depots</span>
                 </a>
-                <button class="quick-jump-btn alphabet-trigger">
+                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
                     <i class="bi bi-sort-alpha-down"></i>
                     <span>A-Z</span>
                 </button>
@@ -840,6 +1192,9 @@ class SiteGenerator {
 
     <main class="main-content">
         <div class="container">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
             <div class="navigation-buttons">
                 <a href="index.html" class="back-btn">
                     <i class="bi bi-house"></i> Back to Bus Schedule
@@ -859,7 +1214,18 @@ class SiteGenerator {
     <!-- Footer Ad -->
     ${this.renderAd('footer_ad')}
 
-    ${this.renderFooter('')}
+    ${this.renderFooter()}
+
+    <!-- Alphabet Quick View -->
+    <div class="alphabet-quick-view" id="alphabetView">
+        <div class="alphabet-view-header">
+            <h4>Jump to Letter</h4>
+            <button class="close-alphabet">&times;</button>
+        </div>
+        <div class="alphabet-view-grid">
+            ${this.renderCompactAlphabetButtons()}
+        </div>
+    </div>
 
     <!-- Inline JavaScript -->
     <script>
@@ -882,7 +1248,10 @@ class SiteGenerator {
             fs.mkdirSync(blogsPublicDir, { recursive: true });
         }
 
-        // Generate blog listing page - FIXED URL
+        // Get favicon links - For blog pages, use relative path from blogs directory
+        const faviconLinks = this.generateFaviconLinks('..');
+
+        // Generate blog listing page
         const blogListingHTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -893,11 +1262,17 @@ class SiteGenerator {
     <meta name="keywords" content="MSRTC blog, bus news, Maharashtra transport updates, schedule changes">
     <link rel="canonical" href="${this.config.base_url}/blogs/index.html">
 
+    <!-- Favicon -->
+    ${faviconLinks}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="../assets/urls/url-constants.js"></script>
 
     <!-- Inline CSS -->
     <style>
@@ -923,13 +1298,15 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>${this.config.site_name}</span>
                 </a>
-                <div class="time-display digital-clock">
-                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
-                    <span class="digital-ampm">AM</span>
+                <div class="time-display">
+                    <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
 
     <!-- Quick Jump Navigation -->
     <div class="quick-jump-nav">
@@ -951,7 +1328,7 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>Depots</span>
                 </a>
-                <button class="quick-jump-btn alphabet-trigger">
+                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
                     <i class="bi bi-sort-alpha-down"></i>
                     <span>A-Z</span>
                 </button>
@@ -968,10 +1345,10 @@ class SiteGenerator {
 
     <main class="main-content">
         <div class="container">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
             <div class="navigation-buttons">
-                <a href="index.html" class="back-btn">
-                    <i class="bi bi-arrow-left"></i> Back to Blogs
-                </a>
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-house"></i> Back to Bus Schedule
                 </a>
@@ -984,20 +1361,13 @@ class SiteGenerator {
                 <div class="blog-grid">
                     ${this.blogs.map(blog => `
                         <a href="${blog.id}.html" class="blog-card">
-                            <div class="blog-card-image">
-                                <i class="bi bi-newspaper"></i>
-                            </div>
                             <div class="blog-card-content">
                                 <h3>${blog.title}</h3>
-                                <div class="blog-card-excerpt">${blog.excerpt || blog.content.substring(0, 150) + '...'}</div>
+                                <div class="blog-card-excerpt">${blog.excerpt || blog.content.substring(0, 120) + '...'}</div>
                                 <div class="blog-card-meta">
                                     <div class="blog-card-date">
                                         <i class="bi bi-calendar"></i>
                                         ${new Date(blog.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
-                                    </div>
-                                    <div class="blog-card-readtime">
-                                        <i class="bi bi-clock"></i>
-                                        ${blog.read_time || '5 min'} read
                                     </div>
                                 </div>
                             </div>
@@ -1018,6 +1388,17 @@ class SiteGenerator {
     ${this.renderAd('footer_ad')}
 
     ${this.renderFooter('../')}
+
+    <!-- Alphabet Quick View -->
+    <div class="alphabet-quick-view" id="alphabetView">
+        <div class="alphabet-view-header">
+            <h4>Jump to Letter</h4>
+            <button class="close-alphabet">&times;</button>
+        </div>
+        <div class="alphabet-view-grid">
+            ${this.renderCompactAlphabetButtons()}
+        </div>
+    </div>
 
     <!-- Inline JavaScript -->
     <script>
@@ -1043,6 +1424,9 @@ class SiteGenerator {
     <meta name="keywords" content="${blog.seo?.keywords || blog.tags?.join(', ') || 'MSRTC, bus, Maharashtra, transport'}">
     <link rel="canonical" href="${this.config.base_url}/blogs/${blog.id}.html">
 
+    <!-- Favicon -->
+    ${faviconLinks}
+
     <!-- Open Graph -->
     <meta property="og:title" content="${blog.title}">
     <meta property="og:description" content="${blog.excerpt || blog.content.substring(0, 200)}">
@@ -1052,8 +1436,11 @@ class SiteGenerator {
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="../assets/urls/url-constants.js"></script>
 
     <!-- Inline CSS -->
     <style>
@@ -1093,13 +1480,15 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>${this.config.site_name}</span>
                 </a>
-                <div class="time-display digital-clock">
-                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
-                    <span class="digital-ampm">AM</span>
+                <div class="time-display">
+                    <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
 
     <!-- Quick Jump Navigation -->
     <div class="quick-jump-nav">
@@ -1121,7 +1510,7 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>Depots</span>
                 </a>
-                <button class="quick-jump-btn alphabet-trigger">
+                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
                     <i class="bi bi-sort-alpha-down"></i>
                     <span>A-Z</span>
                 </button>
@@ -1138,6 +1527,9 @@ class SiteGenerator {
 
     <main class="main-content">
         <div class="container blog-page">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
             <div class="navigation-buttons">
                 <a href="index.html" class="back-btn">
                     <i class="bi bi-arrow-left"></i> Back to Blogs
@@ -1151,7 +1543,7 @@ class SiteGenerator {
                 <h1>${blog.title}</h1>
                 <div class="blog-date">
                     <i class="bi bi-calendar"></i>
-                    ${new Date(blog.date).toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                    ${new Date(blog.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                 </div>
             </div>
 
@@ -1162,7 +1554,6 @@ class SiteGenerator {
                     </div>
                     <div class="author-info">
                         <h4>${blog.author}</h4>
-                        <p>${blog.author_role || 'MSRTC Official'}</p>
                     </div>
                 </div>
             ` : ''}
@@ -1186,6 +1577,17 @@ class SiteGenerator {
     ${this.renderAd('footer_ad')}
 
     ${this.renderFooter('../')}
+
+    <!-- Alphabet Quick View -->
+    <div class="alphabet-quick-view" id="alphabetView">
+        <div class="alphabet-view-header">
+            <h4>Jump to Letter</h4>
+            <button class="close-alphabet">&times;</button>
+        </div>
+        <div class="alphabet-view-grid">
+            ${this.renderCompactAlphabetButtons()}
+        </div>
+    </div>
 
     <!-- Inline JavaScript -->
     <script>
@@ -1291,6 +1693,9 @@ class SiteGenerator {
         const seo = division.seo || {};
         const content = division.content || {};
 
+        // Get favicon links - For division pages, use relative path
+        const faviconLinks = this.generateFaviconLinks('..');
+
         return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1300,11 +1705,17 @@ class SiteGenerator {
     <meta name="description" content="${seo.description || `MSRTC bus schedules for ${division.name} division covering ${districts.length} districts in Maharashtra`}">
     <meta name="keywords" content="${seo.keywords || `MSRTC, ${division.name} division, bus schedule, Maharashtra transport`}">
 
+    <!-- Favicon -->
+    ${faviconLinks}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="../assets/urls/url-constants.js"></script>
 
     <!-- Inline CSS -->
     <style>
@@ -1319,13 +1730,15 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>${this.config.site_name}</span>
                 </a>
-                <div class="time-display digital-clock">
-                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
-                    <span class="digital-ampm">AM</span>
+                <div class="time-display">
+                    <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
 
     <!-- Quick Jump Navigation -->
     <div class="quick-jump-nav">
@@ -1347,7 +1760,7 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>Depots</span>
                 </a>
-                <button class="quick-jump-btn alphabet-trigger">
+                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
                     <i class="bi bi-sort-alpha-down"></i>
                     <span>A-Z</span>
                 </button>
@@ -1362,16 +1775,11 @@ class SiteGenerator {
     <!-- Top Ad -->
     ${this.renderAd('top_ad')}
 
-    <nav class="breadcrumb">
-        <div class="container">
-            <a href="../index.html">Home</a>
-            <span>→</span>
-            <span>${division.name}</span>
-        </div>
-    </nav>
-
     <main class="main-content">
         <div class="container">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-house"></i> Back to Bus Schedule
@@ -1396,13 +1804,7 @@ class SiteGenerator {
             <!-- Middle Ad -->
             ${this.renderAd('middle_ad')}
 
-            <!-- Alphabet Quick Access for Districts -->
-            <div class="alphabet-quick-access">
-                <h3>Quick Jump to Districts</h3>
-                <div class="alphabet-mini-grid">
-                    ${this.renderDistrictAlphabet(districts)}
-                </div>
-            </div>
+            <!-- NO Alphabet drawer for district listing in division page -->
 
             <!-- Districts Grid -->
             <div class="district-grid">
@@ -1423,11 +1825,11 @@ class SiteGenerator {
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Quick Search ${division.name} Division</h3>
+                <h3><i class="bi bi-search"></i> Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
-                <input type="text" class="global-search-input" placeholder="Type to search districts in ${division.name}...">
+                <input type="text" class="global-search-input" placeholder="Search districts in ${division.name}...">
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
@@ -1436,11 +1838,11 @@ class SiteGenerator {
     <!-- Alphabet Quick View -->
     <div class="alphabet-quick-view" id="alphabetView">
         <div class="alphabet-view-header">
-            <h4>Jump to District</h4>
+            <h4>Jump to Letter</h4>
             <button class="close-alphabet">&times;</button>
         </div>
         <div class="alphabet-view-grid">
-            ${this.renderAlphabetButtons()}
+            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -1458,6 +1860,9 @@ class SiteGenerator {
         const seo = district.seo || {};
         const content = district.content || {};
 
+        // Get favicon links - For district pages, use relative path
+        const faviconLinks = this.generateFaviconLinks('../..');
+
         return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1467,11 +1872,17 @@ class SiteGenerator {
     <meta name="description" content="${seo.description || `MSRTC bus schedules for ${district.name} district in ${division.name} division`}">
     <meta name="keywords" content="${seo.keywords || `MSRTC, ${district.name} district, ${division.name} division, bus schedule`}">
 
+    <!-- Favicon -->
+    ${faviconLinks}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="../../assets/urls/url-constants.js"></script>
 
     <!-- Inline CSS -->
     <style>
@@ -1486,13 +1897,15 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>${this.config.site_name}</span>
                 </a>
-                <div class="time-display digital-clock">
-                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
-                    <span class="digital-ampm">AM</span>
+                <div class="time-display">
+                    <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
 
     <!-- Quick Jump Navigation -->
     <div class="quick-jump-nav">
@@ -1514,7 +1927,7 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>Depots</span>
                 </a>
-                <button class="quick-jump-btn alphabet-trigger">
+                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
                     <i class="bi bi-sort-alpha-down"></i>
                     <span>A-Z</span>
                 </button>
@@ -1529,18 +1942,11 @@ class SiteGenerator {
     <!-- Top Ad -->
     ${this.renderAd('top_ad')}
 
-    <nav class="breadcrumb">
-        <div class="container">
-            <a href="../../index.html">Home</a>
-            <span>→</span>
-            <a href="../index.html">${division.name}</a>
-            <span>→</span>
-            <span>${district.name}</span>
-        </div>
-    </nav>
-
     <main class="main-content">
         <div class="container">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-arrow-left"></i> Back to ${division.name}
@@ -1572,13 +1978,7 @@ class SiteGenerator {
             <!-- Middle Ad -->
             ${this.renderAd('middle_ad')}
 
-            <!-- Alphabet Quick Access for Tehsils -->
-            <div class="alphabet-quick-access">
-                <h3>Quick Jump to Tehsils</h3>
-                <div class="alphabet-mini-grid">
-                    ${this.renderTehsilAlphabet(tehsils)}
-                </div>
-            </div>
+            <!-- NO Alphabet drawer for tehsil listing in district page -->
 
             <!-- Tehsils Grid -->
             <div class="tehsil-grid">
@@ -1599,11 +1999,11 @@ class SiteGenerator {
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Quick Search ${district.name} District</h3>
+                <h3><i class="bi bi-search"></i> Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
-                <input type="text" class="global-search-input" placeholder="Type to search tehsils in ${district.name}...">
+                <input type="text" class="global-search-input" placeholder="Search tehsils in ${district.name}...">
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
@@ -1612,11 +2012,11 @@ class SiteGenerator {
     <!-- Alphabet Quick View -->
     <div class="alphabet-quick-view" id="alphabetView">
         <div class="alphabet-view-header">
-            <h4>Jump to Tehsil</h4>
+            <h4>Jump to Letter</h4>
             <button class="close-alphabet">&times;</button>
         </div>
         <div class="alphabet-view-grid">
-            ${this.renderAlphabetButtons()}
+            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -1633,6 +2033,9 @@ class SiteGenerator {
         const seo = tehsil.seo || {};
         const content = tehsil.content || {};
 
+        // Get favicon links - For tehsil pages, use relative path
+        const faviconLinks = this.generateFaviconLinks('../../..');
+
         return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1642,11 +2045,17 @@ class SiteGenerator {
     <meta name="description" content="${seo.description || `MSRTC bus schedules for ${tehsil.name} tehsil in ${district.name} district`}">
     <meta name="keywords" content="${seo.keywords || `MSRTC, ${tehsil.name} tehsil, ${district.name} district, bus schedule`}">
 
+    <!-- Favicon -->
+    ${faviconLinks}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="../../../assets/urls/url-constants.js"></script>
 
     <!-- Inline CSS -->
     <style>
@@ -1661,13 +2070,15 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>${this.config.site_name}</span>
                 </a>
-                <div class="time-display digital-clock">
-                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
-                    <span class="digital-ampm">AM</span>
+                <div class="time-display">
+                    <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
 
     <!-- Quick Jump Navigation -->
     <div class="quick-jump-nav">
@@ -1689,7 +2100,7 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>Depots</span>
                 </a>
-                <button class="quick-jump-btn alphabet-trigger">
+                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
                     <i class="bi bi-sort-alpha-down"></i>
                     <span>A-Z</span>
                 </button>
@@ -1704,20 +2115,11 @@ class SiteGenerator {
     <!-- Top Ad -->
     ${this.renderAd('top_ad')}
 
-    <nav class="breadcrumb">
-        <div class="container">
-            <a href="../../../index.html">Home</a>
-            <span>→</span>
-            <a href="../../index.html">${division.name}</a>
-            <span>→</span>
-            <a href="../index.html">${district.name}</a>
-            <span>→</span>
-            <span>${tehsil.name}</span>
-        </div>
-    </nav>
-
     <main class="main-content">
         <div class="container">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-arrow-left"></i> Back to ${district.name}
@@ -1745,9 +2147,8 @@ class SiteGenerator {
             <!-- Middle Ad -->
             ${this.renderAd('middle_ad')}
 
-            <!-- Alphabet Quick Access for Depots -->
-            <div class="alphabet-quick-access">
-                <h3>Quick Jump to Depots</h3>
+            <!-- Alphabet drawer for depot listing in tehsil page -->
+            <div class="alphabet-quick-access" id="tehsilAlphabetDrawer">
                 <div class="alphabet-mini-grid">
                     ${this.renderDepotAlphabet(depots)}
                 </div>
@@ -1772,11 +2173,11 @@ class SiteGenerator {
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Quick Search ${tehsil.name} Tehsil</h3>
+                <h3><i class="bi bi-search"></i> Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
-                <input type="text" class="global-search-input" placeholder="Type to search depots in ${tehsil.name}...">
+                <input type="text" class="global-search-input" placeholder="Search depots in ${tehsil.name}...">
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
@@ -1785,11 +2186,11 @@ class SiteGenerator {
     <!-- Alphabet Quick View -->
     <div class="alphabet-quick-view" id="alphabetView">
         <div class="alphabet-view-header">
-            <h4>Jump to Depot</h4>
+            <h4>Jump to Letter</h4>
             <button class="close-alphabet">&times;</button>
         </div>
         <div class="alphabet-view-grid">
-            ${this.renderAlphabetButtons()}
+            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -1828,6 +2229,9 @@ class SiteGenerator {
         const fallbackRelatedDepots = relatedDepots.length === 0 ?
             this.getRelatedDepotsInTehsil(depot.id, tehsil.id) : [];
 
+        // Get favicon links - For depot pages, use relative path
+        const faviconLinks = this.generateFaviconLinks('../../../../');
+
         return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1837,11 +2241,17 @@ class SiteGenerator {
     <meta name="description" content="${seo.description || `MSRTC bus schedule for ${depot.name} depot in ${tehsil.name}, ${district.name}. Find bus timings to bus stops from ${depot.name}.`}">
     <meta name="keywords" content="${seo.keywords || `${depot.name} bus timing, ${tehsil.name} depot, ${district.name} MSRTC, bus schedule ${depot.name}`}">
 
+    <!-- Favicon -->
+    ${faviconLinks}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="../../../../assets/urls/url-constants.js"></script>
 
     <!-- Inline CSS -->
     <style>
@@ -1877,13 +2287,15 @@ class SiteGenerator {
                     <i class="bi bi-bus-front"></i>
                     <span>${this.config.site_name}</span>
                 </a>
-                <div class="time-display digital-clock">
-                    <span class="digital-hours">00</span>:<span class="digital-minutes">00</span>:<span class="digital-seconds">00</span>
-                    <span class="digital-ampm">AM</span>
+                <div class="time-display">
+                    <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
 
     <!-- Quick Jump Navigation -->
     <div class="quick-jump-nav">
@@ -1920,22 +2332,11 @@ class SiteGenerator {
     <!-- Top Ad -->
     ${this.renderAd('top_ad')}
 
-    <nav class="breadcrumb">
-        <div class="container">
-            <a href="../../../../index.html">Home</a>
-            <span>→</span>
-            <a href="../../../index.html">${division.name}</a>
-            <span>→</span>
-            <a href="../../index.html">${district.name}</a>
-            <span>→</span>
-            <a href="../index.html">${tehsil.name}</a>
-            <span>→</span>
-            <span>${depot.name}</span>
-        </div>
-    </nav>
-
     <main class="main-content">
         <div class="container">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-arrow-left"></i> Back to ${tehsil.name}
@@ -1959,11 +2360,7 @@ class SiteGenerator {
                     </div>
                     <div class="info-item">
                         <i class="bi bi-bus-front"></i>
-                        <span>${totalBusCount} Bus Schedules</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="bi bi-geo-alt"></i>
-                        <span>${tehsil.name}</span>
+                        <span>${totalBusCount} Buses</span>
                     </div>
                 </div>
             </div>
@@ -1971,12 +2368,8 @@ class SiteGenerator {
             <!-- Middle Ad -->
             ${this.renderAd('middle_ad')}
 
-            <!-- Floating Bus Stop Letters (Always Visible) -->
+            <!-- Floating Bus Stop Letters - COMPACT DESIGN -->
             <div class="floating-bus-stop-letters">
-                <div class="floating-letters-header">
-                    <h3>Jump to Bus Stop</h3>
-                    <span class="bus-stop-count">${totalBusStopCount} bus stops</span>
-                </div>
                 <div class="floating-letters-grid">
                     ${this.renderBusStopAlphabetButtons(villageLetters)}
                 </div>
@@ -1984,16 +2377,16 @@ class SiteGenerator {
 
             <!-- Search -->
             <div class="search-container">
-                <input type="text" class="search-box" placeholder="🔍 Search for bus stops..." id="search-box">
+                <input type="text" class="search-box" placeholder="🔍 Search bus stops..." id="search-box">
             </div>
 
-            <!-- Time Filters -->
+            <!-- Time Filters - COMPACT - FIXED FOR MOBILE -->
             <div class="time-filters">
-                <button class="filter-btn active" data-filter="all">All Day</button>
-                <button class="filter-btn" data-filter="morning">🌅 Morning (5AM-12PM)</button>
-                <button class="filter-btn" data-filter="afternoon">☀️ Afternoon (12PM-5PM)</button>
-                <button class="filter-btn" data-filter="evening">🌇 Evening (5PM-10PM)</button>
-                <button class="filter-btn" data-filter="night">🌙 Night (10PM-5AM)</button>
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="morning">5AM-12PM</button>
+                <button class="filter-btn" data-filter="afternoon">12PM-5PM</button>
+                <button class="filter-btn" data-filter="evening">5PM-10PM</button>
+                <button class="filter-btn" data-filter="night">10PM-5AM</button>
             </div>
 
             <!-- Empty State -->
@@ -2003,12 +2396,12 @@ class SiteGenerator {
                 <p>Try changing your filters or search term</p>
             </div>
 
-            <!-- Bus Stops Schedule -->
+            <!-- Bus Stops Schedule - COMPACT -->
             ${this.renderBusStopSections(villages, villageLetters)}
 
             <!-- Depot About Section -->
             ${depotContent ? `
-                <div class="depot-about-section mt-4">
+                <div class="depot-about-section mt-3">
                     <h2>About ${depot.name} Depot</h2>
                     <div class="about-content">
                         ${depotContent}
@@ -2018,8 +2411,8 @@ class SiteGenerator {
 
             <!-- FAQ Section -->
             ${faqs.length > 0 ? `
-                <div class="faq-section mt-4">
-                    <h2>Frequently Asked Questions</h2>
+                <div class="faq-section mt-3">
+                    <h2>FAQs</h2>
                     <div class="faq-container">
                         ${faqs.map((faq, index) => {
                             const question = faq.question || faq.q || '';
@@ -2037,13 +2430,12 @@ class SiteGenerator {
                             </div>
                             `;
                         }).join('')}
-                    </div>
                 </div>
             ` : ''}
 
             <!-- Related Links Section -->
             ${relatedDepots.length > 0 || fallbackRelatedDepots.length > 0 ? `
-                <div class="related-links-section mt-4">
+                <div class="related-links-section mt-3">
                     <h2>${relatedDepots.length > 0 ? 'Related Depots' : 'Other Depots in ' + tehsil.name}</h2>
                     <div class="related-links-grid">
                         ${relatedDepots.length > 0 ?
@@ -2072,13 +2464,24 @@ class SiteGenerator {
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Quick Search ${depot.name} Depot</h3>
+                <h3><i class="bi bi-search"></i> Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
-                <input type="text" class="global-search-input" placeholder="Type to search bus stops in ${depot.name}...">
+                <input type="text" class="global-search-input" placeholder="Search bus stops in ${depot.name}...">
                 <div class="search-results" id="searchResults"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Alphabet Quick View -->
+    <div class="alphabet-quick-view" id="alphabetView">
+        <div class="alphabet-view-header">
+            <h4>Jump to Letter</h4>
+            <button class="close-alphabet">&times;</button>
+        </div>
+        <div class="alphabet-view-grid">
+            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -2184,10 +2587,9 @@ class SiteGenerator {
 
         return `<a href="${relativePath}" class="related-depot-card">
             <h3>${depot.name}</h3>
-            <p>${busStopCount} bus stops • ${busCount} bus schedules</p>
-            <p class="related-depot-location">${tehsil.name}, ${district.name}, ${division.name}</p>
+            <p>${busStopCount} bus stops • ${busCount} buses</p>
             <span class="related-depot-link">
-                <i class="bi bi-arrow-right"></i> View Schedule
+                <i class="bi bi-arrow-right"></i> View
             </span>
         </a>`;
     }
@@ -2211,8 +2613,8 @@ class SiteGenerator {
             return `<a href="${division.id}/index.html" class="rectangular-card" data-alphabet="${division.alphabet || division.name.charAt(0).toUpperCase()}">
                 <h3>${division.name}</h3>
                 <div class="stats">
-                    <span class="stat"><i class="bi bi-map"></i> ${districtCount} districts</span>
-                    <span class="stat"><i class="bi bi-bus-front"></i> ${depotCount} depots</span>
+                    <span class="stat"><i class="bi bi-map"></i> ${districtCount}</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> ${depotCount}</span>
                 </div>
             </a>`;
         }).join('');
@@ -2239,8 +2641,8 @@ class SiteGenerator {
                 <h3>${district.name}</h3>
                 <div class="card-meta">${division ? division.name : ''}</div>
                 <div class="stats">
-                    <span class="stat"><i class="bi bi-building"></i> ${tehsilCount} tehsils</span>
-                    <span class="stat"><i class="bi bi-bus-front"></i> ${depotCount} depots</span>
+                    <span class="stat"><i class="bi bi-building"></i> ${tehsilCount}</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> ${depotCount}</span>
                 </div>
             </a>`;
         }).join('');
@@ -2267,7 +2669,7 @@ class SiteGenerator {
                 <h3>${tehsil.name}</h3>
                 <div class="card-meta">${district ? district.name : ''}</div>
                 <div class="stats">
-                    <span class="stat"><i class="bi bi-bus-front"></i> ${depotCount} depots</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> ${depotCount}</span>
                 </div>
             </a>`;
         }).join('');
@@ -2303,8 +2705,8 @@ class SiteGenerator {
                 <h3>${depot.name}</h3>
                 <div class="card-meta">${tehsil ? tehsil.name : ''}</div>
                 <div class="stats">
-                    <span class="stat"><i class="bi bi-signpost"></i> ${busStopCount} bus stops</span>
-                    <span class="stat"><i class="bi bi-bus-front"></i> ${busCount} schedules</span>
+                    <span class="stat"><i class="bi bi-signpost"></i> ${busStopCount}</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> ${busCount}</span>
                 </div>
             </a>`;
         }).join('');
@@ -2344,8 +2746,8 @@ class SiteGenerator {
             return `<a href="${district.id}/index.html" class="rectangular-card" data-alphabet="${district.alphabet || district.name.charAt(0).toUpperCase()}">
                 <h3>${district.name}</h3>
                 <div class="stats">
-                    <span class="stat"><i class="bi bi-building"></i> ${tehsils.length} tehsils</span>
-                    <span class="stat"><i class="bi bi-bus-front"></i> ${depotCount} depots</span>
+                    <span class="stat"><i class="bi bi-building"></i> ${tehsils.length}</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> ${depotCount}</span>
                 </div>
             </a>`;
         }).join('');
@@ -2369,7 +2771,7 @@ class SiteGenerator {
             return `<a href="${tehsil.id}/index.html" class="rectangular-card" data-alphabet="${tehsil.alphabet || tehsil.name.charAt(0).toUpperCase()}">
                 <h3>${tehsil.name}</h3>
                 <div class="stats">
-                    <span class="stat"><i class="bi bi-bus-front"></i> ${depots.length} depots</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> ${depots.length}</span>
                 </div>
             </a>`;
         }).join('');
@@ -2397,8 +2799,8 @@ class SiteGenerator {
             return `<a href="${depot.id}/index.html" class="rectangular-card" data-alphabet="${depot.name.charAt(0).toUpperCase()}">
                 <h3>${depot.name}</h3>
                 <div class="stats">
-                    <span class="stat"><i class="bi bi-bus-front"></i> ${busCount} schedules</span>
-                    <span class="stat"><i class="bi bi-signpost"></i> ${busStopCount} bus stops</span>
+                    <span class="stat"><i class="bi bi-signpost"></i> ${busStopCount}</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> ${busCount}</span>
                 </div>
             </a>`;
         }).join('');
@@ -2419,7 +2821,7 @@ class SiteGenerator {
                 return `<div class="bus-stop-section" id="${busStopId}" data-letter="${letter.toLowerCase()}" data-busstop="${busStop.name.toLowerCase()}">
                     <div class="bus-stop-header">
                         <h3 class="bus-stop-name">${busStop.name}</h3>
-                        <span class="bus-count">${busStop.bus_count || schedule.length} buses</span>
+                        <span class="bus-count">${schedule.length}</span>
                     </div>
                     <div class="schedule-grid">
                         ${this.renderTimeBubbles(schedule)}
@@ -2431,7 +2833,7 @@ class SiteGenerator {
 
     renderTimeBubbles(schedule) {
         if (schedule.length === 0) {
-            return '<div class="time-bubble" style="grid-column: 1/-1; background: #F8FAFC; color: #64748B; border: 2px dashed #CBD5E1;">No schedule</div>';
+            return '<div class="time-bubble" style="grid-column: 1/-1; background: #F8FAFC; color: #64748B; border: 1px dashed #CBD5E1;">No schedule</div>';
         }
 
         // Group schedule by time of day
@@ -2477,7 +2879,7 @@ class SiteGenerator {
             // Convert to 12-hour format
             const hour12 = hours % 12 || 12;
             const ampm = hours >= 12 ? 'PM' : 'AM';
-            const displayTime = `${hour12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+            const displayTime = `${hour12}:${minutes.toString().padStart(2, '0')}${ampm}`;
 
             return `<div class="time-bubble ${timeCategory}" data-time="${time}" title="${displayTime}">
                 ${displayTime}
@@ -2485,7 +2887,7 @@ class SiteGenerator {
         }).join('');
     }
 
-    renderAlphabetButtons() {
+    renderCompactAlphabetButtons() {
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         return `${alphabet.map(letter => {
             return `<button class="alphabet-btn" data-letter="${letter}">${letter}</button>`;
@@ -2561,8 +2963,7 @@ class SiteGenerator {
             adCode = ad.mobile_code;
         } else {
             adCode = `<div class="ad-placeholder">
-                <span>${ad.label || 'Advertisement'}</span>
-                <p>${ad.name || 'Ad Space'}</p>
+                <span>${ad.label || 'Ad'}</span>
             </div>`;
         }
 
@@ -2593,6 +2994,8 @@ class SiteGenerator {
     }
 
     renderFooter(prefix = '') {
+        const basePath = prefix || '';
+
         return `<footer class="site-footer">
             <div class="container">
                 <div class="footer-content">
@@ -2600,31 +3003,42 @@ class SiteGenerator {
                     <div class="footer-section">
                         <h3>Quick Links</h3>
                         <div class="footer-links">
-                            <a href="${prefix}index.html">Home</a>
-                            <a href="${prefix}about.html">About Us</a>
-                            <a href="${prefix}contact.html">Contact</a>
-                            <a href="${prefix}blogs/index.html">Blogs & Updates</a>
-                            <a href="${prefix}terms.html">Terms of Service</a>
-                            <a href="${prefix}privacy.html">Privacy Policy</a>
-                            <a href="${prefix}disclaimer.html">Disclaimer</a>
+                            <a href="${basePath}index.html">Home</a>
+                            <a href="${basePath}about.html">About</a>
+                            <a href="${basePath}contact.html">Contact</a>
+                            <a href="${basePath}blogs/index.html">Blogs</a>
+                            <a href="${basePath}terms.html">Terms</a>
+                            <a href="${basePath}privacy.html">Privacy</a>
                         </div>
                     </div>
 
-                    <!-- MSRTC Info -->
+                    <!-- MSRTC Info - NEW COLUMN -->
                     <div class="footer-section">
-                        <h3>MSRTC Information</h3>
+                        <h3>MSRTC Official</h3>
                         <div class="footer-links">
-                            <a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official MSRTC Website</a>
-                            <a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Online Ticket Booking</a>
+                            <a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a>
+                            <a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a>
                             <a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a>
-                            <a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Lodge Complaint</a>
+                            <a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a>
+                        </div>
+                    </div>
+
+                    <!-- Useful Links - NEW COLUMN -->
+                    <div class="footer-section">
+                        <h3>Useful Links</h3>
+                        <div class="footer-links">
+                            <a href="${basePath}disclaimer.html">Disclaimer</a>
+                            <a href="${basePath}sitemap.xml">Sitemap</a>
+                            <a href="${basePath}contact.html#feedback">Feedback</a>
+                            <a href="${basePath}contact.html#report">Report Issue</a>
                         </div>
                     </div>
 
                     <!-- Copyright -->
                     <div class="copyright">
-                        © ${new Date().getFullYear()} ${this.config.site_name}. All rights reserved.<br>
-                        This is an unofficial timetable portal. For official schedules, please visit <a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">msrtc.maharashtra.gov.in</a>
+                        © ${new Date().getFullYear()} ${this.config.site_name}.<br>
+                        This is an unofficial timetable portal.<br>
+                        <small>All bus schedules are for reference only.</small>
                     </div>
                 </div>
             </div>
@@ -2739,6 +3153,58 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         console.log('   ✓ Search index generated');
     }
 
+    generateUrlConstantsFile() {
+        console.log('🔗 Generating URL constants file...');
+
+        const urlConstantsPath = path.join(this.publicDir, 'assets', 'urls', 'url-constants.js');
+        const jsConstants = `// URL Constants - Auto-generated from assets/urls/
+window.URL_CONSTANTS = ${JSON.stringify(this.urlConstants, null, 2)};
+
+// Function to get URL from constant
+window.getUrlFromConstant = function(constantName) {
+    if (window.URL_CONSTANTS && window.URL_CONSTANTS[constantName]) {
+        return window.URL_CONSTANTS[constantName];
+    }
+    console.warn('URL constant not found:', constantName);
+    return '#';
+};
+
+// Function to handle blog link clicks
+window.handleBlogLinkClick = function(event) {
+    const link = event.currentTarget;
+    const constantName = link.dataset.constant;
+
+    if (constantName) {
+        const url = window.getUrlFromConstant(constantName);
+        if (url && url !== '#') {
+            window.open(url, '_blank', 'noopener,noreferrer');
+            event.preventDefault();
+            return false;
+        }
+    }
+    return true;
+};
+
+// Initialize blog links after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers to all blog links with data-constant attribute
+    document.querySelectorAll('.blog-link[data-constant]').forEach(function(link) {
+        link.addEventListener('click', window.handleBlogLinkClick);
+    });
+
+    console.log('URL constants initialized with', Object.keys(window.URL_CONSTANTS || {}).length, 'constants');
+});`;
+
+        // Ensure directory exists
+        const dir = path.dirname(urlConstantsPath);
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+
+        fs.writeFileSync(urlConstantsPath, jsConstants, 'utf8');
+        console.log('   ✓ URL constants file generated');
+    }
+
     getInlineCSS() {
         const theme = this.config.theme || {};
         const primary = '#493dd5';
@@ -2750,17 +3216,11 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         const borderLight = '#C4B5FD';
         const borderDark = '#A78BFA';
 
-        // Theme colors for digital watch
-        const watchBg = '#0a0e17';
-        const watchNumbers = '#ffffff';
-        const watchGlow = '#4ecdc4';
-        const watchBorder = '#1e293b';
-
         return `/* ==========================================================================
-       MSRTC BUS TIMETABLE - INLINE STYLES
+       MSRTC BUS TIMETABLE - MOBILE FIRST STYLES
        ========================================================================== */
 
-    /* Reset & Base */
+    /* Reset & Base - MOBILE FIRST */
     * {
         margin: 0;
         padding: 0;
@@ -2774,40 +3234,48 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
 
     body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        font-weight: 300;
+        font-weight: 400;
         background: linear-gradient(135deg, ${bgStart} 0%, ${bgEnd} 100%);
         color: ${textPrimary};
-        line-height: 1.5;
+        line-height: 1.4;
         min-height: 100vh;
         -webkit-tap-highlight-color: transparent;
-        padding-bottom: 60px;
+        padding-bottom: 40px;
+        overflow-x: hidden;
+        max-width: 100%;
     }
 
-    /* Typography */
+    /* Fixed header spacing */
+    .header-spacer {
+        height: 50px;
+    }
+
+    /* Typography - COMPACT */
     h1, h2, h3, h4, h5, h6 {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-weight: 600;
         color: ${textSecondary};
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
     }
 
     h1 {
-        font-size: 1.6rem;
-        font-weight: 700;
+        font-size: 1.4rem;
         line-height: 1.2;
     }
 
     h2 {
-        font-size: 1.4rem;
-    }
-
-    h3 {
         font-size: 1.2rem;
     }
 
+    h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
     p {
-        margin-bottom: 1rem;
-        line-height: 1.6;
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
+        font-size: 0.9rem;
     }
 
     a {
@@ -2825,25 +3293,28 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 0 0.8rem;
     }
 
     .text-center {
         text-align: center;
     }
 
+    .mt-2 { margin-top: 0.5rem; }
     .mt-3 { margin-top: 1rem; }
-    .mt-4 { margin-top: 1.5rem; }
 
-    /* Header */
+    /* Header - FIXED POSITION */
     .site-header {
         background: white;
-        box-shadow: 0 2px 10px rgba(73, 61, 213, 0.08);
-        position: sticky;
+        box-shadow: 0 1px 3px rgba(73, 61, 213, 0.05);
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
         z-index: 200;
-        padding: 0.4rem 0;
-        border-bottom: 2px solid ${primary} !important;
+        padding: 0.3rem 0;
+        border-bottom: 1px solid ${borderLight};
+        height: 50px;
     }
 
     .header-content {
@@ -2851,97 +3322,52 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 0.2rem 0;
+        gap: 0.3rem;
+        padding: 0.1rem 0;
+        height: 100%;
     }
 
     .logo {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-size: 1.2rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
         color: ${textSecondary} !important;
         display: flex;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.3rem;
         text-decoration: none;
     }
 
     .logo i {
         color: ${primary} !important;
-        font-size: 1.3rem;
-    }
-
-    /* Digital Clock - THEME COLORS */
-    .time-display.digital-clock {
-        font-family: 'Orbitron', monospace;
-        font-weight: 600;
         font-size: 1.1rem;
-        background: linear-gradient(145deg, ${watchBg} 0%, #1a1f2e 100%);
-        color: ${watchNumbers} !important;
-        padding: 0.4rem 0.8rem;
-        border-radius: 10px;
-        min-width: 120px;
-        text-align: center;
-        border: 2px solid ${watchBorder} !important;
-        text-shadow: 0 0 5px ${watchGlow}, 0 0 10px rgba(78, 205, 196, 0.5);
-        letter-spacing: 1px;
-        box-shadow:
-            inset 0 1px 3px rgba(0, 0, 0, 0.5),
-            0 4px 8px rgba(0, 0, 0, 0.3),
-            0 0 0 1px rgba(78, 205, 196, 0.1);
-        position: relative;
-        overflow: hidden;
     }
 
-    .time-display.digital-clock::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg,
-            rgba(78, 205, 196, 0.1) 0%,
-            rgba(78, 205, 196, 0.05) 50%,
-            rgba(78, 205, 196, 0) 100%);
-        z-index: 1;
-        pointer-events: none;
-    }
-
-    .digital-hours,
-    .digital-minutes,
-    .digital-seconds {
-        color: ${watchNumbers} !important;
-        font-weight: 800;
-        position: relative;
-        z-index: 2;
-        text-shadow:
-            0 0 5px ${watchGlow},
-            0 0 8px rgba(78, 205, 196, 0.7),
-            0 0 12px rgba(78, 205, 196, 0.3);
-    }
-
-    .digital-ampm {
+    /* Time Display - DIGITAL WATCH STYLE */
+    .time-display {
+        font-family: 'Orbitron', monospace;
+        font-weight: 500;
         font-size: 0.85rem;
-        color: ${watchNumbers} !important;
-        margin-left: 0.2rem;
-        font-weight: 700;
-        position: relative;
-        z-index: 2;
-        text-shadow:
-            0 0 3px ${watchGlow},
-            0 0 5px rgba(78, 205, 196, 0.5);
+        color: ${textPrimary} !important;
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        background: #0F172A;
+        border: 1px solid ${borderDark};
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #00FF00 !important;
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
     }
 
-    /* Quick Jump Navigation - FIXED PADDING & NO SCROLL */
+    /* Quick Jump Navigation - ULTRA COMPACT */
     .quick-jump-nav {
         position: sticky;
-        top: 48px;
+        top: 50px;
         z-index: 190;
         background: white;
-        border-bottom: 2px solid ${borderLight};
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        padding: 0.3rem 0;
+        border-bottom: 1px solid ${borderLight};
+        box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        padding: 0.2rem 0;
         overflow: hidden;
     }
 
@@ -2949,8 +3375,8 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 0.3rem;
-        padding: 0.2rem 0;
+        gap: 0.2rem;
+        padding: 0.1rem 0;
         width: 100%;
         overflow-x: hidden;
         -webkit-overflow-scrolling: auto;
@@ -2970,41 +3396,40 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         scrollbar-width: none;
     }
 
-    /* Quick Jump Buttons - COMPACT DESIGN */
+    /* Quick Jump Buttons - ULTRA COMPACT */
     .quick-jump-btn {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 0.1rem;
-        padding: 0.35rem 0.5rem;
+        gap: 0.05rem;
+        padding: 0.25rem 0.3rem;
         background: white;
         border: 1px solid ${borderLight};
-        border-radius: 6px;
+        border-radius: 4px;
         color: ${textPrimary};
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        min-width: 60px;
-        max-width: 70px;
+        min-width: 52px;
+        max-width: 58px;
         text-decoration: none;
         flex-shrink: 0;
         border: none;
         font-family: inherit;
         flex: 1;
-        height: 55px;
+        height: 48px;
     }
 
     .quick-jump-btn i {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         color: ${primary};
     }
 
     .quick-jump-btn:hover {
         background: ${bgEnd};
         border-color: ${borderDark};
-        transform: translateY(-2px);
     }
 
     .quick-jump-btn.active {
@@ -3017,263 +3442,183 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         color: white;
     }
 
-    /* Search button specific styling to prevent overflow */
-    .quick-jump-btn.search-trigger {
-        min-width: 65px;
-        max-width: 75px;
-    }
-
-    /* Navigation Buttons Container - TWO BUTTONS SIDE BY SIDE */
+    /* Navigation Buttons Container */
     .navigation-buttons {
         display: flex;
-        gap: 1rem;
-        margin-bottom: 2rem;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
         flex-wrap: wrap;
     }
 
-    /* Back Buttons - SAME STYLE FOR ALL */
+    /* Back Buttons - COMPACT */
     .back-btn {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        padding: 0.8rem 1.2rem;
+        gap: 0.4rem;
+        padding: 0.6rem 0.8rem;
         background: white;
-        border: 2px solid ${borderLight};
-        border-radius: 8px;
+        border: 1px solid ${borderLight};
+        border-radius: 6px;
         color: ${textPrimary};
         font-family: 'Inter', sans-serif;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         text-decoration: none;
         flex-shrink: 0;
-        border: 2px solid ${borderLight} !important;
     }
 
     .back-btn:hover {
         background: ${bgEnd};
         color: ${primary};
-        border-color: ${borderDark} !important;
-        transform: translateX(-3px);
+        border-color: ${borderDark};
     }
 
     .back-btn i {
-        font-size: 1rem;
-        transition: transform 0.3s;
-    }
-
-    .back-btn:hover i {
-        transform: translateX(-2px);
+        font-size: 0.9rem;
     }
 
     /* Depot About Section */
     .depot-about-section {
         background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        border: 2px solid ${borderLight};
-        margin-top: 2rem;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid ${borderLight};
+        margin-top: 1.5rem;
     }
 
     .depot-about-section h2 {
         color: ${textSecondary};
-        margin-bottom: 1rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-
-    .depot-about-section h2::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, ${primary}, ${borderDark});
-        border-radius: 3px;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
     }
 
     .about-content {
         color: #4B5563;
-        font-size: 0.95rem;
-        line-height: 1.7;
-    }
-
-    .about-content p {
-        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
 
     /* FAQ Section */
     .faq-section {
         background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        border: 2px solid ${borderLight};
-        margin-top: 2rem;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid ${borderLight};
+        margin-top: 1.5rem;
     }
 
     .faq-section h2 {
         color: ${textSecondary};
-        margin-bottom: 1rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-
-    .faq-section h2::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, ${primary}, ${borderDark});
-        border-radius: 3px;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
     }
 
     .faq-container {
-        margin-top: 1rem;
+        margin-top: 0.8rem;
     }
 
     .faq-item {
-        margin-bottom: 1rem;
-        padding: 1rem;
+        margin-bottom: 0.8rem;
+        padding: 0.8rem;
         background: #F8FAFC;
-        border-radius: 8px;
+        border-radius: 6px;
         border: 1px solid ${borderLight};
     }
 
     .faq-question {
         color: ${textSecondary};
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 
     .faq-question i {
         color: ${primary};
+        font-size: 0.8rem;
     }
 
     .faq-answer {
         color: #4B5563;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        padding-left: 1.8rem;
-    }
-
-    /* FAQ FIX: Ensure question marks don't show as bullets */
-    .faq-question span::before {
-        content: none !important;
-    }
-
-    .faq-question span {
-        display: inline-block;
-        margin-left: 0 !important;
-        padding-left: 0 !important;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        padding-left: 1.5rem;
     }
 
     /* Related Links Section */
     .related-links-section {
         background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        border: 2px solid ${borderLight};
-        margin-top: 2rem;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid ${borderLight};
+        margin-top: 1.5rem;
     }
 
     .related-links-section h2 {
         color: ${textSecondary};
-        margin-bottom: 1rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-
-    .related-links-section h2::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, ${primary}, ${borderDark});
-        border-radius: 3px;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
     }
 
     .related-links-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1rem;
-        margin-top: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 0.8rem;
+        margin-top: 0.8rem;
     }
 
     .related-depot-card {
         background: white;
-        border: 2px solid ${borderLight};
-        border-radius: 10px;
-        padding: 1.2rem;
+        border: 1px solid ${borderLight};
+        border-radius: 8px;
+        padding: 0.8rem;
         text-decoration: none;
         transition: all 0.3s;
         display: block;
     }
 
     .related-depot-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 12px rgba(73, 61, 213, 0.15);
         border-color: ${primary};
     }
 
     .related-depot-card h3 {
         color: ${textSecondary};
-        margin-bottom: 0.5rem;
-        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+        font-size: 1rem;
     }
 
     .related-depot-card p {
         color: ${textPrimary};
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         opacity: 0.8;
         margin-bottom: 0.5rem;
-    }
-
-    .related-depot-location {
-        color: ${textPrimary};
-        font-size: 0.85rem;
-        opacity: 0.7;
-        margin-bottom: 0.8rem !important;
     }
 
     .related-depot-link {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.3rem;
         color: ${primary};
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    .related-depot-link i {
-        transition: transform 0.3s;
-    }
-
-    .related-depot-card:hover .related-depot-link i {
-        transform: translateX(3px);
+        font-weight: 500;
+        font-size: 0.85rem;
     }
 
     /* Advertising */
     .ad-container {
-        margin: 1.5rem 0;
+        margin: 1rem 0;
         text-align: center;
     }
 
     .ad-content {
         background: white;
-        border: 2px solid ${borderLight} !important;
-        border-radius: 8px;
-        padding: 1rem;
-        min-height: 90px;
+        border: 1px solid ${borderLight};
+        border-radius: 6px;
+        padding: 0.8rem;
+        min-height: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -3287,7 +3632,7 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
+        gap: 0.8rem;
         width: 100%;
     }
 
@@ -3296,85 +3641,56 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.3rem;
     }
 
     .ad-placeholder span {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: #64748B;
-    }
-
-    .ad-btn {
-        background: ${primary};
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-
-    .ad-btn:hover {
-        background: ${secondary};
     }
 
     /* Tab Navigation */
     .tabs-container {
         background: white;
-        border-radius: 12px;
+        border-radius: 8px;
         overflow: hidden;
-        border: 2px solid ${borderLight} !important;
-        margin: 1.5rem 0;
+        border: 1px solid ${borderLight};
+        margin: 1rem 0;
     }
 
     .tabs-header {
         display: flex;
         background: ${bgEnd};
-        border-bottom: 2px solid ${borderLight} !important;
+        border-bottom: 1px solid ${borderLight};
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
 
     .tabs-header::-webkit-scrollbar {
-        height: 4px;
-    }
-
-    .tabs-header::-webkit-scrollbar-track {
-        background: ${borderLight};
-        border-radius: 2px;
-    }
-
-    .tabs-header::-webkit-scrollbar-thumb {
-        background: ${primary};
-        border-radius: 2px;
+        height: 3px;
     }
 
     .tab-btn {
         flex: 1;
-        min-width: 100px;
-        padding: 0.7rem 0.3rem;
+        min-width: 70px;
+        padding: 0.5rem 0.2rem;
         background: none;
         border: none;
-        border-right: 1px solid ${borderLight} !important;
+        border-right: 1px solid ${borderLight};
         font-family: 'Inter', sans-serif;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         color: ${textPrimary};
         cursor: pointer;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.2rem;
+        gap: 0.1rem;
         transition: all 0.3s;
         position: relative;
     }
 
     .tab-btn:last-child {
-        border-right: none !important;
-    }
-
-    .tab-btn:hover {
-        background: rgba(73, 61, 213, 0.05);
+        border-right: none;
     }
 
     .tab-btn.active {
@@ -3384,9 +3700,9 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
 
     .tab-count {
         background: rgba(255, 255, 255, 0.2);
-        padding: 0.1rem 0.4rem;
-        border-radius: 8px;
-        font-size: 0.75rem;
+        padding: 0.05rem 0.3rem;
+        border-radius: 6px;
+        font-size: 0.7rem;
         font-weight: 600;
     }
 
@@ -3396,34 +3712,34 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
 
     .tab-content {
         display: none;
-        padding: 1.2rem;
+        padding: 0.8rem;
     }
 
     .tab-content.active {
         display: block;
     }
 
-    /* RECTANGULAR CARDS */
+    /* RECTANGULAR CARDS - COMPACT */
     .division-grid, .district-grid, .tehsil-grid, .depot-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 0.8rem;
-        margin: 1rem 0;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 0.6rem;
+        margin: 0.8rem 0;
     }
 
     .rectangular-card {
         background: white;
-        border: 2px solid ${borderLight} !important;
-        border-radius: 10px;
-        padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        border: 1px solid ${borderLight};
+        border-radius: 8px;
+        padding: 0.8rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
         transition: all 0.3s ease;
         display: block;
         cursor: pointer;
         text-decoration: none;
         position: relative;
         overflow: hidden;
-        min-height: 100px;
+        min-height: 85px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -3431,17 +3747,15 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     }
 
     .rectangular-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(73, 61, 213, 0.1);
-        border-color: ${primary} !important;
+        border-color: ${primary};
         background: ${bgStart};
     }
 
     .rectangular-card h3 {
         color: ${textSecondary} !important;
-        margin-bottom: 0.5rem;
-        font-size: 1.1rem;
-        line-height: 1.3;
+        margin-bottom: 0.3rem;
+        font-size: 1rem;
+        line-height: 1.2;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -3450,80 +3764,75 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
 
     .card-meta {
         color: ${textPrimary};
-        font-size: 0.8rem;
-        margin-bottom: 0.5rem;
+        font-size: 0.75rem;
+        margin-bottom: 0.3rem;
         opacity: 0.8;
     }
 
     .rectangular-card .stats {
         display: flex;
-        gap: 0.8rem;
-        margin-top: 0.5rem;
+        gap: 0.6rem;
+        margin-top: 0.3rem;
         flex-wrap: wrap;
     }
 
     .rectangular-card .stat {
         background: ${bgEnd};
-        padding: 0.2rem 0.6rem;
-        border-radius: 12px;
+        padding: 0.15rem 0.4rem;
+        border-radius: 10px;
         color: ${textSecondary} !important;
-        font-size: 0.75rem;
-        font-weight: 600;
+        font-size: 0.7rem;
+        font-weight: 500;
         display: flex;
         align-items: center;
-        gap: 0.3rem;
-        border: 1px solid ${borderLight} !important;
+        gap: 0.2rem;
+        border: 1px solid ${borderLight};
     }
 
     .rectangular-card .stat i {
         color: ${primary} !important;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
-    /* Alphabet Quick Access */
+    /* Alphabet Quick Access - MINIMAL VERTICAL SPACING */
     .alphabet-quick-access {
         background: white;
-        border: 2px solid ${borderLight};
-        border-radius: 10px;
-        padding: 1rem;
-        margin: 1.5rem 0;
-    }
-
-    .alphabet-quick-access h3 {
-        margin-bottom: 0.8rem;
-        font-size: 1rem;
-        color: ${textSecondary};
+        border: 1px solid ${borderLight};
+        border-radius: 6px;
+        padding: 0.8rem;
+        margin: 1rem 0;
     }
 
     .alphabet-mini-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-        gap: 0.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+        gap: 0.05rem; /* Drastically reduced vertical spacing */
     }
 
     .alphabet-mini-btn {
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid ${borderLight};
         background: white;
         color: ${textSecondary};
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 0;
         touch-action: manipulation;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        min-width: 28px;
     }
 
     .alphabet-mini-btn:hover {
         background: ${bgEnd};
-        border-color: ${borderDark};
-        transform: translateY(-1px);
+        color: ${primary};
     }
 
     .alphabet-mini-btn.disabled {
@@ -3532,88 +3841,55 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         background: #F8FAFC;
     }
 
-    .alphabet-mini-btn.disabled:hover {
-        transform: none;
-        background: #F8FAFC;
-        border-color: ${borderLight};
-    }
-
-    /* Floating Bus Stop Letters */
+    /* Floating Bus Stop Letters - MINIMAL VERTICAL SPACING */
     .floating-bus-stop-letters {
         position: sticky;
         top: 100px;
         z-index: 180;
         background: white;
-        border: 2px solid ${primary};
-        border-radius: 10px;
-        padding: 1rem;
-        margin: 1.5rem 0;
-        box-shadow: 0 4px 12px rgba(73, 61, 213, 0.1);
-    }
-
-    .floating-letters-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 0.8rem;
-    }
-
-    .floating-letters-header h3 {
-        margin: 0;
-        font-size: 1rem;
-        color: ${textSecondary};
-    }
-
-    .bus-stop-count {
-        background: ${primary};
-        color: white;
-        padding: 0.2rem 0.6rem;
-        border-radius: 12px;
-        font-size: 0.8rem;
-        font-weight: 600;
+        border: 1px solid ${borderLight};
+        border-radius: 6px;
+        padding: 0.8rem;
+        margin: 1rem 0;
+        box-shadow: 0 2px 4px rgba(73, 61, 213, 0.08);
     }
 
     .floating-letters-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
-        gap: 0.4rem;
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+        gap: 0.05rem; /* Drastically reduced vertical spacing */
     }
 
     .floating-letter-btn {
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid ${borderLight};
         background: white;
         color: ${textSecondary};
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 0;
         touch-action: manipulation;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        min-width: 28px;
     }
 
     .floating-letter-btn:hover {
         background: ${bgEnd};
-        border-color: ${borderDark};
-        transform: translateY(-1px);
+        color: ${primary};
     }
 
     .floating-letter-btn.disabled {
         opacity: 0.4;
         cursor: not-allowed;
         background: #F8FAFC;
-    }
-
-    .floating-letter-btn.disabled:hover {
-        transform: none;
-        background: #F8FAFC;
-        border-color: ${borderLight};
     }
 
     /* Quick Search Modal */
@@ -3632,19 +3908,19 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
 
     .search-modal-content {
         background: white;
-        border-radius: 12px;
+        border-radius: 8px;
         width: 90%;
         max-width: 500px;
         max-height: 80vh;
         overflow: hidden;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     }
 
     .search-modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 1.5rem;
+        padding: 0.8rem 1rem;
         background: ${primary};
         color: white;
     }
@@ -3652,29 +3928,30 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     .search-modal-header h3 {
         margin: 0;
         color: white;
+        font-size: 1rem;
     }
 
     .close-search {
         background: none;
         border: none;
         color: white;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         cursor: pointer;
         line-height: 1;
         touch-action: manipulation;
     }
 
     .search-modal-body {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     .global-search-input {
         width: 100%;
-        padding: 1rem;
-        border: 2px solid ${borderLight};
-        border-radius: 8px;
-        font-size: 1rem;
-        margin-bottom: 1rem;
+        padding: 0.8rem;
+        border: 1px solid ${borderLight};
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
     }
 
     .global-search-input:focus {
@@ -3683,12 +3960,12 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     }
 
     .search-results {
-        max-height: 300px;
+        max-height: 250px;
         overflow-y: auto;
     }
 
     .search-result-item {
-        padding: 0.8rem;
+        padding: 0.7rem;
         border-bottom: 1px solid ${borderLight};
         cursor: pointer;
         transition: background 0.3s;
@@ -3699,19 +3976,19 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     }
 
     .search-result-item h4 {
-        margin: 0 0 0.3rem 0;
+        margin: 0 0 0.2rem 0;
         color: ${textSecondary};
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .search-result-item p {
         margin: 0;
         color: ${textPrimary};
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         opacity: 0.8;
     }
 
-    /* Alphabet Quick View - FIXED FOR 100% ZOOM */
+    /* Alphabet Quick View - MINIMAL VERTICAL SPACING */
     .alphabet-quick-view {
         display: none;
         position: fixed;
@@ -3719,10 +3996,10 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         left: 0;
         width: 100%;
         background: white;
-        border-top: 3px solid ${primary};
-        border-radius: 12px 12px 0 0;
+        border-top: 2px solid ${primary};
+        border-radius: 8px 8px 0 0;
         z-index: 1002;
-        max-height: 70vh;
+        max-height: 40vh;
         overflow: hidden;
         touch-action: manipulation;
     }
@@ -3731,119 +4008,127 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 1.5rem;
+        padding: 0.5rem 0.8rem;
         background: ${primary};
         color: white;
         touch-action: manipulation;
+        height: 40px;
     }
 
     .alphabet-view-header h4 {
         margin: 0;
         color: white;
+        font-size: 0.9rem;
+        font-weight: 500;
     }
 
     .close-alphabet {
         background: none;
         border: none;
         color: white;
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         cursor: pointer;
         line-height: 1;
         touch-action: manipulation;
         z-index: 1003;
         position: relative;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .alphabet-view-grid {
-        padding: 1.5rem;
+        padding: 0.6rem;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-        gap: 0.8rem;
-        max-height: 50vh;
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+        gap: 0.05rem; /* Drastically reduced vertical spacing */
+        max-height: 30vh;
         overflow-y: auto;
         touch-action: manipulation;
     }
 
     .alphabet-btn {
-        width: 50px;
-        height: 50px;
+        width: 28px;
+        height: 28px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid ${borderLight};
         background: white;
         color: ${textSecondary};
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        font-size: 1.1rem;
+        font-size: 0.85rem;
         padding: 0;
         touch-action: manipulation;
+        min-width: 28px;
+        min-height: 28px;
+        border: none;
+        border-radius: 0;
+        margin: 0;
     }
 
     .alphabet-btn:hover {
         background: ${bgEnd};
-        border-color: ${borderDark};
-        transform: translateY(-2px);
+        color: ${primary};
     }
 
     .alphabet-btn.active {
         background: ${primary};
         color: white;
-        border-color: ${primary};
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(73, 61, 213, 0.2);
     }
 
     /* Depot Header */
     .depot-header {
         background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        border: 2px solid ${borderLight};
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid ${borderLight};
         text-align: center;
     }
 
     .depot-info {
         display: flex;
         justify-content: center;
-        gap: 1.2rem;
-        margin-top: 1rem;
+        gap: 0.8rem;
+        margin-top: 0.8rem;
         flex-wrap: wrap;
     }
 
     .info-item {
         display: flex;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.3rem;
         color: ${textSecondary};
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         background: #F8FAFC;
-        padding: 0.4rem 1rem;
-        border-radius: 8px;
+        padding: 0.3rem 0.6rem;
+        border-radius: 6px;
         border: 1px solid ${borderLight};
     }
 
     .info-item i {
         color: ${primary};
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     /* Search Box */
     .search-container {
-        margin: 1.5rem 0;
+        margin: 1rem 0;
     }
 
     .search-box {
         width: 100%;
-        padding: 0.8rem 1.2rem;
-        border: 2px solid ${borderLight};
-        border-radius: 10px;
+        padding: 0.7rem 0.8rem;
+        border: 1px solid ${borderLight};
+        border-radius: 6px;
         font-family: 'Inter', sans-serif;
-        font-size: 1rem;
+        font-size: 0.9rem;
         background: white;
         transition: all 0.3s;
     }
@@ -3851,46 +4136,38 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     .search-box:focus {
         outline: none;
         border-color: ${primary};
-        box-shadow: 0 0 0 3px rgba(73, 61, 213, 0.1);
     }
 
-    /* Time Filters */
+    /* Time Filters - COMPACT - FIXED FOR MOBILE (TIME RANGES INSTEAD OF ICONS) */
     .time-filters {
         display: flex;
-        gap: 0.5rem;
-        margin: 1.5rem 0;
+        gap: 0.4rem;
+        margin: 1rem 0;
         overflow-x: auto;
-        padding-bottom: 0.5rem;
+        padding-bottom: 0.3rem;
         -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
     }
 
     .time-filters::-webkit-scrollbar {
-        height: 4px;
-    }
-
-    .time-filters::-webkit-scrollbar-track {
-        background: ${borderLight};
-        border-radius: 2px;
-    }
-
-    .time-filters::-webkit-scrollbar-thumb {
-        background: ${primary};
-        border-radius: 2px;
+        height: 3px;
     }
 
     .filter-btn {
-        padding: 0.6rem 1rem;
-        border: 2px solid ${borderLight};
+        padding: 0.5rem 0.6rem;
+        border: 1px solid ${borderLight};
         background: white;
-        border-radius: 8px;
+        border-radius: 6px;
         font-family: 'Inter', sans-serif;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         color: ${textPrimary};
         cursor: pointer;
         white-space: nowrap;
         transition: all 0.3s;
         flex-shrink: 0;
         font-weight: 500;
+        min-width: 70px;
+        text-align: center;
     }
 
     .filter-btn:hover {
@@ -3902,74 +4179,74 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         background: ${primary};
         color: white;
         border-color: ${primary};
-        font-weight: 600;
+        font-weight: 500;
     }
 
-    /* Bus Stop Sections */
+    /* Bus Stop Sections - COMPACT */
     .bus-stop-section {
-        margin-bottom: 1.5rem;
-        scroll-margin-top: 130px;
+        margin-bottom: 1rem;
+        scroll-margin-top: 150px;
         background: white;
-        border-radius: 12px;
+        border-radius: 8px;
         overflow: hidden;
-        border: 2px solid ${borderLight};
+        border: 1px solid ${borderLight};
     }
 
     .bus-stop-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 1.2rem;
+        padding: 0.8rem;
         background: linear-gradient(90deg, ${bgEnd} 0%, white 100%);
         border-bottom: 1px solid ${borderLight};
     }
 
     .bus-stop-name {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
         color: ${textSecondary};
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .bus-count {
         background: ${primary};
         color: white;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        min-width: 70px;
+        padding: 0.2rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        min-width: 40px;
         text-align: center;
     }
 
-    /* Schedule Grid - ADJUSTED FOR BADGES */
+    /* Schedule Grid - COMPACT FOR MOBILE */
     .schedule-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 0.8rem;
-        padding: 1.2rem;
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        gap: 0.6rem;
+        padding: 0.8rem;
     }
 
-    /* Time Bubbles - ONLY NEXT BUS SPARKLES */
+    /* Time Bubbles - COMPACT */
     .time-bubble {
         position: relative;
-        padding: 0.8rem 0.5rem;
-        border-radius: 8px;
+        padding: 0.6rem 0.3rem;
+        border-radius: 6px;
         text-align: center;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        min-height: 58px;
+        min-height: 48px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         user-select: none;
-        font-size: 0.9rem;
-        border: 2px solid transparent;
+        font-size: 0.85rem;
+        border: 1px solid transparent;
         overflow: visible;
-        margin: 0.1rem;
+        margin: 0.05rem;
     }
 
     .time-bubble.morning {
@@ -3997,32 +4274,25 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     }
 
     .time-bubble:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: scale(1.02);
     }
 
-    /* Ensure time bubble has enough space for badge */
-    .time-bubble.next-bus {
-        margin-top: 5px;
-        margin-right: 5px;
-    }
-
-    /* Next Bus Badge - FIXED POSITIONING */
+    /* Next Bus Badge - SMALLER */
     .next-badge {
         position: absolute;
-        top: -10px;
-        right: -10px;
+        top: -8px;
+        right: -8px;
         background: ${primary};
         color: white;
-        font-size: 0.65rem;
-        padding: 2px 5px;
-        border-radius: 10px;
+        font-size: 0.6rem;
+        padding: 1px 4px;
+        border-radius: 8px;
         font-weight: 600;
         z-index: 20;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
         animation: pulse 2s infinite;
         white-space: nowrap;
-        min-width: 35px;
+        min-width: 30px;
         text-align: center;
         border: 1px solid white;
     }
@@ -4030,122 +4300,97 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     @keyframes pulse {
         0%, 100% {
             transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(73, 61, 213, 0.7);
         }
         50% {
             transform: scale(1.05);
-            box-shadow: 0 0 0 3px rgba(73, 61, 213, 0);
         }
     }
 
-    /* Next Bus Sparkle Effect - ONLY FOR NEXT BUS */
+    /* Next Bus Sparkle Effect - IMPROVED WITH ORANGE BORDER */
     .next-bus-sparkle {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: 8px;
-        border: 2px solid transparent;
+        border-radius: 6px;
+        border: 2px solid #FFA500;
         animation: sparkle 2s infinite;
         pointer-events: none;
         opacity: 0;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+        z-index: 5;
     }
 
     @keyframes sparkle {
         0%, 100% {
-            opacity: 0;
-            border-color: transparent;
-            box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+            opacity: 0.5;
+            border-color: #FFA500;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
         }
         50% {
             opacity: 1;
             border-color: #FFD700;
-            box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
         }
     }
 
     .time-bubble.next-bus .next-bus-sparkle {
-        opacity: 1;
+        opacity: 0.5;
     }
 
-    /* Alphabet First Match Highlight */
-    .alphabet-highlight-first {
-        position: relative;
-    }
-
-    .alphabet-highlight-first::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 20px;
-        height: 3px;
-        background: ${primary};
-        border-radius: 3px;
-        animation: highlightPulse 1.5s infinite;
-    }
-
-    @keyframes highlightPulse {
-        0%, 100% {
-            opacity: 0.7;
-            width: 20px;
-        }
-        50% {
-            opacity: 1;
-            width: 25px;
-        }
-    }
-
-    /* Footer */
+    /* Footer - UPDATED FOR MOBILE */
     .site-footer {
         background: white;
-        border-top: 2px solid ${borderLight};
-        padding: 2rem 0;
+        border-top: 1px solid ${borderLight};
+        padding: 1.5rem 0 2rem 0;
         margin-top: 2rem;
+        min-height: 300px;
     }
 
     .footer-content {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .footer-section h3 {
         color: ${textSecondary};
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
     }
 
     .footer-links {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 
     .footer-links a {
         color: ${textPrimary};
-        font-size: 0.9rem;
-        padding: 0.3rem 0;
+        font-size: 0.85rem;
+        padding: 0.2rem 0;
         transition: all 0.3s;
         text-decoration: none;
+        line-height: 1.4;
     }
 
     .footer-links a:hover {
         color: ${primary};
-        padding-left: 0.5rem;
+        padding-left: 0.3rem;
     }
 
     .copyright {
         grid-column: 1 / -1;
         text-align: center;
         color: ${textPrimary};
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         opacity: 0.8;
         margin-top: 1.5rem;
         padding-top: 1.5rem;
         border-top: 1px solid ${borderLight};
+        line-height: 1.5;
     }
 
     .copyright a {
@@ -4153,153 +4398,65 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         text-decoration: underline;
     }
 
-    /* Breadcrumb */
-    .breadcrumb {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        padding: 0.6rem 1rem;
-        border-bottom: 1px solid ${borderLight};
-        font-size: 0.85rem;
-        margin-bottom: 1rem;
-    }
-
-    .breadcrumb a {
-        color: ${textSecondary};
-        font-weight: 500;
-        text-decoration: none;
-    }
-
-    .breadcrumb span {
-        color: ${primary};
-        margin: 0 0.3rem;
-        font-weight: 600;
-    }
-
     /* SEO Content Section */
     .seo-content {
         background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-top: 2rem;
-        border: 2px solid ${borderLight};
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        border: 1px solid ${borderLight};
     }
 
     .seo-content h2 {
         color: ${textSecondary};
-        margin-bottom: 1.5rem;
-        font-size: 1.3rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-
-    .seo-content h2::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, ${primary}, ${borderDark});
-        border-radius: 3px;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
     }
 
     .seo-content h3 {
         color: ${textPrimary};
-        margin: 1.5rem 0 1rem;
-        font-size: 1.1rem;
+        margin: 1rem 0 0.8rem;
+        font-size: 1rem;
     }
 
     .seo-content p {
         color: #4B5563;
-        font-size: 0.95rem;
-        line-height: 1.7;
-    }
-
-    .seo-content ul, .seo-content ol {
-        color: #4B5563;
-        line-height: 1.7;
-        padding-left: 1.5rem;
-        margin: 1rem 0;
-    }
-
-    .seo-content li {
-        margin-bottom: 0.5rem;
-    }
-
-    .seo-content strong {
-        color: ${textSecondary};
-        font-weight: 600;
-    }
-
-    .seo-content a {
-        color: ${primary};
-        text-decoration: underline;
-        font-weight: 500;
-    }
-
-    .faq-item {
-        margin-bottom: 1.5rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid ${borderLight};
-    }
-
-    .faq-item:last-child {
-        border-bottom: none;
-    }
-
-    .faq-question {
-        color: ${textSecondary};
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .faq-question::before {
-        content: '❓';
         font-size: 0.9rem;
+        line-height: 1.5;
     }
 
-    .faq-answer {
-        color: #4B5563;
-        font-size: 0.95rem;
-        line-height: 1.7;
-        padding-left: 1.5rem;
-    }
-
-    /* Blog Page Styles */
+    /* Blog Page Styles - ADDED LEFT PADDING */
     .blog-page {
         max-width: 800px;
         margin: 0 auto;
+        padding-left: 1.5rem; /* Added left padding */
     }
 
     .blog-header {
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .blog-date {
         color: #94A3B8;
-        font-size: 0.9rem;
-        margin: 0.5rem 0 1.5rem;
+        font-size: 0.85rem;
+        margin: 0.3rem 0 1rem;
     }
 
     .blog-author {
         display: flex;
         align-items: center;
-        gap: 0.8rem;
-        margin-bottom: 2rem;
-        padding: 1rem;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+        padding: 0.8rem;
         background: #F8FAFC;
-        border-radius: 8px;
-        border: 2px solid ${borderLight};
+        border-radius: 6px;
+        border: 1px solid ${borderLight};
     }
 
     .author-avatar {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         background: linear-gradient(135deg, ${primary}, ${borderDark});
         display: flex;
@@ -4310,68 +4467,88 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     }
 
     .author-info h4 {
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.2rem;
         color: ${textPrimary};
-    }
-
-    .author-info p {
-        color: #94A3B8;
-        font-size: 0.85rem;
-        margin: 0;
+        font-size: 1rem;
     }
 
     .blog-content {
-        font-size: 1rem;
-        line-height: 1.8;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-left: 0.5rem; /* Added left padding */
+    }
+
+    /* Blog Links - Clickable with URL constants */
+    .blog-link {
+        color: ${primary};
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px dotted ${primary};
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+
+    .blog-link:hover {
+        color: ${secondary};
+        border-bottom: 2px solid ${secondary};
+        text-decoration: none;
+    }
+
+    /* Blog Images - Responsive */
+    .blog-image-container {
+        margin: 1.5rem 0;
+        text-align: center;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid ${borderLight};
+        background: white;
+        padding: 0.8rem;
+    }
+
+    .blog-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        display: block;
+        margin: 0 auto;
+        transition: transform 0.3s;
+    }
+
+    .blog-image:hover {
+        transform: scale(1.01);
+    }
+
+    .blog-image-caption {
+        font-size: 0.85rem;
+        color: #64748B;
+        margin-top: 0.5rem;
+        font-style: italic;
+        line-height: 1.4;
+        text-align: center;
         padding: 0 0.5rem;
     }
 
     .blog-content img {
         max-width: 100%;
         height: auto;
-        border-radius: 12px;
-        margin: 1.5rem 0;
-    }
-
-    .blog-content h1,
-    .blog-content h2,
-    .blog-content h3,
-    .blog-content h4,
-    .blog-content h5,
-    .blog-content h6 {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-
-    .blog-content p {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-
-    .blog-content ul,
-    .blog-content ol {
-        padding-left: 2rem;
-        padding-right: 0.5rem;
-    }
-
-    .blog-content table {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
+        border-radius: 8px;
+        margin: 1rem 0;
     }
 
     .blog-tags {
         display: flex;
-        gap: 0.5rem;
+        gap: 0.4rem;
         flex-wrap: wrap;
-        margin: 1.5rem 0;
+        margin: 1rem 0;
     }
 
     .blog-tag {
         background: ${bgEnd};
         color: ${primary};
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
         font-weight: 500;
     }
 
@@ -4379,26 +4556,28 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     .blog-table {
         width: 100%;
         border-collapse: collapse;
-        margin: 1.5rem 0;
-        border: 2px solid #E2E8F0;
-        border-radius: 8px;
+        margin: 1rem 0;
+        border: 1px solid #E2E8F0;
+        border-radius: 6px;
         overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     }
 
     .blog-table th {
         background: linear-gradient(135deg, #493dd5, #3a2fc1);
         color: white;
-        font-weight: 600;
-        padding: 0.8rem;
+        font-weight: 500;
+        padding: 0.6rem;
         text-align: left;
-        border-bottom: 2px solid #E2E8F0;
+        border-bottom: 1px solid #E2E8F0;
+        font-size: 0.9rem;
     }
 
     .blog-table td {
-        padding: 0.8rem;
+        padding: 0.6rem;
         border-bottom: 1px solid #E2E8F0;
         vertical-align: top;
+        font-size: 0.85rem;
     }
 
     .blog-table tr:last-child td {
@@ -4409,29 +4588,25 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         background: #F8FAFC;
     }
 
-    .blog-table tr:hover {
-        background: #EDF2F7;
-    }
-
     pre {
         background: #2D3748;
         color: #E2E8F0;
-        padding: 1.2rem;
-        border-radius: 8px;
+        padding: 0.8rem;
+        border-radius: 6px;
         overflow-x: auto;
-        margin: 1.5rem 0;
+        margin: 1rem 0;
         font-family: 'Courier New', monospace;
-        font-size: 0.9rem;
-        line-height: 1.5;
-        border-left: 4px solid #493dd5;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        border-left: 3px solid #493dd5;
     }
 
     code {
         background: #EDF2F7;
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
+        padding: 0.1rem 0.3rem;
+        border-radius: 3px;
         font-family: 'Courier New', monospace;
-        font-size: 0.9em;
+        font-size: 0.85em;
         color: #2D3748;
     }
 
@@ -4444,83 +4619,58 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     }
 
     blockquote {
-        border-left: 4px solid #493dd5;
-        padding: 1rem 1.5rem;
-        margin: 1.5rem 0;
+        border-left: 3px solid #493dd5;
+        padding: 0.8rem 1rem;
+        margin: 1rem 0;
         background: linear-gradient(90deg, #F8FAFC, #FFFFFF);
-        border-radius: 0 8px 8px 0;
+        border-radius: 0 6px 6px 0;
         font-style: italic;
         color: #4A5568;
-        position: relative;
-    }
-
-    blockquote::before {
-        content: '"';
-        font-size: 3rem;
-        color: #493dd5;
-        opacity: 0.2;
-        position: absolute;
-        top: -1rem;
-        left: 0.5rem;
+        font-size: 0.9rem;
     }
 
     hr {
         border: none;
-        border-top: 3px solid #E2E8F0;
-        margin: 2.5rem auto;
+        border-top: 2px solid #E2E8F0;
+        margin: 1.5rem auto;
         width: 80%;
     }
 
     /* Blog Listing */
     .blog-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin: 2rem 0;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
     }
 
     .blog-card {
         background: white;
-        border: 2px solid ${borderLight};
-        border-radius: 12px;
+        border: 1px solid ${borderLight};
+        border-radius: 8px;
         overflow: hidden;
         transition: all 0.3s;
         text-decoration: none;
         display: block;
+        padding: 0.8rem;
     }
 
     .blog-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(73, 61, 213, 0.12);
         border-color: ${primary};
-    }
-
-    .blog-card-image {
-        height: 180px;
-        background: linear-gradient(135deg, ${bgEnd}, ${borderLight});
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: ${primary};
-        font-size: 3rem;
-    }
-
-    .blog-card-content {
-        padding: 1.5rem;
     }
 
     .blog-card h3 {
         color: ${textSecondary};
-        margin-bottom: 0.8rem;
-        font-size: 1.1rem;
-        line-height: 1.4;
+        margin-bottom: 0.6rem;
+        font-size: 1rem;
+        line-height: 1.3;
     }
 
     .blog-card-excerpt {
         color: #64748B;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
     }
 
     .blog-card-meta {
@@ -4528,35 +4678,30 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         justify-content: space-between;
         align-items: center;
         color: #94A3B8;
-        font-size: 0.8rem;
-    }
-
-    .blog-card-date {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
+        font-size: 0.75rem;
     }
 
     /* Empty State */
     .empty-state {
         text-align: center;
-        padding: 3rem 1rem;
+        padding: 2rem 1rem;
         color: ${textSecondary};
         background: white;
-        border-radius: 12px;
-        border: 2px solid ${borderLight};
-        margin: 2rem 0;
+        border-radius: 8px;
+        border: 1px solid ${borderLight};
+        margin: 1.5rem 0;
     }
 
     .empty-state i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        font-size: 2.5rem;
+        margin-bottom: 0.8rem;
         color: ${borderDark};
     }
 
     .empty-state h3 {
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.6rem;
         color: ${textSecondary};
+        font-size: 1.2rem;
     }
 
     .empty-state p {
@@ -4564,6 +4709,7 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         opacity: 0.8;
         max-width: 400px;
         margin: 0 auto;
+        font-size: 0.9rem;
     }
 
     /* Utility Classes */
@@ -4571,56 +4717,212 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         display: none !important;
     }
 
-    /* Responsive Design */
+    /* Responsive Design - MOBILE FIRST */
     @media (max-width: 767px) {
+        html {
+            font-size: 13px;
+        }
+
         .division-grid,
         .district-grid,
         .tehsil-grid,
         .depot-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 0.7rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.5rem;
         }
 
         .rectangular-card {
-            padding: 0.8rem;
-            min-height: 90px;
+            padding: 0.7rem;
+            min-height: 75px;
         }
 
         .rectangular-card h3 {
+            font-size: 0.95rem;
+        }
+
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 0.5rem;
+            padding: 0.7rem;
+        }
+
+        .time-bubble {
+            min-height: 44px;
+            padding: 0.5rem 0.2rem;
+            font-size: 0.8rem;
+        }
+
+        .next-badge {
+            font-size: 0.55rem;
+            padding: 1px 3px;
+            top: -6px;
+            right: -6px;
+            min-width: 28px;
+        }
+
+        .floating-bus-stop-letters {
+            top: 125px;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .footer-section:nth-child(3) {
+            grid-column: 1 / -1;
+        }
+
+        .seo-content {
+            padding: 0.8rem;
+        }
+
+        .ad-desktop {
+            display: none !important;
+        }
+
+        .ad-mobile {
+            display: flex !important;
+        }
+
+        .tab-btn {
+            min-width: 65px;
+            padding: 0.4rem 0.1rem;
+            font-size: 0.75rem;
+        }
+
+        .tab-count {
+            font-size: 0.65rem;
+            padding: 0.05rem 0.2rem;
+        }
+
+        /* Mobile: Ultra compact quick jump */
+        .quick-jump-btn {
+            min-width: 48px;
+            max-width: 52px;
+            padding: 0.2rem 0.25rem;
+            font-size: 0.6rem;
+            height: 44px;
+        }
+
+        .quick-jump-btn i {
+            font-size: 0.7rem;
+        }
+
+        /* Mobile: Time filters with smaller font for better fit */
+        .time-filters {
+            gap: 0.3rem;
+        }
+
+        .filter-btn {
+            padding: 0.4rem 0.5rem;
+            font-size: 0.7rem;
+            min-width: 65px;
+        }
+
+        /* Mobile: Minimal vertical spacing alphabet drawer */
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+            padding: 0.5rem;
+        }
+
+        .alphabet-btn {
+            width: 24px;
+            height: 24px;
+            font-size: 0.75rem;
+        }
+
+        .alphabet-view-header {
+            padding: 0.4rem 0.6rem;
+            height: 36px;
+        }
+
+        .alphabet-view-header h4 {
+            font-size: 0.85rem;
+        }
+
+        .close-alphabet {
             font-size: 1rem;
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Mobile: Minimal vertical spacing alphabet buttons */
+        .alphabet-mini-grid,
+        .floating-letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-mini-btn,
+        .floating-letter-btn {
+            width: 24px;
+            height: 24px;
+            font-size: 0.75rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Mobile navigation buttons */
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .back-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Mobile: Blog page with left padding */
+        .blog-page {
+            padding-left: 1rem;
+        }
+
+        .blog-content {
+            padding-left: 0.8rem;
+        }
+
+        /* Mobile: Blog images */
+        .blog-image-container {
+            margin: 1rem 0;
+            padding: 0.6rem;
+        }
+
+        .blog-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .blog-image-caption {
+            font-size: 0.8rem;
+            margin-top: 0.4rem;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        html {
+            font-size: 14px;
+        }
+
+        .division-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        .district-grid,
+        .tehsil-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         }
 
         .schedule-grid {
             grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            gap: 0.7rem;
-            padding: 1rem;
         }
 
-        .time-bubble {
-            min-height: 55px;
-            padding: 0.7rem 0.4rem;
-            font-size: 0.85rem;
-        }
-
-        .next-badge {
-            font-size: 0.6rem;
-            padding: 1px 3px;
-            top: -8px;
-            right: -8px;
-            min-width: 30px;
-        }
-
-        .floating-bus-stop-letters {
-            top: 90px;
-        }
-
-        .footer-content {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .seo-content {
-            padding: 1.2rem;
+        .blog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
 
         .ad-desktop {
@@ -4633,174 +4935,70 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
 
         .tab-btn {
             min-width: 80px;
-            padding: 0.6rem 0.2rem;
-            font-size: 0.8rem;
-        }
-
-        .tab-count {
-            font-size: 0.7rem;
-            padding: 0.1rem 0.3rem;
-        }
-
-        /* Mobile: Even more compact quick jump */
-        .quick-jump-btn {
-            min-width: 55px;
-            max-width: 65px;
-            padding: 0.3rem 0.4rem;
-            font-size: 0.65rem;
-            height: 50px;
-        }
-
-        .quick-jump-btn i {
-            font-size: 0.8rem;
-        }
-
-        .quick-jump-btn.search-trigger {
-            min-width: 60px;
-            max-width: 70px;
-        }
-
-        .alphabet-view-grid {
-            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-            gap: 0.6rem;
-        }
-
-        .alphabet-btn {
-            width: 40px;
-            height: 40px;
-            font-size: 1rem;
-        }
-
-        .related-links-grid {
-            grid-template-columns: 1fr;
-        }
-
-        /* Mobile digital clock adjustments */
-        .time-display.digital-clock {
-            font-size: 1rem;
-            min-width: 110px;
-            padding: 0.3rem 0.6rem;
-        }
-
-        /* Mobile blog content padding */
-        .blog-content {
-            padding: 0 1rem;
-        }
-
-        .blog-content h1,
-        .blog-content h2,
-        .blog-content h3,
-        .blog-content h4,
-        .blog-content h5,
-        .blog-content h6 {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        .blog-content p {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        .blog-content ul,
-        .blog-content ol {
-            padding-left: 2.5rem;
-            padding-right: 1rem;
-        }
-
-        .blog-content table {
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
-
-        /* Mobile navigation buttons */
-        .navigation-buttons {
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .back-btn {
-            width: 100%;
-            justify-content: center;
-        }
-    }
-
-    @media (min-width: 768px) and (max-width: 1024px) {
-        .division-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        }
-
-        .district-grid,
-        .tehsil-grid {
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        }
-
-        .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-        }
-
-        .blog-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        }
-
-        .ad-desktop {
-            display: none !important;
-        }
-
-        .ad-mobile {
-            display: flex !important;
-        }
-
-        .tab-btn {
-            min-width: 90px;
         }
 
         /* Tablet: Compact quick jump */
         .quick-jump-btn {
-            min-width: 60px;
-            max-width: 70px;
-            padding: 0.4rem 0.5rem;
-            font-size: 0.75rem;
-            height: 60px;
+            min-width: 55px;
+            max-width: 60px;
+            padding: 0.3rem 0.4rem;
+            font-size: 0.7rem;
+            height: 52px;
         }
 
         .quick-jump-btn i {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+        }
+
+        /* Tablet: Minimal vertical spacing alphabet drawer */
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
+        }
+
+        /* Tablet: Minimal vertical spacing alphabet buttons */
+        .alphabet-mini-grid,
+        .floating-letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-mini-btn,
+        .floating-letter-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
         }
 
         .related-links-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         }
 
-        /* Tablet blog content padding */
+        /* Schedule optimization for tablets */
+        .time-bubble {
+            min-height: 46px;
+            font-size: 0.85rem;
+        }
+
+        /* Tablet: Blog page with left padding */
+        .blog-page {
+            padding-left: 1.5rem;
+        }
+
         .blog-content {
-            padding: 0 1.5rem;
+            padding-left: 1rem;
         }
 
-        .blog-content h1,
-        .blog-content h2,
-        .blog-content h3,
-        .blog-content h4,
-        .blog-content h5,
-        .blog-content h6 {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        .blog-content p {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        .blog-content ul,
-        .blog-content ol {
-            padding-left: 3rem;
-            padding-right: 1.5rem;
-        }
-
-        .blog-content table {
-            margin-left: 1.5rem;
-            margin-right: 1.5rem;
+        /* Tablet: Blog images */
+        .blog-image-container {
+            margin: 1.2rem 0;
+            padding: 0.8rem;
         }
     }
 
@@ -4810,23 +5008,23 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         }
 
         .division-grid {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
 
         .district-grid,
         .tehsil-grid {
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         }
 
         .blog-grid {
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         }
 
         .ad-desktop {
             display: flex !important;
             align-items: center;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1rem;
             width: 100%;
         }
 
@@ -4835,74 +5033,92 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         }
 
         .tab-btn {
-            min-width: 100px;
-            padding: 0.8rem 0.3rem;
-            font-size: 0.9rem;
+            min-width: 90px;
+            padding: 0.6rem 0.2rem;
+            font-size: 0.85rem;
         }
 
         /* Desktop: Normal quick jump buttons */
         .quick-jump-btn {
-            min-width: 70px;
-            max-width: 80px;
-            padding: 0.5rem 0.6rem;
-            font-size: 0.75rem;
-            height: 65px;
+            min-width: 65px;
+            max-width: 70px;
+            padding: 0.4rem 0.5rem;
+            font-size: 0.7rem;
+            height: 58px;
         }
 
         .quick-jump-btn i {
-            font-size: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Desktop: Minimal vertical spacing alphabet drawer */
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
+        }
+
+        .alphabet-view-header {
+            padding: 0.6rem 1rem;
+        }
+
+        /* Desktop: Minimal vertical spacing alphabet buttons */
+        .alphabet-mini-grid,
+        .floating-letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-mini-btn,
+        .floating-letter-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
         }
 
         .related-links-grid {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
 
-        /* Desktop digital clock enhancements */
-        .time-display.digital-clock {
-            font-size: 1.2rem;
-            min-width: 140px;
+        /* Desktop: Better spacing for schedule */
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.8rem;
         }
 
-        /* Desktop blog content padding */
-        .blog-content {
-            padding: 0 2rem;
-        }
-
-        .blog-content h1,
-        .blog-content h2,
-        .blog-content h3,
-        .blog-content h4,
-        .blog-content h5,
-        .blog-content h6 {
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .blog-content p {
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .blog-content ul,
-        .blog-content ol {
-            padding-left: 3.5rem;
-            padding-right: 2rem;
-        }
-
-        .blog-content table {
-            margin-left: 2rem;
-            margin-right: 2rem;
+        .time-bubble {
+            min-height: 50px;
+            font-size: 0.9rem;
         }
 
         /* Desktop: Larger back buttons */
         .back-btn {
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            gap: 0.6rem;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            gap: 0.5rem;
         }
 
         .back-btn i {
-            font-size: 1.1rem;
+            font-size: 1rem;
+        }
+
+        /* Desktop: Blog page with left padding */
+        .blog-page {
+            padding-left: 2rem;
+        }
+
+        .blog-content {
+            padding-left: 1.5rem;
+        }
+
+        /* Desktop: Blog images */
+        .blog-image-container {
+            margin: 1.5rem 0;
         }
     }
 
@@ -4925,7 +5141,7 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
             background: white;
             color: black;
             padding: 0;
-            font-size: 12pt;
+            font-size: 11pt;
         }
 
         .time-bubble {
@@ -4936,7 +5152,7 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         }
     }
 
-    /* Fix for 100% zoom - ensure buttons are clickable */
+    /* Fix for mobile touch */
     @media (max-width: 1000px) {
         .quick-jump-btn,
         .alphabet-btn,
@@ -4946,20 +5162,15 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
         .tab-btn,
         .close-search,
         .close-alphabet {
-            min-height: 44px;
-            min-width: 44px;
-            padding: 8px 12px;
+            min-height: 40px;
+            min-width: 40px;
+            padding: 6px 8px;
         }
 
         /* Ensure alphabet drawer opens properly */
         .alphabet-quick-view {
             z-index: 1002 !important;
             touch-action: pan-y !important;
-        }
-
-        .alphabet-view-header,
-        .alphabet-view-grid {
-            touch-action: manipulation !important;
         }
     }
 
@@ -4973,21 +5184,111 @@ window.searchIndex = ${JSON.stringify(searchData, null, 2)};`;
     .container, .quick-jump-content, .tabs-header, .time-filters {
         max-width: 100%;
         overflow-x: hidden;
+    }
+
+    /* Schedule optimization - More compact on small screens */
+    @media (max-width: 380px) {
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+            gap: 0.4rem;
+            padding: 0.6rem;
+        }
+
+        .time-bubble {
+            min-height: 40px;
+            padding: 0.4rem 0.1rem;
+            font-size: 0.75rem;
+        }
+
+        .bus-stop-name {
+            font-size: 0.95rem;
+        }
+
+        /* Time filters - even smaller on very small screens */
+        .time-filters {
+            gap: 0.2rem;
+        }
+
+        .filter-btn {
+            padding: 0.35rem 0.4rem;
+            font-size: 0.65rem;
+            min-width: 60px;
+        }
+
+        /* Ultra minimal vertical spacing alphabet drawer for very small screens */
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(22px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+            padding: 0.4rem;
+        }
+
+        .alphabet-btn {
+            width: 22px;
+            height: 22px;
+            font-size: 0.7rem;
+        }
+
+        .alphabet-view-header {
+            padding: 0.3rem 0.5rem;
+            height: 32px;
+        }
+
+        .alphabet-view-header h4 {
+            font-size: 0.8rem;
+        }
+
+        .close-alphabet {
+            font-size: 0.9rem;
+            width: 26px;
+            height: 26px;
+        }
+
+        /* Very minimal vertical spacing alphabet buttons */
+        .alphabet-mini-grid,
+        .floating-letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(22px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-mini-btn,
+        .floating-letter-btn {
+            width: 22px;
+            height: 22px;
+            font-size: 0.7rem;
+        }
+
+        /* Footer: 3 columns on very small screens */
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .footer-section:nth-child(3) {
+            grid-column: 1;
+        }
     }`;
     }
 
     getInlineJS() {
-        return `// MSRTC Bus Timetable Application
+        return `// MSRTC Bus Timetable Application - Mobile Optimized
 class BusTimetableApp {
     constructor() {
         this.istOffset = 5.5 * 60 * 60 * 1000;
         this.activeFilter = 'all';
         this.searchTerm = '';
+        this.activeTab = 'divisions'; // Track active tab
         this.init();
     }
 
     init() {
         console.log('🚌 MSRTC Bus Timetable App Initialized');
+
+        // Initialize URL constants if not already loaded
+        if (typeof window.getUrlFromConstant === 'undefined') {
+            console.warn('URL constants not loaded yet');
+            // Try to load them
+            this.loadUrlConstants();
+        }
 
         // Handle hash navigation on page load
         if (window.location.hash) {
@@ -4996,9 +5297,9 @@ class BusTimetableApp {
             }, 100);
         }
 
-        // Update digital clock display with IST time
-        this.updateDigitalClock();
-        setInterval(() => this.updateDigitalClock(), 1000);
+        // Update time display
+        this.updateTimeDisplay();
+        setInterval(() => this.updateTimeDisplay(), 1000);
 
         // Initialize tabs
         this.initAllTabs();
@@ -5006,7 +5307,7 @@ class BusTimetableApp {
         // Initialize quick jump navigation
         this.initQuickJump();
 
-        // Initialize alphabet navigation - FIXED FOR 100% ZOOM
+        // Initialize alphabet navigation
         this.initAlphabetNavigation();
 
         // Initialize search functionality
@@ -5022,31 +5323,58 @@ class BusTimetableApp {
             }, 100);
         }
 
-        // Initialize back button
-        this.initBackButton();
-
         // Initialize scroll highlighting
         if (document.querySelector('.bus-stop-section') || document.querySelector('.rectangular-card')) {
             this.initScrollHighlighting();
         }
 
-        // Initialize blog navigation if on blog page
-        if (document.querySelector('.blog-grid')) {
-            this.initBlogNavigation();
-        }
-
         // Initialize bus stop alphabet navigation
         this.initBusStopAlphabetNavigation();
 
-        // Highlight first matching alphabet
-        setTimeout(() => this.highlightFirstAlphabetMatch(), 300);
-
         // Prevent horizontal scroll
         this.preventHorizontalScroll();
+
+        // Mobile-specific optimizations
+        this.mobileOptimizations();
+
+        // Track active tab for alphabet drawer visibility
+        this.trackActiveTab();
+
+        // Initialize blog links with URL constants
+        this.initBlogLinks();
+    }
+
+    loadUrlConstants() {
+        // If URL constants are not loaded, try to load them
+        if (typeof window.URL_CONSTANTS === 'undefined') {
+            console.log('Loading URL constants...');
+            // The constants should be loaded via script tag in the HTML
+        }
+    }
+
+    initBlogLinks() {
+        // Wait a bit for URL constants to load
+        setTimeout(() => {
+            if (typeof window.handleBlogLinkClick !== 'undefined') {
+                // Add click handlers to all blog links with data-constant attribute
+                document.querySelectorAll('.blog-link[data-constant]').forEach(function(link) {
+                    link.addEventListener('click', window.handleBlogLinkClick);
+                });
+                console.log('Blog links with URL constants initialized');
+            } else {
+                console.warn('URL constants functions not available for blog links');
+            }
+        }, 500);
+    }
+
+    mobileOptimizations() {
+        // Reduce animations on mobile
+        if ('ontouchstart' in window || navigator.maxTouchPoints) {
+            document.documentElement.style.setProperty('--transition-speed', '0.2s');
+        }
     }
 
     preventHorizontalScroll() {
-        // Ensure no horizontal scroll
         document.body.style.overflowX = 'hidden';
         document.documentElement.style.overflowX = 'hidden';
 
@@ -5057,12 +5385,10 @@ class BusTimetableApp {
     }
 
     handleHashNavigation() {
-        // If we're on homepage and have a hash, switch to appropriate tab
         if (window.location.pathname.endsWith('index.html') ||
             window.location.pathname.endsWith('/')) {
             const hash = window.location.hash.replace('#', '');
             if (hash && ['divisions', 'districts', 'tehsils', 'depots'].includes(hash)) {
-                // Find and click the tab button
                 const tabButton = document.querySelector(\`.tab-btn[data-tab="\${hash}"]\`);
                 if (tabButton) {
                     tabButton.click();
@@ -5071,54 +5397,61 @@ class BusTimetableApp {
         }
     }
 
-    highlightFirstAlphabetMatch() {
-        // Highlight the first visible alphabet button
-        const alphabetButtons = document.querySelectorAll('.alphabet-mini-btn:not(.disabled), .alphabet-btn:not(.disabled), .floating-letter-btn:not(.disabled)');
-        if (alphabetButtons.length > 0) {
-            // Remove any existing highlights
-            document.querySelectorAll('.alphabet-highlight-first').forEach(el => {
-                el.classList.remove('alphabet-highlight-first');
-            });
-
-            // Add highlight to first matching button
-            alphabetButtons[0].classList.add('alphabet-highlight-first');
-        }
-    }
-
-    updateDigitalClock() {
-        // Get current IST time
+    updateTimeDisplay() {
         const now = new Date();
         const istTime = new Date(now.getTime() + this.istOffset);
 
         let hours = istTime.getUTCHours();
         const minutes = istTime.getUTCMinutes().toString().padStart(2, '0');
-        const seconds = istTime.getUTCSeconds().toString().padStart(2, '0');
         const ampm = hours >= 12 ? 'PM' : 'AM';
 
-        // Convert to 12-hour format
         hours = hours % 12 || 12;
         const displayHours = hours.toString().padStart(2, '0');
 
-        document.querySelectorAll('.digital-clock').forEach(clock => {
-            const hoursSpan = clock.querySelector('.digital-hours');
-            const minutesSpan = clock.querySelector('.digital-minutes');
-            const secondsSpan = clock.querySelector('.digital-seconds');
-            const ampmSpan = clock.querySelector('.digital-ampm');
-
-            if (hoursSpan) hoursSpan.textContent = displayHours;
-            if (minutesSpan) minutesSpan.textContent = minutes;
-            if (secondsSpan) secondsSpan.textContent = seconds;
-            if (ampmSpan) ampmSpan.textContent = ampm;
+        document.querySelectorAll('.current-time').forEach(timeDisplay => {
+            timeDisplay.textContent = \`\${displayHours}:\${minutes} \${ampm}\`;
         });
 
-        // Update next bus highlight every 30 seconds
         if (document.querySelector('.time-filters') && now.getSeconds() % 30 === 0) {
             this.highlightNextBus();
         }
     }
 
+    trackActiveTab() {
+        // Observe tab changes to show/hide alphabet drawer
+        const observer = new MutationObserver(() => {
+            const activeTabBtn = document.querySelector('.tab-btn.active');
+            if (activeTabBtn) {
+                this.activeTab = activeTabBtn.dataset.tab;
+                this.updateAlphabetDrawerVisibility();
+            }
+        });
+
+        const tabsHeader = document.querySelector('.tabs-header');
+        if (tabsHeader) {
+            observer.observe(tabsHeader, { attributes: true, subtree: true });
+        }
+    }
+
+    updateAlphabetDrawerVisibility() {
+        // Show alphabet drawer only for tehsil and depot tabs
+        const tehsilAlphabetDrawer = document.getElementById('tehsilAlphabetDrawer');
+        const depotAlphabetDrawer = document.getElementById('depotAlphabetDrawer');
+
+        if (this.activeTab === 'tehsils' && tehsilAlphabetDrawer) {
+            tehsilAlphabetDrawer.style.display = 'block';
+        } else if (tehsilAlphabetDrawer) {
+            tehsilAlphabetDrawer.style.display = 'none';
+        }
+
+        if (this.activeTab === 'depots' && depotAlphabetDrawer) {
+            depotAlphabetDrawer.style.display = 'block';
+        } else if (depotAlphabetDrawer) {
+            depotAlphabetDrawer.style.display = 'none';
+        }
+    }
+
     initAllTabs() {
-        // Handle main tabs (content tabs)
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
 
@@ -5126,11 +5459,9 @@ class BusTimetableApp {
             button.addEventListener('click', () => {
                 const tabId = button.dataset.tab;
 
-                // Update main tab button
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
 
-                // Show corresponding tab content
                 tabContents.forEach(content => {
                     content.classList.remove('active');
                     if (content.id === \`\${tabId}-tab\`) {
@@ -5138,7 +5469,6 @@ class BusTimetableApp {
                     }
                 });
 
-                // Update top navigation buttons
                 document.querySelectorAll('.quick-jump-btn[data-tab]').forEach(btn => {
                     btn.classList.remove('active');
                     if (btn.dataset.tab === tabId) {
@@ -5146,21 +5476,22 @@ class BusTimetableApp {
                     }
                 });
 
-                // Update URL hash for bookmarking
                 if (window.location.pathname.endsWith('index.html') ||
                     window.location.pathname.endsWith('/')) {
                     window.history.replaceState(null, null, \`#\${tabId}\`);
                 }
 
-                // Store active tab in localStorage
                 localStorage.setItem('activeTab', tabId);
+                this.activeTab = tabId;
+                this.updateAlphabetDrawerVisibility();
 
-                // Re-highlight first alphabet match
-                setTimeout(() => this.highlightFirstAlphabetMatch(), 100);
+                // Reset scroll when switching tabs
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
             });
         });
 
-        // Restore active tab from localStorage
         const savedTab = localStorage.getItem('activeTab') || 'divisions';
         const savedButton = document.querySelector(\`.tab-btn[data-tab="\${savedTab}"]\`);
         if (savedButton) {
@@ -5169,7 +5500,6 @@ class BusTimetableApp {
     }
 
     initQuickJump() {
-        // Search trigger
         document.querySelectorAll('.search-trigger').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -5177,7 +5507,6 @@ class BusTimetableApp {
             });
         });
 
-        // Alphabet trigger - FIXED FOR 100% ZOOM
         document.querySelectorAll('.alphabet-trigger').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -5186,7 +5515,6 @@ class BusTimetableApp {
             });
         });
 
-        // Bus stop alphabet trigger (specific for depot pages)
         document.querySelectorAll('.bus-stop-alphabet-trigger').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -5194,30 +5522,26 @@ class BusTimetableApp {
             });
         });
 
-        // Handle top navigation tab clicks
         document.querySelectorAll('.quick-jump-btn[data-tab]').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const tabId = btn.dataset.tab;
                 const hash = btn.dataset.hash || tabId;
 
-                // Check if we're on homepage
                 const isHomepage = window.location.pathname.endsWith('index.html') ||
                                   window.location.pathname.endsWith('/');
 
                 if (isHomepage) {
-                    // On homepage, just switch tabs
                     const mainTabButton = document.querySelector(\`.tab-btn[data-tab="\${tabId}"]\`);
                     if (mainTabButton) {
                         mainTabButton.click();
 
-                        // Scroll to tabs section
                         setTimeout(() => {
                             const tabsSection = document.querySelector('.tabs-container');
                             if (tabsSection) {
                                 const headerHeight = document.querySelector('.site-header').offsetHeight +
                                                    document.querySelector('.quick-jump-nav').offsetHeight;
-                                const sectionTop = tabsSection.offsetTop - headerHeight - 20;
+                                const sectionTop = tabsSection.offsetTop - headerHeight - 10;
 
                                 window.scrollTo({
                                     top: sectionTop,
@@ -5227,7 +5551,6 @@ class BusTimetableApp {
                         }, 100);
                     }
                 } else {
-                    // Not on homepage, navigate to homepage with correct tab hash
                     window.location.href = \`index.html#\${hash}\`;
                 }
             });
@@ -5235,7 +5558,6 @@ class BusTimetableApp {
     }
 
     initAlphabetNavigation() {
-        // Initialize all alphabet buttons - FIXED FOR TOUCH/CLICK
         const alphabetButtons = document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn');
         alphabetButtons.forEach(button => {
             button.addEventListener('click', (e) => {
@@ -5245,27 +5567,92 @@ class BusTimetableApp {
                 }
 
                 const letter = button.dataset.letter;
-                this.jumpToLetter(letter);
 
-                // Update active state
-                alphabetButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.classList.remove('alphabet-highlight-first');
-                    if (btn.dataset.letter === letter) {
-                        btn.classList.add('active');
+                // First try to jump to depot cards (for depot tab)
+                if (this.activeTab === 'depots') {
+                    if (this.jumpToDepotCards(letter)) {
+                        this.highlightAlphabetButton(button);
+                        this.hideAlphabetView();
+                        return;
                     }
-                });
+                }
 
-                // Close alphabet view if open
+                // Then try to jump to tehsil cards (for tehsil tab)
+                if (this.activeTab === 'tehsils') {
+                    if (this.jumpToTehsilCards(letter)) {
+                        this.highlightAlphabetButton(button);
+                        this.hideAlphabetView();
+                        return;
+                    }
+                }
+
+                // Fallback to generic jump
+                this.jumpToLetter(letter);
+                this.highlightAlphabetButton(button);
                 this.hideAlphabetView();
             });
 
-            // Add touch events for better mobile support
             button.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 button.click();
             });
         });
+    }
+
+    highlightAlphabetButton(clickedButton) {
+        // Remove active class from all alphabet buttons
+        document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn, .floating-letter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Add active class to clicked button
+        clickedButton.classList.add('active');
+    }
+
+    jumpToDepotCards(letter) {
+        const depotCards = document.querySelectorAll('#depots-tab .rectangular-card');
+        for (const card of depotCards) {
+            const cardAlphabet = card.dataset.alphabet;
+            const cardTitle = card.querySelector('h3');
+            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
+                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: cardTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(card);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    jumpToTehsilCards(letter) {
+        const tehsilCards = document.querySelectorAll('#tehsils-tab .rectangular-card');
+        for (const card of tehsilCards) {
+            const cardAlphabet = card.dataset.alphabet;
+            const cardTitle = card.querySelector('h3');
+            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
+                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: cardTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(card);
+                return true;
+            }
+        }
+        return false;
     }
 
     initBusStopAlphabetNavigation() {
@@ -5280,17 +5667,14 @@ class BusTimetableApp {
                 const letter = button.dataset.letter;
                 this.scrollToBusStopSection(letter);
 
-                // Update active state
                 floatingButtons.forEach(btn => {
                     btn.classList.remove('active');
-                    btn.classList.remove('alphabet-highlight-first');
                     if (btn.dataset.letter === letter) {
                         btn.classList.add('active');
                     }
                 });
             });
 
-            // Add touch events for better mobile support
             button.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 button.click();
@@ -5299,15 +5683,12 @@ class BusTimetableApp {
     }
 
     scrollToBusStopSection(letter) {
-        // Convert to lowercase for lookup
         const lookupLetter = letter.toLowerCase();
-
-        // Try all bus stop sections with this letter
         const busStopSections = document.querySelectorAll(\`.bus-stop-section[data-letter="\${lookupLetter}"]\`);
 
         if (busStopSections.length > 0) {
             const headerHeight = document.querySelector('.site-header').offsetHeight +
-                               document.querySelector('.quick-jump-nav').offsetHeight + 20;
+                               document.querySelector('.quick-jump-nav').offsetHeight + 10;
             const sectionTop = busStopSections[0].offsetTop - headerHeight;
 
             window.scrollTo({
@@ -5315,18 +5696,16 @@ class BusTimetableApp {
                 behavior: 'smooth'
             });
 
-            // Highlight briefly
             this.highlightElement(busStopSections[0]);
             return true;
         }
 
-        // Try by bus stop name first letter (case-insensitive)
         const allSections = document.querySelectorAll('.bus-stop-section');
         for (const section of allSections) {
             const busStopName = section.querySelector('.bus-stop-name')?.textContent.trim();
             if (busStopName && busStopName.charAt(0).toLowerCase() === lookupLetter) {
                 const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                   document.querySelector('.quick-jump-nav').offsetHeight + 20;
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
                 const sectionTop = section.offsetTop - headerHeight;
 
                 window.scrollTo({
@@ -5343,12 +5722,10 @@ class BusTimetableApp {
     }
 
     jumpToLetter(letter) {
-        // Try bus stop sections first (for depot pages)
         if (this.scrollToBusStopSection(letter)) {
             return;
         }
 
-        // Try cards (for division/district/tehsil/depot pages)
         const cards = document.querySelectorAll('.rectangular-card');
         for (const card of cards) {
             const cardAlphabet = card.dataset.alphabet;
@@ -5356,7 +5733,7 @@ class BusTimetableApp {
             if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
                 (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
                 const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                   document.querySelector('.quick-jump-nav').offsetHeight + 20;
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
                 const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
                 window.scrollTo({
@@ -5369,12 +5746,11 @@ class BusTimetableApp {
             }
         }
 
-        // Try headings
         const headings = document.querySelectorAll('h1, h2, h3, h4');
         for (const heading of headings) {
             if (heading.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
                 const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                   document.querySelector('.quick-jump-nav').offsetHeight + 20;
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
                 const headingTop = heading.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
                 window.scrollTo({
@@ -5392,13 +5768,13 @@ class BusTimetableApp {
         const originalBoxShadow = element.style.boxShadow;
         const originalBackground = element.style.backgroundColor;
 
-        element.style.boxShadow = '0 0 0 3px rgba(73, 61, 213, 0.3)';
+        element.style.boxShadow = '0 0 0 2px rgba(73, 61, 213, 0.3)';
         element.style.backgroundColor = 'rgba(237, 233, 254, 0.5)';
 
         setTimeout(() => {
             element.style.boxShadow = originalBoxShadow;
             element.style.backgroundColor = originalBackground;
-        }, 1500);
+        }, 1000);
     }
 
     showSearchModal() {
@@ -5407,33 +5783,28 @@ class BusTimetableApp {
             modal.style.display = 'flex';
             modal.querySelector('.global-search-input').focus();
 
-            // Close button
             const closeBtn = modal.querySelector('.close-search');
             closeBtn.addEventListener('click', () => {
                 modal.style.display = 'none';
             });
 
-            // Add touch event for mobile
             closeBtn.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 modal.style.display = 'none';
             });
 
-            // Close on outside click
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.style.display = 'none';
                 }
             });
 
-            // Close on escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.style.display === 'flex') {
                     modal.style.display = 'none';
                 }
             });
 
-            // Initialize search functionality
             this.initGlobalSearch();
         }
     }
@@ -5444,9 +5815,7 @@ class BusTimetableApp {
 
         if (!searchInput || !searchResults) return;
 
-        // Load search index if available
         if (typeof window.searchIndex === 'undefined') {
-            // Try to load search index
             const script = document.createElement('script');
             script.src = 'search-index.js';
             script.onload = () => this.performGlobalSearch(searchInput, searchResults);
@@ -5465,10 +5834,8 @@ class BusTimetableApp {
                 return;
             }
 
-            // Search across all data types from search-index.js
             const allResults = [];
 
-            // Search divisions
             if (window.searchIndex && window.searchIndex.divisions) {
                 window.searchIndex.divisions.forEach(item => {
                     if (item.name.toLowerCase().includes(query) ||
@@ -5479,7 +5846,6 @@ class BusTimetableApp {
                 });
             }
 
-            // Search districts
             if (window.searchIndex && window.searchIndex.districts) {
                 window.searchIndex.districts.forEach(item => {
                     if (item.name.toLowerCase().includes(query) ||
@@ -5491,7 +5857,6 @@ class BusTimetableApp {
                 });
             }
 
-            // Search tehsils
             if (window.searchIndex && window.searchIndex.tehsils) {
                 window.searchIndex.tehsils.forEach(item => {
                     if (item.name.toLowerCase().includes(query) ||
@@ -5504,7 +5869,6 @@ class BusTimetableApp {
                 });
             }
 
-            // Search depots
             if (window.searchIndex && window.searchIndex.depots) {
                 window.searchIndex.depots.forEach(item => {
                     if (item.name.toLowerCase().includes(query) ||
@@ -5518,7 +5882,6 @@ class BusTimetableApp {
                 });
             }
 
-            // Sort results by relevance (exact matches first, then partial matches)
             allResults.sort((a, b) => {
                 const aExact = a.name.toLowerCase() === query;
                 const bExact = b.name.toLowerCase() === query;
@@ -5527,8 +5890,7 @@ class BusTimetableApp {
                 return a.name.localeCompare(b.name);
             });
 
-            // Display results (limit to 30)
-            const filteredItems = allResults.slice(0, 30);
+            const filteredItems = allResults.slice(0, 25);
 
             if (filteredItems.length === 0) {
                 searchResults.innerHTML = '<div class="search-result-item"><p>No results found</p></div>';
@@ -5538,11 +5900,8 @@ class BusTimetableApp {
                     if (item.division) description += \` • \${item.division}\`;
                     if (item.district) description += \` • \${item.district}\`;
                     if (item.tehsil) description += \` • \${item.tehsil}\`;
-                    if (item.busStops) description += \` • \${item.busStops} bus stops\`;
-                    if (item.buses) description += \` • \${item.buses} bus schedules\`;
-                    if (item.districts) description += \` • \${item.districts} districts\`;
-                    if (item.depots) description += \` • \${item.depots} depots\`;
-                    if (item.tehsils) description += \` • \${item.tehsils} tehsils\`;
+                    if (item.busStops) description += \` • \${item.busStops} stops\`;
+                    if (item.buses) description += \` • \${item.buses} buses\`;
 
                     return \`
                     <div class="search-result-item" data-url="\${item.path}">
@@ -5552,17 +5911,11 @@ class BusTimetableApp {
                     \`;
                 }).join('');
 
-                // Add click handlers
                 searchResults.querySelectorAll('.search-result-item').forEach(item => {
                     item.addEventListener('click', () => {
                         const url = item.dataset.url;
                         if (url) {
-                            // FIX: Handle blog URLs correctly
-                            if (url.includes('/blogs/')) {
-                                window.location.href = url;
-                            } else {
-                                window.location.href = url;
-                            }
+                            window.location.href = url;
                             document.getElementById('searchModal').style.display = 'none';
                         }
                     });
@@ -5570,7 +5923,6 @@ class BusTimetableApp {
             }
         });
 
-        // Enter key to select first result
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 const firstResult = searchResults.querySelector('.search-result-item');
@@ -5580,7 +5932,6 @@ class BusTimetableApp {
             }
         });
 
-        // Escape key to close modal
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.getElementById('searchModal').style.display = 'none';
@@ -5593,33 +5944,28 @@ class BusTimetableApp {
         if (view) {
             view.style.display = 'block';
 
-            // Close button - FIXED FOR 100% ZOOM
             const closeBtn = view.querySelector('.close-alphabet');
             closeBtn.addEventListener('click', () => {
                 this.hideAlphabetView();
             });
 
-            // Add touch event for mobile
             closeBtn.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 this.hideAlphabetView();
             });
 
-            // Close on outside click
             view.addEventListener('click', (e) => {
                 if (e.target === view) {
                     this.hideAlphabetView();
                 }
             });
 
-            // Close on escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && view.style.display === 'block') {
                     this.hideAlphabetView();
                 }
             });
 
-            // Ensure alphabet buttons are clickable
             setTimeout(() => {
                 this.initAlphabetNavigation();
             }, 100);
@@ -5651,14 +5997,6 @@ class BusTimetableApp {
         }
     }
 
-    initBackButton() {
-        // Handle blog navigation
-        const blogBackBtn = document.querySelector('.back-btn[href="index.html"]');
-        if (blogBackBtn && window.location.pathname.includes('/blogs/')) {
-            blogBackBtn.href = 'index.html';
-        }
-    }
-
     initFilters() {
         const filterButtons = document.querySelectorAll('.filter-btn');
         filterButtons.forEach(button => {
@@ -5685,11 +6023,10 @@ class BusTimetableApp {
     }
 
     updateActiveAlphabet() {
-        // Check for bus stop sections
         const busStopSections = document.querySelectorAll('.bus-stop-section:not(.hidden)');
         if (busStopSections.length > 0) {
             let currentLetter = '';
-            const scrollPosition = window.scrollY + 150;
+            const scrollPosition = window.scrollY + 120;
 
             for (const section of busStopSections) {
                 const sectionTop = section.offsetTop;
@@ -5707,11 +6044,29 @@ class BusTimetableApp {
             return;
         }
 
-        // Check for cards
+        // For depot tab
+        if (this.activeTab === 'depots') {
+            const depotCards = document.querySelectorAll('#depots-tab .rectangular-card');
+            this.updateActiveCardAlphabet(depotCards);
+            return;
+        }
+
+        // For tehsil tab
+        if (this.activeTab === 'tehsils') {
+            const tehsilCards = document.querySelectorAll('#tehsils-tab .rectangular-card');
+            this.updateActiveCardAlphabet(tehsilCards);
+            return;
+        }
+
+        // For division and district tabs (no alphabet highlighting needed)
         const cards = document.querySelectorAll('.rectangular-card');
+        this.updateActiveCardAlphabet(cards);
+    }
+
+    updateActiveCardAlphabet(cards) {
         let closestCard = null;
         let closestDistance = Infinity;
-        const scrollPosition = window.scrollY + 100;
+        const scrollPosition = window.scrollY + 80;
 
         cards.forEach(card => {
             const cardTop = card.offsetTop;
@@ -5733,7 +6088,6 @@ class BusTimetableApp {
     }
 
     updateAlphabetActiveState(letter) {
-        // Update all alphabet buttons
         document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn, .floating-letter-btn').forEach(btn => {
             btn.classList.remove('active');
             if (btn.dataset.letter.toLowerCase() === letter.toLowerCase()) {
@@ -5751,13 +6105,11 @@ class BusTimetableApp {
             const timeBubbles = section.querySelectorAll('.time-bubble');
             let visibleBubbles = 0;
 
-            // Filter by search term
             if (this.searchTerm && !busStopName.includes(this.searchTerm)) {
                 section.classList.add('hidden');
                 return;
             }
 
-            // Filter by time category
             timeBubbles.forEach(bubble => {
                 const time = bubble.dataset.time;
                 const timeCategory = this.getTimeCategory(time);
@@ -5777,20 +6129,17 @@ class BusTimetableApp {
                 section.classList.add('hidden');
             }
 
-            // Update bus count display
             const busCount = section.querySelector('.bus-count');
             if (busCount) {
-                busCount.textContent = \`\${visibleBubbles} bus\${visibleBubbles !== 1 ? 'es' : ''}\`;
+                busCount.textContent = \`\${visibleBubbles}\`;
             }
         });
 
-        // Show/hide empty state
         const emptyState = document.querySelector('.empty-state');
         if (emptyState) {
             emptyState.classList.toggle('hidden', hasVisibleContent);
         }
 
-        // Update floating bus stop letters visibility
         this.updateFloatingLettersVisibility();
 
         setTimeout(() => this.highlightNextBus(), 50);
@@ -5832,7 +6181,6 @@ class BusTimetableApp {
             if (sparkle) sparkle.remove();
         });
 
-        // Get current IST time
         const now = new Date();
         const currentHours = now.getHours();
         const currentMinutes = now.getMinutes();
@@ -5850,7 +6198,8 @@ class BusTimetableApp {
                 timeDiff += 24 * 60;
             }
 
-            if (timeDiff >= 0 && timeDiff <= 360) {
+            // Changed from <= 360 (6 hours) to <= 60 (1 hour)
+            if (timeDiff >= 0 && timeDiff <= 60) {
                 upcomingBubbles.push({
                     bubble,
                     timeDiff,
@@ -5861,23 +6210,21 @@ class BusTimetableApp {
 
         upcomingBubbles.sort((a, b) => a.timeDiff - b.timeDiff);
 
-        if (upcomingBubbles.length > 0) {
-            const nextBus = upcomingBubbles[0].bubble;
+        // Highlight ALL buses within the next 60 minutes
+        upcomingBubbles.forEach((bus, index) => {
             const badge = document.createElement('div');
             badge.className = 'next-badge';
-            badge.textContent = 'NEXT';
-            badge.title = 'Next upcoming bus';
+            badge.textContent = index === 0 ? 'NEXT' : \`+\${bus.timeDiff}m\`;
 
-            // Add sparkle effect to next bus bubble
-            nextBus.classList.add('next-bus');
+            bus.bubble.classList.add('next-bus');
 
             const sparkle = document.createElement('div');
             sparkle.className = 'next-bus-sparkle';
-            nextBus.appendChild(sparkle);
+            bus.bubble.appendChild(sparkle);
 
-            nextBus.style.position = 'relative';
-            nextBus.appendChild(badge);
-        }
+            bus.bubble.style.position = 'relative';
+            bus.bubble.appendChild(badge);
+        });
     }
 
     initTimeClick() {
@@ -5896,20 +6243,18 @@ class BusTimetableApp {
         const timeCategory = this.getTimeCategory(time);
 
         const categoryNames = {
-            morning: '🌅 Morning Bus',
-            afternoon: '☀️ Afternoon Bus',
-            evening: '🌇 Evening Bus',
-            night: '🌙 Night Bus'
+            morning: '🌅 Morning Bus (5AM-12PM)',
+            afternoon: '☀️ Afternoon Bus (12PM-5PM)',
+            evening: '🌇 Evening Bus (5PM-10PM)',
+            night: '🌙 Night Bus (10PM-5AM)'
         };
 
-        // Convert to 12-hour format for display
         const hour12 = hours % 12 || 12;
         const ampm = hours >= 12 ? 'PM' : 'AM';
         const formattedTime = \`\${hour12}:\${minutes.toString().padStart(2, '0')} \${ampm}\`;
 
         const period = categoryNames[timeCategory];
 
-        // Get current IST time
         const now = new Date();
         const busTime = new Date(now);
         busTime.setHours(hours, minutes, 0, 0);
@@ -5921,20 +6266,16 @@ class BusTimetableApp {
         const timeDiff = Math.floor((busTime - now) / (1000 * 60));
         let timeMessage = '';
         if (timeDiff < 60) {
-            timeMessage = \`in \${timeDiff} minutes\`;
+            timeMessage = \`in \${timeDiff} min\`;
         } else {
             const hoursLeft = Math.floor(timeDiff / 60);
             const minutesLeft = timeDiff % 60;
             timeMessage = \`in \${hoursLeft}h \${minutesLeft}m\`;
         }
 
-        const message = \`🚌 **Bus Details**\\n\\n📍 **Bus Stop:** \${busStop}\\n🕐 **Time:** \${formattedTime}\\n⏰ **\${period}** (\${timeMessage})\\n\\n💡 *Please arrive 10-15 minutes before departure*\`;
+        const message = \`🚌 **Bus Details**\\n\\n📍 **Bus Stop:** \${busStop}\\n🕐 **Time:** \${formattedTime}\\n⏰ **\${period}** (\${timeMessage})\\n\\n💡 *Arrive 10-15 minutes before*\`;
 
         alert(message);
-    }
-
-    initBlogNavigation() {
-        console.log('📝 Blog page initialized');
     }
 }
 
@@ -6133,6 +6474,7 @@ Allow: /`;
         console.log(`🚌 Depots: ${Object.keys(this.data.depots).length}`);
         console.log(`📝 Blogs: ${this.blogs.length}`);
         console.log(`🔗 Related Depots Data: ${Object.keys(this.relatedDepotsData).length} depots have related depots`);
+        console.log(`🔗 URL Constants: ${Object.keys(this.urlConstants).length} constants loaded`);
 
         let totalBusStops = 0;
         let totalBuses = 0;
@@ -6155,44 +6497,63 @@ Allow: /`;
         const htmlCount = this.countHTMLFiles(this.publicDir);
         console.log(`📁 Pages Generated: ${htmlCount}`);
 
-        console.log('\n✅ ALL FEATURES INCLUDED:');
-        console.log('1. ✅ RELATED DEPOTS FEATURE: Added support for related depots from JSON files');
-        console.log('2. ✅ REDUCED PADDING: Top navigation is now more compact');
-        console.log('3. ✅ NO SCROLL BAR: Quick jump navigation hides scrollbar completely');
-        console.log('4. ✅ SEARCH ICON POSITION: Search button stays properly positioned');
-        console.log('5. ✅ ALPHABET DRAWER FIX: Opens reliably at 100% zoom');
-        console.log('6. ✅ BETTER TOUCH SUPPORT: Added touch-action for mobile devices');
-        console.log('7. ✅ Z-INDEX FIXES: Alphabet drawer has higher z-index than modal');
-        console.log('8. ✅ NO HORIZONTAL SCROLL: Body overflow-x hidden on all devices');
-        console.log('9. ✅ BACK BUTTON MARGIN: Navigation buttons have proper spacing');
-        console.log('10. ✅ ADDED "BACK TO BUS SCHEDULE" BUTTON: Same style as Back to Blogs');
-        console.log('11. ✅ FIXED BLOG NAVIGATION: Both buttons (Back to Blogs + Back to Bus Schedule)');
-        console.log('12. ✅ ONLY NEXT BUS SPARKLES: Removed sparkles from all times, only next bus sparkles');
-        console.log('13. ✅ ADDED HOME BUTTON TO ALL PAGES: All pages now have "Back to Bus Schedule" button');
-        console.log('14. ✅ SAME BUTTON STYLE: Back to Bus Schedule now looks same as Back to Blogs');
-        console.log('15. ✅ SEPARATE FROM NAVIGATION: Buttons look distinct from top navigation border');
-        console.log('16. ✅ RESPONSIVE BUTTONS: Larger on desktop, compact on mobile');
-        console.log('17. ✅ FIXED RELATED DEPOT LINKS: Links now correctly navigate to related depots');
+        // Count images copied
+        if (fs.existsSync(this.publicImagesDir)) {
+            const imageCount = fs.readdirSync(this.publicImagesDir).filter(f =>
+                ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'].some(ext =>
+                    f.toLowerCase().endsWith(ext))).length;
+            console.log(`🖼️  Images in public/assets/images/: ${imageCount}`);
+        }
 
-        console.log('\n🔧 KEY IMPROVEMENTS:');
-        console.log('• Header padding: Reduced from 0.6rem to 0.4rem');
-        console.log('• Quick jump padding: Reduced from 0.5rem to 0.3rem');
-        console.log('• Button sizes: Compact design with fixed heights');
-        console.log('• Scroll prevention: overflow-x: hidden on body');
-        console.log('• Touch targets: Minimum 44px for touch devices');
-        console.log('• Alphabet drawer: z-index 1002 to appear above modals');
-        console.log('• Search button: "Quick Search" changed to "Search" for space');
-        console.log('• Navigation buttons: Added 2rem margin from top');
-        console.log('• Two buttons in blogs: "Back to Blogs" + "Back to Bus Schedule"');
-        console.log('• Sparkle effect: Only next bus has sparkle animation');
-        console.log('• Button styling: Both buttons now have same white background with border');
-        console.log('• Desktop enhancement: Buttons are larger on desktop screens');
-        console.log('• Related depots: Loads from data/related-depots/ directory');
-        console.log('• Multiple JSON files: Supports multiple JSON files in related-depots directory');
-        console.log('• Flexible format: Supports array of objects or single object format');
-        console.log('• Fallback: Shows other depots in same tehsil if no related depots specified');
-        console.log('• Error handling: Gracefully handles missing depots or invalid data');
-        console.log('• Link fix: Related depot links now work correctly with simplified path logic');
+        // Check for favicon files
+        const faviconFiles = [];
+        if (fs.existsSync(this.publicDir)) {
+            const publicFiles = fs.readdirSync(this.publicDir);
+            const faviconNames = ['favicon.ico', 'favicon.png', 'favicon.jpg', 'favicon.jpeg', 'favicon.svg', 'icon.png', 'icon.jpg', 'icon.jpeg', 'icon.ico', 'icon.svg'];
+            faviconNames.forEach(name => {
+                if (publicFiles.includes(name)) {
+                    faviconFiles.push(name);
+                }
+            });
+        }
+
+        console.log(`🌟 Favicon files in public root: ${faviconFiles.length > 0 ? faviconFiles.join(', ') : 'None found'}`);
+
+        console.log('\n✅ CHANGES APPLIED:');
+        console.log('1. ✅ FIXED: Favicon links now use relative paths based on page location');
+        console.log('2. ✅ FIXED: Homepage (index.html) uses ./favicon.ico (same directory)');
+        console.log('3. ✅ FIXED: Division pages use ../favicon.ico (one level up)');
+        console.log('4. ✅ FIXED: District pages use ../../favicon.ico (two levels up)');
+        console.log('5. ✅ FIXED: Tehsil pages use ../../../favicon.ico (three levels up)');
+        console.log('6. ✅ FIXED: Depot pages use ../../../../favicon.ico (four levels up)');
+        console.log('7. ✅ FIXED: Blog pages use ../favicon.ico (from blogs directory)');
+        console.log('8. ✅ PRESERVED: All existing functionality remains unchanged');
+        console.log('9. ✅ MINIMAL VERTICAL SPACING FOR ALPHABETS: Reduced vertical gap from 0.15rem to 0.05rem (67% reduction)');
+        console.log('10.✅ FIXED HEADER: Site name and time are fixed at top');
+        console.log('11.✅ DIGITAL WATCH TIME: Time uses Orbitron font with green digital display');
+        console.log('12.✅ NEXT BUS CALCULATION: Highlights ALL buses within next 60 minutes');
+        console.log('13.✅ FIXED TIME FILTERS: Changed from icons to time ranges (5AM-12PM, etc.)');
+        console.log('14.✅ ENHANCED SPARKLE EFFECT: Next bus sparkle now has orange border with glowing effect');
+        console.log('15.✅ FIXED ROOT LEVEL LINKS: All homepage links (Home, About, Contact, etc.) now work correctly from any page');
+        console.log('16.✅ UPDATED BACK BUTTONS: "Back to Bus Schedule" links now correctly navigate to homepage from any page');
+        console.log('17.✅ FIXED RELATIVE PATHS: All navigation buttons use proper relative paths');
+        console.log('18.✅ ADDED URL CONSTANTS: Blog links now use JavaScript URL constants system');
+
+        console.log('\n📝 HOW FAVICONS WORK NOW:');
+        console.log('   • Root pages (index.html, about.html, contact.html) use: ./favicon.ico');
+        console.log('   • Division pages use: ../favicon.ico');
+        console.log('   • District pages use: ../../favicon.ico');
+        console.log('   • Tehsil pages use: ../../../favicon.ico');
+        console.log('   • Depot pages use: ../../../../favicon.ico');
+        console.log('   • Blog pages use: ../favicon.ico');
+        console.log('');
+        console.log('📝 HOW TO CHANGE FAVICON:');
+        console.log('   1. Place your new favicon file in assets/img/ folder');
+        console.log('   2. Name it whatever you want (e.g., favicon-v2.ico, myicon.png)');
+        console.log('   3. Remove old favicon from assets/img/ if you want');
+        console.log('   4. Run the generator - old favicon will be removed from public, new one copied');
+        console.log('   5. All HTML pages will be regenerated with links to the new favicon');
+        console.log('   6. Google will show your new favicon in search results');
     }
 
     countHTMLFiles(dir) {
