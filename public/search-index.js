@@ -110,6 +110,18 @@ window.searchIndex = {
       "alphabet": "P"
     },
     {
+      "id": "pusad_bus_stand_depot",
+      "name": "Pusad Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/pusad_teh/pusad_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Pusad Tehsil",
+      "busStops": 66,
+      "buses": 210,
+      "alphabet": "P"
+    },
+    {
       "id": "rajura_bus_stand_depot",
       "name": "Rajura Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -156,6 +168,18 @@ window.searchIndex = {
       "busStops": 41,
       "buses": 224,
       "alphabet": "W"
+    },
+    {
+      "id": "yavatmal_bus_stand_depot",
+      "name": "Yavatmal Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/yavatmal_teh/yavatmal_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Yavatmal Tehsil",
+      "busStops": 79,
+      "buses": 468,
+      "alphabet": "Y"
     }
   ],
   "divisions": [
@@ -165,7 +189,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "amravati_div/index.html",
       "districts": 5,
-      "depots": 3,
+      "depots": 5,
       "alphabet": "A"
     },
     {
@@ -571,8 +595,8 @@ window.searchIndex = {
       "type": "District",
       "path": "amravati_div/yavatmal_dist/index.html",
       "division": "Amravati Division",
-      "tehsils": 2,
-      "depots": 2,
+      "tehsils": 4,
+      "depots": 4,
       "alphabet": "Y"
     }
   ],
@@ -2758,6 +2782,16 @@ window.searchIndex = {
       "alphabet": "P"
     },
     {
+      "id": "pusad_teh",
+      "name": "Pusad Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/pusad_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
+      "alphabet": "Y"
+    },
+    {
       "id": "radhanagari_teh",
       "name": "Radhanagari Tehsil",
       "type": "Tehsil",
@@ -3486,6 +3520,16 @@ window.searchIndex = {
       "district": "Dharashiv District",
       "depots": 0,
       "alphabet": "W"
+    },
+    {
+      "id": "yavatmal_teh",
+      "name": "Yavatmal Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/yavatmal_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
+      "alphabet": "Y"
     },
     {
       "id": "yawal_teh",

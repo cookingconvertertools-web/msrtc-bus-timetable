@@ -1,0 +1,4422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusad Bus Stand Timetable | MSRTC Bus Schedule from Pusad</title>
+    <meta name="description" content="Complete MSRTC bus timetable from Pusad Bus Stand to Nagpur, Nanded, Amravati, Pune, Latur and Parbhani. View routes, timings and facilities.">
+    <meta name="keywords" content="Pusad Bus Stand, Pusad MSRTC timetable, Pusad to Nagpur bus, Pusad to Nanded bus, Yavatmal district bus stand">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="../../../..//apple-touch-icon.png">
+    <link rel="icon" href="../../../..//favicon-16x16.png" type="image/png">
+    <link rel="icon" href="../../../..//favicon-32x32.png" type="image/png">
+    <link rel="icon" href="../../../..//favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../..//favicon.ico" type="image/x-icon">
+    <meta name="msapplication-TileImage" content="../../../..//apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="../../../../assets/urls/url-constants.js"></script>
+
+    <!-- Inline CSS -->
+    <style>
+        /* ==========================================================================
+       MSRTC BUS TIMETABLE - MOBILE FIRST STYLES
+       ========================================================================== */
+
+    /* Reset & Base - MOBILE FIRST */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 14px;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 400;
+        background: linear-gradient(135deg, #FEF2F8 0%, #FCE7F3 100%);
+        color: #4C1D95;
+        line-height: 1.4;
+        min-height: 100vh;
+        -webkit-tap-highlight-color: transparent;
+        padding-bottom: 40px;
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    /* Fixed header spacing */
+    .header-spacer {
+        height: 50px;
+    }
+
+    /* Typography - COMPACT */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        color: #5B21B6;
+        margin-bottom: 0.5rem;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    p {
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
+        font-size: 0.9rem;
+    }
+
+    a {
+        color: #493dd5;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    a:hover {
+        color: #3a2fc1;
+    }
+
+    /* Layout */
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 0.8rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 1rem; }
+
+    /* Header - FIXED POSITION */
+    .site-header {
+        background: white;
+        box-shadow: 0 1px 3px rgba(73, 61, 213, 0.05);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        padding: 0.3rem 0;
+        border-bottom: 1px solid #C4B5FD;
+        height: 50px;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        padding: 0.1rem 0;
+        height: 100%;
+    }
+
+    .logo {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #5B21B6 !important;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        text-decoration: none;
+    }
+
+    .logo i {
+        color: #493dd5 !important;
+        font-size: 1.1rem;
+    }
+
+    /* Time Display - DIGITAL WATCH STYLE */
+    .time-display {
+        font-family: 'Orbitron', monospace;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: #4C1D95 !important;
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        background: #0F172A;
+        border: 1px solid #A78BFA;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #00FF00 !important;
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    }
+
+    /* Quick Jump Navigation - ULTRA COMPACT */
+    .quick-jump-nav {
+        position: sticky;
+        top: 50px;
+        z-index: 190;
+        background: white;
+        border-bottom: 1px solid #C4B5FD;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        padding: 0.2rem 0;
+        overflow: hidden;
+    }
+
+    .quick-jump-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.2rem;
+        padding: 0.1rem 0;
+        width: 100%;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: auto;
+        flex-wrap: nowrap;
+    }
+
+    /* Remove scrollbar completely */
+    .quick-jump-content::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+        background: transparent;
+    }
+
+    .quick-jump-content {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Quick Jump Buttons - ULTRA COMPACT */
+    .quick-jump-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.05rem;
+        padding: 0.25rem 0.3rem;
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 4px;
+        color: #4C1D95;
+        font-size: 0.65rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        min-width: 52px;
+        max-width: 58px;
+        text-decoration: none;
+        flex-shrink: 0;
+        border: none;
+        font-family: inherit;
+        flex: 1;
+        height: 48px;
+    }
+
+    .quick-jump-btn i {
+        font-size: 0.8rem;
+        color: #493dd5;
+    }
+
+    .quick-jump-btn:hover {
+        background: #FCE7F3;
+        border-color: #A78BFA;
+    }
+
+    .quick-jump-btn.active {
+        background: #493dd5;
+        color: white;
+        border-color: #493dd5;
+    }
+
+    .quick-jump-btn.active i {
+        color: white;
+    }
+
+    /* Navigation Buttons Container */
+    .navigation-buttons {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    /* Back Buttons - COMPACT */
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.6rem 0.8rem;
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        color: #4C1D95;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.85rem;
+        text-decoration: none;
+        flex-shrink: 0;
+    }
+
+    .back-btn:hover {
+        background: #FCE7F3;
+        color: #493dd5;
+        border-color: #A78BFA;
+    }
+
+    .back-btn i {
+        font-size: 0.9rem;
+    }
+
+    /* Depot About Section */
+    .depot-about-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #C4B5FD;
+        margin-top: 1.5rem;
+    }
+
+    .depot-about-section h2 {
+        color: #5B21B6;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+    }
+
+    .about-content {
+        color: #4B5563;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #C4B5FD;
+        margin-top: 1.5rem;
+    }
+
+    .faq-section h2 {
+        color: #5B21B6;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+    }
+
+    .faq-container {
+        margin-top: 0.8rem;
+    }
+
+    .faq-item {
+        margin-bottom: 0.8rem;
+        padding: 0.8rem;
+        background: #F8FAFC;
+        border-radius: 6px;
+        border: 1px solid #C4B5FD;
+    }
+
+    .faq-question {
+        color: #5B21B6;
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .faq-question i {
+        color: #493dd5;
+        font-size: 0.8rem;
+    }
+
+    .faq-answer {
+        color: #4B5563;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        padding-left: 1.5rem;
+    }
+
+    /* Related Links Section */
+    .related-links-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #C4B5FD;
+        margin-top: 1.5rem;
+    }
+
+    .related-links-section h2 {
+        color: #5B21B6;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+    }
+
+    .related-links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 0.8rem;
+        margin-top: 0.8rem;
+    }
+
+    .related-depot-card {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 8px;
+        padding: 0.8rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: block;
+    }
+
+    .related-depot-card:hover {
+        border-color: #493dd5;
+    }
+
+    .related-depot-card h3 {
+        color: #5B21B6;
+        margin-bottom: 0.3rem;
+        font-size: 1rem;
+    }
+
+    .related-depot-card p {
+        color: #4C1D95;
+        font-size: 0.85rem;
+        opacity: 0.8;
+        margin-bottom: 0.5rem;
+    }
+
+    .related-depot-link {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        color: #493dd5;
+        font-weight: 500;
+        font-size: 0.85rem;
+    }
+
+    /* Advertising */
+    .ad-container {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    .ad-content {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        padding: 0.8rem;
+        min-height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ad-desktop {
+        display: none;
+    }
+
+    .ad-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        width: 100%;
+    }
+
+    .ad-placeholder {
+        color: #4C1D95;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .ad-placeholder span {
+        font-size: 0.75rem;
+        color: #64748B;
+    }
+
+    /* Tab Navigation */
+    .tabs-container {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #C4B5FD;
+        margin: 1rem 0;
+    }
+
+    .tabs-header {
+        display: flex;
+        background: #FCE7F3;
+        border-bottom: 1px solid #C4B5FD;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tabs-header::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .tab-btn {
+        flex: 1;
+        min-width: 70px;
+        padding: 0.5rem 0.2rem;
+        background: none;
+        border: none;
+        border-right: 1px solid #C4B5FD;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        color: #4C1D95;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .tab-btn:last-child {
+        border-right: none;
+    }
+
+    .tab-btn.active {
+        background: #493dd5;
+        color: white;
+    }
+
+    .tab-count {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.05rem 0.3rem;
+        border-radius: 6px;
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+
+    .tab-btn.active .tab-count {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .tab-content {
+        display: none;
+        padding: 0.8rem;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    /* RECTANGULAR CARDS - COMPACT */
+    .division-grid, .district-grid, .tehsil-grid, .depot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 0.6rem;
+        margin: 0.8rem 0;
+    }
+
+    .rectangular-card {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 8px;
+        padding: 0.8rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+        display: block;
+        cursor: pointer;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        min-height: 85px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .rectangular-card:hover {
+        border-color: #493dd5;
+        background: #FEF2F8;
+    }
+
+    .rectangular-card h3 {
+        color: #5B21B6 !important;
+        margin-bottom: 0.3rem;
+        font-size: 1rem;
+        line-height: 1.2;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .card-meta {
+        color: #4C1D95;
+        font-size: 0.75rem;
+        margin-bottom: 0.3rem;
+        opacity: 0.8;
+    }
+
+    .rectangular-card .stats {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.3rem;
+        flex-wrap: wrap;
+    }
+
+    .rectangular-card .stat {
+        background: #FCE7F3;
+        padding: 0.15rem 0.4rem;
+        border-radius: 10px;
+        color: #5B21B6 !important;
+        font-size: 0.7rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        border: 1px solid #C4B5FD;
+    }
+
+    .rectangular-card .stat i {
+        color: #493dd5 !important;
+        font-size: 0.7rem;
+    }
+
+    /* Alphabet Quick Access - MINIMAL VERTICAL SPACING */
+    .alphabet-quick-access {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        padding: 0.8rem;
+        margin: 1rem 0;
+    }
+
+    .alphabet-mini-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+        gap: 0.05rem; /* Drastically reduced vertical spacing */
+    }
+
+    .alphabet-mini-btn {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        color: #5B21B6;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.85rem;
+        padding: 0;
+        touch-action: manipulation;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        min-width: 28px;
+    }
+
+    .alphabet-mini-btn:hover {
+        background: #FCE7F3;
+        color: #493dd5;
+    }
+
+    .alphabet-mini-btn.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        background: #F8FAFC;
+    }
+
+    /* Floating Bus Stop Letters - MINIMAL VERTICAL SPACING */
+    .floating-bus-stop-letters {
+        position: sticky;
+        top: 100px;
+        z-index: 180;
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        padding: 0.8rem;
+        margin: 1rem 0;
+        box-shadow: 0 2px 4px rgba(73, 61, 213, 0.08);
+    }
+
+    .floating-letters-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+        gap: 0.05rem; /* Drastically reduced vertical spacing */
+    }
+
+    .floating-letter-btn {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        color: #5B21B6;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.85rem;
+        padding: 0;
+        touch-action: manipulation;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        min-width: 28px;
+    }
+
+    .floating-letter-btn:hover {
+        background: #FCE7F3;
+        color: #493dd5;
+    }
+
+    .floating-letter-btn.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        background: #F8FAFC;
+    }
+
+    /* Quick Search Modal */
+    .quick-search-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1001;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-modal-content {
+        background: white;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .search-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        background: #493dd5;
+        color: white;
+    }
+
+    .search-modal-header h3 {
+        margin: 0;
+        color: white;
+        font-size: 1rem;
+    }
+
+    .close-search {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.3rem;
+        cursor: pointer;
+        line-height: 1;
+        touch-action: manipulation;
+    }
+
+    .search-modal-body {
+        padding: 1rem;
+    }
+
+    .global-search-input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .global-search-input:focus {
+        outline: none;
+        border-color: #493dd5;
+    }
+
+    .search-results {
+        max-height: 250px;
+        overflow-y: auto;
+    }
+
+    .search-result-item {
+        padding: 0.7rem;
+        border-bottom: 1px solid #C4B5FD;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .search-result-item:hover {
+        background: #FCE7F3;
+    }
+
+    .search-result-item h4 {
+        margin: 0 0 0.2rem 0;
+        color: #5B21B6;
+        font-size: 0.95rem;
+    }
+
+    .search-result-item p {
+        margin: 0;
+        color: #4C1D95;
+        font-size: 0.8rem;
+        opacity: 0.8;
+    }
+
+    /* Alphabet Quick View - MINIMAL VERTICAL SPACING */
+    .alphabet-quick-view {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-top: 2px solid #493dd5;
+        border-radius: 8px 8px 0 0;
+        z-index: 1002;
+        max-height: 40vh;
+        overflow: hidden;
+        touch-action: manipulation;
+    }
+
+    .alphabet-view-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0.8rem;
+        background: #493dd5;
+        color: white;
+        touch-action: manipulation;
+        height: 40px;
+    }
+
+    .alphabet-view-header h4 {
+        margin: 0;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .close-alphabet {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.1rem;
+        cursor: pointer;
+        line-height: 1;
+        touch-action: manipulation;
+        z-index: 1003;
+        position: relative;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .alphabet-view-grid {
+        padding: 0.6rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+        gap: 0.05rem; /* Drastically reduced vertical spacing */
+        max-height: 30vh;
+        overflow-y: auto;
+        touch-action: manipulation;
+    }
+
+    .alphabet-btn {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        color: #5B21B6;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.85rem;
+        padding: 0;
+        touch-action: manipulation;
+        min-width: 28px;
+        min-height: 28px;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .alphabet-btn:hover {
+        background: #FCE7F3;
+        color: #493dd5;
+    }
+
+    .alphabet-btn.active {
+        background: #493dd5;
+        color: white;
+    }
+
+    /* Depot Header */
+    .depot-header {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid #C4B5FD;
+        text-align: center;
+    }
+
+    .depot-info {
+        display: flex;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 0.8rem;
+        flex-wrap: wrap;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        color: #5B21B6;
+        font-size: 0.8rem;
+        background: #F8FAFC;
+        padding: 0.3rem 0.6rem;
+        border-radius: 6px;
+        border: 1px solid #C4B5FD;
+    }
+
+    .info-item i {
+        color: #493dd5;
+        font-size: 0.8rem;
+    }
+
+    /* Search Box */
+    .search-container {
+        margin: 1rem 0;
+    }
+
+    .search-box {
+        width: 100%;
+        padding: 0.7rem 0.8rem;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        background: white;
+        transition: all 0.3s;
+    }
+
+    .search-box:focus {
+        outline: none;
+        border-color: #493dd5;
+    }
+
+    /* Time Filters - COMPACT - FIXED FOR MOBILE (TIME RANGES INSTEAD OF ICONS) */
+    .time-filters {
+        display: flex;
+        gap: 0.4rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+        padding-bottom: 0.3rem;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    .time-filters::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .filter-btn {
+        padding: 0.5rem 0.6rem;
+        border: 1px solid #C4B5FD;
+        background: white;
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.75rem;
+        color: #4C1D95;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.3s;
+        flex-shrink: 0;
+        font-weight: 500;
+        min-width: 70px;
+        text-align: center;
+    }
+
+    .filter-btn:hover {
+        border-color: #493dd5;
+        color: #493dd5;
+    }
+
+    .filter-btn.active {
+        background: #493dd5;
+        color: white;
+        border-color: #493dd5;
+        font-weight: 500;
+    }
+
+    /* Bus Stop Sections - COMPACT */
+    .bus-stop-section {
+        margin-bottom: 1rem;
+        scroll-margin-top: 150px;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #C4B5FD;
+    }
+
+    .bus-stop-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem;
+        background: linear-gradient(90deg, #FCE7F3 0%, white 100%);
+        border-bottom: 1px solid #C4B5FD;
+    }
+
+    .bus-stop-name {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        color: #5B21B6;
+        font-size: 1rem;
+    }
+
+    .bus-count {
+        background: #493dd5;
+        color: white;
+        padding: 0.2rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        min-width: 40px;
+        text-align: center;
+    }
+
+    /* Schedule Grid - COMPACT FOR MOBILE */
+    .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        gap: 0.6rem;
+        padding: 0.8rem;
+    }
+
+    /* Time Bubbles - COMPACT */
+    .time-bubble {
+        position: relative;
+        padding: 0.6rem 0.3rem;
+        border-radius: 6px;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        min-height: 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        font-size: 0.85rem;
+        border: 1px solid transparent;
+        overflow: visible;
+        margin: 0.05rem;
+    }
+
+    .time-bubble.morning {
+        background: #FEF3C7;
+        color: #92400E;
+        border-color: #FBBF24;
+    }
+
+    .time-bubble.afternoon {
+        background: #D1FAE5;
+        color: #065F46;
+        border-color: #10B981;
+    }
+
+    .time-bubble.evening {
+        background: #E0E7FF;
+        color: #3730A3;
+        border-color: #6366F1;
+    }
+
+    .time-bubble.night {
+        background: #F3E8FF;
+        color: #5B21B6;
+        border-color: #8B5CF6;
+    }
+
+    .time-bubble:hover {
+        transform: scale(1.02);
+    }
+
+    /* Next Bus Badge - SMALLER */
+    .next-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #493dd5;
+        color: white;
+        font-size: 0.6rem;
+        padding: 1px 4px;
+        border-radius: 8px;
+        font-weight: 600;
+        z-index: 20;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        animation: pulse 2s infinite;
+        white-space: nowrap;
+        min-width: 30px;
+        text-align: center;
+        border: 1px solid white;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    /* Next Bus Sparkle Effect - IMPROVED WITH ORANGE BORDER */
+    .next-bus-sparkle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 6px;
+        border: 2px solid #FFA500;
+        animation: sparkle 2s infinite;
+        pointer-events: none;
+        opacity: 0;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+        z-index: 5;
+    }
+
+    @keyframes sparkle {
+        0%, 100% {
+            opacity: 0.5;
+            border-color: #FFA500;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+        }
+        50% {
+            opacity: 1;
+            border-color: #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+        }
+    }
+
+    .time-bubble.next-bus .next-bus-sparkle {
+        opacity: 0.5;
+    }
+
+    /* Footer - UPDATED FOR MOBILE */
+    .site-footer {
+        background: white;
+        border-top: 1px solid #C4B5FD;
+        padding: 1.5rem 0 2rem 0;
+        margin-top: 2rem;
+        min-height: 300px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .footer-section h3 {
+        color: #5B21B6;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .footer-links a {
+        color: #4C1D95;
+        font-size: 0.85rem;
+        padding: 0.2rem 0;
+        transition: all 0.3s;
+        text-decoration: none;
+        line-height: 1.4;
+    }
+
+    .footer-links a:hover {
+        color: #493dd5;
+        padding-left: 0.3rem;
+    }
+
+    .copyright {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: #4C1D95;
+        font-size: 0.8rem;
+        opacity: 0.8;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #C4B5FD;
+        line-height: 1.5;
+    }
+
+    .copyright a {
+        color: #493dd5;
+        text-decoration: underline;
+    }
+
+    /* SEO Content Section */
+    .seo-content {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        border: 1px solid #C4B5FD;
+    }
+
+    .seo-content h2 {
+        color: #5B21B6;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .seo-content h3 {
+        color: #4C1D95;
+        margin: 1rem 0 0.8rem;
+        font-size: 1rem;
+    }
+
+    .seo-content p {
+        color: #4B5563;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* Blog Page Styles - ADDED LEFT PADDING */
+    .blog-page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding-left: 1.5rem; /* Added left padding */
+    }
+
+    .blog-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .blog-date {
+        color: #94A3B8;
+        font-size: 0.85rem;
+        margin: 0.3rem 0 1rem;
+    }
+
+    .blog-author {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+        padding: 0.8rem;
+        background: #F8FAFC;
+        border-radius: 6px;
+        border: 1px solid #C4B5FD;
+    }
+
+    .author-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #493dd5, #A78BFA);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+    }
+
+    .author-info h4 {
+        margin-bottom: 0.2rem;
+        color: #4C1D95;
+        font-size: 1rem;
+    }
+
+    .blog-content {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-left: 0.5rem; /* Added left padding */
+    }
+
+    /* Blog Links - Clickable with URL constants */
+    .blog-link {
+        color: #493dd5;
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px dotted #493dd5;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+
+    .blog-link:hover {
+        color: #3a2fc1;
+        border-bottom: 2px solid #3a2fc1;
+        text-decoration: none;
+    }
+
+    /* Blog Images - Responsive */
+    .blog-image-container {
+        margin: 1.5rem 0;
+        text-align: center;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid #C4B5FD;
+        background: white;
+        padding: 0.8rem;
+    }
+
+    .blog-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        display: block;
+        margin: 0 auto;
+        transition: transform 0.3s;
+    }
+
+    .blog-image:hover {
+        transform: scale(1.01);
+    }
+
+    .blog-image-caption {
+        font-size: 0.85rem;
+        color: #64748B;
+        margin-top: 0.5rem;
+        font-style: italic;
+        line-height: 1.4;
+        text-align: center;
+        padding: 0 0.5rem;
+    }
+
+    .blog-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1rem 0;
+    }
+
+    .blog-tags {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+    }
+
+    .blog-tag {
+        background: #FCE7F3;
+        color: #493dd5;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    /* Blog specific styles - Markdown elements */
+    .blog-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        border: 1px solid #E2E8F0;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .blog-table th {
+        background: linear-gradient(135deg, #493dd5, #3a2fc1);
+        color: white;
+        font-weight: 500;
+        padding: 0.6rem;
+        text-align: left;
+        border-bottom: 1px solid #E2E8F0;
+        font-size: 0.9rem;
+    }
+
+    .blog-table td {
+        padding: 0.6rem;
+        border-bottom: 1px solid #E2E8F0;
+        vertical-align: top;
+        font-size: 0.85rem;
+    }
+
+    .blog-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .blog-table tr:nth-child(even) {
+        background: #F8FAFC;
+    }
+
+    pre {
+        background: #2D3748;
+        color: #E2E8F0;
+        padding: 0.8rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin: 1rem 0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        border-left: 3px solid #493dd5;
+    }
+
+    code {
+        background: #EDF2F7;
+        padding: 0.1rem 0.3rem;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85em;
+        color: #2D3748;
+    }
+
+    pre code {
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+        color: inherit;
+        font-size: inherit;
+    }
+
+    blockquote {
+        border-left: 3px solid #493dd5;
+        padding: 0.8rem 1rem;
+        margin: 1rem 0;
+        background: linear-gradient(90deg, #F8FAFC, #FFFFFF);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #4A5568;
+        font-size: 0.9rem;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #E2E8F0;
+        margin: 1.5rem auto;
+        width: 80%;
+    }
+
+    /* Blog Listing */
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .blog-card {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: block;
+        padding: 0.8rem;
+    }
+
+    .blog-card:hover {
+        border-color: #493dd5;
+    }
+
+    .blog-card h3 {
+        color: #5B21B6;
+        margin-bottom: 0.6rem;
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+
+    .blog-card-excerpt {
+        color: #64748B;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
+    }
+
+    .blog-card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #94A3B8;
+        font-size: 0.75rem;
+    }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 2rem 1rem;
+        color: #5B21B6;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid #C4B5FD;
+        margin: 1.5rem 0;
+    }
+
+    .empty-state i {
+        font-size: 2.5rem;
+        margin-bottom: 0.8rem;
+        color: #A78BFA;
+    }
+
+    .empty-state h3 {
+        margin-bottom: 0.6rem;
+        color: #5B21B6;
+        font-size: 1.2rem;
+    }
+
+    .empty-state p {
+        color: #4C1D95;
+        opacity: 0.8;
+        max-width: 400px;
+        margin: 0 auto;
+        font-size: 0.9rem;
+    }
+
+    /* Utility Classes */
+    .hidden {
+        display: none !important;
+    }
+
+    /* Responsive Design - MOBILE FIRST */
+    @media (max-width: 767px) {
+        html {
+            font-size: 13px;
+        }
+
+        .division-grid,
+        .district-grid,
+        .tehsil-grid,
+        .depot-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .rectangular-card {
+            padding: 0.7rem;
+            min-height: 75px;
+        }
+
+        .rectangular-card h3 {
+            font-size: 0.95rem;
+        }
+
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 0.5rem;
+            padding: 0.7rem;
+        }
+
+        .time-bubble {
+            min-height: 44px;
+            padding: 0.5rem 0.2rem;
+            font-size: 0.8rem;
+        }
+
+        .next-badge {
+            font-size: 0.55rem;
+            padding: 1px 3px;
+            top: -6px;
+            right: -6px;
+            min-width: 28px;
+        }
+
+        .floating-bus-stop-letters {
+            top: 125px;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .footer-section:nth-child(3) {
+            grid-column: 1 / -1;
+        }
+
+        .seo-content {
+            padding: 0.8rem;
+        }
+
+        .ad-desktop {
+            display: none !important;
+        }
+
+        .ad-mobile {
+            display: flex !important;
+        }
+
+        .tab-btn {
+            min-width: 65px;
+            padding: 0.4rem 0.1rem;
+            font-size: 0.75rem;
+        }
+
+        .tab-count {
+            font-size: 0.65rem;
+            padding: 0.05rem 0.2rem;
+        }
+
+        /* Mobile: Ultra compact quick jump */
+        .quick-jump-btn {
+            min-width: 48px;
+            max-width: 52px;
+            padding: 0.2rem 0.25rem;
+            font-size: 0.6rem;
+            height: 44px;
+        }
+
+        .quick-jump-btn i {
+            font-size: 0.7rem;
+        }
+
+        /* Mobile: Time filters with smaller font for better fit */
+        .time-filters {
+            gap: 0.3rem;
+        }
+
+        .filter-btn {
+            padding: 0.4rem 0.5rem;
+            font-size: 0.7rem;
+            min-width: 65px;
+        }
+
+        /* Mobile: Minimal vertical spacing alphabet drawer */
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+            padding: 0.5rem;
+        }
+
+        .alphabet-btn {
+            width: 24px;
+            height: 24px;
+            font-size: 0.75rem;
+        }
+
+        .alphabet-view-header {
+            padding: 0.4rem 0.6rem;
+            height: 36px;
+        }
+
+        .alphabet-view-header h4 {
+            font-size: 0.85rem;
+        }
+
+        .close-alphabet {
+            font-size: 1rem;
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Mobile: Minimal vertical spacing alphabet buttons */
+        .alphabet-mini-grid,
+        .floating-letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-mini-btn,
+        .floating-letter-btn {
+            width: 24px;
+            height: 24px;
+            font-size: 0.75rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Mobile navigation buttons */
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .back-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Mobile: Blog page with left padding */
+        .blog-page {
+            padding-left: 1rem;
+        }
+
+        .blog-content {
+            padding-left: 0.8rem;
+        }
+
+        /* Mobile: Blog images */
+        .blog-image-container {
+            margin: 1rem 0;
+            padding: 0.6rem;
+        }
+
+        .blog-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .blog-image-caption {
+            font-size: 0.8rem;
+            margin-top: 0.4rem;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        html {
+            font-size: 14px;
+        }
+
+        .division-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        .district-grid,
+        .tehsil-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        }
+
+        .blog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .ad-desktop {
+            display: none !important;
+        }
+
+        .ad-mobile {
+            display: flex !important;
+        }
+
+        .tab-btn {
+            min-width: 80px;
+        }
+
+        /* Tablet: Compact quick jump */
+        .quick-jump-btn {
+            min-width: 55px;
+            max-width: 60px;
+            padding: 0.3rem 0.4rem;
+            font-size: 0.7rem;
+            height: 52px;
+        }
+
+        .quick-jump-btn i {
+            font-size: 0.8rem;
+        }
+
+        /* Tablet: Minimal vertical spacing alphabet drawer */
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
+        }
+
+        /* Tablet: Minimal vertical spacing alphabet buttons */
+        .alphabet-mini-grid,
+        .floating-letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-mini-btn,
+        .floating-letter-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        /* Schedule optimization for tablets */
+        .time-bubble {
+            min-height: 46px;
+            font-size: 0.85rem;
+        }
+
+        /* Tablet: Blog page with left padding */
+        .blog-page {
+            padding-left: 1.5rem;
+        }
+
+        .blog-content {
+            padding-left: 1rem;
+        }
+
+        /* Tablet: Blog images */
+        .blog-image-container {
+            margin: 1.2rem 0;
+            padding: 0.8rem;
+        }
+    }
+
+    @media (min-width: 1025px) {
+        html {
+            font-size: 15px;
+        }
+
+        .division-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .district-grid,
+        .tehsil-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+
+        .blog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .ad-desktop {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .ad-mobile {
+            display: none !important;
+        }
+
+        .tab-btn {
+            min-width: 90px;
+            padding: 0.6rem 0.2rem;
+            font-size: 0.85rem;
+        }
+
+        /* Desktop: Normal quick jump buttons */
+        .quick-jump-btn {
+            min-width: 65px;
+            max-width: 70px;
+            padding: 0.4rem 0.5rem;
+            font-size: 0.7rem;
+            height: 58px;
+        }
+
+        .quick-jump-btn i {
+            font-size: 0.9rem;
+        }
+
+        /* Desktop: Minimal vertical spacing alphabet drawer */
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
+        }
+
+        .alphabet-view-header {
+            padding: 0.6rem 1rem;
+        }
+
+        /* Desktop: Minimal vertical spacing alphabet buttons */
+        .alphabet-mini-grid,
+        .floating-letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-mini-btn,
+        .floating-letter-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        /* Desktop: Better spacing for schedule */
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .time-bubble {
+            min-height: 50px;
+            font-size: 0.9rem;
+        }
+
+        /* Desktop: Larger back buttons */
+        .back-btn {
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            gap: 0.5rem;
+        }
+
+        .back-btn i {
+            font-size: 1rem;
+        }
+
+        /* Desktop: Blog page with left padding */
+        .blog-page {
+            padding-left: 2rem;
+        }
+
+        .blog-content {
+            padding-left: 1.5rem;
+        }
+
+        /* Desktop: Blog images */
+        .blog-image-container {
+            margin: 1.5rem 0;
+        }
+    }
+
+    /* Print Styles */
+    @media print {
+        .site-header,
+        .quick-jump-nav,
+        .floating-bus-stop-letters,
+        .filter-btn,
+        .search-container,
+        .time-filters,
+        .back-btn,
+        .ad-container,
+        .quick-search-modal,
+        .alphabet-quick-view {
+            display: none !important;
+        }
+
+        body {
+            background: white;
+            color: black;
+            padding: 0;
+            font-size: 11pt;
+        }
+
+        .time-bubble {
+            break-inside: avoid;
+            border: 1px solid #ccc !important;
+            background: white !important;
+            color: black !important;
+        }
+    }
+
+    /* Fix for mobile touch */
+    @media (max-width: 1000px) {
+        .quick-jump-btn,
+        .alphabet-btn,
+        .alphabet-mini-btn,
+        .floating-letter-btn,
+        .filter-btn,
+        .tab-btn,
+        .close-search,
+        .close-alphabet {
+            min-height: 40px;
+            min-width: 40px;
+            padding: 6px 8px;
+        }
+
+        /* Ensure alphabet drawer opens properly */
+        .alphabet-quick-view {
+            z-index: 1002 !important;
+            touch-action: pan-y !important;
+        }
+    }
+
+    /* Force no horizontal scroll on any zoom level */
+    body, html {
+        overflow-x: hidden;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .container, .quick-jump-content, .tabs-header, .time-filters {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Schedule optimization - More compact on small screens */
+    @media (max-width: 380px) {
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+            gap: 0.4rem;
+            padding: 0.6rem;
+        }
+
+        .time-bubble {
+            min-height: 40px;
+            padding: 0.4rem 0.1rem;
+            font-size: 0.75rem;
+        }
+
+        .bus-stop-name {
+            font-size: 0.95rem;
+        }
+
+        /* Time filters - even smaller on very small screens */
+        .time-filters {
+            gap: 0.2rem;
+        }
+
+        .filter-btn {
+            padding: 0.35rem 0.4rem;
+            font-size: 0.65rem;
+            min-width: 60px;
+        }
+
+        /* Ultra minimal vertical spacing alphabet drawer for very small screens */
+        .alphabet-view-grid {
+            grid-template-columns: repeat(auto-fill, minmax(22px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+            padding: 0.4rem;
+        }
+
+        .alphabet-btn {
+            width: 22px;
+            height: 22px;
+            font-size: 0.7rem;
+        }
+
+        .alphabet-view-header {
+            padding: 0.3rem 0.5rem;
+            height: 32px;
+        }
+
+        .alphabet-view-header h4 {
+            font-size: 0.8rem;
+        }
+
+        .close-alphabet {
+            font-size: 0.9rem;
+            width: 26px;
+            height: 26px;
+        }
+
+        /* Very minimal vertical spacing alphabet buttons */
+        .alphabet-mini-grid,
+        .floating-letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(22px, 1fr));
+            gap: 0.05rem; /* Drastically reduced vertical spacing */
+        }
+
+        .alphabet-mini-btn,
+        .floating-letter-btn {
+            width: 22px;
+            height: 22px;
+            font-size: 0.7rem;
+        }
+
+        /* Footer: 3 columns on very small screens */
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .footer-section:nth-child(3) {
+            grid-column: 1;
+        }
+    }
+    </style>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BusStation",
+        "name": "Pusad Bus Stand Timetable 2026 | MSRTC Ticket Price",
+        "description": "MSRTC Bus Depot in Pusad Tehsil, Yavatmal District",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Pusad Tehsil",
+            "addressRegion": "Yavatmal District",
+            "addressCountry": "IN"
+        },
+        "openingHours": "Mo-Su 05:00-23:00",
+        "department": {
+            "@type": "Organization",
+            "name": "Amravati Division Division"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../../../../index.html" class="logo">
+                    <i class="bi bi-bus-front"></i>
+                    <span>MSRTC Timetable</span>
+                </a>
+                <div class="time-display">
+                    <span class="current-time"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
+
+    <!-- Quick Jump Navigation -->
+    <div class="quick-jump-nav">
+        <div class="container">
+            <div class="quick-jump-content">
+                <a href="../../../../index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
+                    <i class="bi bi-buildings"></i>
+                    <span>Divisions</span>
+                </a>
+                <a href="../../../../index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
+                    <i class="bi bi-map"></i>
+                    <span>Districts</span>
+                </a>
+                <a href="../../../../index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
+                    <i class="bi bi-building"></i>
+                    <span>Tehsils</span>
+                </a>
+                <a href="../../../../index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
+                    <i class="bi bi-bus-front"></i>
+                    <span>Depots</span>
+                </a>
+                <button class="quick-jump-btn bus-stop-alphabet-trigger active">
+                    <i class="bi bi-sort-alpha-down"></i>
+                    <span>Bus Stops</span>
+                </button>
+                <button class="quick-jump-btn search-trigger">
+                    <i class="bi bi-search"></i>
+                    <span>Search</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Ad -->
+    <div class="ad-container top_ad">
+            <div class="ad-content">
+                
+                <div class="ad-mobile"><div class='ad-content'><i class='bi bi-phone'></i><span>Download Official MSRTC App</span><button class='ad-btn'>Download Now</button></div></div>
+                <div class="ad-desktop"><div class='ad-content'><i class='bi bi-phone' style='font-size: 1.5rem;'></i><div><strong>MSRTC Official App</strong><p>Book tickets, check schedules & more</p></div><button class='ad-btn'>Get App</button></div></div>
+            
+            </div>
+        </div>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Spacing after navigation -->
+            <div style="height: 10px;"></div>
+
+            <div class="navigation-buttons">
+                <a href="../index.html" class="back-btn">
+                    <i class="bi bi-arrow-left"></i> Back to Pusad Tehsil
+                </a>
+                <a href="../../../../index.html" class="back-btn">
+                    <i class="bi bi-house"></i> Back to Bus Schedule
+                </a>
+            </div>
+
+            <div class="depot-header">
+                <h1>Pusad Bus Stand Timetable 2026 | MSRTC Ticket Price</h1>
+                <p>Pusad Bus Stand, Pusad, Yavatmal District - 445204</p>
+                <div class="depot-info">
+                    <div class="info-item">
+                        <i class="bi bi-telephone"></i>
+                        <span>07233-246789</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-signpost"></i>
+                        <span>66 Bus Stops</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-bus-front"></i>
+                        <span>210 Buses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Ad -->
+            
+
+            <!-- Floating Bus Stop Letters - COMPACT DESIGN -->
+            <div class="floating-bus-stop-letters">
+                <div class="floating-letters-grid">
+                    <button class="floating-letter-btn " data-letter="a">A</button><button class="floating-letter-btn " data-letter="b">B</button><button class="floating-letter-btn " data-letter="c">C</button><button class="floating-letter-btn " data-letter="d">D</button><button class="floating-letter-btn disabled" data-letter="e">E</button><button class="floating-letter-btn " data-letter="f">F</button><button class="floating-letter-btn " data-letter="g">G</button><button class="floating-letter-btn " data-letter="h">H</button><button class="floating-letter-btn " data-letter="i">I</button><button class="floating-letter-btn " data-letter="j">J</button><button class="floating-letter-btn " data-letter="k">K</button><button class="floating-letter-btn " data-letter="l">L</button><button class="floating-letter-btn " data-letter="m">M</button><button class="floating-letter-btn " data-letter="n">N</button><button class="floating-letter-btn disabled" data-letter="o">O</button><button class="floating-letter-btn " data-letter="p">P</button><button class="floating-letter-btn disabled" data-letter="q">Q</button><button class="floating-letter-btn " data-letter="r">R</button><button class="floating-letter-btn " data-letter="s">S</button><button class="floating-letter-btn " data-letter="t">T</button><button class="floating-letter-btn " data-letter="u">U</button><button class="floating-letter-btn " data-letter="v">V</button><button class="floating-letter-btn " data-letter="w">W</button><button class="floating-letter-btn disabled" data-letter="x">X</button><button class="floating-letter-btn " data-letter="y">Y</button><button class="floating-letter-btn disabled" data-letter="z">Z</button>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="🔍 Search bus stops..." id="search-box">
+            </div>
+
+            <!-- Time Filters - COMPACT - FIXED FOR MOBILE -->
+            <div class="time-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="morning">5AM-12PM</button>
+                <button class="filter-btn" data-filter="afternoon">12PM-5PM</button>
+                <button class="filter-btn" data-filter="evening">5PM-10PM</button>
+                <button class="filter-btn" data-filter="night">10PM-5AM</button>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden">
+                <i class="bi bi-search"></i>
+                <h3>No buses found</h3>
+                <p>Try changing your filters or search term</p>
+            </div>
+
+            <!-- Bus Stops Schedule - COMPACT -->
+            <div class="bus-stop-section" id="busstop-a-adilabad" data-letter="a" data-busstop="adilabad">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Adilabad</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:00" title="6:00AM">
+                6:00AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="09:45" title="9:45AM">
+                9:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-a-akola" data-letter="a" data-busstop="akola">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Akola</h3>
+                        <span class="bus-count">11</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:00" title="6:00AM">
+                6:00AM
+            </div><div class="time-bubble morning" data-time="06:45" title="6:45AM">
+                6:45AM
+            </div><div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div><div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div><div class="time-bubble morning" data-time="08:45" title="8:45AM">
+                8:45AM
+            </div><div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-a-ambajogai" data-letter="a" data-busstop="ambajogai">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Ambajogai</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="11:05" title="11:05AM">
+                11:05AM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble night" data-time="02:00" title="2:00AM">
+                2:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-a-amravati" data-letter="a" data-busstop="amravati">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Amravati</h3>
+                        <span class="bus-count">7</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div><div class="time-bubble morning" data-time="07:10" title="7:10AM">
+                7:10AM
+            </div><div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble morning" data-time="08:55" title="8:55AM">
+                8:55AM
+            </div><div class="time-bubble morning" data-time="09:35" title="9:35AM">
+                9:35AM
+            </div><div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div><div class="time-bubble afternoon" data-time="12:45" title="12:45PM">
+                12:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-a-ausa" data-letter="a" data-busstop="ausa">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Ausa</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-b-banoli" data-letter="b" data-busstop="banoli">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Banoli</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-b-beed" data-letter="b" data-busstop="beed">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Beed</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-b-bramhapuri" data-letter="b" data-busstop="bramhapuri">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Bramhapuri</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:25" title="7:25AM">
+                7:25AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-c-chandrapur" data-letter="c" data-busstop="chandrapur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Chandrapur</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="10:35" title="10:35AM">
+                10:35AM
+            </div><div class="time-bubble morning" data-time="11:35" title="11:35AM">
+                11:35AM
+            </div><div class="time-bubble night" data-time="00:30" title="12:30AM">
+                12:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-c-chincholi" data-letter="c" data-busstop="chincholi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Chincholi</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:45" title="6:45AM">
+                6:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-d-darvha" data-letter="d" data-busstop="darvha">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Darvha</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="16:15" title="4:15PM">
+                4:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-d-deglur" data-letter="d" data-busstop="deglur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Deglur</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="13:10" title="1:10PM">
+                1:10PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-d-digras" data-letter="d" data-busstop="digras">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Digras</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="14:05" title="2:05PM">
+                2:05PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="18:30" title="6:30PM">
+                6:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-f-fulsawangi" data-letter="f" data-busstop="fulsawangi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Fulsawangi</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-g-gadchiroli" data-letter="g" data-busstop="gadchiroli">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Gadchiroli</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:55" title="8:55AM">
+                8:55AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-g-gevrai" data-letter="g" data-busstop="gevrai">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Gevrai</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:15" title="6:15AM">
+                6:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-g-gondia" data-letter="g" data-busstop="gondia">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Gondia</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-h-hadgaon" data-letter="h" data-busstop="hadgaon">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Hadgaon</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="15:15" title="3:15PM">
+                3:15PM
+            </div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">
+                4:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-h-hingoli" data-letter="h" data-busstop="hingoli">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Hingoli</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble evening" data-time="19:30" title="7:30PM">
+                7:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-h-hirked" data-letter="h" data-busstop="hirked">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Hirked</h3>
+                        <span class="bus-count">5</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble morning" data-time="10:30" title="10:30AM">
+                10:30AM
+            </div><div class="time-bubble morning" data-time="10:30" title="10:30AM">
+                10:30AM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-i-isapur" data-letter="i" data-busstop="isapur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Isapur</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-j-jalgaon" data-letter="j" data-busstop="jalgaon">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Jalgaon</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-j-jamnaik" data-letter="j" data-busstop="jamnaik">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Jamnaik</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kandhar" data-letter="k" data-busstop="kandhar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kandhar</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="11:00" title="11:00AM">
+                11:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kedarlin" data-letter="k" data-busstop="kedarlin">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kedarlin</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kinwat" data-letter="k" data-busstop="kinwat">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kinwat</h3>
+                        <span class="bus-count">6</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble afternoon" data-time="13:45" title="1:45PM">
+                1:45PM
+            </div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kothari" data-letter="k" data-busstop="kothari">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kothari</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kumbhari" data-letter="k" data-busstop="kumbhari">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kumbhari</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-l-latur" data-letter="l" data-busstop="latur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Latur</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble night" data-time="00:00" title="12:00AM">
+                12:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mahagaon" data-letter="m" data-busstop="mahagaon">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mahagaon</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div><div class="time-bubble morning" data-time="11:00" title="11:00AM">
+                11:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mahagaon-bevti" data-letter="m" data-busstop="mahagaon bevti">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mahagaon Bevti</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:45" title="8:45AM">
+                8:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mahur" data-letter="m" data-busstop="mahur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mahur</h3>
+                        <span class="bus-count">12</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div><div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div><div class="time-bubble afternoon" data-time="12:45" title="12:45PM">
+                12:45PM
+            </div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">
+                4:15PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="17:30" title="5:30PM">
+                5:30PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-marwadi-phata" data-letter="m" data-busstop="marwadi phata">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Marwadi Phata</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mop" data-letter="m" data-busstop="mop">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mop</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mumbai-central" data-letter="m" data-busstop="mumbai central">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mumbai Central</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="15:00" title="3:00PM">
+                3:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mulava" data-letter="m" data-busstop="mulava">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mulava</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble evening" data-time="19:00" title="7:00PM">
+                7:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nagpur" data-letter="n" data-busstop="nagpur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nagpur</h3>
+                        <span class="bus-count">23</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="05:15" title="5:15AM">
+                5:15AM
+            </div><div class="time-bubble morning" data-time="06:15" title="6:15AM">
+                6:15AM
+            </div><div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div><div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div><div class="time-bubble morning" data-time="08:50" title="8:50AM">
+                8:50AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="09:55" title="9:55AM">
+                9:55AM
+            </div><div class="time-bubble morning" data-time="10:35" title="10:35AM">
+                10:35AM
+            </div><div class="time-bubble morning" data-time="11:30" title="11:30AM">
+                11:30AM
+            </div><div class="time-bubble morning" data-time="11:55" title="11:55AM">
+                11:55AM
+            </div><div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble afternoon" data-time="13:45" title="1:45PM">
+                1:45PM
+            </div><div class="time-bubble afternoon" data-time="14:10" title="2:10PM">
+                2:10PM
+            </div><div class="time-bubble afternoon" data-time="14:15" title="2:15PM">
+                2:15PM
+            </div><div class="time-bubble afternoon" data-time="15:00" title="3:00PM">
+                3:00PM
+            </div><div class="time-bubble afternoon" data-time="15:45" title="3:45PM">
+                3:45PM
+            </div><div class="time-bubble evening" data-time="20:40" title="8:40PM">
+                8:40PM
+            </div><div class="time-bubble night" data-time="00:00" title="12:00AM">
+                12:00AM
+            </div><div class="time-bubble night" data-time="01:30" title="1:30AM">
+                1:30AM
+            </div><div class="time-bubble night" data-time="03:30" title="3:30AM">
+                3:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nanded" data-letter="n" data-busstop="nanded">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nanded</h3>
+                        <span class="bus-count">17</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="05:30" title="5:30AM">
+                5:30AM
+            </div><div class="time-bubble morning" data-time="06:00" title="6:00AM">
+                6:00AM
+            </div><div class="time-bubble morning" data-time="06:15" title="6:15AM">
+                6:15AM
+            </div><div class="time-bubble morning" data-time="08:40" title="8:40AM">
+                8:40AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="09:45" title="9:45AM">
+                9:45AM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble afternoon" data-time="13:45" title="1:45PM">
+                1:45PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div><div class="time-bubble afternoon" data-time="14:25" title="2:25PM">
+                2:25PM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble afternoon" data-time="16:50" title="4:50PM">
+                4:50PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div><div class="time-bubble evening" data-time="19:00" title="7:00PM">
+                7:00PM
+            </div><div class="time-bubble night" data-time="01:15" title="1:15AM">
+                1:15AM
+            </div><div class="time-bubble night" data-time="01:30" title="1:30AM">
+                1:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nanded-j" data-letter="n" data-busstop="nanded-j">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nanded-J</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:45" title="12:45PM">
+                12:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nanded-k" data-letter="n" data-busstop="nanded-k">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nanded-K</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nanded-r" data-letter="n" data-busstop="nanded-r">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nanded-R</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nanded-s" data-letter="n" data-busstop="nanded-s">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nanded-S</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-pandharkawada" data-letter="p" data-busstop="pandharkawada">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Pandharkawada</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-pandharpur" data-letter="p" data-busstop="pandharpur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Pandharpur</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble night" data-time="04:15" title="4:15AM">
+                4:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-parbhani" data-letter="p" data-busstop="parbhani">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Parbhani</h3>
+                        <span class="bus-count">5</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="05:30" title="5:30AM">
+                5:30AM
+            </div><div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble afternoon" data-time="14:15" title="2:15PM">
+                2:15PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-parli" data-letter="p" data-busstop="parli">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Parli</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-partwada" data-letter="p" data-busstop="partwada">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Partwada</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="14:55" title="2:55PM">
+                2:55PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-poharadevi" data-letter="p" data-busstop="poharadevi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Poharadevi</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="16:45" title="4:45PM">
+                4:45PM
+            </div><div class="time-bubble evening" data-time="20:15" title="8:15PM">
+                8:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-pokhari" data-letter="p" data-busstop="pokhari">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Pokhari</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-pune" data-letter="p" data-busstop="pune">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Pune</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div><div class="time-bubble evening" data-time="18:30" title="6:30PM">
+                6:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-r-rajana" data-letter="r" data-busstop="rajana">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Rajana</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-r-rajura" data-letter="r" data-busstop="rajura">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Rajura</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:15" title="8:15AM">
+                8:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-r-rui" data-letter="r" data-busstop="rui">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Rui</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble evening" data-time="18:30" title="6:30PM">
+                6:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-sakoli" data-letter="s" data-busstop="sakoli">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Sakoli</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-sambhajinagar" data-letter="s" data-busstop="sambhajinagar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Sambhajinagar</h3>
+                        <span class="bus-count">12</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="10:30" title="10:30AM">
+                10:30AM
+            </div><div class="time-bubble morning" data-time="10:45" title="10:45AM">
+                10:45AM
+            </div><div class="time-bubble afternoon" data-time="12:20" title="12:20PM">
+                12:20PM
+            </div><div class="time-bubble afternoon" data-time="12:45" title="12:45PM">
+                12:45PM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble afternoon" data-time="14:15" title="2:15PM">
+                2:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-shegaon" data-letter="s" data-busstop="shegaon">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Shegaon</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble afternoon" data-time="15:45" title="3:45PM">
+                3:45PM
+            </div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">
+                4:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-shirdi" data-letter="s" data-busstop="shirdi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Shirdi</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:50" title="6:50AM">
+                6:50AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-solapur" data-letter="s" data-busstop="solapur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Solapur</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble night" data-time="22:15" title="10:15PM">
+                10:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-t-tiroda" data-letter="t" data-busstop="tiroda">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Tiroda</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:45" title="6:45AM">
+                6:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-u-umred" data-letter="u" data-busstop="umred">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Umred</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-u-umarkhed" data-letter="u" data-busstop="umarkhed">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Umarkhed</h3>
+                        <span class="bus-count">9</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="11:45" title="11:45AM">
+                11:45AM
+            </div><div class="time-bubble morning" data-time="11:50" title="11:50AM">
+                11:50AM
+            </div><div class="time-bubble afternoon" data-time="16:20" title="4:20PM">
+                4:20PM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="17:45" title="5:45PM">
+                5:45PM
+            </div><div class="time-bubble evening" data-time="18:30" title="6:30PM">
+                6:30PM
+            </div><div class="time-bubble evening" data-time="18:45" title="6:45PM">
+                6:45PM
+            </div><div class="time-bubble evening" data-time="19:45" title="7:45PM">
+                7:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-v-vakhatlur" data-letter="v" data-busstop="vakhatlur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Vakhatlur</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-v-vasmat" data-letter="v" data-busstop="vasmat">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Vasmat</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:30" title="10:30AM">
+                10:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-w-washim" data-letter="w" data-busstop="washim">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Washim</h3>
+                        <span class="bus-count">6</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:55" title="9:55AM">
+                9:55AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:10" title="10:10AM">
+                10:10AM
+            </div><div class="time-bubble morning" data-time="11:30" title="11:30AM">
+                11:30AM
+            </div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-y-yavatmal" data-letter="y" data-busstop="yavatmal">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Yavatmal</h3>
+                        <span class="bus-count">8</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div><div class="time-bubble morning" data-time="08:40" title="8:40AM">
+                8:40AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-y-yawal" data-letter="y" data-busstop="yawal">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Yawal</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div>
+                    </div>
+                </div>
+
+            <!-- Depot About Section -->
+            
+                <div class="depot-about-section mt-3">
+                    <h2>About Pusad Bus Stand Timetable 2026 | MSRTC Ticket Price Depot</h2>
+                    <div class="about-content">
+                        <p><strong>Pusad Bus Stand</strong> हे महाराष्ट्र राज्य मार्ग परिवहन महामंडळ (MSRTC) अंतर्गत येणारे यवतमाळ जिल्ह्यातील एक अत्यंत महत्त्वाचे आणि व्यस्त बसस्थानक आहे. विदर्भ आणि मराठवाडा या दोन प्रमुख विभागांना जोडणारा हा एक strategic transport hub म्हणून ओळखला जातो. Pusad शहर हे Yavatmal district च्या दक्षिण भागात स्थित असून नागपूर, अमरावती, यवतमाळ, नांदेड, परभणी, लातूर, संभाजीनगर (Aurangabad) आणि पुणे यांसारख्या मोठ्या शहरांना जोडणाऱ्या प्रमुख राज्य मार्गांवर वसलेले आहे. त्यामुळे Pusad Bus Stand वरून दररोज मोठ्या प्रमाणात प्रवासी वाहतूक होते.</p>
+
+<p>Pusad Bus Stand वरून दररोज सुमारे ८५ ते १०० पेक्षा अधिक MSRTC बसेस विविध दिशांना सुटतात. यामध्ये साध्या (Ordinary), निमआराम (Semi Luxury), शिवशाही (Shivshahi), आणि काही मार्गांवर रात्रीच्या वेळी Sleeper किंवा Express सेवांचा समावेश होतो. ग्रामीण भागातील गावांना तालुका व जिल्हा मुख्यालयाशी जोडण्याचे महत्त्वाचे काम हे बसस्थानक करत असून त्यामुळे शेतकरी, विद्यार्थी, कर्मचारी आणि व्यापारी वर्गासाठी हे एक विश्वासार्ह सार्वजनिक वाहतूक केंद्र ठरते.</p>
+
+<p>Pusad शहराची भौगोलिक स्थिती लक्षात घेता, हे बसस्थानक विशेषतः Yavatmal–Nanded, Pusad–Parbhani, Pusad–Latur आणि Pusad–Nagpur अशा महत्त्वाच्या मार्गांसाठी transit point म्हणून वापरले जाते. सकाळी लवकर सुटणाऱ्या बसेस या दैनिक प्रवाशांसाठी (daily commuters) अत्यंत उपयुक्त आहेत. अनेक प्रवासी नोकरी, शिक्षण, शासकीय कामकाज किंवा वैद्यकीय उपचारांसाठी दररोज Pusad Bus Stand वरून प्रवास करतात.</p>
+
+<p>लांब पल्ल्याच्या (Long Distance) प्रवासासाठी संध्याकाळी आणि रात्री विशेष बसेस उपलब्ध असतात. Pune, Sambhajinagar, Nanded, Latur आणि Parbhani या शहरांकडे जाणाऱ्या बसेस प्रामुख्याने रात्रीच्या वेळेत सुटतात, ज्यामुळे प्रवाशांना वेळेची बचत होते. MSRTC द्वारे वेळोवेळी timetable updates केले जातात आणि सणासुदीच्या काळात additional buses चालवून वाढती गर्दी नियंत्रित केली जाते.</p>
+
+<p>Pusad Bus Stand मधील सुविधा प्रवाशांच्या दृष्टीने अत्यंत उपयुक्त आहेत. येथे स्वतंत्र ticket counter, comfortable waiting area, drinking water facility, स्वच्छतागृहे (toilets) आणि खासगी वाहनांसाठी parking व्यवस्था उपलब्ध आहे. वृद्ध नागरिक, महिला आणि दिव्यांग प्रवाशांसाठी बसस्थानक परिसर तुलनेने सोयीस्कर ठेवण्यात आलेला आहे. बसस्थानक परिसरात स्थानिक दुकाने, चहाचे टपरे आणि छोट्या खाद्यगृहांचीही सुविधा आहे, ज्यामुळे प्रवाशांना मूलभूत गरजा सहज पूर्ण करता येतात.</p>
+
+<p>Pusad Bus Stand हे केवळ शहरापुरते मर्यादित नसून आजूबाजूच्या अनेक ग्रामीण गावांसाठी lifeline ठरते. तालुक्यातील शेकडो खेडी Pusad Bus Stand शी थेट किंवा अप्रत्यक्षपणे जोडलेली आहेत. विद्यार्थी उच्च शिक्षणासाठी, शेतकरी बाजारपेठेसाठी आणि ग्रामीण नागरिक जिल्हा व तालुका स्तरावरील सेवा मिळवण्यासाठी या बसस्थानकावर अवलंबून असतात. त्यामुळे MSRTC Pusad depot हे सामाजिक आणि आर्थिक दृष्ट्या महत्त्वाची भूमिका बजावते.</p>
+
+<p>Digital India उपक्रमाअंतर्गत MSRTC ने online ticket booking, mobile apps आणि SMS-based माहिती सेवा सुरू केल्यामुळे Pusad Bus Stand वरून प्रवास करणाऱ्या प्रवाशांना आता timetable, bus availability आणि seat booking याबाबत माहिती मिळवणे अधिक सोपे झाले आहे. तरीही ग्रामीण भागातील अनेक प्रवासी अजूनही counter-based ticketing वापरतात, त्यामुळे दोन्ही प्रणालींचा समतोल येथे पाहायला मिळतो.</p>
+
+<p>सणासुदीच्या काळात – जसे की दिवाळी, दसरा, होळी, गणेशोत्सव किंवा आषाढी एकादशी – प्रवाशांची संख्या मोठ्या प्रमाणात वाढते. अशा वेळी MSRTC Pusad Bus Stand वरून extra buses operate करून प्रवाशांची गैरसोय टाळण्याचा प्रयत्न करते. प्रशासन आणि स्थानिक कर्मचारी प्रवाशांच्या सुरक्षिततेसाठी आणि वेळापत्रक सुरळीत चालण्यासाठी विशेष लक्ष देतात.</p>
+
+<p>Pusad Bus Stand ची विश्वासार्हता ही अनेक वर्षांच्या अनुभवातून तयार झाली आहे. नियमित प्रवास करणारे प्रवासी वेळेवर बस सुटणे, चालक आणि वाहकांचा अनुभव, तसेच MSRTC ची शासकीय जबाबदारी यामुळे या बसस्थानकावर विश्वास ठेवतात. जरी खाजगी वाहतूक पर्याय उपलब्ध असले तरी, सुरक्षितता, परवडणारे भाडे आणि विस्तृत नेटवर्क यामुळे MSRTC आणि विशेषतः Pusad Bus Stand हे आजही प्राधान्याने निवडले जाते.</p>
+
+<p>एकंदर पाहता, <strong>Pusad Bus Stand</strong> हे दक्षिण यवतमाळ जिल्ह्यासाठी एक अत्यंत आवश्यक, विश्वासार्ह आणि कार्यक्षम transport hub आहे. ग्रामीण ते शहरी जोडणी, विदर्भ–मराठवाडा संपर्क, आणि लाखो प्रवाशांच्या दैनंदिन गरजांसाठी हे बसस्थानक महत्त्वाची भूमिका बजावत आहे. भविष्यात आधुनिक सुविधा, digital upgrades आणि सुधारित timetable management मुळे Pusad Bus Stand ची उपयुक्तता आणखी वाढेल, असा विश्वास प्रवासी आणि MSRTC प्रशासन दोघांनाही आहे.</p>
+
+                    </div>
+                </div>
+            
+
+            <!-- FAQ Section -->
+            
+                <div class="faq-section mt-3">
+                    <h2>FAQs</h2>
+                    <div class="faq-container">
+                        
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Pusad Bus Stand वरून सर्वात पहिली बस कोणत्या मार्गावर जाते?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Pusad Bus Stand वरून सर्वात पहिली बस साधारणपणे मध्यरात्री 00:00 वाजता नागपूर मार्गावर सुटते, जी लांब पल्ल्याच्या प्रवाशांसाठी अत्यंत उपयुक्त असते.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Pusad ते Nagpur बस किती वेळा उपलब्ध असतात?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Pusad ते Nagpur दरम्यान दिवसभर अनेक फेऱ्या उपलब्ध असून सकाळ, दुपार, संध्याकाळ आणि रात्री अशा सर्व वेळांमध्ये बस सेवा चालू असते.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Pusad Bus Stand वरून Pune साठी थेट बस आहे का?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    होय, Pusad Bus Stand वरून पुण्यासाठी थेट MSRTC बस सेवा उपलब्ध असून त्या प्रामुख्याने सकाळी आणि संध्याकाळी सुटतात.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Pusad ते Nanded मार्गावर बस किती वेळा असतात?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Pusad ते Nanded मार्गावर दिवसभरात अनेक बसेस धावतात, विशेषतः सकाळी आणि संध्याकाळी प्रवाशांची संख्या जास्त असते.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Mahur साठी बस कोणत्या वेळेला मिळते?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Mahur साठी सकाळी लवकर, दुपारी आणि संध्याकाळी नियमित बस सेवा उपलब्ध असून धार्मिक प्रवाशांसाठी ही सेवा महत्त्वाची आहे.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>सणासुदीच्या काळात अतिरिक्त बस सेवा मिळते का?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    होय, दिवाळी, दसरा आणि यात्रेच्या काळात MSRTC द्वारे अतिरिक्त बसेस चालवल्या जातात.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>तिकीट आगाऊ बुकिंगची सुविधा आहे का?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Pusad Bus Stand वर तिकीट काउंटरवर आगाऊ बुकिंग तसेच MSRTC ऑनलाइन पोर्टलद्वारे आरक्षण करता येते.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Pusad Bus Stand सकाळी किती वाजता सुरू होते?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    बसस्थानक साधारणतः पहाटे 4:00 वाजता कार्यरत होते आणि रात्री उशिरापर्यंत सेवा सुरू असते.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>विद्यार्थ्यांसाठी सवलत उपलब्ध आहे का?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    होय, MSRTC नियमांनुसार विद्यार्थ्यांसाठी सवलतीचे पास आणि तिकीट सुविधा उपलब्ध आहेत.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Pusad Bus Stand वर मूलभूत सुविधा उपलब्ध आहेत का?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    प्रवाशांसाठी प्रतीक्षालय, पाणी, स्वच्छतागृहे आणि माहिती काउंटर अशा मूलभूत सुविधा येथे उपलब्ध आहेत.
+                                </div>
+                            </div>
+                            
+                </div>
+            
+
+            <!-- Related Links Section -->
+            
+
+            <!-- SEO Content -->
+            <div class="seo-content">
+            <h2>Pusad Bus Stand Timetable – MSRTC Buses to Nagpur, Nanded, Pune</h2>
+            <p>Pusad Bus Stand is a major MSRTC depot in Yavatmal district connecting Vidarbha and Marathwada regions. With direct bus services to Nagpur, Amravati, Yavatmal, Nanded, Parbhani, Latur and Pune, it serves as a crucial transit hub for daily commuters and long-distance travelers.</p><p>The bus stand handles more than 85 buses daily, offering early morning, daytime and night services. Facilities like ticket counters, waiting hall and seasonal special buses ensure smooth travel operations. Passengers are advised to reach the bus stand at least 15 minutes before departure for hassle-free boarding.</p>
+
+            
+        </div>
+        </div>
+    </main>
+
+    <!-- Footer Ad -->
+    
+
+    <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <div class="footer-links">
+                            <a href="../../../../index.html">Home</a>
+                            <a href="../../../../about.html">About</a>
+                            <a href="../../../../contact.html">Contact</a>
+                            <a href="../../../../blogs/index.html">Blogs</a>
+                            <a href="../../../../terms.html">Terms</a>
+                            <a href="../../../../privacy.html">Privacy</a>
+                        </div>
+                    </div>
+
+                    <!-- MSRTC Info - NEW COLUMN -->
+                    <div class="footer-section">
+                        <h3>MSRTC Official</h3>
+                        <div class="footer-links">
+                            <a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a>
+                            <a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a>
+                            <a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a>
+                            <a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a>
+                        </div>
+                    </div>
+
+                    <!-- Useful Links - NEW COLUMN -->
+                    <div class="footer-section">
+                        <h3>Useful Links</h3>
+                        <div class="footer-links">
+                            <a href="../../../../disclaimer.html">Disclaimer</a>
+                            <a href="../../../../sitemap.xml">Sitemap</a>
+                            <a href="../../../../contact.html#feedback">Feedback</a>
+                            <a href="../../../../contact.html#report">Report Issue</a>
+                        </div>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="copyright">
+                        © 2026 MSRTC Timetable.<br>
+                        This is an unofficial timetable portal.<br>
+                        <small>All bus schedules are for reference only.</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Quick Search Modal -->
+    <div class="quick-search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="bi bi-search"></i> Search</h3>
+                <button class="close-search">&times;</button>
+            </div>
+            <div class="search-modal-body">
+                <input type="text" class="global-search-input" placeholder="Search bus stops in Pusad Bus Stand Timetable 2026 | MSRTC Ticket Price...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alphabet Quick View -->
+    <div class="alphabet-quick-view" id="alphabetView">
+        <div class="alphabet-view-header">
+            <h4>Jump to Letter</h4>
+            <button class="close-alphabet">&times;</button>
+        </div>
+        <div class="alphabet-view-grid">
+            <button class="alphabet-btn" data-letter="A">A</button><button class="alphabet-btn" data-letter="B">B</button><button class="alphabet-btn" data-letter="C">C</button><button class="alphabet-btn" data-letter="D">D</button><button class="alphabet-btn" data-letter="E">E</button><button class="alphabet-btn" data-letter="F">F</button><button class="alphabet-btn" data-letter="G">G</button><button class="alphabet-btn" data-letter="H">H</button><button class="alphabet-btn" data-letter="I">I</button><button class="alphabet-btn" data-letter="J">J</button><button class="alphabet-btn" data-letter="K">K</button><button class="alphabet-btn" data-letter="L">L</button><button class="alphabet-btn" data-letter="M">M</button><button class="alphabet-btn" data-letter="N">N</button><button class="alphabet-btn" data-letter="O">O</button><button class="alphabet-btn" data-letter="P">P</button><button class="alphabet-btn" data-letter="Q">Q</button><button class="alphabet-btn" data-letter="R">R</button><button class="alphabet-btn" data-letter="S">S</button><button class="alphabet-btn" data-letter="T">T</button><button class="alphabet-btn" data-letter="U">U</button><button class="alphabet-btn" data-letter="V">V</button><button class="alphabet-btn" data-letter="W">W</button><button class="alphabet-btn" data-letter="X">X</button><button class="alphabet-btn" data-letter="Y">Y</button><button class="alphabet-btn" data-letter="Z">Z</button>
+        </div>
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // MSRTC Bus Timetable Application - Mobile Optimized
+class BusTimetableApp {
+    constructor() {
+        this.istOffset = 5.5 * 60 * 60 * 1000;
+        this.activeFilter = 'all';
+        this.searchTerm = '';
+        this.activeTab = 'divisions'; // Track active tab
+        this.init();
+    }
+
+    init() {
+        console.log('🚌 MSRTC Bus Timetable App Initialized');
+
+        // Initialize URL constants if not already loaded
+        if (typeof window.getUrlFromConstant === 'undefined') {
+            console.warn('URL constants not loaded yet');
+            // Try to load them
+            this.loadUrlConstants();
+        }
+
+        // Handle hash navigation on page load
+        if (window.location.hash) {
+            setTimeout(() => {
+                this.handleHashNavigation();
+            }, 100);
+        }
+
+        // Update time display
+        this.updateTimeDisplay();
+        setInterval(() => this.updateTimeDisplay(), 1000);
+
+        // Initialize tabs
+        this.initAllTabs();
+
+        // Initialize quick jump navigation
+        this.initQuickJump();
+
+        // Initialize alphabet navigation
+        this.initAlphabetNavigation();
+
+        // Initialize search functionality
+        this.initSearch();
+
+        // Initialize depot-specific features
+        if (document.querySelector('.time-filters')) {
+            this.initFilters();
+            this.initTimeClick();
+            setTimeout(() => {
+                this.highlightNextBus();
+                this.applyFilters();
+            }, 100);
+        }
+
+        // Initialize scroll highlighting
+        if (document.querySelector('.bus-stop-section') || document.querySelector('.rectangular-card')) {
+            this.initScrollHighlighting();
+        }
+
+        // Initialize bus stop alphabet navigation
+        this.initBusStopAlphabetNavigation();
+
+        // Prevent horizontal scroll
+        this.preventHorizontalScroll();
+
+        // Mobile-specific optimizations
+        this.mobileOptimizations();
+
+        // Track active tab for alphabet drawer visibility
+        this.trackActiveTab();
+
+        // Initialize blog links with URL constants
+        this.initBlogLinks();
+    }
+
+    loadUrlConstants() {
+        // If URL constants are not loaded, try to load them
+        if (typeof window.URL_CONSTANTS === 'undefined') {
+            console.log('Loading URL constants...');
+            // The constants should be loaded via script tag in the HTML
+        }
+    }
+
+    initBlogLinks() {
+        // Wait a bit for URL constants to load
+        setTimeout(() => {
+            if (typeof window.handleBlogLinkClick !== 'undefined') {
+                // Add click handlers to all blog links with data-constant attribute
+                document.querySelectorAll('.blog-link[data-constant]').forEach(function(link) {
+                    link.addEventListener('click', window.handleBlogLinkClick);
+                });
+                console.log('Blog links with URL constants initialized');
+            } else {
+                console.warn('URL constants functions not available for blog links');
+            }
+        }, 500);
+    }
+
+    mobileOptimizations() {
+        // Reduce animations on mobile
+        if ('ontouchstart' in window || navigator.maxTouchPoints) {
+            document.documentElement.style.setProperty('--transition-speed', '0.2s');
+        }
+    }
+
+    preventHorizontalScroll() {
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflowX = 'hidden';
+
+        window.addEventListener('resize', () => {
+            document.body.style.overflowX = 'hidden';
+            document.documentElement.style.overflowX = 'hidden';
+        });
+    }
+
+    handleHashNavigation() {
+        if (window.location.pathname.endsWith('index.html') ||
+            window.location.pathname.endsWith('/')) {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['divisions', 'districts', 'tehsils', 'depots'].includes(hash)) {
+                const tabButton = document.querySelector(`.tab-btn[data-tab="${hash}"]`);
+                if (tabButton) {
+                    tabButton.click();
+                }
+            }
+        }
+    }
+
+    updateTimeDisplay() {
+        const now = new Date();
+        const istTime = new Date(now.getTime() + this.istOffset);
+
+        let hours = istTime.getUTCHours();
+        const minutes = istTime.getUTCMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        hours = hours % 12 || 12;
+        const displayHours = hours.toString().padStart(2, '0');
+
+        document.querySelectorAll('.current-time').forEach(timeDisplay => {
+            timeDisplay.textContent = `${displayHours}:${minutes} ${ampm}`;
+        });
+
+        if (document.querySelector('.time-filters') && now.getSeconds() % 30 === 0) {
+            this.highlightNextBus();
+        }
+    }
+
+    trackActiveTab() {
+        // Observe tab changes to show/hide alphabet drawer
+        const observer = new MutationObserver(() => {
+            const activeTabBtn = document.querySelector('.tab-btn.active');
+            if (activeTabBtn) {
+                this.activeTab = activeTabBtn.dataset.tab;
+                this.updateAlphabetDrawerVisibility();
+            }
+        });
+
+        const tabsHeader = document.querySelector('.tabs-header');
+        if (tabsHeader) {
+            observer.observe(tabsHeader, { attributes: true, subtree: true });
+        }
+    }
+
+    updateAlphabetDrawerVisibility() {
+        // Show alphabet drawer only for tehsil and depot tabs
+        const tehsilAlphabetDrawer = document.getElementById('tehsilAlphabetDrawer');
+        const depotAlphabetDrawer = document.getElementById('depotAlphabetDrawer');
+
+        if (this.activeTab === 'tehsils' && tehsilAlphabetDrawer) {
+            tehsilAlphabetDrawer.style.display = 'block';
+        } else if (tehsilAlphabetDrawer) {
+            tehsilAlphabetDrawer.style.display = 'none';
+        }
+
+        if (this.activeTab === 'depots' && depotAlphabetDrawer) {
+            depotAlphabetDrawer.style.display = 'block';
+        } else if (depotAlphabetDrawer) {
+            depotAlphabetDrawer.style.display = 'none';
+        }
+    }
+
+    initAllTabs() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tabId}-tab`) {
+                        content.classList.add('active');
+                    }
+                });
+
+                document.querySelectorAll('.quick-jump-btn[data-tab]').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.tab === tabId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                if (window.location.pathname.endsWith('index.html') ||
+                    window.location.pathname.endsWith('/')) {
+                    window.history.replaceState(null, null, `#${tabId}`);
+                }
+
+                localStorage.setItem('activeTab', tabId);
+                this.activeTab = tabId;
+                this.updateAlphabetDrawerVisibility();
+
+                // Reset scroll when switching tabs
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+            });
+        });
+
+        const savedTab = localStorage.getItem('activeTab') || 'divisions';
+        const savedButton = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
+        if (savedButton) {
+            savedButton.click();
+        }
+    }
+
+    initQuickJump() {
+        document.querySelectorAll('.search-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showSearchModal();
+            });
+        });
+
+        document.querySelectorAll('.alphabet-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.showAlphabetView();
+            });
+        });
+
+        document.querySelectorAll('.bus-stop-alphabet-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.scrollToBusStopSection('A');
+            });
+        });
+
+        document.querySelectorAll('.quick-jump-btn[data-tab]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = btn.dataset.tab;
+                const hash = btn.dataset.hash || tabId;
+
+                const isHomepage = window.location.pathname.endsWith('index.html') ||
+                                  window.location.pathname.endsWith('/');
+
+                if (isHomepage) {
+                    const mainTabButton = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+                    if (mainTabButton) {
+                        mainTabButton.click();
+
+                        setTimeout(() => {
+                            const tabsSection = document.querySelector('.tabs-container');
+                            if (tabsSection) {
+                                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                                   document.querySelector('.quick-jump-nav').offsetHeight;
+                                const sectionTop = tabsSection.offsetTop - headerHeight - 10;
+
+                                window.scrollTo({
+                                    top: sectionTop,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100);
+                    }
+                } else {
+                    window.location.href = `index.html#${hash}`;
+                }
+            });
+        });
+    }
+
+    initAlphabetNavigation() {
+        const alphabetButtons = document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn');
+        alphabetButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.classList.contains('disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const letter = button.dataset.letter;
+
+                // First try to jump to depot cards (for depot tab)
+                if (this.activeTab === 'depots') {
+                    if (this.jumpToDepotCards(letter)) {
+                        this.highlightAlphabetButton(button);
+                        this.hideAlphabetView();
+                        return;
+                    }
+                }
+
+                // Then try to jump to tehsil cards (for tehsil tab)
+                if (this.activeTab === 'tehsils') {
+                    if (this.jumpToTehsilCards(letter)) {
+                        this.highlightAlphabetButton(button);
+                        this.hideAlphabetView();
+                        return;
+                    }
+                }
+
+                // Fallback to generic jump
+                this.jumpToLetter(letter);
+                this.highlightAlphabetButton(button);
+                this.hideAlphabetView();
+            });
+
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                button.click();
+            });
+        });
+    }
+
+    highlightAlphabetButton(clickedButton) {
+        // Remove active class from all alphabet buttons
+        document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn, .floating-letter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Add active class to clicked button
+        clickedButton.classList.add('active');
+    }
+
+    jumpToDepotCards(letter) {
+        const depotCards = document.querySelectorAll('#depots-tab .rectangular-card');
+        for (const card of depotCards) {
+            const cardAlphabet = card.dataset.alphabet;
+            const cardTitle = card.querySelector('h3');
+            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
+                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: cardTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(card);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    jumpToTehsilCards(letter) {
+        const tehsilCards = document.querySelectorAll('#tehsils-tab .rectangular-card');
+        for (const card of tehsilCards) {
+            const cardAlphabet = card.dataset.alphabet;
+            const cardTitle = card.querySelector('h3');
+            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
+                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: cardTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(card);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    initBusStopAlphabetNavigation() {
+        const floatingButtons = document.querySelectorAll('.floating-letter-btn');
+        floatingButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.classList.contains('disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const letter = button.dataset.letter;
+                this.scrollToBusStopSection(letter);
+
+                floatingButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.letter === letter) {
+                        btn.classList.add('active');
+                    }
+                });
+            });
+
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                button.click();
+            });
+        });
+    }
+
+    scrollToBusStopSection(letter) {
+        const lookupLetter = letter.toLowerCase();
+        const busStopSections = document.querySelectorAll(`.bus-stop-section[data-letter="${lookupLetter}"]`);
+
+        if (busStopSections.length > 0) {
+            const headerHeight = document.querySelector('.site-header').offsetHeight +
+                               document.querySelector('.quick-jump-nav').offsetHeight + 10;
+            const sectionTop = busStopSections[0].offsetTop - headerHeight;
+
+            window.scrollTo({
+                top: sectionTop,
+                behavior: 'smooth'
+            });
+
+            this.highlightElement(busStopSections[0]);
+            return true;
+        }
+
+        const allSections = document.querySelectorAll('.bus-stop-section');
+        for (const section of allSections) {
+            const busStopName = section.querySelector('.bus-stop-name')?.textContent.trim();
+            if (busStopName && busStopName.charAt(0).toLowerCase() === lookupLetter) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                const sectionTop = section.offsetTop - headerHeight;
+
+                window.scrollTo({
+                    top: sectionTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(section);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    jumpToLetter(letter) {
+        if (this.scrollToBusStopSection(letter)) {
+            return;
+        }
+
+        const cards = document.querySelectorAll('.rectangular-card');
+        for (const card of cards) {
+            const cardAlphabet = card.dataset.alphabet;
+            const cardTitle = card.querySelector('h3');
+            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
+                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: cardTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(card);
+                return;
+            }
+        }
+
+        const headings = document.querySelectorAll('h1, h2, h3, h4');
+        for (const heading of headings) {
+            if (heading.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                const headingTop = heading.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: headingTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(heading);
+                return;
+            }
+        }
+    }
+
+    highlightElement(element) {
+        const originalBoxShadow = element.style.boxShadow;
+        const originalBackground = element.style.backgroundColor;
+
+        element.style.boxShadow = '0 0 0 2px rgba(73, 61, 213, 0.3)';
+        element.style.backgroundColor = 'rgba(237, 233, 254, 0.5)';
+
+        setTimeout(() => {
+            element.style.boxShadow = originalBoxShadow;
+            element.style.backgroundColor = originalBackground;
+        }, 1000);
+    }
+
+    showSearchModal() {
+        const modal = document.getElementById('searchModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            modal.querySelector('.global-search-input').focus();
+
+            const closeBtn = modal.querySelector('.close-search');
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            closeBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                }
+            });
+
+            this.initGlobalSearch();
+        }
+    }
+
+    initGlobalSearch() {
+        const searchInput = document.querySelector('.global-search-input');
+        const searchResults = document.getElementById('searchResults');
+
+        if (!searchInput || !searchResults) return;
+
+        if (typeof window.searchIndex === 'undefined') {
+            const script = document.createElement('script');
+            script.src = 'search-index.js';
+            script.onload = () => this.performGlobalSearch(searchInput, searchResults);
+            document.head.appendChild(script);
+        } else {
+            this.performGlobalSearch(searchInput, searchResults);
+        }
+    }
+
+    performGlobalSearch(searchInput, searchResults) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (query.length < 1) {
+                searchResults.innerHTML = '<div class="search-result-item"><p>Type to search...</p></div>';
+                return;
+            }
+
+            const allResults = [];
+
+            if (window.searchIndex && window.searchIndex.divisions) {
+                window.searchIndex.divisions.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            if (window.searchIndex && window.searchIndex.districts) {
+                window.searchIndex.districts.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            if (window.searchIndex && window.searchIndex.tehsils) {
+                window.searchIndex.tehsils.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.district.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            if (window.searchIndex && window.searchIndex.depots) {
+                window.searchIndex.depots.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.district.toLowerCase().includes(query) ||
+                        item.tehsil.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            allResults.sort((a, b) => {
+                const aExact = a.name.toLowerCase() === query;
+                const bExact = b.name.toLowerCase() === query;
+                if (aExact && !bExact) return -1;
+                if (!aExact && bExact) return 1;
+                return a.name.localeCompare(b.name);
+            });
+
+            const filteredItems = allResults.slice(0, 25);
+
+            if (filteredItems.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item"><p>No results found</p></div>';
+            } else {
+                searchResults.innerHTML = filteredItems.map(item => {
+                    let description = `${item.type}`;
+                    if (item.division) description += ` • ${item.division}`;
+                    if (item.district) description += ` • ${item.district}`;
+                    if (item.tehsil) description += ` • ${item.tehsil}`;
+                    if (item.busStops) description += ` • ${item.busStops} stops`;
+                    if (item.buses) description += ` • ${item.buses} buses`;
+
+                    return `
+                    <div class="search-result-item" data-url="${item.path}">
+                        <h4>${item.name}</h4>
+                        <p>${description}</p>
+                    </div>
+                    `;
+                }).join('');
+
+                searchResults.querySelectorAll('.search-result-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const url = item.dataset.url;
+                        if (url) {
+                            window.location.href = url;
+                            document.getElementById('searchModal').style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const firstResult = searchResults.querySelector('.search-result-item');
+                if (firstResult) {
+                    firstResult.click();
+                }
+            }
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('searchModal').style.display = 'none';
+            }
+        });
+    }
+
+    showAlphabetView() {
+        const view = document.getElementById('alphabetView');
+        if (view) {
+            view.style.display = 'block';
+
+            const closeBtn = view.querySelector('.close-alphabet');
+            closeBtn.addEventListener('click', () => {
+                this.hideAlphabetView();
+            });
+
+            closeBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this.hideAlphabetView();
+            });
+
+            view.addEventListener('click', (e) => {
+                if (e.target === view) {
+                    this.hideAlphabetView();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && view.style.display === 'block') {
+                    this.hideAlphabetView();
+                }
+            });
+
+            setTimeout(() => {
+                this.initAlphabetNavigation();
+            }, 100);
+        }
+    }
+
+    hideAlphabetView() {
+        const view = document.getElementById('alphabetView');
+        if (view) {
+            view.style.display = 'none';
+        }
+    }
+
+    initSearch() {
+        const searchBox = document.querySelector('.search-box');
+        if (searchBox) {
+            searchBox.addEventListener('input', (e) => {
+                this.searchTerm = e.target.value.toLowerCase().trim();
+                this.applyFilters();
+            });
+
+            searchBox.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchBox.value = '';
+                    this.searchTerm = '';
+                    this.applyFilters();
+                }
+            });
+        }
+    }
+
+    initFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                this.activeFilter = button.dataset.filter;
+                this.applyFilters();
+            });
+        });
+    }
+
+    initScrollHighlighting() {
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                this.updateActiveAlphabet();
+            }, 50);
+        });
+
+        setTimeout(() => this.updateActiveAlphabet(), 200);
+    }
+
+    updateActiveAlphabet() {
+        const busStopSections = document.querySelectorAll('.bus-stop-section:not(.hidden)');
+        if (busStopSections.length > 0) {
+            let currentLetter = '';
+            const scrollPosition = window.scrollY + 120;
+
+            for (const section of busStopSections) {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+                    currentLetter = section.dataset.letter;
+                    break;
+                }
+            }
+
+            if (currentLetter) {
+                this.updateAlphabetActiveState(currentLetter);
+            }
+            return;
+        }
+
+        // For depot tab
+        if (this.activeTab === 'depots') {
+            const depotCards = document.querySelectorAll('#depots-tab .rectangular-card');
+            this.updateActiveCardAlphabet(depotCards);
+            return;
+        }
+
+        // For tehsil tab
+        if (this.activeTab === 'tehsils') {
+            const tehsilCards = document.querySelectorAll('#tehsils-tab .rectangular-card');
+            this.updateActiveCardAlphabet(tehsilCards);
+            return;
+        }
+
+        // For division and district tabs (no alphabet highlighting needed)
+        const cards = document.querySelectorAll('.rectangular-card');
+        this.updateActiveCardAlphabet(cards);
+    }
+
+    updateActiveCardAlphabet(cards) {
+        let closestCard = null;
+        let closestDistance = Infinity;
+        const scrollPosition = window.scrollY + 80;
+
+        cards.forEach(card => {
+            const cardTop = card.offsetTop;
+            const cardBottom = cardTop + card.offsetHeight;
+
+            if (scrollPosition >= cardTop && scrollPosition <= cardBottom) {
+                const distance = Math.abs(scrollPosition - cardTop);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestCard = card;
+                }
+            }
+        });
+
+        if (closestCard) {
+            const cardAlphabet = closestCard.dataset.alphabet || closestCard.querySelector('h3').textContent.trim().charAt(0).toUpperCase();
+            this.updateAlphabetActiveState(cardAlphabet);
+        }
+    }
+
+    updateAlphabetActiveState(letter) {
+        document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn, .floating-letter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.letter.toLowerCase() === letter.toLowerCase()) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    applyFilters() {
+        const sections = document.querySelectorAll('.bus-stop-section');
+        let hasVisibleContent = false;
+
+        sections.forEach(section => {
+            const busStopName = section.querySelector('.bus-stop-name').textContent.toLowerCase();
+            const timeBubbles = section.querySelectorAll('.time-bubble');
+            let visibleBubbles = 0;
+
+            if (this.searchTerm && !busStopName.includes(this.searchTerm)) {
+                section.classList.add('hidden');
+                return;
+            }
+
+            timeBubbles.forEach(bubble => {
+                const time = bubble.dataset.time;
+                const timeCategory = this.getTimeCategory(time);
+
+                if (this.activeFilter === 'all' || timeCategory === this.activeFilter) {
+                    bubble.classList.remove('hidden');
+                    visibleBubbles++;
+                } else {
+                    bubble.classList.add('hidden');
+                }
+            });
+
+            if (visibleBubbles > 0) {
+                section.classList.remove('hidden');
+                hasVisibleContent = true;
+            } else {
+                section.classList.add('hidden');
+            }
+
+            const busCount = section.querySelector('.bus-count');
+            if (busCount) {
+                busCount.textContent = `${visibleBubbles}`;
+            }
+        });
+
+        const emptyState = document.querySelector('.empty-state');
+        if (emptyState) {
+            emptyState.classList.toggle('hidden', hasVisibleContent);
+        }
+
+        this.updateFloatingLettersVisibility();
+
+        setTimeout(() => this.highlightNextBus(), 50);
+        setTimeout(() => this.updateActiveAlphabet(), 100);
+    }
+
+    updateFloatingLettersVisibility() {
+        const floatingButtons = document.querySelectorAll('.floating-letter-btn');
+        const visibleLetters = new Set();
+
+        document.querySelectorAll('.bus-stop-section:not(.hidden)').forEach(section => {
+            const letter = section.dataset.letter;
+            if (letter) visibleLetters.add(letter.toLowerCase());
+        });
+
+        floatingButtons.forEach(btn => {
+            const letter = btn.dataset.letter.toLowerCase();
+            if (visibleLetters.has(letter)) {
+                btn.classList.remove('disabled');
+            } else {
+                btn.classList.add('disabled');
+            }
+        });
+    }
+
+    getTimeCategory(timeString) {
+        const [hours] = timeString.split(':').map(Number);
+        if (hours >= 5 && hours < 12) return 'morning';
+        if (hours >= 12 && hours < 17) return 'afternoon';
+        if (hours >= 17 && hours < 22) return 'evening';
+        return 'night';
+    }
+
+    highlightNextBus() {
+        document.querySelectorAll('.next-badge').forEach(badge => badge.remove());
+        document.querySelectorAll('.time-bubble.next-bus').forEach(bubble => {
+            bubble.classList.remove('next-bus');
+            const sparkle = bubble.querySelector('.next-bus-sparkle');
+            if (sparkle) sparkle.remove();
+        });
+
+        const now = new Date();
+        const currentHours = now.getHours();
+        const currentMinutes = now.getMinutes();
+        const currentTotalMinutes = currentHours * 60 + currentMinutes;
+
+        const allBubbles = Array.from(document.querySelectorAll('.time-bubble:not(.hidden)'));
+        const upcomingBubbles = [];
+
+        allBubbles.forEach(bubble => {
+            const [hours, minutes] = bubble.dataset.time.split(':').map(Number);
+            const bubbleTotalMinutes = hours * 60 + minutes;
+
+            let timeDiff = bubbleTotalMinutes - currentTotalMinutes;
+            if (timeDiff < 0) {
+                timeDiff += 24 * 60;
+            }
+
+            // Changed from <= 360 (6 hours) to <= 60 (1 hour)
+            if (timeDiff >= 0 && timeDiff <= 60) {
+                upcomingBubbles.push({
+                    bubble,
+                    timeDiff,
+                    bubbleTotalMinutes
+                });
+            }
+        });
+
+        upcomingBubbles.sort((a, b) => a.timeDiff - b.timeDiff);
+
+        // Highlight ALL buses within the next 60 minutes
+        upcomingBubbles.forEach((bus, index) => {
+            const badge = document.createElement('div');
+            badge.className = 'next-badge';
+            badge.textContent = index === 0 ? 'NEXT' : `+${bus.timeDiff}m`;
+
+            bus.bubble.classList.add('next-bus');
+
+            const sparkle = document.createElement('div');
+            sparkle.className = 'next-bus-sparkle';
+            bus.bubble.appendChild(sparkle);
+
+            bus.bubble.style.position = 'relative';
+            bus.bubble.appendChild(badge);
+        });
+    }
+
+    initTimeClick() {
+        document.addEventListener('click', (e) => {
+            const timeBubble = e.target.closest('.time-bubble');
+            if (timeBubble) {
+                const time = timeBubble.dataset.time;
+                const busStop = timeBubble.closest('.bus-stop-section').querySelector('.bus-stop-name').textContent;
+                this.showBusDetails(time, busStop);
+            }
+        });
+    }
+
+    showBusDetails(time, busStop) {
+        const [hours, minutes] = time.split(':').map(Number);
+        const timeCategory = this.getTimeCategory(time);
+
+        const categoryNames = {
+            morning: '🌅 Morning Bus (5AM-12PM)',
+            afternoon: '☀️ Afternoon Bus (12PM-5PM)',
+            evening: '🌇 Evening Bus (5PM-10PM)',
+            night: '🌙 Night Bus (10PM-5AM)'
+        };
+
+        const hour12 = hours % 12 || 12;
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedTime = `${hour12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+
+        const period = categoryNames[timeCategory];
+
+        const now = new Date();
+        const busTime = new Date(now);
+        busTime.setHours(hours, minutes, 0, 0);
+
+        if (busTime < now) {
+            busTime.setDate(busTime.getDate() + 1);
+        }
+
+        const timeDiff = Math.floor((busTime - now) / (1000 * 60));
+        let timeMessage = '';
+        if (timeDiff < 60) {
+            timeMessage = `in ${timeDiff} min`;
+        } else {
+            const hoursLeft = Math.floor(timeDiff / 60);
+            const minutesLeft = timeDiff % 60;
+            timeMessage = `in ${hoursLeft}h ${minutesLeft}m`;
+        }
+
+        const message = `🚌 **Bus Details**\n\n📍 **Bus Stop:** ${busStop}\n🕐 **Time:** ${formattedTime}\n⏰ **${period}** (${timeMessage})\n\n💡 *Arrive 10-15 minutes before*`;
+
+        alert(message);
+    }
+}
+
+// Initialize app when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.busApp = new BusTimetableApp();
+});
+    </script>
+</body>
+</html>
