@@ -848,36 +848,9 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Quick Jump Navigation - MOBILE FIRST -->
-    <div class="quick-jump-nav">
-        <div class="container">
-            <div class="quick-jump-content">
-                <a href="#divisions" class="quick-jump-btn active" data-tab="divisions" data-hash="divisions">
-                    <i class="bi bi-buildings"></i>
-                    <span>Divisions</span>
-                </a>
-                <a href="#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
-                    <i class="bi bi-map"></i>
-                    <span>Districts</span>
-                </a>
-                <a href="#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
-                    <i class="bi bi-building"></i>
-                    <span>Tehsils</span>
-                </a>
-                <a href="#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
-                    <i class="bi bi-bus-front"></i>
-                    <span>Depots</span>
-                </a>
-                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
-                    <i class="bi bi-sort-alpha-down"></i>
-                    <span>A-Z</span>
-                </button>
-                <button class="quick-jump-btn search-trigger">
-                    <i class="bi bi-search"></i>
-                    <span>Search</span>
-                </button>
-            </div>
-        </div>
+    <!-- Vertical Alphabet Navigation -->
+    <div class="vertical-alphabet-nav" id="verticalAlphabet">
+        ${this.renderVerticalAlphabet()}
     </div>
 
     <!-- Top Ad -->
@@ -886,9 +859,6 @@ class SiteGenerator {
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- Spacing after navigation -->
-            <div style="height: 10px;"></div>
-
             <h1 class="text-center">${homepageContent.title || 'MSRTC Bus Timetable'}</h1>
             <p class="text-center">${homepageContent.subtitle || 'Find accurate bus schedules across Maharashtra'}</p>
 
@@ -920,40 +890,37 @@ class SiteGenerator {
                     </button>
                 </div>
 
+                <!-- Search Bar - Below Tabs -->
+                <div class="tab-search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="search-input" placeholder="Search depots, tehsils, districts... (e.g., Nagpur, Pune)">
+                        <button class="clear-search" style="display: none;" aria-label="Clear search">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Tab Contents -->
                 <div class="tab-content active" id="divisions-tab">
-                    <!-- NO Alphabet drawer for divisions -->
                     <div class="division-grid mt-2">
                         ${this.renderDivisionTab()}
                     </div>
                 </div>
 
                 <div class="tab-content" id="districts-tab">
-                    <!-- NO Alphabet drawer for districts -->
                     <div class="district-grid mt-2">
                         ${this.renderDistrictTab()}
                     </div>
                 </div>
 
                 <div class="tab-content" id="tehsils-tab">
-                    <!-- Alphabet drawer for tehsils -->
-                    <div class="alphabet-quick-access" id="tehsilAlphabetDrawer">
-                        <div class="alphabet-mini-grid">
-                            ${this.renderAlphabetForType('tehsils')}
-                        </div>
-                    </div>
                     <div class="tehsil-grid mt-2">
                         ${this.renderTehsilTab()}
                     </div>
                 </div>
 
                 <div class="tab-content" id="depots-tab">
-                    <!-- Alphabet drawer for depots -->
-                    <div class="alphabet-quick-access" id="depotAlphabetDrawer">
-                        <div class="alphabet-mini-grid">
-                            ${this.renderAlphabetForType('depots')}
-                        </div>
-                    </div>
                     <div class="depot-grid mt-2">
                         ${this.renderDepotTab()}
                     </div>
@@ -971,28 +938,17 @@ class SiteGenerator {
     <!-- Footer -->
     ${this.renderFooter()}
 
-    <!-- Quick Search Modal -->
+    <!-- Quick Search Modal (for global search) -->
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Search</h3>
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
                 <input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots...">
                 <div class="search-results" id="searchResults"></div>
             </div>
-        </div>
-    </div>
-
-    <!-- Alphabet Quick View - ULTRA COMPACT DESIGN -->
-    <div class="alphabet-quick-view" id="alphabetView">
-        <div class="alphabet-view-header">
-            <h4>Jump to Letter</h4>
-            <button class="close-alphabet">&times;</button>
-        </div>
-        <div class="alphabet-view-grid">
-            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -1004,7 +960,7 @@ class SiteGenerator {
 </html>`;
 
         this.writeFile('index.html', html);
-        console.log('   ✓ Homepage generated with mobile-first design and compact alphabet drawer');
+        console.log('   ✓ Homepage generated with vertical alphabet navigation');
     }
 
     generateFaviconLinks(relativePath = '') {
@@ -1094,6 +1050,13 @@ class SiteGenerator {
         return links.join('\n    ');
     }
 
+    renderVerticalAlphabet() {
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        return alphabet.map(letter => `
+            <button class="alphabet-vertical-btn" data-letter="${letter}">${letter}</button>
+        `).join('');
+    }
+
     generateStaticPages() {
         const pages = ['about', 'contact', 'terms', 'privacy', 'disclaimer'];
 
@@ -1155,36 +1118,9 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Quick Jump Navigation -->
-    <div class="quick-jump-nav">
-        <div class="container">
-            <div class="quick-jump-content">
-                <a href="index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
-                    <i class="bi bi-buildings"></i>
-                    <span>Divisions</span>
-                </a>
-                <a href="index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
-                    <i class="bi bi-map"></i>
-                    <span>Districts</span>
-                </a>
-                <a href="index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
-                    <i class="bi bi-building"></i>
-                    <span>Tehsils</span>
-                </a>
-                <a href="index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
-                    <i class="bi bi-bus-front"></i>
-                    <span>Depots</span>
-                </a>
-                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
-                    <i class="bi bi-sort-alpha-down"></i>
-                    <span>A-Z</span>
-                </button>
-                <button class="quick-jump-btn search-trigger">
-                    <i class="bi bi-search"></i>
-                    <span>Search</span>
-                </button>
-            </div>
-        </div>
+    <!-- Vertical Alphabet Navigation -->
+    <div class="vertical-alphabet-nav" id="verticalAlphabet">
+        ${this.renderVerticalAlphabet()}
     </div>
 
     <!-- Top Ad -->
@@ -1192,13 +1128,21 @@ class SiteGenerator {
 
     <main class="main-content">
         <div class="container">
-            <!-- Spacing after navigation -->
-            <div style="height: 10px;"></div>
-
             <div class="navigation-buttons">
                 <a href="index.html" class="back-btn">
                     <i class="bi bi-house"></i> Back to Bus Schedule
                 </a>
+            </div>
+
+            <!-- Search Bar - Below Navigation -->
+            <div class="tab-search-container">
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" class="search-input" placeholder="Search depots, tehsils, districts... (e.g., Nagpur, Pune)">
+                    <button class="clear-search" style="display: none;" aria-label="Clear search">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
             </div>
 
             <h1>${pageContent.title}</h1>
@@ -1216,14 +1160,17 @@ class SiteGenerator {
 
     ${this.renderFooter()}
 
-    <!-- Alphabet Quick View -->
-    <div class="alphabet-quick-view" id="alphabetView">
-        <div class="alphabet-view-header">
-            <h4>Jump to Letter</h4>
-            <button class="close-alphabet">&times;</button>
-        </div>
-        <div class="alphabet-view-grid">
-            ${this.renderCompactAlphabetButtons()}
+    <!-- Quick Search Modal -->
+    <div class="quick-search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
+                <button class="close-search">&times;</button>
+            </div>
+            <div class="search-modal-body">
+                <input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
         </div>
     </div>
 
@@ -1308,46 +1255,11 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Quick Jump Navigation -->
-    <div class="quick-jump-nav">
-        <div class="container">
-            <div class="quick-jump-content">
-                <a href="../index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
-                    <i class="bi bi-buildings"></i>
-                    <span>Divisions</span>
-                </a>
-                <a href="../index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
-                    <i class="bi bi-map"></i>
-                    <span>Districts</span>
-                </a>
-                <a href="../index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
-                    <i class="bi bi-building"></i>
-                    <span>Tehsils</span>
-                </a>
-                <a href="../index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
-                    <i class="bi bi-bus-front"></i>
-                    <span>Depots</span>
-                </a>
-                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
-                    <i class="bi bi-sort-alpha-down"></i>
-                    <span>A-Z</span>
-                </button>
-                <button class="quick-jump-btn search-trigger">
-                    <i class="bi bi-search"></i>
-                    <span>Search</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Top Ad -->
     ${this.renderAd('top_ad')}
 
     <main class="main-content">
         <div class="container">
-            <!-- Spacing after navigation -->
-            <div style="height: 10px;"></div>
-
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-house"></i> Back to Bus Schedule
@@ -1389,14 +1301,17 @@ class SiteGenerator {
 
     ${this.renderFooter('../')}
 
-    <!-- Alphabet Quick View -->
-    <div class="alphabet-quick-view" id="alphabetView">
-        <div class="alphabet-view-header">
-            <h4>Jump to Letter</h4>
-            <button class="close-alphabet">&times;</button>
-        </div>
-        <div class="alphabet-view-grid">
-            ${this.renderCompactAlphabetButtons()}
+    <!-- Quick Search Modal -->
+    <div class="quick-search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
+                <button class="close-search">&times;</button>
+            </div>
+            <div class="search-modal-body">
+                <input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
         </div>
     </div>
 
@@ -1490,46 +1405,11 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Quick Jump Navigation -->
-    <div class="quick-jump-nav">
-        <div class="container">
-            <div class="quick-jump-content">
-                <a href="../index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
-                    <i class="bi bi-buildings"></i>
-                    <span>Divisions</span>
-                </a>
-                <a href="../index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
-                    <i class="bi bi-map"></i>
-                    <span>Districts</span>
-                </a>
-                <a href="../index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
-                    <i class="bi bi-building"></i>
-                    <span>Tehsils</span>
-                </a>
-                <a href="../index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
-                    <i class="bi bi-bus-front"></i>
-                    <span>Depots</span>
-                </a>
-                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
-                    <i class="bi bi-sort-alpha-down"></i>
-                    <span>A-Z</span>
-                </button>
-                <button class="quick-jump-btn search-trigger">
-                    <i class="bi bi-search"></i>
-                    <span>Search</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Top Ad -->
     ${this.renderAd('top_ad')}
 
     <main class="main-content">
         <div class="container blog-page">
-            <!-- Spacing after navigation -->
-            <div style="height: 10px;"></div>
-
             <div class="navigation-buttons">
                 <a href="index.html" class="back-btn">
                     <i class="bi bi-arrow-left"></i> Back to Blogs
@@ -1578,14 +1458,17 @@ class SiteGenerator {
 
     ${this.renderFooter('../')}
 
-    <!-- Alphabet Quick View -->
-    <div class="alphabet-quick-view" id="alphabetView">
-        <div class="alphabet-view-header">
-            <h4>Jump to Letter</h4>
-            <button class="close-alphabet">&times;</button>
-        </div>
-        <div class="alphabet-view-grid">
-            ${this.renderCompactAlphabetButtons()}
+    <!-- Quick Search Modal -->
+    <div class="quick-search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
+                <button class="close-search">&times;</button>
+            </div>
+            <div class="search-modal-body">
+                <input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
         </div>
     </div>
 
@@ -1740,36 +1623,9 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Quick Jump Navigation -->
-    <div class="quick-jump-nav">
-        <div class="container">
-            <div class="quick-jump-content">
-                <a href="../index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
-                    <i class="bi bi-buildings"></i>
-                    <span>Divisions</span>
-                </a>
-                <a href="../index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
-                    <i class="bi bi-map"></i>
-                    <span>Districts</span>
-                </a>
-                <a href="../index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
-                    <i class="bi bi-building"></i>
-                    <span>Tehsils</span>
-                </a>
-                <a href="../index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
-                    <i class="bi bi-bus-front"></i>
-                    <span>Depots</span>
-                </a>
-                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
-                    <i class="bi bi-sort-alpha-down"></i>
-                    <span>A-Z</span>
-                </button>
-                <button class="quick-jump-btn search-trigger">
-                    <i class="bi bi-search"></i>
-                    <span>Search</span>
-                </button>
-            </div>
-        </div>
+    <!-- Vertical Alphabet Navigation -->
+    <div class="vertical-alphabet-nav" id="verticalAlphabet">
+        ${this.renderVerticalAlphabet()}
     </div>
 
     <!-- Top Ad -->
@@ -1777,13 +1633,21 @@ class SiteGenerator {
 
     <main class="main-content">
         <div class="container">
-            <!-- Spacing after navigation -->
-            <div style="height: 10px;"></div>
-
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-house"></i> Back to Bus Schedule
                 </a>
+            </div>
+
+            <!-- Search Bar - Below Navigation -->
+            <div class="tab-search-container">
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" class="search-input" placeholder="Search districts in ${division.name}...">
+                    <button class="clear-search" style="display: none;" aria-label="Clear search">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="depot-header">
@@ -1804,8 +1668,6 @@ class SiteGenerator {
             <!-- Middle Ad -->
             ${this.renderAd('middle_ad')}
 
-            <!-- NO Alphabet drawer for district listing in division page -->
-
             <!-- Districts Grid -->
             <div class="district-grid">
                 ${this.renderDistrictCards(districts, division.id)}
@@ -1825,24 +1687,13 @@ class SiteGenerator {
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Search</h3>
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
                 <input type="text" class="global-search-input" placeholder="Search districts in ${division.name}...">
                 <div class="search-results" id="searchResults"></div>
             </div>
-        </div>
-    </div>
-
-    <!-- Alphabet Quick View -->
-    <div class="alphabet-quick-view" id="alphabetView">
-        <div class="alphabet-view-header">
-            <h4>Jump to Letter</h4>
-            <button class="close-alphabet">&times;</button>
-        </div>
-        <div class="alphabet-view-grid">
-            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -1907,36 +1758,9 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Quick Jump Navigation -->
-    <div class="quick-jump-nav">
-        <div class="container">
-            <div class="quick-jump-content">
-                <a href="../../index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
-                    <i class="bi bi-buildings"></i>
-                    <span>Divisions</span>
-                </a>
-                <a href="../../index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
-                    <i class="bi bi-map"></i>
-                    <span>Districts</span>
-                </a>
-                <a href="../../index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
-                    <i class="bi bi-building"></i>
-                    <span>Tehsils</span>
-                </a>
-                <a href="../../index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
-                    <i class="bi bi-bus-front"></i>
-                    <span>Depots</span>
-                </a>
-                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
-                    <i class="bi bi-sort-alpha-down"></i>
-                    <span>A-Z</span>
-                </button>
-                <button class="quick-jump-btn search-trigger">
-                    <i class="bi bi-search"></i>
-                    <span>Search</span>
-                </button>
-            </div>
-        </div>
+    <!-- Vertical Alphabet Navigation -->
+    <div class="vertical-alphabet-nav" id="verticalAlphabet">
+        ${this.renderVerticalAlphabet()}
     </div>
 
     <!-- Top Ad -->
@@ -1944,9 +1768,6 @@ class SiteGenerator {
 
     <main class="main-content">
         <div class="container">
-            <!-- Spacing after navigation -->
-            <div style="height: 10px;"></div>
-
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-arrow-left"></i> Back to ${division.name}
@@ -1954,6 +1775,17 @@ class SiteGenerator {
                 <a href="../../index.html" class="back-btn">
                     <i class="bi bi-house"></i> Back to Bus Schedule
                 </a>
+            </div>
+
+            <!-- Search Bar - Below Navigation -->
+            <div class="tab-search-container">
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" class="search-input" placeholder="Search tehsils in ${district.name}...">
+                    <button class="clear-search" style="display: none;" aria-label="Clear search">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="depot-header">
@@ -1978,8 +1810,6 @@ class SiteGenerator {
             <!-- Middle Ad -->
             ${this.renderAd('middle_ad')}
 
-            <!-- NO Alphabet drawer for tehsil listing in district page -->
-
             <!-- Tehsils Grid -->
             <div class="tehsil-grid">
                 ${this.renderTehsilCards(tehsils, division.id, district.id)}
@@ -1999,24 +1829,13 @@ class SiteGenerator {
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Search</h3>
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
                 <input type="text" class="global-search-input" placeholder="Search tehsils in ${district.name}...">
                 <div class="search-results" id="searchResults"></div>
             </div>
-        </div>
-    </div>
-
-    <!-- Alphabet Quick View -->
-    <div class="alphabet-quick-view" id="alphabetView">
-        <div class="alphabet-view-header">
-            <h4>Jump to Letter</h4>
-            <button class="close-alphabet">&times;</button>
-        </div>
-        <div class="alphabet-view-grid">
-            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -2080,36 +1899,9 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Quick Jump Navigation -->
-    <div class="quick-jump-nav">
-        <div class="container">
-            <div class="quick-jump-content">
-                <a href="../../../index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
-                    <i class="bi bi-buildings"></i>
-                    <span>Divisions</span>
-                </a>
-                <a href="../../../index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
-                    <i class="bi bi-map"></i>
-                    <span>Districts</span>
-                </a>
-                <a href="../../../index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
-                    <i class="bi bi-building"></i>
-                    <span>Tehsils</span>
-                </a>
-                <a href="../../../index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
-                    <i class="bi bi-bus-front"></i>
-                    <span>Depots</span>
-                </a>
-                <button class="quick-jump-btn alphabet-trigger" id="alphabetDrawerTrigger">
-                    <i class="bi bi-sort-alpha-down"></i>
-                    <span>A-Z</span>
-                </button>
-                <button class="quick-jump-btn search-trigger">
-                    <i class="bi bi-search"></i>
-                    <span>Search</span>
-                </button>
-            </div>
-        </div>
+    <!-- Vertical Alphabet Navigation -->
+    <div class="vertical-alphabet-nav" id="verticalAlphabet">
+        ${this.renderVerticalAlphabet()}
     </div>
 
     <!-- Top Ad -->
@@ -2117,9 +1909,6 @@ class SiteGenerator {
 
     <main class="main-content">
         <div class="container">
-            <!-- Spacing after navigation -->
-            <div style="height: 10px;"></div>
-
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-arrow-left"></i> Back to ${district.name}
@@ -2127,6 +1916,17 @@ class SiteGenerator {
                 <a href="../../../index.html" class="back-btn">
                     <i class="bi bi-house"></i> Back to Bus Schedule
                 </a>
+            </div>
+
+            <!-- Search Bar - Below Navigation -->
+            <div class="tab-search-container">
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" class="search-input" placeholder="Search depots in ${tehsil.name}...">
+                    <button class="clear-search" style="display: none;" aria-label="Clear search">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="depot-header">
@@ -2147,13 +1947,6 @@ class SiteGenerator {
             <!-- Middle Ad -->
             ${this.renderAd('middle_ad')}
 
-            <!-- Alphabet drawer for depot listing in tehsil page -->
-            <div class="alphabet-quick-access" id="tehsilAlphabetDrawer">
-                <div class="alphabet-mini-grid">
-                    ${this.renderDepotAlphabet(depots)}
-                </div>
-            </div>
-
             <!-- Depots Grid -->
             <div class="depot-grid">
                 ${this.renderDepotCards(depots, division.id, district.id, tehsil.id)}
@@ -2173,24 +1966,13 @@ class SiteGenerator {
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Search</h3>
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
                 <input type="text" class="global-search-input" placeholder="Search depots in ${tehsil.name}...">
                 <div class="search-results" id="searchResults"></div>
             </div>
-        </div>
-    </div>
-
-    <!-- Alphabet Quick View -->
-    <div class="alphabet-quick-view" id="alphabetView">
-        <div class="alphabet-view-header">
-            <h4>Jump to Letter</h4>
-            <button class="close-alphabet">&times;</button>
-        </div>
-        <div class="alphabet-view-grid">
-            ${this.renderCompactAlphabetButtons()}
         </div>
     </div>
 
@@ -2279,7 +2061,7 @@ class SiteGenerator {
     }
     </script>
 </head>
-<body>
+<body class="depot-page">
     <header class="site-header">
         <div class="container">
             <div class="header-content">
@@ -2297,36 +2079,9 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Quick Jump Navigation -->
-    <div class="quick-jump-nav">
-        <div class="container">
-            <div class="quick-jump-content">
-                <a href="../../../../index.html#divisions" class="quick-jump-btn" data-tab="divisions" data-hash="divisions">
-                    <i class="bi bi-buildings"></i>
-                    <span>Divisions</span>
-                </a>
-                <a href="../../../../index.html#districts" class="quick-jump-btn" data-tab="districts" data-hash="districts">
-                    <i class="bi bi-map"></i>
-                    <span>Districts</span>
-                </a>
-                <a href="../../../../index.html#tehsils" class="quick-jump-btn" data-tab="tehsils" data-hash="tehsils">
-                    <i class="bi bi-building"></i>
-                    <span>Tehsils</span>
-                </a>
-                <a href="../../../../index.html#depots" class="quick-jump-btn" data-tab="depots" data-hash="depots">
-                    <i class="bi bi-bus-front"></i>
-                    <span>Depots</span>
-                </a>
-                <button class="quick-jump-btn bus-stop-alphabet-trigger active">
-                    <i class="bi bi-sort-alpha-down"></i>
-                    <span>Bus Stops</span>
-                </button>
-                <button class="quick-jump-btn search-trigger">
-                    <i class="bi bi-search"></i>
-                    <span>Search</span>
-                </button>
-            </div>
-        </div>
+    <!-- Vertical Alphabet Navigation -->
+    <div class="vertical-alphabet-nav" id="verticalAlphabet">
+        ${this.renderBusStopVerticalAlphabet(villageLetters)}
     </div>
 
     <!-- Top Ad -->
@@ -2334,9 +2089,6 @@ class SiteGenerator {
 
     <main class="main-content">
         <div class="container">
-            <!-- Spacing after navigation -->
-            <div style="height: 10px;"></div>
-
             <div class="navigation-buttons">
                 <a href="../index.html" class="back-btn">
                     <i class="bi bi-arrow-left"></i> Back to ${tehsil.name}
@@ -2346,6 +2098,7 @@ class SiteGenerator {
                 </a>
             </div>
 
+            <!-- Depot Header - MOVED ABOVE search filter container -->
             <div class="depot-header">
                 <h1>${depot.name}</h1>
                 <p>${depot.address || 'MSRTC Bus Depot'}</p>
@@ -2365,29 +2118,31 @@ class SiteGenerator {
                 </div>
             </div>
 
-            <!-- Middle Ad -->
-            ${this.renderAd('middle_ad')}
+            <!-- DEPOT PAGE: Search and time filters section - placed just before bus stop schedule -->
+            <div class="depot-search-filters-container">
+                <!-- Search Bar -->
+                <div class="tab-search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="search-input" placeholder="Search bus stops in ${depot.name}...">
+                        <button class="clear-search" style="display: none;" aria-label="Clear search">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                </div>
 
-            <!-- Floating Bus Stop Letters - COMPACT DESIGN -->
-            <div class="floating-bus-stop-letters">
-                <div class="floating-letters-grid">
-                    ${this.renderBusStopAlphabetButtons(villageLetters)}
+                <!-- Time Filters - COMPACT -->
+                <div class="time-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="morning">5AM-12PM</button>
+                    <button class="filter-btn" data-filter="afternoon">12PM-5PM</button>
+                    <button class="filter-btn" data-filter="evening">5PM-10PM</button>
+                    <button class="filter-btn" data-filter="night">10PM-5AM</button>
                 </div>
             </div>
 
-            <!-- Search -->
-            <div class="search-container">
-                <input type="text" class="search-box" placeholder="🔍 Search bus stops..." id="search-box">
-            </div>
-
-            <!-- Time Filters - COMPACT - FIXED FOR MOBILE -->
-            <div class="time-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="morning">5AM-12PM</button>
-                <button class="filter-btn" data-filter="afternoon">12PM-5PM</button>
-                <button class="filter-btn" data-filter="evening">5PM-10PM</button>
-                <button class="filter-btn" data-filter="night">10PM-5AM</button>
-            </div>
+            <!-- Middle Ad -->
+            ${this.renderAd('middle_ad')}
 
             <!-- Empty State -->
             <div class="empty-state hidden">
@@ -2464,7 +2219,7 @@ class SiteGenerator {
     <div class="quick-search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
-                <h3><i class="bi bi-search"></i> Search</h3>
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
                 <button class="close-search">&times;</button>
             </div>
             <div class="search-modal-body">
@@ -2474,23 +2229,23 @@ class SiteGenerator {
         </div>
     </div>
 
-    <!-- Alphabet Quick View -->
-    <div class="alphabet-quick-view" id="alphabetView">
-        <div class="alphabet-view-header">
-            <h4>Jump to Letter</h4>
-            <button class="close-alphabet">&times;</button>
-        </div>
-        <div class="alphabet-view-grid">
-            ${this.renderCompactAlphabetButtons()}
-        </div>
-    </div>
-
     <!-- Inline JavaScript -->
     <script>
         ${this.getInlineJS()}
     </script>
 </body>
 </html>`;
+    }
+
+    renderBusStopVerticalAlphabet(busStopLetters) {
+        const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const busStopLettersUpper = busStopLetters.map(letter => letter.toUpperCase());
+
+        return allLetters.map(letter => {
+            const hasBusStop = busStopLettersUpper.includes(letter);
+            const actualLetter = hasBusStop ? busStopLetters[busStopLettersUpper.indexOf(letter)] : letter.toLowerCase();
+            return `<button class="alphabet-vertical-btn ${hasBusStop ? '' : 'disabled'}" data-letter="${actualLetter}">${letter}</button>`;
+        }).join('');
     }
 
     getRelatedDepots(depotId) {
@@ -2596,9 +2351,6 @@ class SiteGenerator {
 
     renderDivisionTab() {
         const divisions = Object.values(this.data.divisions).sort((a, b) => {
-            if (a.alphabet && b.alphabet) {
-                return a.alphabet.localeCompare(b.alphabet);
-            }
             return a.name.localeCompare(b.name);
         });
 
@@ -2610,7 +2362,7 @@ class SiteGenerator {
             const districtCount = this.getDistrictsForDivision(division.id).length;
             const depotCount = this.getDepotCountForDivision(division.id);
 
-            return `<a href="${division.id}/index.html" class="rectangular-card" data-alphabet="${division.alphabet || division.name.charAt(0).toUpperCase()}">
+            return `<a href="${division.id}/index.html" class="rectangular-card">
                 <h3>${division.name}</h3>
                 <div class="stats">
                     <span class="stat"><i class="bi bi-map"></i> ${districtCount}</span>
@@ -2622,9 +2374,6 @@ class SiteGenerator {
 
     renderDistrictTab() {
         const districts = Object.values(this.data.districts).sort((a, b) => {
-            if (a.alphabet && b.alphabet) {
-                return a.alphabet.localeCompare(b.alphabet);
-            }
             return a.name.localeCompare(b.name);
         });
 
@@ -2637,7 +2386,7 @@ class SiteGenerator {
             const tehsilCount = this.getTehsilsForDistrict(district.id).length;
             const depotCount = this.getDepotCountForDistrict(district.id);
 
-            return `<a href="${division ? division.id + '/' : ''}${district.id}/index.html" class="rectangular-card" data-alphabet="${district.alphabet || district.name.charAt(0).toUpperCase()}">
+            return `<a href="${division ? division.id + '/' : ''}${district.id}/index.html" class="rectangular-card">
                 <h3>${district.name}</h3>
                 <div class="card-meta">${division ? division.name : ''}</div>
                 <div class="stats">
@@ -2650,9 +2399,6 @@ class SiteGenerator {
 
     renderTehsilTab() {
         const tehsils = Object.values(this.data.tehsils).sort((a, b) => {
-            if (a.alphabet && b.alphabet) {
-                return a.alphabet.localeCompare(b.alphabet);
-            }
             return a.name.localeCompare(b.name);
         });
 
@@ -2665,7 +2411,7 @@ class SiteGenerator {
             const division = district ? this.data.divisions[district.division_id] : null;
             const depotCount = this.getDepotsForTehsil(tehsil.id).length;
 
-            return `<a href="${division ? division.id + '/' : ''}${district ? district.id + '/' : ''}${tehsil.id}/index.html" class="rectangular-card" data-alphabet="${tehsil.alphabet || tehsil.name.charAt(0).toUpperCase()}">
+            return `<a href="${division ? division.id + '/' : ''}${district ? district.id + '/' : ''}${tehsil.id}/index.html" class="rectangular-card">
                 <h3>${tehsil.name}</h3>
                 <div class="card-meta">${district ? district.name : ''}</div>
                 <div class="stats">
@@ -2701,7 +2447,7 @@ class SiteGenerator {
                 });
             }
 
-            return `<a href="${division ? division.id + '/' : ''}${district ? district.id + '/' : ''}${tehsil ? tehsil.id + '/' : ''}${depot.id}/index.html" class="rectangular-card" data-alphabet="${depot.name.charAt(0).toUpperCase()}">
+            return `<a href="${division ? division.id + '/' : ''}${district ? district.id + '/' : ''}${tehsil ? tehsil.id + '/' : ''}${depot.id}/index.html" class="rectangular-card">
                 <h3>${depot.name}</h3>
                 <div class="card-meta">${tehsil ? tehsil.name : ''}</div>
                 <div class="stats">
@@ -2712,26 +2458,8 @@ class SiteGenerator {
         }).join('');
     }
 
-    renderAlphabetForType(type) {
-        const items = Object.values(this.data[type]);
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        const itemLetters = new Set();
-        items.forEach(item => {
-            const letter = item.alphabet || item.name.charAt(0).toUpperCase();
-            itemLetters.add(letter);
-        });
-
-        return `${alphabet.map(letter => {
-            const hasItem = itemLetters.has(letter);
-            return `<button class="alphabet-mini-btn ${hasItem ? '' : 'disabled'}" data-letter="${letter}">${letter}</button>`;
-        }).join('')}`;
-    }
-
     renderDistrictCards(districts, divisionId) {
         const sortedDistricts = districts.sort((a, b) => {
-            if (a.alphabet && b.alphabet) {
-                return a.alphabet.localeCompare(b.alphabet);
-            }
             return a.name.localeCompare(b.name);
         });
 
@@ -2743,7 +2471,7 @@ class SiteGenerator {
             const tehsils = this.getTehsilsForDistrict(district.id);
             const depotCount = this.getDepotCountForDistrict(district.id);
 
-            return `<a href="${district.id}/index.html" class="rectangular-card" data-alphabet="${district.alphabet || district.name.charAt(0).toUpperCase()}">
+            return `<a href="${district.id}/index.html" class="rectangular-card">
                 <h3>${district.name}</h3>
                 <div class="stats">
                     <span class="stat"><i class="bi bi-building"></i> ${tehsils.length}</span>
@@ -2755,9 +2483,6 @@ class SiteGenerator {
 
     renderTehsilCards(tehsils, divisionId, districtId) {
         const sortedTehsils = tehsils.sort((a, b) => {
-            if (a.alphabet && b.alphabet) {
-                return a.alphabet.localeCompare(b.alphabet);
-            }
             return a.name.localeCompare(b.name);
         });
 
@@ -2768,7 +2493,7 @@ class SiteGenerator {
         return sortedTehsils.map(tehsil => {
             const depots = this.getDepotsForTehsil(tehsil.id);
 
-            return `<a href="${tehsil.id}/index.html" class="rectangular-card" data-alphabet="${tehsil.alphabet || tehsil.name.charAt(0).toUpperCase()}">
+            return `<a href="${tehsil.id}/index.html" class="rectangular-card">
                 <h3>${tehsil.name}</h3>
                 <div class="stats">
                     <span class="stat"><i class="bi bi-bus-front"></i> ${depots.length}</span>
@@ -2796,7 +2521,7 @@ class SiteGenerator {
                 });
             }
 
-            return `<a href="${depot.id}/index.html" class="rectangular-card" data-alphabet="${depot.name.charAt(0).toUpperCase()}">
+            return `<a href="${depot.id}/index.html" class="rectangular-card">
                 <h3>${depot.name}</h3>
                 <div class="stats">
                     <span class="stat"><i class="bi bi-signpost"></i> ${busStopCount}</span>
@@ -2885,62 +2610,6 @@ class SiteGenerator {
                 ${displayTime}
             </div>`;
         }).join('');
-    }
-
-    renderCompactAlphabetButtons() {
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        return `${alphabet.map(letter => {
-            return `<button class="alphabet-btn" data-letter="${letter}">${letter}</button>`;
-        }).join('')}`;
-    }
-
-    renderDistrictAlphabet(districts) {
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        const districtLetters = new Set();
-        districts.forEach(d => {
-            const letter = d.alphabet || d.name.charAt(0).toUpperCase();
-            districtLetters.add(letter);
-        });
-
-        return `${alphabet.map(letter => {
-            const hasDistrict = districtLetters.has(letter);
-            return `<button class="alphabet-mini-btn ${hasDistrict ? '' : 'disabled'}" data-letter="${letter}">${letter}</button>`;
-        }).join('')}`;
-    }
-
-    renderTehsilAlphabet(tehsils) {
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        const tehsilLetters = new Set();
-        tehsils.forEach(t => {
-            const letter = t.alphabet || t.name.charAt(0).toUpperCase();
-            tehsilLetters.add(letter);
-        });
-
-        return `${alphabet.map(letter => {
-            const hasTehsil = tehsilLetters.has(letter);
-            return `<button class="alphabet-mini-btn ${hasTehsil ? '' : 'disabled'}" data-letter="${letter}">${letter}</button>`;
-        }).join('')}`;
-    }
-
-    renderDepotAlphabet(depots) {
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        const depotLetters = new Set(depots.map(d => d.name.charAt(0).toUpperCase()));
-
-        return `${alphabet.map(letter => {
-            const hasDepot = depotLetters.has(letter);
-            return `<button class="alphabet-mini-btn ${hasDepot ? '' : 'disabled'}" data-letter="${letter}">${letter}</button>`;
-        }).join('')}`;
-    }
-
-    renderBusStopAlphabetButtons(busStopLetters) {
-        const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        const busStopLettersUpper = busStopLetters.map(letter => letter.toUpperCase());
-
-        return `${allLetters.map(letter => {
-            const hasBusStop = busStopLettersUpper.includes(letter);
-            const actualLetter = hasBusStop ? busStopLetters[busStopLettersUpper.indexOf(letter)] : letter.toLowerCase();
-            return `<button class="floating-letter-btn ${hasBusStop ? '' : 'disabled'}" data-letter="${actualLetter}">${letter}</button>`;
-        }).join('')}`;
     }
 
     renderAd(adType) {
@@ -3217,7 +2886,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const borderDark = '#A78BFA';
 
         return `/* ==========================================================================
-       MSRTC BUS TIMETABLE - MOBILE FIRST STYLES
+       MSRTC BUS TIMETABLE - MOBILE FIRST STYLES WITH FIXED ALIGNMENT
        ========================================================================== */
 
     /* Reset & Base - MOBILE FIRST */
@@ -3288,12 +2957,14 @@ document.addEventListener('DOMContentLoaded', function() {
         color: ${secondary};
     }
 
-    /* Layout */
+    /* Layout - FIXED CONTAINER WITH PROPER PADDING */
     .container {
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 0.8rem;
+        padding-right: calc(0.8rem + 28px); /* 28px for mobile alphabet strip */
+        position: relative;
     }
 
     .text-center {
@@ -3359,103 +3030,173 @@ document.addEventListener('DOMContentLoaded', function() {
         text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
     }
 
-    /* Quick Jump Navigation - ULTRA COMPACT */
-    .quick-jump-nav {
-        position: sticky;
-        top: 50px;
-        z-index: 190;
-        background: white;
-        border-bottom: 1px solid ${borderLight};
-        box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-        padding: 0.2rem 0;
-        overflow: hidden;
-    }
-
-    .quick-jump-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.2rem;
-        padding: 0.1rem 0;
+    /* Search Bar Container - Below Tabs/Content */
+    .tab-search-container {
+        margin: 0.8rem 0;
+        padding: 0;
         width: 100%;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: auto;
-        flex-wrap: nowrap;
     }
 
-    /* Remove scrollbar completely */
-    .quick-jump-content::-webkit-scrollbar {
-        display: none;
-        width: 0;
-        height: 0;
+    /* DEPOT PAGE: Combined search and filters container */
+    .depot-search-filters-container {
+        margin: 0.8rem 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Depot page specific: Search bar in combined container */
+    .depot-search-filters-container .tab-search-container {
+        margin: 0 0 0.5rem 0;
+        padding: 0;
+    }
+
+    /* Depot page specific: Time filters in combined container */
+    .depot-search-filters-container .time-filters {
+        margin: 0.5rem 0 1rem 0;
+        padding: 0;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        background: white;
+        border: 1px solid ${borderLight};
+        border-radius: 6px;
+        padding: 0.5rem 0.8rem;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        /* FULL WIDTH - no max-width restriction */
+        width: 100%;
+        margin: 0;
+    }
+
+    .search-bar i {
+        color: ${primary};
+        margin-right: 0.5rem;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    .search-input {
+        flex: 1;
+        border: none;
         background: transparent;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        color: ${textPrimary};
+        outline: none;
+        width: 100%;
+        min-width: 0;
+        padding: 0;
     }
 
-    .quick-jump-content {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+    .search-input::placeholder {
+        color: #94A3B8;
+        font-size: 0.8rem;
     }
 
-    /* Quick Jump Buttons - ULTRA COMPACT */
-    .quick-jump-btn {
+    .clear-search {
+        background: none;
+        border: none;
+        color: #94A3B8;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.3rem;
+        flex-shrink: 0;
+        transition: color 0.2s;
+    }
+
+    .clear-search:hover {
+        color: ${textSecondary};
+    }
+
+    /* Vertical Alphabet Navigation - ON RIGHT EDGE */
+    .vertical-alphabet-nav {
+        position: fixed;
+        right: 0;
+        top: 110px; /* Below header */
+        bottom: 0;
+        width: 32px;
+        z-index: 180;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        border-left: 1px solid ${borderLight};
         display: flex;
         flex-direction: column;
         align-items: center;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 0.5rem 0;
+    }
+
+    .vertical-alphabet-nav::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    .alphabet-vertical-btn {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        gap: 0.05rem;
-        padding: 0.25rem 0.3rem;
-        background: white;
-        border: 1px solid ${borderLight};
-        border-radius: 4px;
-        color: ${textPrimary};
-        font-size: 0.65rem;
+        background: transparent;
+        color: ${textSecondary};
+        font-family: 'Inter', sans-serif;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        min-width: 52px;
-        max-width: 58px;
-        text-decoration: none;
-        flex-shrink: 0;
-        border: none;
-        font-family: inherit;
-        flex: 1;
-        height: 48px;
-    }
-
-    .quick-jump-btn i {
         font-size: 0.8rem;
-        color: ${primary};
+        padding: 0;
+        touch-action: manipulation;
+        border: none;
+        border-radius: 4px;
+        margin: 0.05rem 0;
+        min-width: 28px;
+        min-height: 28px;
     }
 
-    .quick-jump-btn:hover {
+    .alphabet-vertical-btn:hover {
         background: ${bgEnd};
-        border-color: ${borderDark};
+        color: ${primary};
+        transform: scale(1.1);
     }
 
-    .quick-jump-btn.active {
-        background: ${primary};
-        color: white;
-        border-color: ${primary};
+    .alphabet-vertical-btn.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        background: transparent;
     }
 
-    .quick-jump-btn.active i {
-        color: white;
+    .alphabet-vertical-btn.disabled:hover {
+        background: transparent;
+        transform: none;
     }
 
-    /* Navigation Buttons Container */
+    /* Navigation Buttons Container - PROPER ALIGNMENT */
     .navigation-buttons {
         display: flex;
         gap: 0.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
         flex-wrap: wrap;
+        width: 100%;
+        padding: 0;
     }
 
-    /* Back Buttons - COMPACT */
+    /* Back Buttons - PROPER ALIGNMENT */
     .back-btn {
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        padding: 0.6rem 0.8rem;
+        gap: 0.3rem;
+        padding: 0.5rem 0.8rem;
         background: white;
         border: 1px solid ${borderLight};
         border-radius: 6px;
@@ -3467,6 +3208,13 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 0.85rem;
         text-decoration: none;
         flex-shrink: 0;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        min-height: 38px;
+        margin: 0;
+        width: auto;
     }
 
     .back-btn:hover {
@@ -3476,7 +3224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .back-btn i {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     /* Depot About Section */
@@ -3486,6 +3234,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 1rem;
         border: 1px solid ${borderLight};
         margin-top: 1.5rem;
+        width: 100%;
     }
 
     .depot-about-section h2 {
@@ -3507,6 +3256,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 1rem;
         border: 1px solid ${borderLight};
         margin-top: 1.5rem;
+        width: 100%;
     }
 
     .faq-section h2 {
@@ -3556,6 +3306,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 1rem;
         border: 1px solid ${borderLight};
         margin-top: 1.5rem;
+        width: 100%;
     }
 
     .related-links-section h2 {
@@ -3607,10 +3358,12 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 0.85rem;
     }
 
-    /* Advertising */
+    /* Advertising - IMPROVED FOR DESKTOP */
     .ad-container {
         margin: 1rem 0;
         text-align: center;
+        width: 100%;
+        padding: 0;
     }
 
     .ad-content {
@@ -3622,6 +3375,14 @@ document.addEventListener('DOMContentLoaded', function() {
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    @media (min-width: 1025px) {
+        .ad-content {
+            padding: 1rem;
+        }
     }
 
     .ad-desktop {
@@ -3656,6 +3417,7 @@ document.addEventListener('DOMContentLoaded', function() {
         overflow: hidden;
         border: 1px solid ${borderLight};
         margin: 1rem 0;
+        width: 100%;
     }
 
     .tabs-header {
@@ -3664,6 +3426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         border-bottom: 1px solid ${borderLight};
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        width: 100%;
     }
 
     .tabs-header::-webkit-scrollbar {
@@ -3713,25 +3476,28 @@ document.addEventListener('DOMContentLoaded', function() {
     .tab-content {
         display: none;
         padding: 0.8rem;
+        width: 100%;
     }
 
     .tab-content.active {
         display: block;
     }
 
-    /* RECTANGULAR CARDS - COMPACT */
+    /* RECTANGULAR CARDS - PROPER ALIGNMENT - STACKED ON MOBILE */
     .division-grid, .district-grid, .tehsil-grid, .depot-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 0.6rem;
         margin: 0.8rem 0;
+        width: 100%;
+        padding: 0;
     }
 
     .rectangular-card {
         background: white;
         border: 1px solid ${borderLight};
         border-radius: 8px;
-        padding: 0.8rem;
+        padding: 0.7rem;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
         transition: all 0.3s ease;
         display: block;
@@ -3739,11 +3505,12 @@ document.addEventListener('DOMContentLoaded', function() {
         text-decoration: none;
         position: relative;
         overflow: hidden;
-        min-height: 85px;
+        min-height: 75px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         text-align: left;
+        width: 100%;
     }
 
     .rectangular-card:hover {
@@ -3753,8 +3520,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .rectangular-card h3 {
         color: ${textSecondary} !important;
-        margin-bottom: 0.3rem;
-        font-size: 1rem;
+        margin-bottom: 0.2rem;
+        font-size: 0.95rem;
         line-height: 1.2;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -3764,132 +3531,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .card-meta {
         color: ${textPrimary};
-        font-size: 0.75rem;
-        margin-bottom: 0.3rem;
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
         opacity: 0.8;
     }
 
     .rectangular-card .stats {
         display: flex;
-        gap: 0.6rem;
-        margin-top: 0.3rem;
+        gap: 0.5rem;
+        margin-top: 0.2rem;
         flex-wrap: wrap;
     }
 
     .rectangular-card .stat {
         background: ${bgEnd};
-        padding: 0.15rem 0.4rem;
-        border-radius: 10px;
+        padding: 0.1rem 0.3rem;
+        border-radius: 8px;
         color: ${textSecondary} !important;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 500;
         display: flex;
         align-items: center;
-        gap: 0.2rem;
+        gap: 0.15rem;
         border: 1px solid ${borderLight};
     }
 
     .rectangular-card .stat i {
         color: ${primary} !important;
-        font-size: 0.7rem;
-    }
-
-    /* Alphabet Quick Access - MINIMAL VERTICAL SPACING */
-    .alphabet-quick-access {
-        background: white;
-        border: 1px solid ${borderLight};
-        border-radius: 6px;
-        padding: 0.8rem;
-        margin: 1rem 0;
-    }
-
-    .alphabet-mini-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
-        gap: 0.05rem; /* Drastically reduced vertical spacing */
-    }
-
-    .alphabet-mini-btn {
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: white;
-        color: ${textSecondary};
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 0.85rem;
-        padding: 0;
-        touch-action: manipulation;
-        border: none;
-        border-radius: 0;
-        margin: 0;
-        min-width: 28px;
-    }
-
-    .alphabet-mini-btn:hover {
-        background: ${bgEnd};
-        color: ${primary};
-    }
-
-    .alphabet-mini-btn.disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-        background: #F8FAFC;
-    }
-
-    /* Floating Bus Stop Letters - MINIMAL VERTICAL SPACING */
-    .floating-bus-stop-letters {
-        position: sticky;
-        top: 100px;
-        z-index: 180;
-        background: white;
-        border: 1px solid ${borderLight};
-        border-radius: 6px;
-        padding: 0.8rem;
-        margin: 1rem 0;
-        box-shadow: 0 2px 4px rgba(73, 61, 213, 0.08);
-    }
-
-    .floating-letters-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
-        gap: 0.05rem; /* Drastically reduced vertical spacing */
-    }
-
-    .floating-letter-btn {
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: white;
-        color: ${textSecondary};
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 0.85rem;
-        padding: 0;
-        touch-action: manipulation;
-        border: none;
-        border-radius: 0;
-        margin: 0;
-        min-width: 28px;
-    }
-
-    .floating-letter-btn:hover {
-        background: ${bgEnd};
-        color: ${primary};
-    }
-
-    .floating-letter-btn.disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-        background: #F8FAFC;
+        font-size: 0.65rem;
     }
 
     /* Quick Search Modal */
@@ -3988,101 +3657,7 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.8;
     }
 
-    /* Alphabet Quick View - MINIMAL VERTICAL SPACING */
-    .alphabet-quick-view {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: white;
-        border-top: 2px solid ${primary};
-        border-radius: 8px 8px 0 0;
-        z-index: 1002;
-        max-height: 40vh;
-        overflow: hidden;
-        touch-action: manipulation;
-    }
-
-    .alphabet-view-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 0.8rem;
-        background: ${primary};
-        color: white;
-        touch-action: manipulation;
-        height: 40px;
-    }
-
-    .alphabet-view-header h4 {
-        margin: 0;
-        color: white;
-        font-size: 0.9rem;
-        font-weight: 500;
-    }
-
-    .close-alphabet {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.1rem;
-        cursor: pointer;
-        line-height: 1;
-        touch-action: manipulation;
-        z-index: 1003;
-        position: relative;
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .alphabet-view-grid {
-        padding: 0.6rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
-        gap: 0.05rem; /* Drastically reduced vertical spacing */
-        max-height: 30vh;
-        overflow-y: auto;
-        touch-action: manipulation;
-    }
-
-    .alphabet-btn {
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: white;
-        color: ${textSecondary};
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 0.85rem;
-        padding: 0;
-        touch-action: manipulation;
-        min-width: 28px;
-        min-height: 28px;
-        border: none;
-        border-radius: 0;
-        margin: 0;
-    }
-
-    .alphabet-btn:hover {
-        background: ${bgEnd};
-        color: ${primary};
-    }
-
-    .alphabet-btn.active {
-        background: ${primary};
-        color: white;
-    }
-
-    /* Depot Header */
+    /* Depot Header - PROPER ALIGNMENT WITH ALPHABET STRIP SPACING */
     .depot-header {
         background: white;
         border-radius: 8px;
@@ -4090,6 +3665,9 @@ document.addEventListener('DOMContentLoaded', function() {
         margin-bottom: 1rem;
         border: 1px solid ${borderLight};
         text-align: center;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .depot-info {
@@ -4098,6 +3676,8 @@ document.addEventListener('DOMContentLoaded', function() {
         gap: 0.8rem;
         margin-top: 0.8rem;
         flex-wrap: wrap;
+        max-width: 100%;
+        overflow: hidden;
     }
 
     .info-item {
@@ -4105,48 +3685,33 @@ document.addEventListener('DOMContentLoaded', function() {
         align-items: center;
         gap: 0.3rem;
         color: ${textSecondary};
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         background: #F8FAFC;
-        padding: 0.3rem 0.6rem;
+        padding: 0.25rem 0.5rem;
         border-radius: 6px;
         border: 1px solid ${borderLight};
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .info-item i {
         color: ${primary};
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
-    /* Search Box */
-    .search-container {
-        margin: 1rem 0;
-    }
-
-    .search-box {
-        width: 100%;
-        padding: 0.7rem 0.8rem;
-        border: 1px solid ${borderLight};
-        border-radius: 6px;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        background: white;
-        transition: all 0.3s;
-    }
-
-    .search-box:focus {
-        outline: none;
-        border-color: ${primary};
-    }
-
-    /* Time Filters - COMPACT - FIXED FOR MOBILE (TIME RANGES INSTEAD OF ICONS) */
+    /* Time Filters - PROPER ALIGNMENT */
     .time-filters {
         display: flex;
         gap: 0.4rem;
-        margin: 1rem 0;
+        margin: 0.5rem 0 1rem 0;
         overflow-x: auto;
         padding-bottom: 0.3rem;
         -webkit-overflow-scrolling: touch;
         white-space: nowrap;
+        width: 100%;
+        padding: 0;
     }
 
     .time-filters::-webkit-scrollbar {
@@ -4154,19 +3719,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .filter-btn {
-        padding: 0.5rem 0.6rem;
+        padding: 0.4rem 0.5rem;
         border: 1px solid ${borderLight};
         background: white;
         border-radius: 6px;
         font-family: 'Inter', sans-serif;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: ${textPrimary};
         cursor: pointer;
         white-space: nowrap;
         transition: all 0.3s;
         flex-shrink: 0;
         font-weight: 500;
-        min-width: 70px;
+        min-width: 65px;
         text-align: center;
     }
 
@@ -4182,7 +3747,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-weight: 500;
     }
 
-    /* Bus Stop Sections - COMPACT */
+    /* Bus Stop Sections - PROPER ALIGNMENT */
     .bus-stop-section {
         margin-bottom: 1rem;
         scroll-margin-top: 150px;
@@ -4190,13 +3755,17 @@ document.addEventListener('DOMContentLoaded', function() {
         border-radius: 8px;
         overflow: hidden;
         border: 1px solid ${borderLight};
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
     }
 
     .bus-stop-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.8rem;
+        padding: 0.7rem;
         background: linear-gradient(90deg, ${bgEnd} 0%, white 100%);
         border-bottom: 1px solid ${borderLight};
     }
@@ -4205,45 +3774,50 @@ document.addEventListener('DOMContentLoaded', function() {
         font-family: 'Inter', sans-serif;
         font-weight: 500;
         color: ${textSecondary};
-        font-size: 1rem;
+        font-size: 0.95rem;
+        max-width: 70%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .bus-count {
         background: ${primary};
         color: white;
-        padding: 0.2rem 0.5rem;
-        border-radius: 12px;
-        font-size: 0.75rem;
+        padding: 0.15rem 0.4rem;
+        border-radius: 10px;
+        font-size: 0.7rem;
         font-weight: 500;
-        min-width: 40px;
+        min-width: 35px;
         text-align: center;
     }
 
-    /* Schedule Grid - COMPACT FOR MOBILE */
+    /* Schedule Grid - PROPER ALIGNMENT */
     .schedule-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
-        gap: 0.6rem;
-        padding: 0.8rem;
+        grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+        gap: 0.25rem;
+        padding: 0.5rem;
+        width: 100%;
     }
 
-    /* Time Bubbles - COMPACT */
+    /* Time Bubbles - PROPER ALIGNMENT */
     .time-bubble {
         position: relative;
-        padding: 0.6rem 0.3rem;
-        border-radius: 6px;
+        padding: 0.25rem 0.15rem;
+        border-radius: 12px;
         text-align: center;
         font-family: 'Inter', sans-serif;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        min-height: 48px;
+        min-height: 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         user-select: none;
-        font-size: 0.85rem;
+        font-size: 0.68rem;
         border: 1px solid transparent;
         overflow: visible;
         margin: 0.05rem;
@@ -4277,22 +3851,22 @@ document.addEventListener('DOMContentLoaded', function() {
         transform: scale(1.02);
     }
 
-    /* Next Bus Badge - SMALLER */
+    /* Next Bus Badge */
     .next-badge {
         position: absolute;
-        top: -8px;
-        right: -8px;
+        top: -6px;
+        right: -6px;
         background: ${primary};
         color: white;
-        font-size: 0.6rem;
-        padding: 1px 4px;
+        font-size: 0.55rem;
+        padding: 1px 3px;
         border-radius: 8px;
         font-weight: 600;
         z-index: 20;
         box-shadow: 0 1px 2px rgba(0,0,0,0.2);
         animation: pulse 2s infinite;
         white-space: nowrap;
-        min-width: 30px;
+        min-width: 28px;
         text-align: center;
         border: 1px solid white;
     }
@@ -4306,19 +3880,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    /* Next Bus Sparkle Effect - IMPROVED WITH ORANGE BORDER */
+    /* Next Bus Sparkle Effect */
     .next-bus-sparkle {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: 6px;
-        border: 2px solid #FFA500;
+        border-radius: 12px;
+        border: 1px solid #FFA500;
         animation: sparkle 2s infinite;
         pointer-events: none;
         opacity: 0;
-        box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+        box-shadow: 0 0 8px rgba(255, 165, 0, 0.7);
         z-index: 5;
     }
 
@@ -4326,12 +3900,12 @@ document.addEventListener('DOMContentLoaded', function() {
         0%, 100% {
             opacity: 0.5;
             border-color: #FFA500;
-            box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+            box-shadow: 0 0 8px rgba(255, 165, 0, 0.7);
         }
         50% {
             opacity: 1;
             border-color: #FFD700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
         }
     }
 
@@ -4339,13 +3913,14 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.5;
     }
 
-    /* Footer - UPDATED FOR MOBILE */
+    /* Footer */
     .site-footer {
         background: white;
         border-top: 1px solid ${borderLight};
         padding: 1.5rem 0 2rem 0;
         margin-top: 2rem;
         min-height: 300px;
+        width: 100%;
     }
 
     .footer-content {
@@ -4405,6 +3980,9 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 1rem;
         margin-top: 1.5rem;
         border: 1px solid ${borderLight};
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .seo-content h2 {
@@ -4425,11 +4003,11 @@ document.addEventListener('DOMContentLoaded', function() {
         line-height: 1.5;
     }
 
-    /* Blog Page Styles - ADDED LEFT PADDING */
+    /* Blog Page Styles */
     .blog-page {
         max-width: 800px;
         margin: 0 auto;
-        padding-left: 1.5rem; /* Added left padding */
+        padding: 0 1rem;
     }
 
     .blog-header {
@@ -4475,7 +4053,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .blog-content {
         font-size: 0.95rem;
         line-height: 1.6;
-        padding-left: 0.5rem; /* Added left padding */
+        padding: 0 0.6rem;
     }
 
     /* Blog Links - Clickable with URL constants */
@@ -4690,6 +4268,9 @@ document.addEventListener('DOMContentLoaded', function() {
         border-radius: 8px;
         border: 1px solid ${borderLight};
         margin: 1.5rem 0;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .empty-state i {
@@ -4723,45 +4304,89 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 13px;
         }
 
+        .container {
+            padding: 0 0.8rem;
+            padding-right: calc(0.8rem + 28px); /* 28px for mobile alphabet strip */
+        }
+
+        /* MOBILE: Stack cards in single column */
         .division-grid,
         .district-grid,
         .tehsil-grid,
         .depot-grid {
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: 1fr;
             gap: 0.5rem;
         }
 
         .rectangular-card {
-            padding: 0.7rem;
-            min-height: 75px;
+            padding: 0.6rem;
+            min-height: 70px;
+            margin: 0 auto;
+            width: calc(100% - 5px); /* Small space from both sides */
         }
 
         .rectangular-card h3 {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 0.5rem;
-            padding: 0.7rem;
+        .rectangular-card .stat {
+            font-size: 0.6rem;
+            padding: 0.08rem 0.25rem;
         }
 
-        .time-bubble {
-            min-height: 44px;
-            padding: 0.5rem 0.2rem;
+        /* Mobile: Back buttons */
+        .back-btn {
+            padding: 0.45rem 0.7rem;
+            font-size: 0.8rem;
+            gap: 0.25rem;
+            max-width: 100%;
+            min-height: 36px;
+        }
+
+        .back-btn i {
             font-size: 0.8rem;
         }
 
-        .next-badge {
-            font-size: 0.55rem;
-            padding: 1px 3px;
-            top: -6px;
-            right: -6px;
-            min-width: 28px;
+        /* Mobile: Search bar - full width */
+        .search-bar {
+            width: 100%;
+            padding: 0.4rem 0.6rem;
         }
 
-        .floating-bus-stop-letters {
-            top: 125px;
+        /* Mobile: Adjusted schedule grid */
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+            gap: 0.2rem;
+            padding: 0.4rem;
+        }
+
+        /* Mobile: Time bubbles */
+        .time-bubble {
+            min-height: 28px;
+            padding: 0.18rem 0.08rem;
+            font-size: 0.63rem;
+            border-radius: 10px;
+        }
+
+        .next-badge {
+            font-size: 0.5rem;
+            padding: 1px 2px;
+            top: -5px;
+            right: -5px;
+            min-width: 25px;
+        }
+
+        .vertical-alphabet-nav {
+            top: 110px;
+            width: 28px;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .alphabet-vertical-btn {
+            width: 24px;
+            height: 24px;
+            font-size: 0.75rem;
+            margin: 0.03rem 0;
         }
 
         .footer-content {
@@ -4796,70 +4421,40 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 0.05rem 0.2rem;
         }
 
-        /* Mobile: Ultra compact quick jump */
-        .quick-jump-btn {
-            min-width: 48px;
-            max-width: 52px;
-            padding: 0.2rem 0.25rem;
-            font-size: 0.6rem;
-            height: 44px;
+        /* Mobile: Depot header and info items */
+        .depot-header {
+            width: 100%;
+            margin-left: 0;
+            padding: 0.8rem;
         }
 
-        .quick-jump-btn i {
+        .info-item {
+            max-width: 130px;
             font-size: 0.7rem;
         }
 
-        /* Mobile: Time filters with smaller font for better fit */
+        /* Mobile: Time filters */
         .time-filters {
+            width: 100%;
             gap: 0.3rem;
+            margin-left: 0;
         }
 
         .filter-btn {
-            padding: 0.4rem 0.5rem;
-            font-size: 0.7rem;
-            min-width: 65px;
+            padding: 0.35rem 0.4rem;
+            font-size: 0.65rem;
+            min-width: 60px;
         }
 
-        /* Mobile: Minimal vertical spacing alphabet drawer */
-        .alphabet-view-grid {
-            grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
-            gap: 0.05rem; /* Drastically reduced vertical spacing */
-            padding: 0.5rem;
+        /* Mobile: Bus stop sections */
+        .bus-stop-section {
+            width: 100%;
+            margin-left: 0;
+            padding: 0;
         }
 
-        .alphabet-btn {
-            width: 24px;
-            height: 24px;
-            font-size: 0.75rem;
-        }
-
-        .alphabet-view-header {
-            padding: 0.4rem 0.6rem;
-            height: 36px;
-        }
-
-        .alphabet-view-header h4 {
-            font-size: 0.85rem;
-        }
-
-        .close-alphabet {
-            font-size: 1rem;
-            width: 28px;
-            height: 28px;
-        }
-
-        /* Mobile: Minimal vertical spacing alphabet buttons */
-        .alphabet-mini-grid,
-        .floating-letters-grid {
-            grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
-            gap: 0.05rem; /* Drastically reduced vertical spacing */
-        }
-
-        .alphabet-mini-btn,
-        .floating-letter-btn {
-            width: 24px;
-            height: 24px;
-            font-size: 0.75rem;
+        .bus-stop-name {
+            max-width: 65%;
         }
 
         .related-links-grid {
@@ -4875,15 +4470,17 @@ document.addEventListener('DOMContentLoaded', function() {
         .back-btn {
             width: 100%;
             justify-content: center;
+            max-width: 100%;
         }
 
-        /* Mobile: Blog page with left padding */
+        /* Mobile: Blog page */
         .blog-page {
-            padding-left: 1rem;
+            padding: 0 1rem;
         }
 
         .blog-content {
-            padding-left: 0.8rem;
+            padding: 0 0.8rem;
+            font-size: 0.9rem;
         }
 
         /* Mobile: Blog images */
@@ -4901,11 +4498,20 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 0.8rem;
             margin-top: 0.4rem;
         }
+
+        /* Mobile: Ad content */
+        .ad-content {
+            width: 100%;
+        }
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
         html {
             font-size: 14px;
+        }
+
+        .container {
+            padding-right: calc(0.8rem + 30px); /* 30px for tablet alphabet strip */
         }
 
         .division-grid {
@@ -4914,15 +4520,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .district-grid,
         .tehsil-grid {
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         }
 
         .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+            padding: 0.5rem;
         }
 
         .blog-grid {
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .vertical-alphabet-nav {
+            width: 30px;
+            top: 110px;
+        }
+
+        .alphabet-vertical-btn {
+            width: 26px;
+            height: 26px;
+            font-size: 0.8rem;
         }
 
         .ad-desktop {
@@ -4937,62 +4555,59 @@ document.addEventListener('DOMContentLoaded', function() {
             min-width: 80px;
         }
 
-        /* Tablet: Compact quick jump */
-        .quick-jump-btn {
-            min-width: 55px;
-            max-width: 60px;
-            padding: 0.3rem 0.4rem;
-            font-size: 0.7rem;
-            height: 52px;
-        }
-
-        .quick-jump-btn i {
-            font-size: 0.8rem;
-        }
-
-        /* Tablet: Minimal vertical spacing alphabet drawer */
-        .alphabet-view-grid {
-            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
-            gap: 0.05rem; /* Drastically reduced vertical spacing */
-        }
-
-        .alphabet-btn {
-            width: 28px;
-            height: 28px;
-            font-size: 0.85rem;
-        }
-
-        /* Tablet: Minimal vertical spacing alphabet buttons */
-        .alphabet-mini-grid,
-        .floating-letters-grid {
-            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
-            gap: 0.05rem; /* Drastically reduced vertical spacing */
-        }
-
-        .alphabet-mini-btn,
-        .floating-letter-btn {
-            width: 28px;
-            height: 28px;
-            font-size: 0.85rem;
-        }
-
         .related-links-grid {
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         }
 
-        /* Schedule optimization for tablets */
-        .time-bubble {
-            min-height: 46px;
-            font-size: 0.85rem;
+        /* Tablet: Adjusted back buttons */
+        .back-btn {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.8rem;
+            max-width: 100%;
+            min-height: 40px;
         }
 
-        /* Tablet: Blog page with left padding */
+        /* Tablet: Adjusted search bar */
+        .search-bar {
+            width: 100%;
+        }
+
+        /* Tablet: Adjusted depot header */
+        .depot-header {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Tablet: Adjusted time filters */
+        .time-filters {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Tablet: Adjusted bus stop sections */
+        .bus-stop-section {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Tablet: Adjusted ad content */
+        .ad-content {
+            width: 100%;
+        }
+
+        /* Tablet: Schedule optimization */
+        .time-bubble {
+            min-height: 32px;
+            font-size: 0.72rem;
+        }
+
+        /* Tablet: Blog page */
         .blog-page {
-            padding-left: 1.5rem;
+            padding: 0 0.8rem;
         }
 
         .blog-content {
-            padding-left: 1rem;
+            padding: 0 0.6rem;
         }
 
         /* Tablet: Blog images */
@@ -5007,6 +4622,10 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 15px;
         }
 
+        .container {
+            padding-right: calc(0.8rem + 32px); /* 32px for desktop alphabet strip */
+        }
+
         .division-grid {
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
@@ -5018,6 +4637,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .blog-grid {
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .vertical-alphabet-nav {
+            width: 32px;
+            top: 110px;
+        }
+
+        .alphabet-vertical-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
         }
 
         .ad-desktop {
@@ -5038,82 +4668,70 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 0.85rem;
         }
 
-        /* Desktop: Normal quick jump buttons */
-        .quick-jump-btn {
-            min-width: 65px;
-            max-width: 70px;
-            padding: 0.4rem 0.5rem;
-            font-size: 0.7rem;
-            height: 58px;
-        }
-
-        .quick-jump-btn i {
-            font-size: 0.9rem;
-        }
-
-        /* Desktop: Minimal vertical spacing alphabet drawer */
-        .alphabet-view-grid {
-            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
-            gap: 0.05rem; /* Drastically reduced vertical spacing */
-        }
-
-        .alphabet-btn {
-            width: 28px;
-            height: 28px;
-            font-size: 0.85rem;
-        }
-
-        .alphabet-view-header {
-            padding: 0.6rem 1rem;
-        }
-
-        /* Desktop: Minimal vertical spacing alphabet buttons */
-        .alphabet-mini-grid,
-        .floating-letters-grid {
-            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
-            gap: 0.05rem; /* Drastically reduced vertical spacing */
-        }
-
-        .alphabet-mini-btn,
-        .floating-letter-btn {
-            width: 28px;
-            height: 28px;
-            font-size: 0.85rem;
-        }
-
         .related-links-grid {
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
 
-        /* Desktop: Better spacing for schedule */
-        .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 0.8rem;
-        }
-
-        .time-bubble {
-            min-height: 50px;
-            font-size: 0.9rem;
-        }
-
-        /* Desktop: Larger back buttons */
+        /* Desktop: Back buttons */
         .back-btn {
-            padding: 0.8rem 1rem;
+            padding: 0.6rem 1rem;
             font-size: 0.9rem;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            max-width: 100%;
+            min-height: 42px;
         }
 
         .back-btn i {
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
-        /* Desktop: Blog page with left padding */
+        /* Desktop: Search bar width */
+        .search-bar {
+            width: 100%;
+        }
+
+        /* Desktop: Depot header */
+        .depot-header {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Desktop: Time filters */
+        .time-filters {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Desktop: Bus stop sections */
+        .bus-stop-section {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Desktop: Ad content */
+        .ad-content {
+            width: 100%;
+        }
+
+        /* Desktop: Better spacing for schedule */
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+            gap: 0.3rem;
+            padding: 0.5rem;
+        }
+
+        .time-bubble {
+            min-height: 34px;
+            font-size: 0.72rem;
+        }
+
+        /* Desktop: Blog page */
         .blog-page {
-            padding-left: 2rem;
+            padding: 0 1rem;
         }
 
         .blog-content {
-            padding-left: 1.5rem;
+            padding: 0 0.8rem;
         }
 
         /* Desktop: Blog images */
@@ -5125,15 +4743,13 @@ document.addEventListener('DOMContentLoaded', function() {
     /* Print Styles */
     @media print {
         .site-header,
-        .quick-jump-nav,
-        .floating-bus-stop-letters,
+        .search-bar-container,
+        .vertical-alphabet-nav,
         .filter-btn,
-        .search-container,
         .time-filters,
         .back-btn,
         .ad-container,
-        .quick-search-modal,
-        .alphabet-quick-view {
+        .quick-search-modal {
             display: none !important;
         }
 
@@ -5154,23 +4770,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* Fix for mobile touch */
     @media (max-width: 1000px) {
-        .quick-jump-btn,
-        .alphabet-btn,
-        .alphabet-mini-btn,
-        .floating-letter-btn,
+        .alphabet-vertical-btn,
         .filter-btn,
         .tab-btn,
         .close-search,
-        .close-alphabet {
-            min-height: 40px;
-            min-width: 40px;
-            padding: 6px 8px;
-        }
-
-        /* Ensure alphabet drawer opens properly */
-        .alphabet-quick-view {
-            z-index: 1002 !important;
-            touch-action: pan-y !important;
+        .clear-search {
+            min-height: 38px;
+            min-width: 38px;
+            padding: 5px 7px;
         }
     }
 
@@ -5181,77 +4788,53 @@ document.addEventListener('DOMContentLoaded', function() {
         width: 100%;
     }
 
-    .container, .quick-jump-content, .tabs-header, .time-filters {
+    .container, .tabs-header, .time-filters {
         max-width: 100%;
         overflow-x: hidden;
     }
 
     /* Schedule optimization - More compact on small screens */
     @media (max-width: 380px) {
+        .container {
+            padding-right: calc(0.8rem + 28px); /* Keep same as mobile */
+        }
+
         .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
-            gap: 0.4rem;
-            padding: 0.6rem;
+            grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+            gap: 0.15rem;
+            padding: 0.3rem;
         }
 
         .time-bubble {
-            min-height: 40px;
-            padding: 0.4rem 0.1rem;
-            font-size: 0.75rem;
+            min-height: 28px;
+            padding: 0.16rem 0.06rem;
+            font-size: 0.62rem;
+            border-radius: 8px;
         }
 
         .bus-stop-name {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
 
         /* Time filters - even smaller on very small screens */
         .time-filters {
-            gap: 0.2rem;
+            gap: 0.15rem;
+            width: 100%;
+            margin-left: 0;
         }
 
         .filter-btn {
-            padding: 0.35rem 0.4rem;
-            font-size: 0.65rem;
-            min-width: 60px;
+            padding: 0.3rem 0.35rem;
+            font-size: 0.6rem;
+            min-width: 55px;
         }
 
-        /* Ultra minimal vertical spacing alphabet drawer for very small screens */
-        .alphabet-view-grid {
-            grid-template-columns: repeat(auto-fill, minmax(22px, 1fr));
-            gap: 0.05rem; /* Drastically reduced vertical spacing */
-            padding: 0.4rem;
-        }
-
-        .alphabet-btn {
-            width: 22px;
-            height: 22px;
-            font-size: 0.7rem;
-        }
-
-        .alphabet-view-header {
-            padding: 0.3rem 0.5rem;
-            height: 32px;
-        }
-
-        .alphabet-view-header h4 {
-            font-size: 0.8rem;
-        }
-
-        .close-alphabet {
-            font-size: 0.9rem;
+        /* Vertical alphabet for very small screens */
+        .vertical-alphabet-nav {
             width: 26px;
-            height: 26px;
         }
 
-        /* Very minimal vertical spacing alphabet buttons */
-        .alphabet-mini-grid,
-        .floating-letters-grid {
-            grid-template-columns: repeat(auto-fill, minmax(22px, 1fr));
-            gap: 0.05rem; /* Drastically reduced vertical spacing */
-        }
-
-        .alphabet-mini-btn,
-        .floating-letter-btn {
+        .alphabet-vertical-btn {
             width: 22px;
             height: 22px;
             font-size: 0.7rem;
@@ -5266,11 +4849,89 @@ document.addEventListener('DOMContentLoaded', function() {
         .footer-section:nth-child(3) {
             grid-column: 1;
         }
+
+        /* Very small cards - single column */
+        .division-grid,
+        .district-grid,
+        .tehsil-grid,
+        .depot-grid {
+            grid-template-columns: 1fr;
+            gap: 0.4rem;
+        }
+
+        .rectangular-card {
+            padding: 0.5rem;
+            min-height: 65px;
+            width: calc(100% - 5px);
+        }
+
+        .rectangular-card h3 {
+            font-size: 0.85rem;
+        }
+
+        .rectangular-card .stat {
+            font-size: 0.55rem;
+            padding: 0.06rem 0.2rem;
+        }
+
+        /* Very small back buttons */
+        .back-btn {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.75rem;
+            max-width: 100%;
+            min-height: 34px;
+        }
+
+        .back-btn i {
+            font-size: 0.75rem;
+        }
+
+        /* Very small search bar */
+        .search-bar {
+            width: 100%;
+            padding: 0.35rem 0.5rem;
+        }
+
+        .search-input {
+            font-size: 0.8rem;
+        }
+
+        /* Very small blog content */
+        .blog-content {
+            padding: 0 0.4rem;
+            font-size: 0.85rem;
+        }
+
+        .blog-page {
+            padding: 0 0.8rem;
+        }
+
+        /* Very small depot header and info */
+        .depot-header {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .info-item {
+            max-width: 110px;
+            font-size: 0.65rem;
+        }
+
+        /* Very small bus stop sections */
+        .bus-stop-section {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Very small ad content */
+        .ad-content {
+            width: 100%;
+        }
     }`;
     }
 
     getInlineJS() {
-        return `// MSRTC Bus Timetable Application - Mobile Optimized
+        return `// MSRTC Bus Timetable Application - Mobile Optimized with Vertical Alphabet
 class BusTimetableApp {
     constructor() {
         this.istOffset = 5.5 * 60 * 60 * 1000;
@@ -5304,14 +4965,11 @@ class BusTimetableApp {
         // Initialize tabs
         this.initAllTabs();
 
-        // Initialize quick jump navigation
-        this.initQuickJump();
+        // Initialize search functionality
+        this.initSearch();
 
         // Initialize alphabet navigation
         this.initAlphabetNavigation();
-
-        // Initialize search functionality
-        this.initSearch();
 
         // Initialize depot-specific features
         if (document.querySelector('.time-filters')) {
@@ -5323,13 +4981,8 @@ class BusTimetableApp {
             }, 100);
         }
 
-        // Initialize scroll highlighting
-        if (document.querySelector('.bus-stop-section') || document.querySelector('.rectangular-card')) {
-            this.initScrollHighlighting();
-        }
-
-        // Initialize bus stop alphabet navigation
-        this.initBusStopAlphabetNavigation();
+        // Initialize scroll highlighting for vertical alphabet
+        this.initScrollHighlighting();
 
         // Prevent horizontal scroll
         this.preventHorizontalScroll();
@@ -5337,7 +4990,7 @@ class BusTimetableApp {
         // Mobile-specific optimizations
         this.mobileOptimizations();
 
-        // Track active tab for alphabet drawer visibility
+        // Track active tab for search placeholder
         this.trackActiveTab();
 
         // Initialize blog links with URL constants
@@ -5418,12 +5071,12 @@ class BusTimetableApp {
     }
 
     trackActiveTab() {
-        // Observe tab changes to show/hide alphabet drawer
+        // Observe tab changes to update search placeholder
         const observer = new MutationObserver(() => {
             const activeTabBtn = document.querySelector('.tab-btn.active');
             if (activeTabBtn) {
                 this.activeTab = activeTabBtn.dataset.tab;
-                this.updateAlphabetDrawerVisibility();
+                this.updateSearchPlaceholder();
             }
         });
 
@@ -5433,22 +5086,18 @@ class BusTimetableApp {
         }
     }
 
-    updateAlphabetDrawerVisibility() {
-        // Show alphabet drawer only for tehsil and depot tabs
-        const tehsilAlphabetDrawer = document.getElementById('tehsilAlphabetDrawer');
-        const depotAlphabetDrawer = document.getElementById('depotAlphabetDrawer');
+    updateSearchPlaceholder() {
+        const searchInput = document.querySelector('.search-input');
+        if (!searchInput) return;
 
-        if (this.activeTab === 'tehsils' && tehsilAlphabetDrawer) {
-            tehsilAlphabetDrawer.style.display = 'block';
-        } else if (tehsilAlphabetDrawer) {
-            tehsilAlphabetDrawer.style.display = 'none';
-        }
+        const placeholders = {
+            'divisions': 'Search divisions...',
+            'districts': 'Search districts...',
+            'tehsils': 'Search tehsils...',
+            'depots': 'Search depots...'
+        };
 
-        if (this.activeTab === 'depots' && depotAlphabetDrawer) {
-            depotAlphabetDrawer.style.display = 'block';
-        } else if (depotAlphabetDrawer) {
-            depotAlphabetDrawer.style.display = 'none';
-        }
+        searchInput.placeholder = placeholders[this.activeTab] || 'Search depots, tehsils, districts...';
     }
 
     initAllTabs() {
@@ -5469,13 +5118,6 @@ class BusTimetableApp {
                     }
                 });
 
-                document.querySelectorAll('.quick-jump-btn[data-tab]').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.tab === tabId) {
-                        btn.classList.add('active');
-                    }
-                });
-
                 if (window.location.pathname.endsWith('index.html') ||
                     window.location.pathname.endsWith('/')) {
                     window.history.replaceState(null, null, \`#\${tabId}\`);
@@ -5483,7 +5125,7 @@ class BusTimetableApp {
 
                 localStorage.setItem('activeTab', tabId);
                 this.activeTab = tabId;
-                this.updateAlphabetDrawerVisibility();
+                this.updateSearchPlaceholder();
 
                 // Reset scroll when switching tabs
                 setTimeout(() => {
@@ -5499,66 +5141,8 @@ class BusTimetableApp {
         }
     }
 
-    initQuickJump() {
-        document.querySelectorAll('.search-trigger').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.showSearchModal();
-            });
-        });
-
-        document.querySelectorAll('.alphabet-trigger').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.showAlphabetView();
-            });
-        });
-
-        document.querySelectorAll('.bus-stop-alphabet-trigger').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.scrollToBusStopSection('A');
-            });
-        });
-
-        document.querySelectorAll('.quick-jump-btn[data-tab]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const tabId = btn.dataset.tab;
-                const hash = btn.dataset.hash || tabId;
-
-                const isHomepage = window.location.pathname.endsWith('index.html') ||
-                                  window.location.pathname.endsWith('/');
-
-                if (isHomepage) {
-                    const mainTabButton = document.querySelector(\`.tab-btn[data-tab="\${tabId}"]\`);
-                    if (mainTabButton) {
-                        mainTabButton.click();
-
-                        setTimeout(() => {
-                            const tabsSection = document.querySelector('.tabs-container');
-                            if (tabsSection) {
-                                const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                                   document.querySelector('.quick-jump-nav').offsetHeight;
-                                const sectionTop = tabsSection.offsetTop - headerHeight - 10;
-
-                                window.scrollTo({
-                                    top: sectionTop,
-                                    behavior: 'smooth'
-                                });
-                            }
-                        }, 100);
-                    }
-                } else {
-                    window.location.href = \`index.html#\${hash}\`;
-                }
-            });
-        });
-    }
-
     initAlphabetNavigation() {
-        const alphabetButtons = document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn');
+        const alphabetButtons = document.querySelectorAll('.alphabet-vertical-btn');
         alphabetButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 if (button.classList.contains('disabled')) {
@@ -5567,29 +5151,8 @@ class BusTimetableApp {
                 }
 
                 const letter = button.dataset.letter;
-
-                // First try to jump to depot cards (for depot tab)
-                if (this.activeTab === 'depots') {
-                    if (this.jumpToDepotCards(letter)) {
-                        this.highlightAlphabetButton(button);
-                        this.hideAlphabetView();
-                        return;
-                    }
-                }
-
-                // Then try to jump to tehsil cards (for tehsil tab)
-                if (this.activeTab === 'tehsils') {
-                    if (this.jumpToTehsilCards(letter)) {
-                        this.highlightAlphabetButton(button);
-                        this.hideAlphabetView();
-                        return;
-                    }
-                }
-
-                // Fallback to generic jump
                 this.jumpToLetter(letter);
                 this.highlightAlphabetButton(button);
-                this.hideAlphabetView();
             });
 
             button.addEventListener('touchstart', (e) => {
@@ -5601,7 +5164,7 @@ class BusTimetableApp {
 
     highlightAlphabetButton(clickedButton) {
         // Remove active class from all alphabet buttons
-        document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn, .floating-letter-btn').forEach(btn => {
+        document.querySelectorAll('.alphabet-vertical-btn').forEach(btn => {
             btn.classList.remove('active');
         });
 
@@ -5609,15 +5172,52 @@ class BusTimetableApp {
         clickedButton.classList.add('active');
     }
 
-    jumpToDepotCards(letter) {
-        const depotCards = document.querySelectorAll('#depots-tab .rectangular-card');
-        for (const card of depotCards) {
-            const cardAlphabet = card.dataset.alphabet;
-            const cardTitle = card.querySelector('h3');
-            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
-                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
+    jumpToLetter(letter) {
+        // First try to jump to bus stop sections (for depot pages)
+        if (this.scrollToBusStopSection(letter)) {
+            return;
+        }
+
+        // Then try to jump to cards in the current tab
+        if (this.jumpToCards(letter)) {
+            return;
+        }
+
+        // Fallback to headings
+        const headings = document.querySelectorAll('h1, h2, h3, h4');
+        for (const heading of headings) {
+            if (heading.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
                 const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                                   (document.querySelector('.search-bar-container') ? document.querySelector('.search-bar-container').offsetHeight : 0) + 10;
+                const headingTop = heading.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: headingTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(heading);
+                return;
+            }
+        }
+    }
+
+    jumpToCards(letter) {
+        const cards = document.querySelectorAll(\`#\${this.activeTab}-tab .rectangular-card\`);
+        if (cards.length === 0) {
+            // Try generic cards if no tab-specific cards
+            const genericCards = document.querySelectorAll('.rectangular-card');
+            return this.scrollToCardByLetter(genericCards, letter);
+        }
+        return this.scrollToCardByLetter(cards, letter);
+    }
+
+    scrollToCardByLetter(cards, letter) {
+        for (const card of cards) {
+            const cardTitle = card.querySelector('h3');
+            if (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   (document.querySelector('.search-bar-container') ? document.querySelector('.search-bar-container').offsetHeight : 0) + 10;
                 const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
                 window.scrollTo({
@@ -5630,56 +5230,6 @@ class BusTimetableApp {
             }
         }
         return false;
-    }
-
-    jumpToTehsilCards(letter) {
-        const tehsilCards = document.querySelectorAll('#tehsils-tab .rectangular-card');
-        for (const card of tehsilCards) {
-            const cardAlphabet = card.dataset.alphabet;
-            const cardTitle = card.querySelector('h3');
-            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
-                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
-                const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
-                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                window.scrollTo({
-                    top: cardTop,
-                    behavior: 'smooth'
-                });
-
-                this.highlightElement(card);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    initBusStopAlphabetNavigation() {
-        const floatingButtons = document.querySelectorAll('.floating-letter-btn');
-        floatingButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                if (button.classList.contains('disabled')) {
-                    e.preventDefault();
-                    return;
-                }
-
-                const letter = button.dataset.letter;
-                this.scrollToBusStopSection(letter);
-
-                floatingButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.letter === letter) {
-                        btn.classList.add('active');
-                    }
-                });
-            });
-
-            button.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                button.click();
-            });
-        });
     }
 
     scrollToBusStopSection(letter) {
@@ -5688,7 +5238,7 @@ class BusTimetableApp {
 
         if (busStopSections.length > 0) {
             const headerHeight = document.querySelector('.site-header').offsetHeight +
-                               document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                               (document.querySelector('.search-bar-container') ? document.querySelector('.search-bar-container').offsetHeight : 0) + 10;
             const sectionTop = busStopSections[0].offsetTop - headerHeight;
 
             window.scrollTo({
@@ -5705,7 +5255,7 @@ class BusTimetableApp {
             const busStopName = section.querySelector('.bus-stop-name')?.textContent.trim();
             if (busStopName && busStopName.charAt(0).toLowerCase() === lookupLetter) {
                 const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
+                                   (document.querySelector('.search-bar-container') ? document.querySelector('.search-bar-container').offsetHeight : 0) + 10;
                 const sectionTop = section.offsetTop - headerHeight;
 
                 window.scrollTo({
@@ -5721,49 +5271,6 @@ class BusTimetableApp {
         return false;
     }
 
-    jumpToLetter(letter) {
-        if (this.scrollToBusStopSection(letter)) {
-            return;
-        }
-
-        const cards = document.querySelectorAll('.rectangular-card');
-        for (const card of cards) {
-            const cardAlphabet = card.dataset.alphabet;
-            const cardTitle = card.querySelector('h3');
-            if ((cardAlphabet && cardAlphabet.toUpperCase() === letter.toUpperCase()) ||
-                (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase())) {
-                const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
-                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                window.scrollTo({
-                    top: cardTop,
-                    behavior: 'smooth'
-                });
-
-                this.highlightElement(card);
-                return;
-            }
-        }
-
-        const headings = document.querySelectorAll('h1, h2, h3, h4');
-        for (const heading of headings) {
-            if (heading.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
-                const headerHeight = document.querySelector('.site-header').offsetHeight +
-                                   document.querySelector('.quick-jump-nav').offsetHeight + 10;
-                const headingTop = heading.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                window.scrollTo({
-                    top: headingTop,
-                    behavior: 'smooth'
-                });
-
-                this.highlightElement(heading);
-                return;
-            }
-        }
-    }
-
     highlightElement(element) {
         const originalBoxShadow = element.style.boxShadow;
         const originalBackground = element.style.backgroundColor;
@@ -5775,6 +5282,140 @@ class BusTimetableApp {
             element.style.boxShadow = originalBoxShadow;
             element.style.backgroundColor = originalBackground;
         }, 1000);
+    }
+
+    initSearch() {
+        const searchBox = document.querySelector('.search-input');
+        const clearButton = document.querySelector('.clear-search');
+
+        if (searchBox) {
+            // Update clear button visibility
+            const updateClearButton = () => {
+                if (clearButton) {
+                    clearButton.style.display = searchBox.value ? 'flex' : 'none';
+                }
+            };
+
+            searchBox.addEventListener('input', (e) => {
+                this.searchTerm = e.target.value.toLowerCase().trim();
+                this.applySearch();
+                updateClearButton();
+            });
+
+            searchBox.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchBox.value = '';
+                    this.searchTerm = '';
+                    this.applySearch();
+                    updateClearButton();
+                }
+                if (e.key === 'Enter') {
+                    this.performAdvancedSearch();
+                }
+            });
+
+            // Initial update of clear button
+            updateClearButton();
+        }
+
+        // Clear button functionality
+        if (clearButton) {
+            clearButton.addEventListener('click', () => {
+                const searchBox = document.querySelector('.search-input');
+                if (searchBox) {
+                    searchBox.value = '';
+                    this.searchTerm = '';
+                    this.applySearch();
+                    clearButton.style.display = 'none';
+                    searchBox.focus();
+                }
+            });
+        }
+
+        // Add click handler for search icon to open advanced search
+        const searchIcon = document.querySelector('.search-bar i');
+        if (searchIcon) {
+            searchIcon.addEventListener('click', () => {
+                this.showSearchModal();
+            });
+        }
+    }
+
+    performAdvancedSearch() {
+        this.showSearchModal();
+        setTimeout(() => {
+            const modalInput = document.querySelector('.global-search-input');
+            if (modalInput && this.searchTerm) {
+                modalInput.value = this.searchTerm;
+                modalInput.dispatchEvent(new Event('input'));
+            }
+        }, 100);
+    }
+
+    applySearch() {
+        // For homepage tabs
+        const cards = document.querySelectorAll('.rectangular-card');
+        let hasVisibleContent = false;
+
+        cards.forEach(card => {
+            const cardTitle = card.querySelector('h3').textContent.toLowerCase();
+            const cardMeta = card.querySelector('.card-meta');
+            const cardMetaText = cardMeta ? cardMeta.textContent.toLowerCase() : '';
+
+            if (this.searchTerm &&
+                !cardTitle.includes(this.searchTerm) &&
+                !cardMetaText.includes(this.searchTerm)) {
+                card.style.display = 'none';
+            } else {
+                card.style.display = 'flex';
+                hasVisibleContent = true;
+            }
+        });
+
+        // For depot bus stops
+        const busStopSections = document.querySelectorAll('.bus-stop-section');
+        if (busStopSections.length > 0) {
+            this.applyFilters();
+        }
+
+        // Update vertical alphabet visibility
+        this.updateVerticalAlphabetVisibility();
+    }
+
+    updateVerticalAlphabetVisibility() {
+        const alphabetButtons = document.querySelectorAll('.alphabet-vertical-btn');
+        alphabetButtons.forEach(button => {
+            const letter = button.dataset.letter;
+            const hasVisibleItems = this.checkLetterHasVisibleItems(letter);
+
+            if (hasVisibleItems) {
+                button.classList.remove('disabled');
+            } else {
+                button.classList.add('disabled');
+            }
+        });
+    }
+
+    checkLetterHasVisibleItems(letter) {
+        // Check cards
+        const cards = document.querySelectorAll('.rectangular-card[style*="display: flex"], .rectangular-card:not([style*="display: none"])');
+        for (const card of cards) {
+            const cardTitle = card.querySelector('h3');
+            if (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                return true;
+            }
+        }
+
+        // Check bus stop sections
+        const busStopSections = document.querySelectorAll('.bus-stop-section:not(.hidden)');
+        for (const section of busStopSections) {
+            const busStopName = section.querySelector('.bus-stop-name');
+            if (busStopName && busStopName.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     showSearchModal() {
@@ -5939,64 +5580,6 @@ class BusTimetableApp {
         });
     }
 
-    showAlphabetView() {
-        const view = document.getElementById('alphabetView');
-        if (view) {
-            view.style.display = 'block';
-
-            const closeBtn = view.querySelector('.close-alphabet');
-            closeBtn.addEventListener('click', () => {
-                this.hideAlphabetView();
-            });
-
-            closeBtn.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                this.hideAlphabetView();
-            });
-
-            view.addEventListener('click', (e) => {
-                if (e.target === view) {
-                    this.hideAlphabetView();
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && view.style.display === 'block') {
-                    this.hideAlphabetView();
-                }
-            });
-
-            setTimeout(() => {
-                this.initAlphabetNavigation();
-            }, 100);
-        }
-    }
-
-    hideAlphabetView() {
-        const view = document.getElementById('alphabetView');
-        if (view) {
-            view.style.display = 'none';
-        }
-    }
-
-    initSearch() {
-        const searchBox = document.querySelector('.search-box');
-        if (searchBox) {
-            searchBox.addEventListener('input', (e) => {
-                this.searchTerm = e.target.value.toLowerCase().trim();
-                this.applyFilters();
-            });
-
-            searchBox.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    searchBox.value = '';
-                    this.searchTerm = '';
-                    this.applyFilters();
-                }
-            });
-        }
-    }
-
     initFilters() {
         const filterButtons = document.querySelectorAll('.filter-btn');
         filterButtons.forEach(button => {
@@ -6023,6 +5606,7 @@ class BusTimetableApp {
     }
 
     updateActiveAlphabet() {
+        // First check for bus stop sections
         const busStopSections = document.querySelectorAll('.bus-stop-section:not(.hidden)');
         if (busStopSections.length > 0) {
             let currentLetter = '';
@@ -6044,22 +5628,14 @@ class BusTimetableApp {
             return;
         }
 
-        // For depot tab
-        if (this.activeTab === 'depots') {
-            const depotCards = document.querySelectorAll('#depots-tab .rectangular-card');
-            this.updateActiveCardAlphabet(depotCards);
+        // Then check for cards in current tab
+        const cards = document.querySelectorAll(\`#\${this.activeTab}-tab .rectangular-card[style*="display: flex"], #\${this.activeTab}-tab .rectangular-card:not([style*="display: none"])\`);
+        if (cards.length === 0) {
+            // Fallback to all visible cards
+            const allCards = document.querySelectorAll('.rectangular-card[style*="display: flex"], .rectangular-card:not([style*="display: none"])');
+            this.updateActiveCardAlphabet(allCards);
             return;
         }
-
-        // For tehsil tab
-        if (this.activeTab === 'tehsils') {
-            const tehsilCards = document.querySelectorAll('#tehsils-tab .rectangular-card');
-            this.updateActiveCardAlphabet(tehsilCards);
-            return;
-        }
-
-        // For division and district tabs (no alphabet highlighting needed)
-        const cards = document.querySelectorAll('.rectangular-card');
         this.updateActiveCardAlphabet(cards);
     }
 
@@ -6082,13 +5658,16 @@ class BusTimetableApp {
         });
 
         if (closestCard) {
-            const cardAlphabet = closestCard.dataset.alphabet || closestCard.querySelector('h3').textContent.trim().charAt(0).toUpperCase();
-            this.updateAlphabetActiveState(cardAlphabet);
+            const cardTitle = closestCard.querySelector('h3');
+            if (cardTitle) {
+                const cardAlphabet = cardTitle.textContent.trim().charAt(0).toUpperCase();
+                this.updateAlphabetActiveState(cardAlphabet);
+            }
         }
     }
 
     updateAlphabetActiveState(letter) {
-        document.querySelectorAll('.alphabet-btn, .alphabet-mini-btn, .floating-letter-btn').forEach(btn => {
+        document.querySelectorAll('.alphabet-vertical-btn').forEach(btn => {
             btn.classList.remove('active');
             if (btn.dataset.letter.toLowerCase() === letter.toLowerCase()) {
                 btn.classList.add('active');
@@ -6140,29 +5719,8 @@ class BusTimetableApp {
             emptyState.classList.toggle('hidden', hasVisibleContent);
         }
 
-        this.updateFloatingLettersVisibility();
-
         setTimeout(() => this.highlightNextBus(), 50);
         setTimeout(() => this.updateActiveAlphabet(), 100);
-    }
-
-    updateFloatingLettersVisibility() {
-        const floatingButtons = document.querySelectorAll('.floating-letter-btn');
-        const visibleLetters = new Set();
-
-        document.querySelectorAll('.bus-stop-section:not(.hidden)').forEach(section => {
-            const letter = section.dataset.letter;
-            if (letter) visibleLetters.add(letter.toLowerCase());
-        });
-
-        floatingButtons.forEach(btn => {
-            const letter = btn.dataset.letter.toLowerCase();
-            if (visibleLetters.has(letter)) {
-                btn.classList.remove('disabled');
-            } else {
-                btn.classList.add('disabled');
-            }
-        });
     }
 
     getTimeCategory(timeString) {
@@ -6519,41 +6077,14 @@ Allow: /`;
 
         console.log(`🌟 Favicon files in public root: ${faviconFiles.length > 0 ? faviconFiles.join(', ') : 'None found'}`);
 
-        console.log('\n✅ CHANGES APPLIED:');
-        console.log('1. ✅ FIXED: Favicon links now use relative paths based on page location');
-        console.log('2. ✅ FIXED: Homepage (index.html) uses ./favicon.ico (same directory)');
-        console.log('3. ✅ FIXED: Division pages use ../favicon.ico (one level up)');
-        console.log('4. ✅ FIXED: District pages use ../../favicon.ico (two levels up)');
-        console.log('5. ✅ FIXED: Tehsil pages use ../../../favicon.ico (three levels up)');
-        console.log('6. ✅ FIXED: Depot pages use ../../../../favicon.ico (four levels up)');
-        console.log('7. ✅ FIXED: Blog pages use ../favicon.ico (from blogs directory)');
-        console.log('8. ✅ PRESERVED: All existing functionality remains unchanged');
-        console.log('9. ✅ MINIMAL VERTICAL SPACING FOR ALPHABETS: Reduced vertical gap from 0.15rem to 0.05rem (67% reduction)');
-        console.log('10.✅ FIXED HEADER: Site name and time are fixed at top');
-        console.log('11.✅ DIGITAL WATCH TIME: Time uses Orbitron font with green digital display');
-        console.log('12.✅ NEXT BUS CALCULATION: Highlights ALL buses within next 60 minutes');
-        console.log('13.✅ FIXED TIME FILTERS: Changed from icons to time ranges (5AM-12PM, etc.)');
-        console.log('14.✅ ENHANCED SPARKLE EFFECT: Next bus sparkle now has orange border with glowing effect');
-        console.log('15.✅ FIXED ROOT LEVEL LINKS: All homepage links (Home, About, Contact, etc.) now work correctly from any page');
-        console.log('16.✅ UPDATED BACK BUTTONS: "Back to Bus Schedule" links now correctly navigate to homepage from any page');
-        console.log('17.✅ FIXED RELATIVE PATHS: All navigation buttons use proper relative paths');
-        console.log('18.✅ ADDED URL CONSTANTS: Blog links now use JavaScript URL constants system');
-
-        console.log('\n📝 HOW FAVICONS WORK NOW:');
-        console.log('   • Root pages (index.html, about.html, contact.html) use: ./favicon.ico');
-        console.log('   • Division pages use: ../favicon.ico');
-        console.log('   • District pages use: ../../favicon.ico');
-        console.log('   • Tehsil pages use: ../../../favicon.ico');
-        console.log('   • Depot pages use: ../../../../favicon.ico');
-        console.log('   • Blog pages use: ../favicon.ico');
-        console.log('');
-        console.log('📝 HOW TO CHANGE FAVICON:');
-        console.log('   1. Place your new favicon file in assets/img/ folder');
-        console.log('   2. Name it whatever you want (e.g., favicon-v2.ico, myicon.png)');
-        console.log('   3. Remove old favicon from assets/img/ if you want');
-        console.log('   4. Run the generator - old favicon will be removed from public, new one copied');
-        console.log('   5. All HTML pages will be regenerated with links to the new favicon');
-        console.log('   6. Google will show your new favicon in search results');
+        console.log('\n✅ MOBILE ALIGNMENT FIXES APPLIED:');
+        console.log('1. ✅ DEPOT HEADER FIX: Added right padding to container to prevent content from being cut by alphabet strip');
+        console.log('2. ✅ MOBILE GRID LAYOUT: Cards now stack in single column on mobile (1fr) instead of 2 columns');
+        console.log('3. ✅ PROPER SPACING: Cards have small space from left and right, and don\'t extend under alphabet stripe');
+        console.log('4. ✅ CONTAINER PADDING: Added proper right padding for alphabet strip (28px mobile, 30px tablet, 32px desktop)');
+        console.log('5. ✅ FULL WIDTH: Removed max-width restrictions on all elements in mobile view');
+        console.log('6. ✅ BACK BUTTON ALIGNMENT: Back buttons are now properly left-aligned with content');
+        console.log('7. ✅ MAINTAINED: All existing functionality intact');
     }
 
     countHTMLFiles(dir) {

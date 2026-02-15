@@ -134,6 +134,18 @@ window.searchIndex = {
       "alphabet": "R"
     },
     {
+      "id": "ralegaon_bus_stand_depot",
+      "name": "Ralegaon Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/ralegaon_teh/ralegaon_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Ralegaon Tehsil",
+      "busStops": 14,
+      "buses": 97,
+      "alphabet": "R"
+    },
+    {
       "id": "sitabuldi_depot",
       "name": "Sitabuldi Main Depot",
       "type": "Depot",
@@ -177,8 +189,8 @@ window.searchIndex = {
       "division": "Amravati Division",
       "district": "Yavatmal District",
       "tehsil": "Yavatmal Tehsil",
-      "busStops": 79,
-      "buses": 468,
+      "busStops": 80,
+      "buses": 464,
       "alphabet": "Y"
     }
   ],
@@ -189,7 +201,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "amravati_div/index.html",
       "districts": 5,
-      "depots": 5,
+      "depots": 6,
       "alphabet": "A"
     },
     {
@@ -595,8 +607,8 @@ window.searchIndex = {
       "type": "District",
       "path": "amravati_div/yavatmal_dist/index.html",
       "division": "Amravati Division",
-      "tehsils": 4,
-      "depots": 4,
+      "tehsils": 5,
+      "depots": 5,
       "alphabet": "Y"
     }
   ],
@@ -2840,6 +2852,16 @@ window.searchIndex = {
       "district": "Chandrapur District",
       "depots": 1,
       "alphabet": "R"
+    },
+    {
+      "id": "ralegaon_teh",
+      "name": "Ralegaon Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/ralegaon_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
+      "alphabet": "W"
     },
     {
       "id": "ramtek_teh",
