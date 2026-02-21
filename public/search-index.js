@@ -50,6 +50,30 @@ window.searchIndex = {
       "alphabet": "C"
     },
     {
+      "id": "chandur_bazar_bus_stand_depot",
+      "name": "Chandur Bazar Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/chandur_bazar_teh/chandur_bazar_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Chandur Bazar Tehsil",
+      "busStops": 22,
+      "buses": 195,
+      "alphabet": "C"
+    },
+    {
+      "id": "chandur_railway_bus_stand_depot",
+      "name": "Chandur Railway Bus Stand Timetable 2026 | MSRTC Bus Schedule",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/chandur_railway_teh/chandur_railway_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Chandur Railway Tehsil",
+      "busStops": 19,
+      "buses": 151,
+      "alphabet": "C"
+    },
+    {
       "id": "chimur_bus_stand_depot",
       "name": "Chimur Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -60,6 +84,18 @@ window.searchIndex = {
       "busStops": 23,
       "buses": 102,
       "alphabet": "C"
+    },
+    {
+      "id": "dhamangaon_railway_bus_stand_depot",
+      "name": "Dhamangaon Railway Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/dhamangaon_railway_teh/dhamangaon_railway_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Dhamangaon Railway Tehsil",
+      "busStops": 6,
+      "buses": 102,
+      "alphabet": "D"
     },
     {
       "id": "ghuggus_bus_stand_depot",
@@ -201,7 +237,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "amravati_div/index.html",
       "districts": 5,
-      "depots": 6,
+      "depots": 9,
       "alphabet": "A"
     },
     {
@@ -278,7 +314,7 @@ window.searchIndex = {
       "path": "amravati_div/amravati_dist/index.html",
       "division": "Amravati Division",
       "tehsils": 10,
-      "depots": 1,
+      "depots": 4,
       "alphabet": "A"
     },
     {
@@ -1120,7 +1156,7 @@ window.searchIndex = {
       "path": "amravati_div/amravati_dist/chandur_bazar_teh/index.html",
       "division": "Amravati Division",
       "district": "Amravati District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "C"
     },
     {
@@ -1130,7 +1166,7 @@ window.searchIndex = {
       "path": "amravati_div/amravati_dist/chandur_railway_teh/index.html",
       "division": "Amravati Division",
       "district": "Amravati District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "C"
     },
     {
@@ -1290,7 +1326,7 @@ window.searchIndex = {
       "path": "amravati_div/amravati_dist/dhamangaon_railway_teh/index.html",
       "division": "Amravati Division",
       "district": "Amravati District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "D"
     },
     {
