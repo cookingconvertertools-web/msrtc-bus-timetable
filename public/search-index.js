@@ -57,8 +57,8 @@ window.searchIndex = {
       "division": "Amravati Division",
       "district": "Amravati District",
       "tehsil": "Chandur Bazar Tehsil",
-      "busStops": 22,
-      "buses": 195,
+      "busStops": 40,
+      "buses": 198,
       "alphabet": "C"
     },
     {
