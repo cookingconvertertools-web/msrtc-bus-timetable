@@ -1,0 +1,200 @@
+{
+  "id": "chandur_bazar_bus_stand_depot",
+  "name": "Chandur Bazar Bus Stand Timetable 2026 | MSRTC Ticket Price",
+  "type": "depot",
+  "tehsil_id": "chandur_bazar_teh",
+  "address": "Chandur Bazar Bus Stand, Amravati District, Maharashtra - 444904",
+  "contact": "",
+  "total_buses": 0,
+  "villages": {
+    "a": [
+        {
+          "name": "Amravati via Valgaon",
+          "schedule": [
+            "5:45", "6:00", "6:35", "7:00", "7:30", "7:45", "8:30", "8:30",
+            "9:00", "09:00", "10:00", "10:30", "11:00", "11:30", "11:45",
+            "12:00", "13:30", "14:00", "14:15", "14:45", "15:30", "16:30",
+            "17:30", "17:30", "18:00", "18:00", "18:15", "19:00", "19:15",
+            "19:30", "20:45", "21:15"
+          ],
+          "bus_count": 32
+        },
+        {
+          "name": "Amravati via Borala",
+          "schedule": [
+            "6:45", "6:00", "6:15", "7:00", "7:30", "7:30", "8:00", "9:00",
+            "9:30", "09:45", "10:00", "10:30", "11:15", "12:00", "12:30",
+            "12:45", "13:30", "14:00", "14:15", "15:00", "15:30", "16:30",
+            "18:00", "18:10", "18:15", "19:45"
+          ],
+          "bus_count": 26
+        },
+        {
+          "name": "Amravati via Belora",
+          "schedule": ["6:00", "8:30", "14:30", "17:30", "19:30"],
+          "bus_count": 5
+        },
+
+      {
+        "name": "Akola",
+        "schedule": ["9:45", "14:45"],
+        "bus_count": 2
+      },
+      {
+        "name": "Asegaon - Savlapur",
+        "schedule": ["6:45", "8:00", "9:30", "10:15", "12:00", "14:00", "16:00", "16:45", "19:30"],
+        "bus_count": 9
+      }
+    ],
+    "b": [
+      {
+        "name": "Bhandum",
+        "schedule": ["7:30"],
+        "bus_count": 1
+      },
+      {
+        "name": "Bra. Thadi",
+        "schedule": ["8:15"],
+        "bus_count": 1
+      }
+    ],
+    "c": [
+      {
+        "name": "Chhindwara",
+        "schedule": ["7:15"],
+        "bus_count": 1
+      },
+      {
+        "name": "Chatrapati Sambhaji Nagar",
+        "schedule": ["12:00"],
+        "bus_count": 1
+      }
+    ],
+    "g": [
+      {
+        "name": "Ghatladki",
+        "schedule": ["6:00", "6:15", "7:30", "7:30", "10:00 Nimkhed", "11:00", "12:00", "14:30", "17:30", "19:45 Nimkhed"],
+        "bus_count": 10
+      },
+      {
+        "name": "Ghatladki - Wani",
+        "schedule": ["10:10", "12:00", "16:30", "18:45"],
+        "bus_count": 4
+      }
+    ],
+    "k": [
+      {
+        "name": "Khamgaon",
+        "schedule": ["12:00"],
+        "bus_count": 1
+      }
+    ],
+    "m": [
+      {
+        "name": "Morshi",
+        "schedule": [
+          "6:00", "7:30", "8:30", "9:15", "9:30", "10:15", "10:45",
+          "11:45", "12:00", "12:45", "13:15", "14:00", "14:30", "14:45",
+          "15:30", "16:30", "17:30", "17:45", "18:45", "19:30", "19:45"
+        ],
+        "bus_count": 21
+      },
+      {
+        "name": "Multai",
+        "schedule": ["16:45"],
+        "bus_count": 1
+      }
+    ],
+    "n": [
+      {
+        "name": "Nagpur",
+        "schedule": ["6:15", "7:30", "10:30", "12:30", "12:05"],
+        "bus_count": 5
+      }
+    ],
+    "p": [
+      {
+        "name": "Paratwada",
+        "schedule": [
+          "9:15", "19:45", "18:05", "7:30", "11:15", "13:30", "16:45",
+          "19:30", "7:30", "8:00", "8:30", "9:00", "9:15", "9:30",
+          "10:00", "10:30", "11:00", "11:30", "12:30", "13:00", "13:30",
+          "14:00", "15:15", "16:00", "16:30", "17:30", "18:00", "20:15", "20:45"
+        ],
+        "bus_count": 29
+      }
+    ],
+    "s": [
+      {
+        "name": "Shirajgaon Kasaba - Paratwada",
+        "schedule": ["6:00", "7:30", "12:00", "14:00", "14:45", "20:15"],
+        "bus_count": 6
+      }
+    ],
+    "t": [
+      {
+        "name": "Tiwasa",
+        "schedule": [
+          "7:30", "7:45", "9:00", "12:45", "14:00", "16:30", "19:30",
+          "6:00", "7:00", "9:00", "10:30", "10:45", "11:00", "12:00",
+          "12:45", "13:00", "16:00", "17:00", "17:30", "17:30", "19:30", "20:15"
+        ],
+        "bus_count": 22
+      },
+      {
+        "name": "Tumsar",
+        "schedule": ["9:15", "19:45"],
+        "bus_count": 2
+      },
+      {
+        "name": "Thugaon - Deurwada Kodori - Shirajgaon Kasba",
+        "schedule": ["6:00", "6:30", "7:00", "8:15", "9:00", "10:00", "10:30", "12:00", "14:30", "17:45"],
+        "bus_count": 10
+      }
+    ],
+    "v": [
+      {
+        "name": "Vishroli",
+        "schedule": ["10:15", "10:30", "16:30", "16:45", "17:45"],
+        "bus_count": 5
+      }
+    ],
+    "w": [
+      {
+        "name": "Washim",
+        "schedule": ["11:00"],
+        "bus_count": 1
+      }
+    ]
+  },
+  "content": {
+    "about": "<p>चंदूर बाजार बस स्थानक हे अमरावती जिल्ह्यातील एक महत्त्वाचे MSRTC वाहतूक केंद्र आहे. येथून नागपूर, अमरावती, परतवाडा, अकोला, मोर्शी, तिवसा, वणी, घाटलाडकी आणि आसपासच्या ग्रामीण भागांसाठी नियमित बस सेवा उपलब्ध आहे. सकाळी लवकर सुरू होणाऱ्या आणि रात्री उशिरापर्यंत चालणाऱ्या बस फेऱ्यांमुळे विद्यार्थी, शेतकरी, व्यापारी व नोकरी करणाऱ्या प्रवाशांसाठी हे स्थानक अत्यंत उपयुक्त ठरते.</p><p>Chandur Bazar Bus Stand is a key MSRTC transport hub in Amravati district. It provides regular bus services to Nagpur, Amravati, Paratwada, Akola, Morshi, Tiwasa, Wani, Ghatladki and surrounding rural areas. With services operating from early morning till late night, it serves students, farmers, traders and commuters effectively.</p>",
+    "faqs": [
+      {
+        "question": "चंदूर बाजार वरून नागपूरला पहिली बस किती वाजता आहे?",
+        "answer": "चंदूर बाजार वरून नागपूरला पहिली बस सकाळी ६:१५ वाजता सुटते."
+      },
+      {
+        "question": "चंदूर बाजार ते अमरावती शेवटची बस किती वाजता असते?",
+        "answer": "चंदूर बाजार ते अमरावतीसाठी शेवटची बस रात्री ९:१५ वाजता सुटते."
+      },
+      {
+        "question": "चंदूर बाजार वरून परतवाड्याला किती बस फेऱ्या आहेत?",
+        "answer": "चंदूर बाजार वरून परतवाड्याला दररोज सुमारे २९ बस फेऱ्या आहेत."
+      },
+      {
+        "question": "चंदूर बाजार बस स्थानकाचा संपर्क क्रमांक काय आहे?",
+        "answer": "MSRTC हेल्पलाइन क्रमांक 1800-120-8040 वर संपर्क करावा."
+      }
+    ],
+    "seo_content": {
+      "title": "Chandur Bazar Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "content": "<p>Chandur Bazar Bus Stand timetable 2026 includes MSRTC bus timings for Nagpur, Amravati, Paratwada, Akola, Morshi, Tiwasa, Wani and surrounding areas. Check daily bus schedules, frequency and plan your journey.</p>"
+    }
+  },
+  "seo": {
+    "title": "Chandur Bazar Bus Stand Timetable 2026 | MSRTC Bus Schedule",
+    "description": "Check Chandur Bazar Bus Stand timetable 2026 with MSRTC bus timings for Nagpur, Amravati, Paratwada, Akola and other destinations. Updated bus schedule and route information.",
+    "keywords": "Chandur Bazar bus stand, Chandur Bazar MSRTC timetable, Chandur Bazar to Nagpur bus, Chandur Bazar to Amravati bus, Chandur Bazar bus schedule"
+  }
+}
