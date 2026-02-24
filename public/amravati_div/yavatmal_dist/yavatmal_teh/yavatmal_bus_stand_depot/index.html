@@ -256,7 +256,7 @@
         color: #5B21B6;
     }
 
-    /* Vertical Alphabet Navigation - ON RIGHT EDGE */
+    /* Vertical Alphabet Navigation - ON RIGHT EDGE, SCROLLABLE */
     .vertical-alphabet-nav {
         position: fixed;
         right: 0;
@@ -270,15 +270,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow-y: auto;
+        overflow-y: auto;      /* Enables vertical scrolling */
         overflow-x: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
         padding: 0.5rem 0;
     }
 
     .vertical-alphabet-nav::-webkit-scrollbar {
-        display: none;
+        display: none; /* Hide scrollbar in Chrome/Safari */
         width: 0;
         height: 0;
     }
@@ -2116,9 +2116,9 @@
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
-        <button class="alphabet-vertical-btn " data-letter="a">A</button><button class="alphabet-vertical-btn " data-letter="b">B</button><button class="alphabet-vertical-btn " data-letter="c">C</button><button class="alphabet-vertical-btn " data-letter="d">D</button><button class="alphabet-vertical-btn disabled" data-letter="e">E</button><button class="alphabet-vertical-btn disabled" data-letter="f">F</button><button class="alphabet-vertical-btn " data-letter="g">G</button><button class="alphabet-vertical-btn " data-letter="h">H</button><button class="alphabet-vertical-btn disabled" data-letter="i">I</button><button class="alphabet-vertical-btn " data-letter="j">J</button><button class="alphabet-vertical-btn " data-letter="k">K</button><button class="alphabet-vertical-btn " data-letter="l">L</button><button class="alphabet-vertical-btn " data-letter="m">M</button><button class="alphabet-vertical-btn " data-letter="n">N</button><button class="alphabet-vertical-btn disabled" data-letter="o">O</button><button class="alphabet-vertical-btn " data-letter="p">P</button><button class="alphabet-vertical-btn disabled" data-letter="q">Q</button><button class="alphabet-vertical-btn " data-letter="r">R</button><button class="alphabet-vertical-btn " data-letter="s">S</button><button class="alphabet-vertical-btn " data-letter="t">T</button><button class="alphabet-vertical-btn " data-letter="u">U</button><button class="alphabet-vertical-btn " data-letter="v">V</button><button class="alphabet-vertical-btn " data-letter="w">W</button><button class="alphabet-vertical-btn disabled" data-letter="x">X</button><button class="alphabet-vertical-btn " data-letter="y">Y</button><button class="alphabet-vertical-btn " data-letter="z">Z</button>
+        <button class="alphabet-vertical-btn " data-letter="a">A</button><button class="alphabet-vertical-btn " data-letter="b">B</button><button class="alphabet-vertical-btn " data-letter="c">C</button><button class="alphabet-vertical-btn " data-letter="d">D</button><button class="alphabet-vertical-btn disabled" data-letter="e">E</button><button class="alphabet-vertical-btn disabled" data-letter="f">F</button><button class="alphabet-vertical-btn " data-letter="g">G</button><button class="alphabet-vertical-btn " data-letter="h">H</button><button class="alphabet-vertical-btn disabled" data-letter="i">I</button><button class="alphabet-vertical-btn " data-letter="j">J</button><button class="alphabet-vertical-btn " data-letter="k">K</button><button class="alphabet-vertical-btn " data-letter="l">L</button><button class="alphabet-vertical-btn " data-letter="m">M</button><button class="alphabet-vertical-btn " data-letter="n">N</button><button class="alphabet-vertical-btn disabled" data-letter="o">O</button><button class="alphabet-vertical-btn " data-letter="p">P</button><button class="alphabet-vertical-btn disabled" data-letter="q">Q</button><button class="alphabet-vertical-btn " data-letter="r">R</button><button class="alphabet-vertical-btn " data-letter="s">S</button><button class="alphabet-vertical-btn " data-letter="t">T</button><button class="alphabet-vertical-btn " data-letter="u">U</button><button class="alphabet-vertical-btn disabled" data-letter="v">V</button><button class="alphabet-vertical-btn " data-letter="w">W</button><button class="alphabet-vertical-btn disabled" data-letter="x">X</button><button class="alphabet-vertical-btn " data-letter="y">Y</button><button class="alphabet-vertical-btn " data-letter="z">Z</button>
     </div>
 
     <!-- Top Ad -->
@@ -2519,9 +2519,9 @@
                 2:45AM
             </div>
                     </div>
-                </div><div class="bus-stop-section" id="busstop-c-chandurbazar" data-letter="c" data-busstop="chandurbazar">
+                </div><div class="bus-stop-section" id="busstop-c-chandur-bazar" data-letter="c" data-busstop="chandur bazar">
                     <div class="bus-stop-header">
-                        <h3 class="bus-stop-name">Chandurbazar</h3>
+                        <h3 class="bus-stop-name">Chandur bazar</h3>
                         <span class="bus-count">2</span>
                     </div>
                     <div class="schedule-grid">
@@ -3679,28 +3679,6 @@
                 5:20PM
             </div>
                     </div>
-                </div><div class="bus-stop-section" id="busstop-v-vani" data-letter="v" data-busstop="vani">
-                    <div class="bus-stop-header">
-                        <h3 class="bus-stop-name">Vani</h3>
-                        <span class="bus-count">7</span>
-                    </div>
-                    <div class="schedule-grid">
-                        <div class="time-bubble morning" data-time="09:50" title="9:50AM">
-                9:50AM
-            </div><div class="time-bubble morning" data-time="10:45" title="10:45AM">
-                10:45AM
-            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
-                3:30PM
-            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
-                4:30PM
-            </div><div class="time-bubble evening" data-time="18:15" title="6:15PM">
-                6:15PM
-            </div><div class="time-bubble evening" data-time="18:30" title="6:30PM">
-                6:30PM
-            </div><div class="time-bubble evening" data-time="19:15" title="7:15PM">
-                7:15PM
-            </div>
-                    </div>
                 </div><div class="bus-stop-section" id="busstop-w-warud" data-letter="w" data-busstop="warud">
                     <div class="bus-stop-header">
                         <h3 class="bus-stop-name">Warud</h3>
@@ -3721,6 +3699,28 @@
                     <div class="schedule-grid">
                         <div class="time-bubble morning" data-time="11:45" title="11:45AM">
                 11:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-w-wani" data-letter="w" data-busstop="wani">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Wani</h3>
+                        <span class="bus-count">7</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:50" title="9:50AM">
+                9:50AM
+            </div><div class="time-bubble morning" data-time="10:45" title="10:45AM">
+                10:45AM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble evening" data-time="18:15" title="6:15PM">
+                6:15PM
+            </div><div class="time-bubble evening" data-time="18:30" title="6:30PM">
+                6:30PM
+            </div><div class="time-bubble evening" data-time="19:15" title="7:15PM">
+                7:15PM
             </div>
                     </div>
                 </div><div class="bus-stop-section" id="busstop-y-yelabar" data-letter="y" data-busstop="yelabar">
