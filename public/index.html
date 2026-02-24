@@ -259,7 +259,7 @@
         color: #5B21B6;
     }
 
-    /* Vertical Alphabet Navigation - ON RIGHT EDGE */
+    /* Vertical Alphabet Navigation - ON RIGHT EDGE, SCROLLABLE */
     .vertical-alphabet-nav {
         position: fixed;
         right: 0;
@@ -273,15 +273,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow-y: auto;
+        overflow-y: auto;      /* Enables vertical scrolling */
         overflow-x: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
         padding: 0.5rem 0;
     }
 
     .vertical-alphabet-nav::-webkit-scrollbar {
-        display: none;
+        display: none; /* Hide scrollbar in Chrome/Safari */
         width: 0;
         height: 0;
     }
@@ -2118,7 +2118,7 @@
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         
             <button class="alphabet-vertical-btn" data-letter="A">A</button>
@@ -2204,11 +2204,11 @@
                     </button>
                     <button class="tab-btn" data-tab="tehsils" data-hash="tehsils">
                         <span>Tehsils</span>
-                        <span class="tab-count">296</span>
+                        <span class="tab-count">298</span>
                     </button>
                     <button class="tab-btn" data-tab="depots" data-hash="depots">
                         <span>Depots</span>
-                        <span class="tab-count">19</span>
+                        <span class="tab-count">21</span>
                     </button>
                 </div>
 
@@ -2230,7 +2230,7 @@
                 <h3>Amravati Division</h3>
                 <div class="stats">
                     <span class="stat"><i class="bi bi-map"></i> 5</span>
-                    <span class="stat"><i class="bi bi-bus-front"></i> 9</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> 11</span>
                 </div>
             </a><a href="chhatrapati_sambhajinagar_div/index.html" class="rectangular-card">
                 <h3>Chhatrapati Sambhajinagar Division</h3>
@@ -2517,8 +2517,8 @@
                 <h3>Yavatmal District</h3>
                 <div class="card-meta">Amravati Division</div>
                 <div class="stats">
-                    <span class="stat"><i class="bi bi-building"></i> 5</span>
-                    <span class="stat"><i class="bi bi-bus-front"></i> 5</span>
+                    <span class="stat"><i class="bi bi-building"></i> 7</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> 7</span>
                 </div>
             </a>
                     </div>
@@ -2880,6 +2880,12 @@
                 <div class="stats">
                     <span class="stat"><i class="bi bi-bus-front"></i> 0</span>
                 </div>
+            </a><a href="amravati_div/yavatmal_dist/darwha_teh/index.html" class="rectangular-card">
+                <h3>Darwha Tehsil</h3>
+                <div class="card-meta">Yavatmal District</div>
+                <div class="stats">
+                    <span class="stat"><i class="bi bi-bus-front"></i> 1</span>
+                </div>
             </a><a href="amravati_div/amravati_dist/daryapur_teh/index.html" class="rectangular-card">
                 <h3>Daryapur Tehsil</h3>
                 <div class="card-meta">Amravati District</div>
@@ -2963,6 +2969,12 @@
                 <div class="card-meta">Dhule District</div>
                 <div class="stats">
                     <span class="stat"><i class="bi bi-bus-front"></i> 0</span>
+                </div>
+            </a><a href="amravati_div/yavatmal_dist/digras_teh/index.html" class="rectangular-card">
+                <h3>Digras Tehsil</h3>
+                <div class="card-meta">Yavatmal District</div>
+                <div class="stats">
+                    <span class="stat"><i class="bi bi-bus-front"></i> 1</span>
                 </div>
             </a><a href="nashik_div/nashik_dist/dindori_teh/index.html" class="rectangular-card">
                 <h3>Dindori Tehsil</h3>
@@ -4357,12 +4369,26 @@
                     <span class="stat"><i class="bi bi-signpost"></i> 23</span>
                     <span class="stat"><i class="bi bi-bus-front"></i> 102</span>
                 </div>
+            </a><a href="amravati_div/yavatmal_dist/darwha_teh/darwha_bus_stand_depot/index.html" class="rectangular-card">
+                <h3>Darwha Bus Stand Timetable 2026 | MSRTC Ticket Price</h3>
+                <div class="card-meta">Darwha Tehsil</div>
+                <div class="stats">
+                    <span class="stat"><i class="bi bi-signpost"></i> 55</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> 263</span>
+                </div>
             </a><a href="amravati_div/amravati_dist/dhamangaon_railway_teh/dhamangaon_railway_bus_stand_depot/index.html" class="rectangular-card">
                 <h3>Dhamangaon Railway Bus Stand Timetable 2026 | MSRTC Ticket Price</h3>
                 <div class="card-meta">Dhamangaon Railway Tehsil</div>
                 <div class="stats">
                     <span class="stat"><i class="bi bi-signpost"></i> 6</span>
                     <span class="stat"><i class="bi bi-bus-front"></i> 102</span>
+                </div>
+            </a><a href="amravati_div/yavatmal_dist/digras_teh/digras_bus_stand_depot/index.html" class="rectangular-card">
+                <h3>Digras Bus Stand Timetable 2026 | MSRTC Ticket Price</h3>
+                <div class="card-meta">Digras Tehsil</div>
+                <div class="stats">
+                    <span class="stat"><i class="bi bi-signpost"></i> 19</span>
+                    <span class="stat"><i class="bi bi-bus-front"></i> 73</span>
                 </div>
             </a><a href="nagpur_div/chandrapur_dist/chandrapur_teh/ghuggus_bus_stand_depot/index.html" class="rectangular-card">
                 <h3>Ghuggus Bus Stand Timetable 2026 | MSRTC Ticket Price</h3>

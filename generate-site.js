@@ -848,7 +848,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -1118,7 +1118,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -1623,7 +1623,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -1758,7 +1758,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -1899,7 +1899,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -2079,7 +2079,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderBusStopVerticalAlphabet(villageLetters)}
     </div>
@@ -3115,7 +3115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         color: ${textSecondary};
     }
 
-    /* Vertical Alphabet Navigation - ON RIGHT EDGE */
+    /* Vertical Alphabet Navigation - ON RIGHT EDGE, SCROLLABLE */
     .vertical-alphabet-nav {
         position: fixed;
         right: 0;
@@ -3129,15 +3129,15 @@ document.addEventListener('DOMContentLoaded', function() {
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow-y: auto;
+        overflow-y: auto;      /* Enables vertical scrolling */
         overflow-x: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
         padding: 0.5rem 0;
     }
 
     .vertical-alphabet-nav::-webkit-scrollbar {
-        display: none;
+        display: none; /* Hide scrollbar in Chrome/Safari */
         width: 0;
         height: 0;
     }

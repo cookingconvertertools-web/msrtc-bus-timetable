@@ -86,6 +86,18 @@ window.searchIndex = {
       "alphabet": "C"
     },
     {
+      "id": "darwha_bus_stand_depot",
+      "name": "Darwha Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/darwha_teh/darwha_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Darwha Tehsil",
+      "busStops": 55,
+      "buses": 263,
+      "alphabet": "D"
+    },
+    {
       "id": "dhamangaon_railway_bus_stand_depot",
       "name": "Dhamangaon Railway Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -95,6 +107,18 @@ window.searchIndex = {
       "tehsil": "Dhamangaon Railway Tehsil",
       "busStops": 6,
       "buses": 102,
+      "alphabet": "D"
+    },
+    {
+      "id": "digras_bus_stand_depot",
+      "name": "Digras Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/digras_teh/digras_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Digras Tehsil",
+      "busStops": 19,
+      "buses": 73,
       "alphabet": "D"
     },
     {
@@ -237,7 +261,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "amravati_div/index.html",
       "districts": 5,
-      "depots": 9,
+      "depots": 11,
       "alphabet": "A"
     },
     {
@@ -643,8 +667,8 @@ window.searchIndex = {
       "type": "District",
       "path": "amravati_div/yavatmal_dist/index.html",
       "division": "Amravati Division",
-      "tehsils": 5,
-      "depots": 5,
+      "tehsils": 7,
+      "depots": 7,
       "alphabet": "Y"
     }
   ],
@@ -1240,6 +1264,16 @@ window.searchIndex = {
       "alphabet": "D"
     },
     {
+      "id": "darwha_teh",
+      "name": "Darwha Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/darwha_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
+      "alphabet": "D"
+    },
+    {
       "id": "daryapur_teh",
       "name": "Daryapur Tehsil",
       "type": "Tehsil",
@@ -1377,6 +1411,16 @@ window.searchIndex = {
       "division": "Nashik Division",
       "district": "Dhule District",
       "depots": 0,
+      "alphabet": "D"
+    },
+    {
+      "id": "digras_teh",
+      "name": "Digras Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/digras_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
       "alphabet": "D"
     },
     {

@@ -256,7 +256,7 @@
         color: #5B21B6;
     }
 
-    /* Vertical Alphabet Navigation - ON RIGHT EDGE */
+    /* Vertical Alphabet Navigation - ON RIGHT EDGE, SCROLLABLE */
     .vertical-alphabet-nav {
         position: fixed;
         right: 0;
@@ -270,15 +270,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow-y: auto;
+        overflow-y: auto;      /* Enables vertical scrolling */
         overflow-x: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
         padding: 0.5rem 0;
     }
 
     .vertical-alphabet-nav::-webkit-scrollbar {
-        display: none;
+        display: none; /* Hide scrollbar in Chrome/Safari */
         width: 0;
         height: 0;
     }
@@ -2116,7 +2116,7 @@
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         <button class="alphabet-vertical-btn " data-letter="a">A</button><button class="alphabet-vertical-btn " data-letter="b">B</button><button class="alphabet-vertical-btn " data-letter="c">C</button><button class="alphabet-vertical-btn " data-letter="d">D</button><button class="alphabet-vertical-btn disabled" data-letter="e">E</button><button class="alphabet-vertical-btn disabled" data-letter="f">F</button><button class="alphabet-vertical-btn " data-letter="g">G</button><button class="alphabet-vertical-btn " data-letter="h">H</button><button class="alphabet-vertical-btn disabled" data-letter="i">I</button><button class="alphabet-vertical-btn disabled" data-letter="j">J</button><button class="alphabet-vertical-btn " data-letter="k">K</button><button class="alphabet-vertical-btn disabled" data-letter="l">L</button><button class="alphabet-vertical-btn " data-letter="m">M</button><button class="alphabet-vertical-btn " data-letter="n">N</button><button class="alphabet-vertical-btn disabled" data-letter="o">O</button><button class="alphabet-vertical-btn " data-letter="p">P</button><button class="alphabet-vertical-btn disabled" data-letter="q">Q</button><button class="alphabet-vertical-btn " data-letter="r">R</button><button class="alphabet-vertical-btn " data-letter="s">S</button><button class="alphabet-vertical-btn disabled" data-letter="t">T</button><button class="alphabet-vertical-btn " data-letter="u">U</button><button class="alphabet-vertical-btn " data-letter="v">V</button><button class="alphabet-vertical-btn " data-letter="w">W</button><button class="alphabet-vertical-btn disabled" data-letter="x">X</button><button class="alphabet-vertical-btn " data-letter="y">Y</button><button class="alphabet-vertical-btn " data-letter="z">Z</button>
     </div>
