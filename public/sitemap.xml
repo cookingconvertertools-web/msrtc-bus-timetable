@@ -475,13 +475,13 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://msrtcbusinfo.org/amravati_div/akola_dist/barshitakli_teh/index.html</loc>
+        <loc>https://msrtcbusinfo.org/pune_div/solapur_dist/barshi_teh/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://msrtcbusinfo.org/pune_div/solapur_dist/barshi_teh/index.html</loc>
+        <loc>https://msrtcbusinfo.org/amravati_div/akola_dist/barshitakli_teh/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -1225,6 +1225,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://msrtcbusinfo.org/pune_div/satara_dist/man_teh/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://msrtcbusinfo.org/mumbai_div/ratnagiri_dist/mandangad_teh/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
@@ -1250,12 +1256,6 @@
     </url>
     <url>
         <loc>https://msrtcbusinfo.org/chhatrapati_sambhajinagar_div/parbhani_dist/manwath_teh/index.html</loc>
-        <lastmod>2026-02-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://msrtcbusinfo.org/pune_div/satara_dist/man_teh/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -1315,6 +1315,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://msrtcbusinfo.org/nagpur_div/chandrapur_dist/mul_teh/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://msrtcbusinfo.org/nagpur_div/gadchiroli_dist/mulchera_teh/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
@@ -1322,12 +1328,6 @@
     </url>
     <url>
         <loc>https://msrtcbusinfo.org/pune_div/pune_dist/mulshi_teh/index.html</loc>
-        <lastmod>2026-02-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://msrtcbusinfo.org/nagpur_div/chandrapur_dist/mul_teh/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -1909,13 +1909,13 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://msrtcbusinfo.org/mumbai_div/palghar_dist/talasari_teh/index.html</loc>
+        <loc>https://msrtcbusinfo.org/mumbai_div/raigad_dist/tala_teh/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://msrtcbusinfo.org/mumbai_div/raigad_dist/tala_teh/index.html</loc>
+        <loc>https://msrtcbusinfo.org/mumbai_div/palghar_dist/talasari_teh/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -2113,6 +2113,12 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://msrtcbusinfo.org/nashik_div/jalgaon_dist/bhusawal_teh/bhusawal_bus_stand_depot/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://msrtcbusinfo.org/nagpur_div/chandrapur_dist/chandrapur_teh/chandrapur_bus_stand_depot/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>daily</changefreq>
@@ -2161,7 +2167,25 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://msrtcbusinfo.org/nagpur_div/wardha_dist/hinganghat_teh/hinganghat_bus_stand_depot/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://msrtcbusinfo.org/nashik_div/jalgaon_dist/jalgaon_teh/jalgaon_bus_stand_depot/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://msrtcbusinfo.org/nagpur_div/nagpur_dist/nagpur_city_teh/mor_bhavan_depot/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://msrtcbusinfo.org/nashik_div/jalgaon_dist/muktainagar_teh/muktainagar_bus_stand_depot/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.6</priority>
