@@ -134,6 +134,18 @@ window.searchIndex = {
       "alphabet": "G"
     },
     {
+      "id": "hinganghat_bus_stand_depot",
+      "name": "Hinganghat Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/wardha_dist/hinganghat_teh/hinganghat_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Wardha District",
+      "tehsil": "Hinganghat Tehsil",
+      "busStops": 52,
+      "buses": 264,
+      "alphabet": "H"
+    },
+    {
       "id": "mor_bhavan_depot",
       "name": "Mor Bhavan Depot",
       "type": "Depot",
@@ -324,7 +336,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "nagpur_div/index.html",
       "districts": 6,
-      "depots": 13,
+      "depots": 14,
       "alphabet": "N"
     },
     {
@@ -684,7 +696,7 @@ window.searchIndex = {
       "path": "nagpur_div/wardha_dist/index.html",
       "division": "Nagpur Division",
       "tehsils": 7,
-      "depots": 0,
+      "depots": 1,
       "alphabet": "W"
     },
     {
@@ -990,22 +1002,22 @@ window.searchIndex = {
       "alphabet": "B"
     },
     {
-      "id": "barshitakli_teh",
-      "name": "Barshitakli Tehsil",
-      "type": "Tehsil",
-      "path": "amravati_div/akola_dist/barshitakli_teh/index.html",
-      "division": "Amravati Division",
-      "district": "Akola District",
-      "depots": 0,
-      "alphabet": "B"
-    },
-    {
       "id": "barshi_teh",
       "name": "Barshi Tehsil",
       "type": "Tehsil",
       "path": "pune_div/solapur_dist/barshi_teh/index.html",
       "division": "Pune Division",
       "district": "Solapur District",
+      "depots": 0,
+      "alphabet": "B"
+    },
+    {
+      "id": "barshitakli_teh",
+      "name": "Barshitakli Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/akola_dist/barshitakli_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Akola District",
       "depots": 0,
       "alphabet": "B"
     },
@@ -1626,7 +1638,7 @@ window.searchIndex = {
       "path": "nagpur_div/wardha_dist/hinganghat_teh/index.html",
       "division": "Nagpur Division",
       "district": "Wardha District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "H"
     },
     {
@@ -2240,6 +2252,16 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
+      "id": "man_teh",
+      "name": "Man Tehsil",
+      "type": "Tehsil",
+      "path": "pune_div/satara_dist/man_teh/index.html",
+      "division": "Pune Division",
+      "district": "Satara District",
+      "depots": 0,
+      "alphabet": "M"
+    },
+    {
       "id": "mandangad_teh",
       "name": "Mandangad Tehsil",
       "type": "Tehsil",
@@ -2286,16 +2308,6 @@ window.searchIndex = {
       "path": "chhatrapati_sambhajinagar_div/parbhani_dist/manwath_teh/index.html",
       "division": "Chhatrapati Sambhajinagar Division",
       "district": "Parbhani District",
-      "depots": 0,
-      "alphabet": "M"
-    },
-    {
-      "id": "man_teh",
-      "name": "Man Tehsil",
-      "type": "Tehsil",
-      "path": "pune_div/satara_dist/man_teh/index.html",
-      "division": "Pune Division",
-      "district": "Satara District",
       "depots": 0,
       "alphabet": "M"
     },
@@ -2390,6 +2402,16 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
+      "id": "mul_teh",
+      "name": "Mul Tehsil",
+      "type": "Tehsil",
+      "path": "nagpur_div/chandrapur_dist/mul_teh/index.html",
+      "division": "Nagpur Division",
+      "district": "Chandrapur District",
+      "depots": 1,
+      "alphabet": "M"
+    },
+    {
       "id": "mulchera_teh",
       "name": "Mulchera Tehsil",
       "type": "Tehsil",
@@ -2407,16 +2429,6 @@ window.searchIndex = {
       "division": "Pune Division",
       "district": "Pune District",
       "depots": 0,
-      "alphabet": "M"
-    },
-    {
-      "id": "mul_teh",
-      "name": "Mul Tehsil",
-      "type": "Tehsil",
-      "path": "nagpur_div/chandrapur_dist/mul_teh/index.html",
-      "division": "Nagpur Division",
-      "district": "Chandrapur District",
-      "depots": 1,
       "alphabet": "M"
     },
     {
@@ -3380,22 +3392,22 @@ window.searchIndex = {
       "alphabet": "S"
     },
     {
-      "id": "talasari_teh",
-      "name": "Talasari Tehsil",
-      "type": "Tehsil",
-      "path": "mumbai_div/palghar_dist/talasari_teh/index.html",
-      "division": "Mumbai Division",
-      "district": "Palghar District",
-      "depots": 0,
-      "alphabet": "T"
-    },
-    {
       "id": "tala_teh",
       "name": "Tala Tehsil",
       "type": "Tehsil",
       "path": "mumbai_div/raigad_dist/tala_teh/index.html",
       "division": "Mumbai Division",
       "district": "Raigad District",
+      "depots": 0,
+      "alphabet": "T"
+    },
+    {
+      "id": "talasari_teh",
+      "name": "Talasari Tehsil",
+      "type": "Tehsil",
+      "path": "mumbai_div/palghar_dist/talasari_teh/index.html",
+      "division": "Mumbai Division",
+      "district": "Palghar District",
       "depots": 0,
       "alphabet": "T"
     },
