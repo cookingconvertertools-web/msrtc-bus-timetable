@@ -38,6 +38,18 @@ window.searchIndex = {
       "alphabet": "B"
     },
     {
+      "id": "bhusawal_bus_stand_depot",
+      "name": "Bhusawal Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nashik_div/jalgaon_dist/bhusawal_teh/bhusawal_bus_stand_depot/index.html",
+      "division": "Nashik Division",
+      "district": "Jalgaon District",
+      "tehsil": "Bhusawal Tehsil",
+      "busStops": 47,
+      "buses": 173,
+      "alphabet": "B"
+    },
+    {
       "id": "chandrapur_bus_stand_depot",
       "name": "Chandrapur Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -146,6 +158,18 @@ window.searchIndex = {
       "alphabet": "H"
     },
     {
+      "id": "jalgaon_bus_stand_depot",
+      "name": "Jalgaon Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nashik_div/jalgaon_dist/jalgaon_teh/jalgaon_bus_stand_depot/index.html",
+      "division": "Nashik Division",
+      "district": "Jalgaon District",
+      "tehsil": "Jalgaon Tehsil",
+      "busStops": 112,
+      "buses": 619,
+      "alphabet": "J"
+    },
+    {
       "id": "mor_bhavan_depot",
       "name": "Mor Bhavan Depot",
       "type": "Depot",
@@ -155,6 +179,18 @@ window.searchIndex = {
       "tehsil": "Nagpur City Tehsil",
       "busStops": 4,
       "buses": 14,
+      "alphabet": "M"
+    },
+    {
+      "id": "muktainagar_bus_stand_depot",
+      "name": "Muktainagar Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nashik_div/jalgaon_dist/muktainagar_teh/muktainagar_bus_stand_depot/index.html",
+      "division": "Nashik Division",
+      "district": "Jalgaon District",
+      "tehsil": "Muktainagar Tehsil",
+      "busStops": 55,
+      "buses": 190,
       "alphabet": "M"
     },
     {
@@ -345,7 +381,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "nashik_div/index.html",
       "districts": 5,
-      "depots": 0,
+      "depots": 3,
       "alphabet": "N"
     },
     {
@@ -496,7 +532,7 @@ window.searchIndex = {
       "path": "nashik_div/jalgaon_dist/index.html",
       "division": "Nashik Division",
       "tehsils": 13,
-      "depots": 0,
+      "depots": 3,
       "alphabet": "J"
     },
     {
@@ -1128,7 +1164,7 @@ window.searchIndex = {
       "path": "nashik_div/jalgaon_dist/bhusawal_teh/index.html",
       "division": "Nashik Division",
       "district": "Jalgaon District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "B"
     },
     {
@@ -1688,7 +1724,7 @@ window.searchIndex = {
       "path": "nashik_div/jalgaon_dist/jalgaon_teh/index.html",
       "division": "Nashik Division",
       "district": "Jalgaon District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "J"
     },
     {
@@ -2398,7 +2434,7 @@ window.searchIndex = {
       "path": "nashik_div/jalgaon_dist/muktainagar_teh/index.html",
       "division": "Nashik Division",
       "district": "Jalgaon District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "M"
     },
     {

@@ -2113,6 +2113,12 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://msrtcbusinfo.org/nashik_div/jalgaon_dist/bhusawal_teh/bhusawal_bus_stand_depot/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://msrtcbusinfo.org/nagpur_div/chandrapur_dist/chandrapur_teh/chandrapur_bus_stand_depot/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>daily</changefreq>
@@ -2167,7 +2173,19 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://msrtcbusinfo.org/nashik_div/jalgaon_dist/jalgaon_teh/jalgaon_bus_stand_depot/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://msrtcbusinfo.org/nagpur_div/nagpur_dist/nagpur_city_teh/mor_bhavan_depot/index.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://msrtcbusinfo.org/nashik_div/jalgaon_dist/muktainagar_teh/muktainagar_bus_stand_depot/index.html</loc>
         <lastmod>2026-02-25</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.6</priority>
