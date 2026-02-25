@@ -848,7 +848,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -1118,7 +1118,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -1623,7 +1623,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -1758,7 +1758,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -1899,7 +1899,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderVerticalAlphabet()}
     </div>
@@ -2079,7 +2079,7 @@ class SiteGenerator {
     <!-- Fixed spacing for header -->
     <div class="header-spacer"></div>
 
-    <!-- Vertical Alphabet Navigation -->
+    <!-- Vertical Alphabet Navigation (scrollable) -->
     <div class="vertical-alphabet-nav" id="verticalAlphabet">
         ${this.renderBusStopVerticalAlphabet(villageLetters)}
     </div>
@@ -2897,7 +2897,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     html {
-        font-size: 14px;
+        font-size: 14px;  /* increased from 13px for better readability */
         scroll-behavior: smooth;
     }
 
@@ -2928,23 +2928,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     h1 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         line-height: 1.2;
     }
 
     h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     h3 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: 500;
     }
 
     p {
         margin-bottom: 0.8rem;
-        line-height: 1.4;
-        font-size: 0.9rem;
+        line-height: 1.5;
+        font-size: 1rem;
     }
 
     a {
@@ -3018,7 +3018,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .time-display {
         font-family: 'Orbitron', monospace;
         font-weight: 500;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         color: ${textPrimary} !important;
         padding: 0.2rem 0.5rem;
         border-radius: 6px;
@@ -3062,7 +3062,7 @@ document.addEventListener('DOMContentLoaded', function() {
         background: white;
         border: 1px solid ${borderLight};
         border-radius: 6px;
-        padding: 0.5rem 0.8rem;
+        padding: 0.6rem 0.8rem;
         box-shadow: 0 1px 2px rgba(0,0,0,0.03);
         /* FULL WIDTH - no max-width restriction */
         width: 100%;
@@ -3072,7 +3072,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .search-bar i {
         color: ${primary};
         margin-right: 0.5rem;
-        font-size: 0.9rem;
+        font-size: 1rem;
         flex-shrink: 0;
     }
 
@@ -3081,7 +3081,7 @@ document.addEventListener('DOMContentLoaded', function() {
         border: none;
         background: transparent;
         font-family: 'Inter', sans-serif;
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         color: ${textPrimary};
         outline: none;
         width: 100%;
@@ -3091,14 +3091,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .search-input::placeholder {
         color: #94A3B8;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .clear-search {
         background: none;
         border: none;
         color: #94A3B8;
-        font-size: 1rem;
+        font-size: 1.1rem;
         cursor: pointer;
         padding: 0;
         width: 20px;
@@ -3115,7 +3115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         color: ${textSecondary};
     }
 
-    /* Vertical Alphabet Navigation - ON RIGHT EDGE */
+    /* Vertical Alphabet Navigation - ON RIGHT EDGE, SCROLLABLE */
     .vertical-alphabet-nav {
         position: fixed;
         right: 0;
@@ -3129,15 +3129,15 @@ document.addEventListener('DOMContentLoaded', function() {
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow-y: auto;
+        overflow-y: auto;      /* Enables vertical scrolling */
         overflow-x: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
         padding: 0.5rem 0;
     }
 
     .vertical-alphabet-nav::-webkit-scrollbar {
-        display: none;
+        display: none; /* Hide scrollbar in Chrome/Safari */
         width: 0;
         height: 0;
     }
@@ -3154,7 +3154,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         padding: 0;
         touch-action: manipulation;
         border: none;
@@ -3205,7 +3205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         text-decoration: none;
         flex-shrink: 0;
         max-width: 100%;
@@ -3224,7 +3224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .back-btn i {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     /* Depot About Section */
@@ -3240,12 +3240,12 @@ document.addEventListener('DOMContentLoaded', function() {
     .depot-about-section h2 {
         color: ${textSecondary};
         margin-bottom: 0.8rem;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .about-content {
         color: #4B5563;
-        font-size: 0.9rem;
+        font-size: 1rem;
         line-height: 1.5;
     }
 
@@ -3262,7 +3262,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .faq-section h2 {
         color: ${textSecondary};
         margin-bottom: 0.8rem;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .faq-container {
@@ -3281,7 +3281,7 @@ document.addEventListener('DOMContentLoaded', function() {
         color: ${textSecondary};
         font-weight: 500;
         margin-bottom: 0.6rem;
-        font-size: 0.95rem;
+        font-size: 1rem;
         display: flex;
         align-items: center;
         gap: 0.4rem;
@@ -3289,12 +3289,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .faq-question i {
         color: ${primary};
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .faq-answer {
         color: #4B5563;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         line-height: 1.5;
         padding-left: 1.5rem;
     }
@@ -3312,7 +3312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .related-links-section h2 {
         color: ${textSecondary};
         margin-bottom: 0.8rem;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .related-links-grid {
@@ -3339,12 +3339,12 @@ document.addEventListener('DOMContentLoaded', function() {
     .related-depot-card h3 {
         color: ${textSecondary};
         margin-bottom: 0.3rem;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .related-depot-card p {
         color: ${textPrimary};
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         opacity: 0.8;
         margin-bottom: 0.5rem;
     }
@@ -3355,7 +3355,7 @@ document.addEventListener('DOMContentLoaded', function() {
         gap: 0.3rem;
         color: ${primary};
         font-weight: 500;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     /* Advertising - IMPROVED FOR DESKTOP */
@@ -3406,7 +3406,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .ad-placeholder span {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         color: #64748B;
     }
 
@@ -3441,7 +3441,7 @@ document.addEventListener('DOMContentLoaded', function() {
         border: none;
         border-right: 1px solid ${borderLight};
         font-family: 'Inter', sans-serif;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         color: ${textPrimary};
         cursor: pointer;
         display: flex;
@@ -3465,7 +3465,7 @@ document.addEventListener('DOMContentLoaded', function() {
         background: rgba(255, 255, 255, 0.2);
         padding: 0.05rem 0.3rem;
         border-radius: 6px;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         font-weight: 600;
     }
 
@@ -3521,8 +3521,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .rectangular-card h3 {
         color: ${textSecondary} !important;
         margin-bottom: 0.2rem;
-        font-size: 0.95rem;
-        line-height: 1.2;
+        font-size: 1rem;
+        line-height: 1.3;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -3531,7 +3531,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .card-meta {
         color: ${textPrimary};
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         margin-bottom: 0.2rem;
         opacity: 0.8;
     }
@@ -3548,7 +3548,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 0.1rem 0.3rem;
         border-radius: 8px;
         color: ${textSecondary} !important;
-        font-size: 0.65rem;
+        font-size: 0.7rem;
         font-weight: 500;
         display: flex;
         align-items: center;
@@ -3558,7 +3558,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .rectangular-card .stat i {
         color: ${primary} !important;
-        font-size: 0.65rem;
+        font-size: 0.7rem;
     }
 
     /* Quick Search Modal */
@@ -3597,14 +3597,14 @@ document.addEventListener('DOMContentLoaded', function() {
     .search-modal-header h3 {
         margin: 0;
         color: white;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .close-search {
         background: none;
         border: none;
         color: white;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         cursor: pointer;
         line-height: 1;
         touch-action: manipulation;
@@ -3619,7 +3619,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 0.8rem;
         border: 1px solid ${borderLight};
         border-radius: 6px;
-        font-size: 0.9rem;
+        font-size: 1rem;
         margin-bottom: 0.8rem;
     }
 
@@ -3647,13 +3647,13 @@ document.addEventListener('DOMContentLoaded', function() {
     .search-result-item h4 {
         margin: 0 0 0.2rem 0;
         color: ${textSecondary};
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     .search-result-item p {
         margin: 0;
         color: ${textPrimary};
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         opacity: 0.8;
     }
 
@@ -3685,7 +3685,7 @@ document.addEventListener('DOMContentLoaded', function() {
         align-items: center;
         gap: 0.3rem;
         color: ${textSecondary};
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         background: #F8FAFC;
         padding: 0.25rem 0.5rem;
         border-radius: 6px;
@@ -3698,7 +3698,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .info-item i {
         color: ${primary};
-        font-size: 0.75rem;
+        font-size: 0.85rem;
     }
 
     /* Time Filters - PROPER ALIGNMENT */
@@ -3724,7 +3724,7 @@ document.addEventListener('DOMContentLoaded', function() {
         background: white;
         border-radius: 6px;
         font-family: 'Inter', sans-serif;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         color: ${textPrimary};
         cursor: pointer;
         white-space: nowrap;
@@ -3774,7 +3774,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-family: 'Inter', sans-serif;
         font-weight: 500;
         color: ${textSecondary};
-        font-size: 0.95rem;
+        font-size: 1rem;
         max-width: 70%;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -3786,7 +3786,7 @@ document.addEventListener('DOMContentLoaded', function() {
         color: white;
         padding: 0.15rem 0.4rem;
         border-radius: 10px;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         font-weight: 500;
         min-width: 35px;
         text-align: center;
@@ -3795,8 +3795,8 @@ document.addEventListener('DOMContentLoaded', function() {
     /* Schedule Grid - PROPER ALIGNMENT */
     .schedule-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
-        gap: 0.25rem;
+        grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+        gap: 0.3rem;
         padding: 0.5rem;
         width: 100%;
     }
@@ -3804,20 +3804,20 @@ document.addEventListener('DOMContentLoaded', function() {
     /* Time Bubbles - PROPER ALIGNMENT */
     .time-bubble {
         position: relative;
-        padding: 0.25rem 0.15rem;
+        padding: 0.3rem 0.15rem;
         border-radius: 12px;
         text-align: center;
         font-family: 'Inter', sans-serif;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s;
-        min-height: 30px;
+        min-height: 32px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         user-select: none;
-        font-size: 0.68rem;
+        font-size: 0.7rem;
         border: 1px solid transparent;
         overflow: visible;
         margin: 0.05rem;
@@ -3858,7 +3858,7 @@ document.addEventListener('DOMContentLoaded', function() {
         right: -6px;
         background: ${primary};
         color: white;
-        font-size: 0.55rem;
+        font-size: 0.6rem;
         padding: 1px 3px;
         border-radius: 8px;
         font-weight: 600;
@@ -3931,7 +3931,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .footer-section h3 {
         color: ${textSecondary};
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-bottom: 0.8rem;
         font-weight: 600;
     }
@@ -3944,7 +3944,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .footer-links a {
         color: ${textPrimary};
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         padding: 0.2rem 0;
         transition: all 0.3s;
         text-decoration: none;
@@ -3960,7 +3960,7 @@ document.addEventListener('DOMContentLoaded', function() {
         grid-column: 1 / -1;
         text-align: center;
         color: ${textPrimary};
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         opacity: 0.8;
         margin-top: 1.5rem;
         padding-top: 1.5rem;
@@ -3988,18 +3988,18 @@ document.addEventListener('DOMContentLoaded', function() {
     .seo-content h2 {
         color: ${textSecondary};
         margin-bottom: 1rem;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .seo-content h3 {
         color: ${textPrimary};
         margin: 1rem 0 0.8rem;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .seo-content p {
         color: #4B5563;
-        font-size: 0.9rem;
+        font-size: 1rem;
         line-height: 1.5;
     }
 
@@ -4017,7 +4017,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .blog-date {
         color: #94A3B8;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         margin: 0.3rem 0 1rem;
     }
 
@@ -4042,6 +4042,7 @@ document.addEventListener('DOMContentLoaded', function() {
         justify-content: center;
         color: white;
         font-weight: 600;
+        font-size: 1.2rem;
     }
 
     .author-info h4 {
@@ -4051,7 +4052,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .blog-content {
-        font-size: 0.95rem;
+        font-size: 1rem;
         line-height: 1.6;
         padding: 0 0.6rem;
     }
@@ -4098,7 +4099,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .blog-image-caption {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         color: #64748B;
         margin-top: 0.5rem;
         font-style: italic;
@@ -4126,7 +4127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         color: ${primary};
         padding: 0.2rem 0.6rem;
         border-radius: 12px;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         font-weight: 500;
     }
 
@@ -4155,7 +4156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 0.6rem;
         border-bottom: 1px solid #E2E8F0;
         vertical-align: top;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     .blog-table tr:last-child td {
@@ -4174,7 +4175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         overflow-x: auto;
         margin: 1rem 0;
         font-family: 'Courier New', monospace;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         line-height: 1.4;
         border-left: 3px solid #493dd5;
     }
@@ -4184,7 +4185,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 0.1rem 0.3rem;
         border-radius: 3px;
         font-family: 'Courier New', monospace;
-        font-size: 0.85em;
+        font-size: 0.9em;
         color: #2D3748;
     }
 
@@ -4204,7 +4205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         border-radius: 0 6px 6px 0;
         font-style: italic;
         color: #4A5568;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     hr {
@@ -4240,13 +4241,13 @@ document.addEventListener('DOMContentLoaded', function() {
     .blog-card h3 {
         color: ${textSecondary};
         margin-bottom: 0.6rem;
-        font-size: 1rem;
+        font-size: 1.1rem;
         line-height: 1.3;
     }
 
     .blog-card-excerpt {
         color: #64748B;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         line-height: 1.4;
         margin-bottom: 0.8rem;
     }
@@ -4256,7 +4257,7 @@ document.addEventListener('DOMContentLoaded', function() {
         justify-content: space-between;
         align-items: center;
         color: #94A3B8;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
 
     /* Empty State */
@@ -4282,7 +4283,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .empty-state h3 {
         margin-bottom: 0.6rem;
         color: ${textSecondary};
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .empty-state p {
@@ -4290,7 +4291,7 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.8;
         max-width: 400px;
         margin: 0 auto;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     /* Utility Classes */
@@ -4301,7 +4302,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /* Responsive Design - MOBILE FIRST */
     @media (max-width: 767px) {
         html {
-            font-size: 13px;
+            font-size: 14px;  /* consistent with base */
         }
 
         .container {
@@ -4319,61 +4320,65 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .rectangular-card {
-            padding: 0.6rem;
-            min-height: 70px;
+            padding: 0.7rem;
+            min-height: 75px;
             margin: 0 auto;
             width: calc(100% - 5px); /* Small space from both sides */
         }
 
         .rectangular-card h3 {
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .rectangular-card .stat {
-            font-size: 0.6rem;
-            padding: 0.08rem 0.25rem;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.3rem;
         }
 
         /* Mobile: Back buttons */
         .back-btn {
-            padding: 0.45rem 0.7rem;
-            font-size: 0.8rem;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.9rem;
             gap: 0.25rem;
             max-width: 100%;
-            min-height: 36px;
+            min-height: 38px;
         }
 
         .back-btn i {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
         /* Mobile: Search bar - full width */
         .search-bar {
             width: 100%;
-            padding: 0.4rem 0.6rem;
+            padding: 0.5rem 0.6rem;
+        }
+
+        .search-input {
+            font-size: 0.95rem;
         }
 
         /* Mobile: Adjusted schedule grid */
         .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
-            gap: 0.2rem;
+            grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+            gap: 0.25rem;
             padding: 0.4rem;
         }
 
         /* Mobile: Time bubbles */
         .time-bubble {
-            min-height: 28px;
-            padding: 0.18rem 0.08rem;
-            font-size: 0.63rem;
+            min-height: 30px;
+            padding: 0.2rem 0.1rem;
+            font-size: 0.7rem;
             border-radius: 10px;
         }
 
         .next-badge {
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             padding: 1px 2px;
             top: -5px;
             right: -5px;
-            min-width: 25px;
+            min-width: 28px;
         }
 
         .vertical-alphabet-nav {
@@ -4385,7 +4390,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .alphabet-vertical-btn {
             width: 24px;
             height: 24px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             margin: 0.03rem 0;
         }
 
@@ -4413,11 +4418,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .tab-btn {
             min-width: 65px;
             padding: 0.4rem 0.1rem;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
         }
 
         .tab-count {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             padding: 0.05rem 0.2rem;
         }
 
@@ -4430,7 +4435,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .info-item {
             max-width: 130px;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
         }
 
         /* Mobile: Time filters */
@@ -4442,7 +4447,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .filter-btn {
             padding: 0.35rem 0.4rem;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             min-width: 60px;
         }
 
@@ -4455,6 +4460,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .bus-stop-name {
             max-width: 65%;
+            font-size: 1rem;
         }
 
         .related-links-grid {
@@ -4480,7 +4486,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .blog-content {
             padding: 0 0.8rem;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* Mobile: Blog images */
@@ -4495,7 +4501,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .blog-image-caption {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             margin-top: 0.4rem;
         }
 
@@ -4507,7 +4513,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     @media (min-width: 768px) and (max-width: 1024px) {
         html {
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .container {
@@ -4524,7 +4530,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
             padding: 0.5rem;
         }
 
@@ -4540,7 +4546,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .alphabet-vertical-btn {
             width: 26px;
             height: 26px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
 
         .ad-desktop {
@@ -4562,7 +4568,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Tablet: Adjusted back buttons */
         .back-btn {
             padding: 0.5rem 0.8rem;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             max-width: 100%;
             min-height: 40px;
         }
@@ -4597,8 +4603,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* Tablet: Schedule optimization */
         .time-bubble {
-            min-height: 32px;
-            font-size: 0.72rem;
+            min-height: 34px;
+            font-size: 0.75rem;
         }
 
         /* Tablet: Blog page */
@@ -4619,7 +4625,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     @media (min-width: 1025px) {
         html {
-            font-size: 15px;
+            font-size: 16px;
         }
 
         .container {
@@ -4647,7 +4653,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .alphabet-vertical-btn {
             width: 28px;
             height: 28px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         .ad-desktop {
@@ -4665,7 +4671,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .tab-btn {
             min-width: 90px;
             padding: 0.6rem 0.2rem;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         .related-links-grid {
@@ -4675,14 +4681,14 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Desktop: Back buttons */
         .back-btn {
             padding: 0.6rem 1rem;
-            font-size: 0.9rem;
+            font-size: 1rem;
             gap: 0.4rem;
             max-width: 100%;
             min-height: 42px;
         }
 
         .back-btn i {
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* Desktop: Search bar width */
@@ -4715,14 +4721,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* Desktop: Better spacing for schedule */
         .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
-            gap: 0.3rem;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 0.4rem;
             padding: 0.5rem;
         }
 
         .time-bubble {
-            min-height: 34px;
-            font-size: 0.72rem;
+            min-height: 36px;
+            font-size: 0.75rem;
         }
 
         /* Desktop: Blog page */
@@ -4800,20 +4806,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .schedule-grid {
-            grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
             gap: 0.15rem;
             padding: 0.3rem;
         }
 
         .time-bubble {
             min-height: 28px;
-            padding: 0.16rem 0.06rem;
-            font-size: 0.62rem;
+            padding: 0.18rem 0.08rem;
+            font-size: 0.68rem;
             border-radius: 8px;
         }
 
         .bus-stop-name {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
         }
 
         /* Time filters - even smaller on very small screens */
@@ -4825,7 +4831,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .filter-btn {
             padding: 0.3rem 0.35rem;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             min-width: 55px;
         }
 
@@ -4837,7 +4843,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .alphabet-vertical-btn {
             width: 22px;
             height: 22px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
         }
 
         /* Footer: 3 columns on very small screens */
@@ -4860,46 +4866,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .rectangular-card {
-            padding: 0.5rem;
-            min-height: 65px;
+            padding: 0.6rem;
+            min-height: 70px;
             width: calc(100% - 5px);
         }
 
         .rectangular-card h3 {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
         }
 
         .rectangular-card .stat {
-            font-size: 0.55rem;
+            font-size: 0.65rem;
             padding: 0.06rem 0.2rem;
         }
 
         /* Very small back buttons */
         .back-btn {
-            padding: 0.4rem 0.6rem;
-            font-size: 0.75rem;
+            padding: 0.45rem 0.7rem;
+            font-size: 0.85rem;
             max-width: 100%;
-            min-height: 34px;
+            min-height: 36px;
         }
 
         .back-btn i {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
         }
 
         /* Very small search bar */
         .search-bar {
             width: 100%;
-            padding: 0.35rem 0.5rem;
+            padding: 0.4rem 0.5rem;
         }
 
         .search-input {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
         /* Very small blog content */
         .blog-content {
             padding: 0 0.4rem;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
         }
 
         .blog-page {
@@ -4914,7 +4920,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .info-item {
             max-width: 110px;
-            font-size: 0.65rem;
+            font-size: 0.75rem;
         }
 
         /* Very small bus stop sections */

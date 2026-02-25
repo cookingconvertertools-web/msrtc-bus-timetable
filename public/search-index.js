@@ -50,6 +50,30 @@ window.searchIndex = {
       "alphabet": "C"
     },
     {
+      "id": "chandur_bazar_bus_stand_depot",
+      "name": "Chandur Bazar Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/chandur_bazar_teh/chandur_bazar_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Chandur Bazar Tehsil",
+      "busStops": 40,
+      "buses": 198,
+      "alphabet": "C"
+    },
+    {
+      "id": "chandur_railway_bus_stand_depot",
+      "name": "Chandur Railway Bus Stand Timetable 2026 | MSRTC Bus Schedule",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/chandur_railway_teh/chandur_railway_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Chandur Railway Tehsil",
+      "busStops": 19,
+      "buses": 151,
+      "alphabet": "C"
+    },
+    {
       "id": "chimur_bus_stand_depot",
       "name": "Chimur Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -60,6 +84,42 @@ window.searchIndex = {
       "busStops": 23,
       "buses": 102,
       "alphabet": "C"
+    },
+    {
+      "id": "darwha_bus_stand_depot",
+      "name": "Darwha Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/darwha_teh/darwha_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Darwha Tehsil",
+      "busStops": 55,
+      "buses": 263,
+      "alphabet": "D"
+    },
+    {
+      "id": "dhamangaon_railway_bus_stand_depot",
+      "name": "Dhamangaon Railway Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/dhamangaon_railway_teh/dhamangaon_railway_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Dhamangaon Railway Tehsil",
+      "busStops": 6,
+      "buses": 102,
+      "alphabet": "D"
+    },
+    {
+      "id": "digras_bus_stand_depot",
+      "name": "Digras Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "amravati_div/yavatmal_dist/digras_teh/digras_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "tehsil": "Digras Tehsil",
+      "busStops": 19,
+      "buses": 73,
+      "alphabet": "D"
     },
     {
       "id": "ghuggus_bus_stand_depot",
@@ -237,7 +297,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "amravati_div/index.html",
       "districts": 5,
-      "depots": 6,
+      "depots": 11,
       "alphabet": "A"
     },
     {
@@ -314,7 +374,7 @@ window.searchIndex = {
       "path": "amravati_div/amravati_dist/index.html",
       "division": "Amravati Division",
       "tehsils": 10,
-      "depots": 1,
+      "depots": 4,
       "alphabet": "A"
     },
     {
@@ -643,8 +703,8 @@ window.searchIndex = {
       "type": "District",
       "path": "amravati_div/yavatmal_dist/index.html",
       "division": "Amravati Division",
-      "tehsils": 5,
-      "depots": 5,
+      "tehsils": 7,
+      "depots": 7,
       "alphabet": "Y"
     }
   ],
@@ -1156,7 +1216,7 @@ window.searchIndex = {
       "path": "amravati_div/amravati_dist/chandur_bazar_teh/index.html",
       "division": "Amravati Division",
       "district": "Amravati District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "C"
     },
     {
@@ -1166,7 +1226,7 @@ window.searchIndex = {
       "path": "amravati_div/amravati_dist/chandur_railway_teh/index.html",
       "division": "Amravati Division",
       "district": "Amravati District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "C"
     },
     {
@@ -1237,6 +1297,16 @@ window.searchIndex = {
       "division": "Mumbai Division",
       "district": "Ratnagiri District",
       "depots": 0,
+      "alphabet": "D"
+    },
+    {
+      "id": "darwha_teh",
+      "name": "Darwha Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/darwha_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
       "alphabet": "D"
     },
     {
@@ -1326,7 +1396,7 @@ window.searchIndex = {
       "path": "amravati_div/amravati_dist/dhamangaon_railway_teh/index.html",
       "division": "Amravati Division",
       "district": "Amravati District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "D"
     },
     {
@@ -1377,6 +1447,16 @@ window.searchIndex = {
       "division": "Nashik Division",
       "district": "Dhule District",
       "depots": 0,
+      "alphabet": "D"
+    },
+    {
+      "id": "digras_teh",
+      "name": "Digras Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/yavatmal_dist/digras_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Yavatmal District",
+      "depots": 1,
       "alphabet": "D"
     },
     {
