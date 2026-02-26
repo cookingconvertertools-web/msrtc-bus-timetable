@@ -1,0 +1,152 @@
+{
+  "id": "shivajinagar_bus_depot",
+  "name": "Shivajinagar Bus Depot Pune Timetable 2025 | MSRTC Ticket Price",
+  "type": "depot",
+  "tehsil_id": "pune_city_teh",
+  "address": "Shivajinagar MSRTC Bus Stand, Near District Court, Pune - 411005",
+  "contact": "1800 221250",
+  "total_buses": 0,
+  "villages": {
+    "a": [
+      { "name": "Ajara", "schedule": ["08:45"], "bus_count": 1 },
+      { "name": "Atpadi", "schedule": ["05:45", "06:30", "09:30", "14:30"], "bus_count": 4 },
+      { "name": "Alandi", "schedule": ["18:30"], "bus_count": 1 }
+    ],
+    "b": [
+      { "name": "Baramati", "schedule": ["16:30"], "bus_count": 1 },
+      { "name": "Belgaum", "schedule": ["23:30"], "bus_count": 1 },
+      { "name": "Bhor", "schedule": ["06:15"], "bus_count": 1 }
+    ],
+    "c": [
+      { "name": "Chiplun", "schedule": ["05:30", "06:00", "10:00", "12:00", "14:30", "22:00", "23:00"], "bus_count": 7 },
+      { "name": "Choravane", "schedule": ["23:30"], "bus_count": 1 }
+    ],
+    "d": [
+      { "name": "Dapoli", "schedule": ["07:00", "07:30", "21:00"], "bus_count": 3 },
+      { "name": "Devgad", "schedule": ["06:00", "20:30"], "bus_count": 2 },
+      { "name": "Dahitane", "schedule": ["17:45"], "bus_count": 1 },
+      { "name": "Dahiwadi", "schedule": ["10:30"], "bus_count": 1 },
+      { "name": "Dadar", "schedule": ["09:00", "10:00", "10:30", "11:15", "11:45", "12:15", "12:45", "17:15", "20:45", "22:30", "23:00", "23:30"], "bus_count": 12 },
+      { "name": "Dadar via Aundh", "schedule": ["05:15", "05:30", "07:00", "07:30", "08:00", "08:30", "09:45", "10:15", "10:45", "11:30", "12:45", "14:45", "15:30", "16:30", "17:15", "19:00", "19:45", "20:15", "20:30", "21:00", "21:30", "22:00"], "bus_count": 22 },
+      { "name": "Dadar via Mantralaya", "schedule": ["06:30", "14:00"], "bus_count": 2 },
+      { "name": "Dadar via Chinchwad", "schedule": ["06:01", "06:31", "07:01", "07:31", "08:01", "08:31", "09:01", "09:31", "10:01", "10:31", "11:01", "11:31", "12:01", "12:31", "13:01", "13:31", "14:01", "14:31", "15:01", "15:31", "16:01", "16:31", "17:01", "17:31", "18:01", "19:01", "19:31", "20:01", "21:31", "22:01", "22:31", "23:01"], "bus_count": 32 },
+      { "name": "Dadar via Atal", "schedule": ["06:15", "18:31"], "bus_count": 2 },
+      { "name": "Deorukh via Chiplun", "schedule": ["08:50", "21:00"], "bus_count": 2 }
+    ],
+    "g": [
+      { "name": "Ganapatipule", "schedule": ["08:15"], "bus_count": 1 },
+      { "name": "Gondavale", "schedule": ["07:00"], "bus_count": 1 },
+      { "name": "Ghadge Tala", "schedule": ["17:15"], "bus_count": 1 }
+    ],
+    "i": [
+      { "name": "Ichalkaranji", "schedule": ["06:30", "09:00"], "bus_count": 2 }
+    ],
+    "j": [
+      { "name": "Jat", "schedule": ["06:20"], "bus_count": 1 },
+      { "name": "Jamkhandi", "schedule": ["08:30", "19:00"], "bus_count": 2 }
+    ],
+    "k": [
+      { "name": "Kavathe Mahankal", "schedule": ["08:15", "08:"], "bus_count": 2 },
+      { "name": "Khed", "schedule": ["11:30", "22:35", "23:00"], "bus_count": 3 },
+      { "name": "Kurundwad", "schedule": ["04:00", "04:45", "06:00", "07:00", "08:00", "09:00", "14:00", "16:00"], "bus_count": 8 }
+    ],
+    "m": [
+      { "name": "Mahabaleshwar", "schedule": ["06:00", "06:35", "08:05", "10:00", "11:30", "17:15", "17:30", "17:45", "18:30", "19:45"], "bus_count": 10 },
+      { "name": "Malvan", "schedule": ["06:00", "06:00", "20:00"], "bus_count": 3 },
+      { "name": "Managaon", "schedule": ["09:15"], "bus_count": 1 },
+      { "name": "Miraj", "schedule": ["05:15"], "bus_count": 1 },
+      { "name": "Mumbai", "schedule": ["00:30", "12:30"], "bus_count": 2 },
+      { "name": "Mangalvedha", "schedule": ["09:15"], "bus_count": 1 },
+      { "name": "Mhaswad", "schedule": ["09:45", "12:15"], "bus_count": 2 }
+    ],
+    "n": [
+      { "name": "Nashik", "schedule": ["06:30", "07:00", "08:30", "09:30", "10:30", "11:15", "11:30", "14:00", "15:00"], "bus_count": 9 }
+    ],
+    "p": [
+      { "name": "Palshi", "schedule": ["15:15"], "bus_count": 1 },
+      { "name": "Panaji", "schedule": ["05:00", "05:45", "08:30", "16:30", "19:00", "19:30", "20:00", "21:00"], "bus_count": 8 },
+      { "name": "Paragaon", "schedule": ["10:45"], "bus_count": 1 },
+      { "name": "Paragaon Khandala", "schedule": ["10:00"], "bus_count": 1 },
+      { "name": "Phaltan", "schedule": ["11:15"], "bus_count": 1 }
+    ],
+    "r": [
+      { "name": "Ratnagiri", "schedule": ["07:30", "08:20 ", "10:00", "20:05", "20:45"], "bus_count": 5 }
+    ],
+    "s": [
+      { "name": "Shirur", "schedule": ["07:00"], "bus_count": 1 },
+      { "name": "Sawantwadi", "schedule": ["04:00", "07:30", "11:30"], "bus_count": 3 },
+      { "name": "Saswad", "schedule": ["18:30", "19:30", "21:00", "23:45"], "bus_count": 4 }
+    ],
+    "t": [
+      { "name": "Thane", "schedule": ["06:15", "07:15", "11:30", "13:15", "16:45", "19:15"], "bus_count": 6 },
+      { "name": "Tivare via Chiplun", "schedule": ["20:30"], "bus_count": 1 }
+    ],
+    "v": [
+
+      { "name": "Vijaydurg", "schedule": ["05:30", "08:00"], "bus_count": 2 },
+      { "name": "Vita", "schedule": ["07:00", "08:00", "08:30", "12:30"], "bus_count": 4 },
+      { "name": "Vaduj", "schedule": ["07:00", "10:15", "12:15", "15:30"], "bus_count": 4 },
+      { "name": "Vengurla", "schedule": ["08:15 ", "08:30 "], "bus_count": 2 },
+      { "name": "Velas via Mahad", "schedule": ["09:30"], "bus_count": 1 }
+    ],
+    "w": [
+      { "name": "Walki", "schedule": ["08:15", "13:45"], "bus_count": 2 },
+      { "name": "Walchandnagar", "schedule": ["05:30"], "bus_count": 1 }
+    ]
+  },
+  "content": {
+    "about": "<p>शिवाजीनगर बस डेपो (Shivajinagar Bus Depot) हे पुणे शहरातील महाराष्ट्र राज्य मार्ग परिवहन महामंडळ म्हणजेच MSRTC (Maharashtra State Road Transport Corporation) अंतर्गत कार्यरत असलेले एक प्रमुख आणि व्यस्त बस आगार आहे. पुणे शहर हे महाराष्ट्राचे शैक्षणिक, औद्योगिक आणि सांस्कृतिक राजधानी म्हणून ओळखले जाते. त्यामुळे येथून दररोज हजारो प्रवासी मुंबई, दादर, ठाणे, नाशिक, पणजी (गोवा), महाबळेश्वर, रत्नागिरी, कोल्हापूर, सांगली, सातारा आणि इतर महत्त्वाच्या शहरांकडे प्रवास करतात. The bus stand acts as a major transportation hub connecting Pune with Maharashtra, Goa and Karnataka, making daily commuting easier and more affordable for common people, students, office employees and business travelers.</p><p>शिवाजीनगर बस डेपोवरून सकाळी लवकर बस सेवा सुरू होते. Early morning buses are especially useful for passengers who need to reach Mumbai, Nashik, Goa or other destinations on time for work or business meetings. दादर, ठाणे, पणजी आणि नाशिक या मार्गांवर दिवसभरात अनेक वेळा बस उपलब्ध असल्यामुळे प्रवाशांना flexible travel options मिळतात. Regular interval services ensure that passengers do not have to wait for long hours. दर अर्ध्या तासाला दादरसाठी बस सुटत असल्याने प्रवाशांची मोठी सोय होते. This frequency makes Shivajinagar depot one of the important operational points in the Pune division region.</p><p>पुणे शहर आणि आसपासच्या ग्रामीण भागातील नागरिकांसाठी शिवाजीनगर बस डेपो हे एक मुख्य दळणवळण केंद्र आहे. Nearby districts like Satara, Sangli, Kolhapur, Ratnagiri and Sindhudurg are well connected through MSRTC buses, which help farmers, traders, students and tourists travel safely at affordable ticket prices. ST buses are considered reliable and economical compared to private transport options. Especially during summer holidays, Diwali vacation, Ganesh festival and examination periods, passenger traffic increases significantly. In such situations, MSRTC may arrange additional buses depending on demand and operational feasibility.</p><p>पुणे हे औद्योगिक आणि आयटी हब (IT Hub) असल्यामुळे येथे अनेक मोठ्या कंपन्या, आयटी पार्क, औद्योगिक वसाहती (industrial estates) कार्यरत आहेत. त्यामुळे कामगार वर्ग, तरुण प्रोफेशनल्स आणि व्यावसायिकांसाठी नियमित बस सेवा अत्यंत महत्त्वाची ठरते. The connectivity to Mumbai, Thane, Nashik, Goa and nearby business centers supports employment mobility and business growth. Daily commuters prefer MSRTC buses because of their safety standards, fixed routes and government-regulated fare system. The structured timetable helps passengers plan their journey efficiently without uncertainty.</p><p>बसस्थानकात मूलभूत सुविधा जसे की तिकीट खिडकी (ticket counter), प्रतीक्षालय (waiting area), वेळापत्रक फलक (timetable board), महिला व पुरुषांसाठी स्वतंत्र प्रतिक्षा कक्ष आणि बस पार्किंग व्यवस्था उपलब्ध आहे. Passengers can check departure timings directly at the stand or through updated digital boards. The depot staff ensures smooth bus departures and arrival coordination. Cleanliness, security and passenger assistance are continuously monitored to provide better service quality. टोल फ्री क्रमांक १८०० २२१२५० वर प्रवासी कोणतीही मदत किंवा तक्रार नोंदवू शकतात.</p>",
+    "faqs": [
+      {
+        "question": "शिवाजीनगर बस डेपोचा संपर्क क्रमांक काय आहे आणि मदतीसाठी कुठे संपर्क करावा?",
+        "answer": "शिवाजीनगर बस डेपोचा संपर्क क्रमांक 020-25536045 आहे. तसेच टोल फ्री क्रमांक 1800 221250 वर 24 तास मदत घेऊ शकता. तिकीट बुकिंग, बस वेळापत्रक, तक्रार किंवा कोणत्याही मदतीसाठी या क्रमांकावर संपर्क करू शकता. आगारावर देखील तिकीट खिडकीवर थेट माहिती मिळू शकते."
+      },
+      {
+        "question": "पुणे शिवाजीनगर वरून मुंबई, दादर आणि ठाणे येथे जाण्यासाठी बस किती वाजता सुटतात?",
+        "answer": "शिवाजीनगर वरून दादरसाठी अनेक मार्गांनी बससेवा उपलब्ध आहे. दादर थेट (12 bus), दादर वाया औंध (22 bus), दादर वाया चिंचवड (32 bus), दादर वाया मंत्रालय (2 bus) आणि दादर वाया अटल (2 bus) अशा एकूण 70 पेक्षा जास्त बस दररोज दादरला जातात. पहिली बस पहाटे 05:15 वाजता आणि शेवटची बस रात्री 23:30 वाजता सुटते. ठाण्यासाठी 6 बस (06:15, 07:15, 11:30, 13:15, 16:45, 19:15) आणि मुंबई सेंट्रलसाठी 00:30 व 12:30 वाजता बससेवा उपलब्ध आहे."
+      },
+      {
+        "question": "पुणे शिवाजीनगर वरून पणजी (गोवा) साठी बस सेवा कधी उपलब्ध असते?",
+        "answer": "शिवाजीनगर वरून पणजी (गोवा) साठी 8 बससेवा उपलब्ध आहेत. वेळा: पहाटे 05:00, 05:45, सकाळी 08:30 (गगनबावडा मार्गे), दुपारी 16:30, संध्याकाळी 19:00 (कदंबा), 19:30, रात्री 20:00 (कदंबा) आणि 21:00. या सर्व बस थेट गोव्यापर्यंत जातात आणि प्रवासादरम्यान आरामदायी सुविधा उपलब्ध असतात."
+      },
+      {
+        "question": "पुणे शिवाजीनगर वरून महाबळेश्वर, गणपतीपुळे, रत्नागिरी आणि चिपळूण येथे जाण्यासाठी बस किती वाजता आहेत?",
+        "answer": "महाबळेश्वरसाठी 10 बससेवा आहेत: 06:00, 06:35, 08:05, 10:00, 11:30, 17:15, 17:30, 17:45, 18:30, 19:45. गणपतीपुळेसाठी 08:15 वाजता बस आहे (महाबळेश्वर मार्गे). रत्नागिरीसाठी 5 बससेवा: 07:30 (मलकापूर), 08:20 (चिपळूण मार्गे), 10:00 (कोल्हापूर), 20:05 (चिपळूण), 20:45 (मलकापूर). चिपळूणसाठी 7 बससेवा: 05:30, 06:00, 10:00, 12:00, 14:30, 22:00, 23:00 (कोयना)."
+      },
+      {
+        "question": "पुणे शिवाजीनगर वरून कोल्हापूर, सांगली, सातारा, मिरज आणि इचलकरंजी येथे बस सेवा आहे का?",
+        "answer": "होय, नक्कीच आहे. इचलकरंजीसाठी 2 बस (06:30, 09:00), कुरुंदवाडसाठी 8 बस (पहाटे 04:00 ते संध्याकाळी 16:00), जमखंडीसाठी 2 बस (08:30 सांगली मार्गे, 19:00), जतसाठी 1 बस (06:20 विटा मार्गे), विटासाठी 4 बस (07:00, 08:00, 08:30, 12:30), वडूजसाठी 4 बस (07:00, 10:15, 12:15, 15:30), मिरजसाठी 1 बस (05:15) आणि आटपाडीसाठी 4 बस (05:45, 06:30, 09:30, 14:30) उपलब्ध आहेत."
+      },
+      {
+        "question": "शिवाजीनगर बस डेपोवरून कोकण भागात (मालवण, देवगड, विजयदुर्ग, वेंगुर्ला) जाण्यासाठी बस कधी आहेत?",
+        "answer": "मालवणसाठी 3 बस (06:00, 06:00, 20:00), देवगडसाठी 2 बस (06:00, 20:30), विजयदुर्गसाठी 2 बस (05:30, 08:00), वेंगुर्लासाठी 2 बस (08:15 आजरा मार्गे, 08:30 गगनबावडा मार्गे), सावंतवाडीसाठी 3 बस (04:00, 07:30, 11:30 आजरा/आंबोली मार्गे) आणि दापोलीसाठी 3 बस (07:00 महाड मार्गे, 07:30 खेड मार्गे, 21:00 महाड) उपलब्ध आहेत."
+      },
+      {
+        "question": "शिवाजीनगर बस डेपोवरून नाशिक, खेड, भोर, सासवड येथे बस किती वाजता सुटतात?",
+        "answer": "नाशिकसाठी 9 बससेवा (06:30, 07:00, 08:30, 09:30, 10:30, 11:15, 11:30, 14:00, 15:00), खेडसाठी 3 बस (11:30 माणगाव-महाड, 22:35 भोर मार्गे, 23:00 माणगाव), भोरसाठी 1 बस (06:15), सासवडसाठी 4 बस (18:30, 19:30, 21:00, 23:45) आणि माणगावसाठी 1 बस (09:15 भोर मार्गे) उपलब्ध आहेत."
+      },
+      {
+        "question": "शिवाजीनगर बसस्थानकावर प्रवाशांसाठी कोणकोणत्या सुविधा उपलब्ध आहेत?",
+        "answer": "शिवाजीनगर बसस्थानकावर प्रवाशांसाठी स्वच्छ प्रतीक्षालय, महिला व पुरुषांसाठी स्वतंत्र प्रतिक्षा कक्ष, तिकीट खिडक्या, डिजिटल वेळापत्रक फलक, खाद्यपदार्थांची दुकाने, वाहनतळ सुविधा, सुरक्षा व्यवस्था आणि टोल फ्री मदत क्रमांक (1800 221250) उपलब्ध आहे. तसेच शौचालयाची सुविधा देखील आहे."
+      },
+      {
+        "question": "पुणे शिवाजीनगर वरून हैद्राबाद, बेळगाव, पणजी सारख्या बाहेरगावी जाणाऱ्या बस कधी आहेत?",
+        "answer": "बेळगावसाठी रात्री 23:30 वाजता बस आहे. पणजी (गोवा) साठी 8 बस आहेत (वर नमूद केल्याप्रमाणे). हैद्राबादसाठी थेट बस नसली तरी, पर्यायी मार्गाने प्रवास करता येतो. दादर, मुंबई मार्गे हैद्राबादला जाण्यासाठी कनेक्टिव्हिटी उपलब्ध आहे."
+      },
+      {
+        "question": "शिवाजीनगर बस डेपोची शेवटची बस दादरला किती वाजता सुटते आणि ऑनलाइन तिकीट कसे बुक करावे?",
+        "answer": "शिवाजीनगरची शेवटची बस दादर थेट मार्गे रात्री 23:30 वाजता, दादर वाया चिंचवड मार्गे रात्री 23:01 वाजता, दादर वाया औंध मार्गे रात्री 22:00 वाजता आणि दादर वाया अटल मार्गे संध्याकाळी 18:31 वाजता सुटते. ऑनलाइन तिकीट बुक करण्यासाठी MSRTC च्या अधिकृत वेबसाइटवर जाऊन किंवा redBus, Abhibus सारख्या प्लॅटफॉर्मवरून सहज बुकिंग करू शकता. आगारावर थेट तिकीट खिडकीवरूनही तिकीट खरेदी करता येते."
+      }
+    ],
+    "seo_content": {
+      "title": "Shivajinagar Bus Depot Pune Timetable 2025 | MSRTC Bus Schedule & Ticket Booking",
+      "content": "<p>Plan your journey with the latest Shivajinagar Bus Depot Pune timetable for 2025. Shivajinagar depot is a premier MSRTC hub in Pune city, providing extensive bus connectivity to major destinations across Maharashtra and neighboring states including Mumbai, Dadar, Thane, Nashik, Panaji (Goa), Kolhapur, Sangli, Satara, Ratnagiri, Mahabaleshwar, Chiplun, Malvan, Sawantwadi and surrounding areas.</p><p>Whether you're a daily commuter, tourist, student or business traveler, you can find detailed departure times, ticket prices, and online booking options here. The bus stand operates frequent services throughout the day with routes to:</p><ul><li><strong>Mumbai/Dadar:</strong> 70+ buses daily via multiple routes (Aundh, Chinchwad, Mantralaya, Atal) from 05:15 to 23:30</li><li><strong>Panaji (Goa):</strong> 05:00 to 21:00 with 8 buses daily</li><li><strong>Nashik:</strong> 06:30 to 15:00 with 9 buses daily</li><li><strong>Mahabaleshwar:</strong> 06:00 to 19:45 with 10 buses daily</li><li><strong>Ratnagiri & Chiplun:</strong> Frequent services to Konkan region</li><li><strong>Kolhapur, Sangli, Satara:</strong> Regular daily services to Western Maharashtra</li><li><strong>Thane:</strong> 06:15 to 19:15 with 6 buses daily</li><li><strong>Konkan Belt:</strong> Regular services to Malvan, Devgad, Vengurla, Sawantwadi, Dapoli</li></ul><p>Passengers can avail clean waiting areas, digital timetable boards, separate waiting rooms for ladies, ticket counters, food stalls, parking facility and 24/7 security. Stay updated with the latest MSRTC schedules and enjoy a hassle-free travel experience from Shivajinagar Bus Depot Pune. For online booking, visit the MSRTC official website, mobile app or use popular platforms like redBus. For any assistance, contact toll free number 1800 221250.</p>"
+    }
+  },
+  "seo": {
+    "title": "Shivajinagar Bus Depot Pune Timetable 2025 | MSRTC Ticket Price | रा.प.शिवाजीनगर आगार पुणे",
+    "description": "Check Shivajinagar Bus Depot Pune timetable 2025 for MSRTC buses. Pune to Mumbai, Dadar, Nashik, Panaji, Mahabaleshwar, Ratnagiri bus schedules, ticket prices. Contact: 1800 221250. रा.प.शिवाजीनगर आगार पुणे वेळापत्रक.",
+    "keywords": "Shivajinagar Bus Depot, Pune MSRTC, Shivajinagar Agaar, Pune to Mumbai bus, Pune to Dadar bus, Pune to Panaji bus, Pune to Nashik bus, Pune to Mahabaleshwar bus, Shivajinagar bus timetable 2025, MSRTC ticket booking Pune"
+  },
+  "related_depots": []
+}

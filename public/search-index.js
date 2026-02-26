@@ -38,6 +38,18 @@ window.searchIndex = {
       "alphabet": "B"
     },
     {
+      "id": "bhimashankar_bus_depot_pune",
+      "name": "Bhimashankar Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "pune_div/pune_dist/khed_teh/bhimashankar_bus_depot_pune/index.html",
+      "division": "Pune Division",
+      "district": "Pune District",
+      "tehsil": "Khed Tehsil",
+      "busStops": 4,
+      "buses": 19,
+      "alphabet": "B"
+    },
+    {
       "id": "bhusawal_bus_stand_depot",
       "name": "Bhusawal Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -206,6 +218,18 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
+      "id": "narayangaon_bus_stand_depot",
+      "name": "Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "pune_div/pune_dist/junnar_teh/narayangaon_bus_stand_depot/index.html",
+      "division": "Pune Division",
+      "district": "Pune District",
+      "tehsil": "Junnar Tehsil",
+      "busStops": 77,
+      "buses": 516,
+      "alphabet": "N"
+    },
+    {
       "id": "pandharkawda_bus_stand_depot",
       "name": "Pandharkawda Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -278,6 +302,30 @@ window.searchIndex = {
       "alphabet": "S"
     },
     {
+      "id": "saswad_bus_stand_depot.json",
+      "name": "Saswad Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "pune_div/pune_dist/purandar_teh/saswad_bus_stand_depot.json/index.html",
+      "division": "Pune Division",
+      "district": "Pune District",
+      "tehsil": "Purandar Tehsil",
+      "busStops": 97,
+      "buses": 320,
+      "alphabet": "S"
+    },
+    {
+      "id": "shivajinagar_bus_depot",
+      "name": "Shivajinagar Bus Depot Pune Timetable 2025 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "pune_div/pune_dist/pune_city_teh/shivajinagar_bus_depot/index.html",
+      "division": "Pune Division",
+      "district": "Pune District",
+      "tehsil": "Pune City Tehsil",
+      "busStops": 53,
+      "buses": 194,
+      "alphabet": "S"
+    },
+    {
       "id": "sitabuldi_depot",
       "name": "Sitabuldi Main Depot",
       "type": "Depot",
@@ -290,6 +338,30 @@ window.searchIndex = {
       "alphabet": "S"
     },
     {
+      "id": "swargate_bus_depot",
+      "name": "Swargate Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "pune_div/pune_dist/pune_city_teh/swargate_bus_depot/index.html",
+      "division": "Pune Division",
+      "district": "Pune District",
+      "tehsil": "Pune City Tehsil",
+      "busStops": 25,
+      "buses": 379,
+      "alphabet": "S"
+    },
+    {
+      "id": "talegaon_bus_stand_depot",
+      "name": "Talegaon Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "pune_div/pune_dist/maval_teh/talegaon_bus_stand_depot/index.html",
+      "division": "Pune Division",
+      "district": "Pune District",
+      "tehsil": "Maval Tehsil",
+      "busStops": 46,
+      "buses": 108,
+      "alphabet": "T"
+    },
+    {
       "id": "tumsar_bus_stand_depot",
       "name": "Tumsar Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -300,6 +372,18 @@ window.searchIndex = {
       "busStops": 60,
       "buses": 224,
       "alphabet": "T"
+    },
+    {
+      "id": "walchandnagar_bus_depot_pune",
+      "name": "Walchandnagar Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "pune_div/pune_dist/baramati_teh/walchandnagar_bus_depot_pune/index.html",
+      "division": "Pune Division",
+      "district": "Pune District",
+      "tehsil": "Baramati Tehsil",
+      "busStops": 13,
+      "buses": 47,
+      "alphabet": "W"
     },
     {
       "id": "wani_bus_stand_depot",
@@ -390,7 +474,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "pune_div/index.html",
       "districts": 5,
-      "depots": 0,
+      "depots": 7,
       "alphabet": "P"
     }
   ],
@@ -652,7 +736,7 @@ window.searchIndex = {
       "path": "pune_div/pune_dist/index.html",
       "division": "Pune Division",
       "tehsils": 15,
-      "depots": 0,
+      "depots": 7,
       "alphabet": "P"
     },
     {
@@ -1034,6 +1118,16 @@ window.searchIndex = {
       "path": "pune_div/pune_dist/baramati_teh/index.html",
       "division": "Pune Division",
       "district": "Pune District",
+      "depots": 1,
+      "alphabet": "B"
+    },
+    {
+      "id": "barshitakli_teh",
+      "name": "Barshitakli Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/akola_dist/barshitakli_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Akola District",
       "depots": 0,
       "alphabet": "B"
     },
@@ -1044,16 +1138,6 @@ window.searchIndex = {
       "path": "pune_div/solapur_dist/barshi_teh/index.html",
       "division": "Pune Division",
       "district": "Solapur District",
-      "depots": 0,
-      "alphabet": "B"
-    },
-    {
-      "id": "barshitakli_teh",
-      "name": "Barshitakli Tehsil",
-      "type": "Tehsil",
-      "path": "amravati_div/akola_dist/barshitakli_teh/index.html",
-      "division": "Amravati Division",
-      "district": "Akola District",
       "depots": 0,
       "alphabet": "B"
     },
@@ -1824,7 +1908,7 @@ window.searchIndex = {
       "path": "pune_div/pune_dist/junnar_teh/index.html",
       "division": "Pune Division",
       "district": "Pune District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "J"
     },
     {
@@ -2064,7 +2148,7 @@ window.searchIndex = {
       "path": "pune_div/pune_dist/khed_teh/index.html",
       "division": "Pune Division",
       "district": "Pune District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "K"
     },
     {
@@ -2288,16 +2372,6 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
-      "id": "man_teh",
-      "name": "Man Tehsil",
-      "type": "Tehsil",
-      "path": "pune_div/satara_dist/man_teh/index.html",
-      "division": "Pune Division",
-      "district": "Satara District",
-      "depots": 0,
-      "alphabet": "M"
-    },
-    {
       "id": "mandangad_teh",
       "name": "Mandangad Tehsil",
       "type": "Tehsil",
@@ -2348,6 +2422,16 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
+      "id": "man_teh",
+      "name": "Man Tehsil",
+      "type": "Tehsil",
+      "path": "pune_div/satara_dist/man_teh/index.html",
+      "division": "Pune Division",
+      "district": "Satara District",
+      "depots": 0,
+      "alphabet": "M"
+    },
+    {
       "id": "mauda_teh",
       "name": "Mauda Tehsil",
       "type": "Tehsil",
@@ -2364,7 +2448,7 @@ window.searchIndex = {
       "path": "pune_div/pune_dist/maval_teh/index.html",
       "division": "Pune Division",
       "district": "Pune District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "M"
     },
     {
@@ -2438,16 +2522,6 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
-      "id": "mul_teh",
-      "name": "Mul Tehsil",
-      "type": "Tehsil",
-      "path": "nagpur_div/chandrapur_dist/mul_teh/index.html",
-      "division": "Nagpur Division",
-      "district": "Chandrapur District",
-      "depots": 1,
-      "alphabet": "M"
-    },
-    {
       "id": "mulchera_teh",
       "name": "Mulchera Tehsil",
       "type": "Tehsil",
@@ -2465,6 +2539,16 @@ window.searchIndex = {
       "division": "Pune Division",
       "district": "Pune District",
       "depots": 0,
+      "alphabet": "M"
+    },
+    {
+      "id": "mul_teh",
+      "name": "Mul Tehsil",
+      "type": "Tehsil",
+      "path": "nagpur_div/chandrapur_dist/mul_teh/index.html",
+      "division": "Nagpur Division",
+      "district": "Chandrapur District",
+      "depots": 1,
       "alphabet": "M"
     },
     {
@@ -2924,7 +3008,7 @@ window.searchIndex = {
       "path": "pune_div/pune_dist/pune_city_teh/index.html",
       "division": "Pune Division",
       "district": "Pune District",
-      "depots": 0,
+      "depots": 2,
       "alphabet": "P"
     },
     {
@@ -2944,7 +3028,7 @@ window.searchIndex = {
       "path": "pune_div/pune_dist/purandar_teh/index.html",
       "division": "Pune Division",
       "district": "Pune District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "P"
     },
     {
@@ -3428,22 +3512,22 @@ window.searchIndex = {
       "alphabet": "S"
     },
     {
-      "id": "tala_teh",
-      "name": "Tala Tehsil",
-      "type": "Tehsil",
-      "path": "mumbai_div/raigad_dist/tala_teh/index.html",
-      "division": "Mumbai Division",
-      "district": "Raigad District",
-      "depots": 0,
-      "alphabet": "T"
-    },
-    {
       "id": "talasari_teh",
       "name": "Talasari Tehsil",
       "type": "Tehsil",
       "path": "mumbai_div/palghar_dist/talasari_teh/index.html",
       "division": "Mumbai Division",
       "district": "Palghar District",
+      "depots": 0,
+      "alphabet": "T"
+    },
+    {
+      "id": "tala_teh",
+      "name": "Tala Tehsil",
+      "type": "Tehsil",
+      "path": "mumbai_div/raigad_dist/tala_teh/index.html",
+      "division": "Mumbai Division",
+      "district": "Raigad District",
       "depots": 0,
       "alphabet": "T"
     },

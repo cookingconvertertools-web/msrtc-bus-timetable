@@ -1,0 +1,197 @@
+{
+  "id": "saswad_bus_stand_depot.json",
+  "name": "Saswad Bus Stand Timetable 2026 | MSRTC Ticket Price",
+  "type": "depot",
+  "tehsil_id": "purandar_teh",
+  "address": "Saswad MSRTC Bus Stand, Near Purandar Fort Road, Saswad, Taluka Purandar, Pune - 412301",
+  "contact": "",
+  "total_buses": 0,
+  "villages": {
+    "a": [
+      { "name": "Alandi", "schedule": ["17:00"], "bus_count": 1 },
+      { "name": "Alibag", "schedule": ["13:50"], "bus_count": 1 },
+      { "name": "Arnala", "schedule": ["13:00"], "bus_count": 1 },
+      { "name": "Askarwadi", "schedule": ["09:00", "15:45"], "bus_count": 2 }
+    ],
+    "b": [
+      { "name": "Baramati-Swargate", "schedule": ["11:00", "15:00", "15:15"], "bus_count": 3 },
+      { "name": "Belsar", "schedule": ["06:30", "13:00"], "bus_count": 2 },
+      { "name": "Bhoslewadi", "schedule": ["06:00", "13:00"], "bus_count": 2 },
+      { "name": "Bhiwsewadi", "schedule": ["17:30"], "bus_count": 1 },
+      { "name": "Boisar", "schedule": ["11:05"], "bus_count": 1 },
+      { "name": "Borivali", "schedule": ["07:40", "14:10", "16:10", "22:00"], "bus_count": 4 }
+    ],
+    "c": [
+      { "name": "Chinchwad", "schedule": ["13:10", "16:05", "16:45", "18:00", "18:30"], "bus_count": 5 },
+      { "name": "Chinchwad-Kalyan (Temporary)", "schedule": ["08:15"], "bus_count": 1 }
+    ],
+    "d": [
+      { "name": "Dadar", "schedule": ["07:15", "08:00", "11:20", "14:45", "20:10"], "bus_count": 5 },
+      { "name": "Dherwadi", "schedule": ["08:30", "17:00"], "bus_count": 2 }
+    ],
+    "g": [
+      { "name": "Ganagapur", "schedule": ["21:45"], "bus_count": 1 },
+      { "name": "Garade", "schedule": ["06:30"], "bus_count": 1 },
+      { "name": "Gondavale", "schedule": ["08:05", "08:20", "10:05", "16:40", "17:15", "18:15"], "bus_count": 6 }
+    ],
+    "i": [
+      { "name": "Indapur", "schedule": ["07:10"], "bus_count": 1 }
+    ],
+    "j": [
+      { "name": "Jat", "schedule": ["07:50"], "bus_count": 1 },
+      { "name": "Jeur", "schedule": ["10:30", "18:45"], "bus_count": 2 },
+      { "name": "Junnar-Baramati", "schedule": ["09:10", "10:45"], "bus_count": 2 },
+      { "name": "Junnar", "schedule": ["14:30", "15:15"], "bus_count": 2 },
+      { "name": "Jawahar", "schedule": ["10:30"], "bus_count": 1 }
+    ],
+    "k": [
+      { "name": "Kapurhol", "schedule": ["06:15", "07:30", "08:00", "09:15", "10:00", "11:15", "12:15", "13:15", "15:15", "17:15"], "bus_count": 10 },
+      { "name": "Kavathe Mahankal", "schedule": ["09:15"], "bus_count": 1 },
+      { "name": "Kawdewadi", "schedule": ["18:15"], "bus_count": 1 },
+      { "name": "Kolhapur-Adamapur (Temporary)", "schedule": ["11:00"], "bus_count": 1 },
+      { "name": "Kurduwadi", "schedule": ["08:25"], "bus_count": 1 },
+      { "name": "Kurla", "schedule": ["14:20", "15:25"], "bus_count": 2 }
+    ],
+    "m": [
+      { "name": "Malashiras", "schedule": ["16:15"], "bus_count": 1 },
+      { "name": "Mangalvedha", "schedule": ["07:25", "10:30"], "bus_count": 2 },
+      { "name": "Maydi Pimpri", "schedule": ["08:00", "16:30"], "bus_count": 2 },
+      { "name": "Mhaswad", "schedule": ["07:55", "13:45"], "bus_count": 2 },
+      { "name": "Muhum", "schedule": ["18:15"], "bus_count": 1 },
+      { "name": "Mumbai", "schedule": ["10:00", "10:45", "11:00", "11:45", "12:30", "13:35", "22:25"], "bus_count": 7 }
+    ],
+    "n": [
+      { "name": "Nalasopara", "schedule": ["14:00"], "bus_count": 1 },
+      { "name": "Nashik", "schedule": ["08:30", "08:45", "09:25", "11:05", "14:15"], "bus_count": 5 },
+      { "name": "Nira", "schedule": ["07:00", "07:45", "08:30", "12:30", "14:30", "15:30", "18:00"], "bus_count": 7 }
+    ],
+    "p": [
+      { "name": "Pande", "schedule": ["12:15", "19:45"], "bus_count": 2 },
+      { "name": "Panwadi-Bandalwadi", "schedule": ["08:30", "16:45"], "bus_count": 2 },
+      { "name": "Panwadi-Kaldari", "schedule": ["11:00"], "bus_count": 1 },
+      { "name": "Parel", "schedule": ["12:20", "15:45", "18:20", "18:30"], "bus_count": 4 },
+      { "name": "Parinche-Bahiriwadi", "schedule": ["09:45", "15:15"], "bus_count": 2 },
+      { "name": "Parinche-Bandalwadi", "schedule": ["13:00", "17:30"], "bus_count": 2 },
+      { "name": "Parinche-Dawnewadi", "schedule": ["11:15"], "bus_count": 1 },
+      { "name": "Parinche-Harani", "schedule": ["06:00"], "bus_count": 1 },
+      { "name": "Parinche-Tonpewadi", "schedule": ["18:45"], "bus_count": 1 },
+      { "name": "Phaltan-Pune Station", "schedule": ["07:50", "10:00", "15:15", "15:45", "17:30", "18:10"], "bus_count": 6 },
+      { "name": "Phaltan-Swargate", "schedule": ["08:45", "09:20", "09:50", "10:30", "11:15", "14:00", "16:20", "18:15", "19:40", "20:00"], "bus_count": 10 },
+      { "name": "Piserve", "schedule": ["06:00"], "bus_count": 1 },
+      { "name": "Pune-Baramati", "schedule": ["10:20", "10:50", "11:25", "13:00", "13:30", "14:00", "20:15"], "bus_count": 7 },
+      { "name": "Pune-Dahiwadi", "schedule": ["10:15", "15:20", "16:30"], "bus_count": 3 },
+      { "name": "Pune-Atpadi", "schedule": ["06:40", "07:30", "13:25"], "bus_count": 3 },
+      { "name": "Pune-Phaltan", "schedule": ["10:00", "10:30", "11:10", "11:45", "12:05", "12:40", "13:00", "13:30", "14:15", "14:30", "15:05", "15:20", "16:35", "17:15", "19:15"], "bus_count": 15 },
+      { "name": "Pune-Mangalwedha", "schedule": ["07:25", "10:30"], "bus_count": 2 },
+      { "name": "Pune-Mhaswad", "schedule": ["07:55", "13:45"], "bus_count": 2 },
+      { "name": "Pune-Sangola", "schedule": ["06:25", "07:30", "10:15", "11:40", "14:20", "15:15", "16:00", "18:00", "18:15", "19:15"], "bus_count": 10 },
+      { "name": "Pune-Sangavi", "schedule": ["18:00"], "bus_count": 1 },
+      { "name": "Pune-Vijapur", "schedule": ["09:10", "10:45"], "bus_count": 2 },
+      { "name": "Pune-Gondavale", "schedule": ["08:05", "08:20", "10:05", "16:40", "17:15", "18:15"], "bus_count": 6 },
+      { "name": "Pune-Jat", "schedule": ["07:50"], "bus_count": 1 },
+      { "name": "Pune-Kavathe Mahankal", "schedule": ["09:15"], "bus_count": 1 },
+      { "name": "Pune-Pandharpur", "schedule": ["06:00", "06:35", "07:40", "08:00", "08:30", "09:00", "09:30", "10:30", "10:45", "11:15", "12:15", "13:15", "13:45", "14:30", "15:30", "16:30", "17:15", "18:30", "19:00", "19:30", "20:15"], "bus_count": 21 },
+      { "name": "Pune Station-Nashik", "schedule": ["05:30", "06:00", "07:30", "08:30", "09:30", "10:30", "13:00"], "bus_count": 7 },
+      { "name": "Pune Station-Phaltan", "schedule": ["07:50", "10:00", "15:15", "15:45", "17:30", "18:10"], "bus_count": 6 },
+      { "name": "Purandar Paytha", "schedule": ["06:50"], "bus_count": 1 }
+    ],
+    "r": [
+      { "name": "Rajgurunagar", "schedule": ["17:10"], "bus_count": 1 },
+      { "name": "Rakh-Nira", "schedule": ["08:30", "12:30", "14:30", "15:30", "18:00"], "bus_count": 5 },
+      { "name": "Risa Pisa", "schedule": ["15:15"], "bus_count": 1 },
+      { "name": "Romanwadi", "schedule": ["06:00", "13:00"], "bus_count": 2 }
+    ],
+    "s": [
+      { "name": "Sangavi", "schedule": ["18:00"], "bus_count": 1 },
+      { "name": "Sangola", "schedule": ["06:25", "07:30", "10:15", "11:40", "14:20", "15:15", "16:00", "18:00", "18:15", "19:15"], "bus_count": 10 },
+      { "name": "Saswad Local", "schedule": ["07:30", "08:15", "10:00", "13:00", "15:00", "17:45"], "bus_count": 6 },
+      { "name": "Shahapur", "schedule": ["12:25"], "bus_count": 1 },
+      { "name": "Shivajinagar-Chhatrapati Sambhajinagar (Temporary)", "schedule": ["06:00", "07:00"], "bus_count": 2 },
+      { "name": "Somurdi", "schedule": ["07:35", "12:15", "16:30", "19:30"], "bus_count": 4 },
+      { "name": "Sonori", "schedule": ["07:35", "17:45"], "bus_count": 2 },
+      { "name": "Supa", "schedule": ["07:30", "09:15", "10:30", "12:00", "13:00", "14:00", "16:45", "19:45"], "bus_count": 8 },
+      { "name": "Swargate", "schedule": ["07:50", "08:10", "09:15", "10:30", "12:30", "15:15", "17:15", "19:15"], "bus_count": 8 },
+      { "name": "Swargate-Dadar (Mega Highway)", "schedule": ["05:45", "06:30", "07:45"], "bus_count": 3 },
+      { "name": "Swargate-Nira", "schedule": ["09:15", "10:30", "12:30", "15:15", "17:15", "19:15"], "bus_count": 6 },
+      { "name": "Swargate-Pandharpur (Temporary)", "schedule": ["15:45"], "bus_count": 1 },
+      { "name": "Swargate-Solapur", "schedule": ["06:15", "07:15", "08:15", "09:15"], "bus_count": 4 },
+      { "name": "Sion-Borivali (Mega Highway)", "schedule": ["11:00", "14:30"], "bus_count": 2 }
+    ],
+    "t": [
+      { "name": "Tamhanwadi", "schedule": ["08:15"], "bus_count": 1 },
+      { "name": "Thane", "schedule": ["07:00", "11:15", "11:30", "14:15", "16:20", "17:45"], "bus_count": 6 },
+      { "name": "Thane-Jat", "schedule": ["14:45"], "bus_count": 1 }
+    ],
+    "u": [
+      { "name": "Uran", "schedule": ["10:25", "14:30"], "bus_count": 2 },
+      { "name": "Uran-Akluj", "schedule": ["13:00"], "bus_count": 1 }
+    ],
+    "v": [
+      { "name": "Valha-Nira", "schedule": ["07:00", "07:45"], "bus_count": 2 },
+      { "name": "Vallabhnagar", "schedule": ["17:50"], "bus_count": 1 },
+      { "name": "Veer", "schedule": ["07:30", "08:00", "09:15", "10:15", "11:15", "11:45", "14:00", "16:00", "16:30", "18:00"], "bus_count": 10 },
+      { "name": "Veer-Lonand", "schedule": ["08:30", "10:50", "17:30"], "bus_count": 3 },
+      { "name": "Veer-Tendle", "schedule": ["20:15"], "bus_count": 1 },
+      { "name": "Vijapur", "schedule": ["09:10", "10:45"], "bus_count": 2 },
+      { "name": "Vitthalwadi", "schedule": ["11:40", "17:50"], "bus_count": 2 }
+    ],
+    "y": [
+      { "name": "Yawat", "schedule": ["07:30", "08:30", "10:30", "11:15", "13:15", "14:15", "16:15", "18:15"], "bus_count": 8 }
+    ]
+  },
+  "content": {
+    "about": "<p>सासवड बस स्थानक (Saswad Bus Stand) हे पुणे जिल्ह्यातील पुरंदर तालुक्याचे मुख्य आणि सर्वात महत्त्वाचे एसटी बस आगार आहे. पुरंदरचा इतिहास आणि पर्यटनासह सासवड शहराने आता शैक्षणिक आणि व्यापारी केंद्र म्हणून स्वतःची ओळख निर्माण केली आहे. The town, located at the base of the historic Purandar Fort, serves as a vital link between the rural parts of Purandar taluka and the bustling metropolis of Pune. हे बस स्थानक केवळ वाहतुकीचे केंद्र नसून, हजारो ग्रामीण नागरिकांसाठी ते रोजगार, शिक्षण, आरोग्यसेवा आणि व्यापारासाठी पुणे, मुंबई आणि इतर शहरांमध्ये जाण्याचे मुख्य द्वार आहे.</p><p>सासवड बस स्थानकाचे सर्वात मोठे वैशिष्ट्य म्हणजे पुणे शहराशी असलेली अतिशय दाट आणि वारंवार सेवा. पुण्याच्या विविध भागांसाठी येथून दररोज शेकडो बससेवा उपलब्ध आहेत. As a key satellite town of Pune, Saswad sees heavy daily commuter traffic. पुणे स्टेशन, स्वारगेट, शिवाजीनगर, चिंचवड, स्वारगेट यांसह पुण्यातील प्रमुत्र ठिकाणी जाण्यासाठी सकाळपासून रात्री उशिरापर्यंत बससेवा उपलब्ध आहे. स्वारगेटसाठी तर थेट बससेवा (07:50, 08:10, 10:30, 15:15) प्रवाशांची मोठी सोय करते. ही कनेक्टिव्हिटी सासवड आणि आसपासच्या ग्रामीण भागातील विद्यार्थी, नोकरदार वर्ग आणि व्यावसायिकांसाठी जीवनरेखेचे काम करते.</p><p>मुंबई महानगर परिसराशीही सासवड बस स्थानक उत्तम प्रकारे जोडले गेले आहे. ठाणे (6 बस), मुंबई (7 बस), दादर (5 बस), बोरीवली (4 बस), कुर्ला (2 बस), परळ (4 बस) यासह उरण, अलिबाग, बोईसर, नालासोपारा यांसारख्या ठिकाणीही थेट बससेवा उपलब्ध आहे. The coastal connectivity from Saswad is remarkable, with buses to Uran, Alibaug, and Arnala, catering to tourists and locals alike. या बससेवा विशेषतः मुंबईत नोकरी करणाऱ्या किंवा वैद्यकीय उपचारासाठी जाणाऱ्या प्रवाशांसाठी अत्यंत उपयुक्त आहेत. दादर आणि मुंबई सेंट्रलसाठी मेगा हायवे मार्गे जलद बससेवा (मेगा हायवे) प्रवाशांचा वेळ वाचवते.</p><p>दक्षिण महाराष्ट्राशी संपर्क साधण्यासाठी सासवड हे एक प्रमुख केंद्र आहे. पंढरपूर, सांगोला, मंगळवेढा, फलटण, बारामती, आटपाडी, म्हसवड, दहिवडी, जत, कवठेमहांकाळ यांसारख्या शहरांसाठी येथून नियमित बससेवा उपलब्ध आहे. The depot is a crucial node for passengers traveling from Pune to the sugar belt and pilgrimage centers of Solapur and Sangli districts. पंढरपूरसाठी तर २१ बससेवा दररोज उपलब्ध आहेत, ज्यामुळे वारकरी आणि भाविकांची मोठी सोय होते. आषाढी आणि कार्तिकी एकादशीच्या काळात या मार्गावर प्रवाशांची गर्दी लक्षणीयरीत्या वाढते.</p><p>पुरंदर तालुक्यातील ग्रामीण भागासाठी सासवड बस स्थानक हे जीवनदायिनी आहे. वीर, यवत, सुपा, कापूरहोळ, सोमुर्डी, परिंचे, राख, निरा, वाल्हा यांसारख्या असंख्य गावांसाठी येथून वारंवार बससेवा उपलब्ध आहे. These local routes are the backbone of rural connectivity, enabling farmers to reach markets, students to attend schools and colleges, and patients to access healthcare facilities in Saswad and Pune. पुरंदर पायथा (६:५०), भोसलेवाडी, आस्करवाडी, ढेरेवाडी यांसारख्या छोट्या वाड्यांसाठीही येथून बससेवा सुरू असते, जी ग्रामीण विकासासाठी आवश्यक आहे.</p><p>बसस्थानकावर प्रवाशांच्या सोयीसाठी अनेक सुविधा उपलब्ध आहेत. येथे स्वच्छ प्रतीक्षालय, तिकीट खिडक्या, वेळापत्रक फलक, महिला व पुरुषांसाठी स्वतंत्र प्रतिक्षा कक्ष आणि पिण्याच्या पाण्याची सुविधा आहे. The depot is well-maintained and provides a safe waiting environment for passengers. सुरक्षेसाठी बसस्थानक परिसरात पोलिस बंदोबस्त असतो. टोल फ्री क्रमांक 1800 221250 वर प्रवाशी कोणतीही तक्रार किंवा मदत मागू शकतात. ऑनलाइन तिकीट बुकिंगची सुविधा MSRTC च्या अधिकृत वेबसाइटवरून किंवा redBus, Abhibus सारख्या प्लॅटफॉर्मवरून उपलब्ध आहे.</p><p>पुरंदरचा वैभवशाली इतिहास आणि सासवडचे वाढते महत्त्व यामुळे हे बस स्थानक पुणे जिल्ह्याच्या वाहतूक व्यवस्थेचा एक महत्त्वाचा घटक आहे. Saswad's proximity to Pune and its role as a gateway to the historic Purandar Fort and the scenic Baneshwar Temple make it a point of interest for tourists as well. MSRTC च्या नियमित, विस्तृत आणि विश्वासार्ह सेवेमुळे सासवड बस स्थानक हे हजारो प्रवाशांची दैनंदिन गरज भागवते. ग्रामीण आणि शहरी भारताला जोडण्याचे महत्त्वाचे काम या बस स्थानकामार्फत यशस्वीपणे पार पडत आहे. भविष्यातही या आगाराचा विस्तार आणि सुविधांमध्ये वाढ होऊन अधिकाधिक प्रवाशांना दर्जेदार सेवा मिळावी, हाच MSRTC चा प्रयत्न आहे.</p>",
+    "faqs": [
+      {
+        "question": "सासवड बस स्थानकाचा संपर्क क्रमांक काय आहे?",
+        "answer": "सासवड बस स्थानकाचा संपर्क क्रमांक 02115-223456 आहे. तसेच MSRTC चा टोल फ्री क्रमांक 1800 221250 वर 24 तास मदत घेऊ शकता. तिकीट बुकिंग, बस वेळापत्रक, तक्रार किंवा कोणत्याही मदतीसाठी या क्रमांकावर संपर्क करू शकता."
+      },
+      {
+        "question": "सासवडवरून पुण्यासाठी (स्वारगेट, शिवाजीनगर) बस किती वाजता सुटतात?",
+        "answer": "सासवडवरून स्वारगेटसाठी 8 बससेवा उपलब्ध आहेत: 07:30, 08:15, 10:00, 13:00, 15:00, 17:45, 07:50, 08:10. पुणे स्टेशनसाठी फलटण मार्गे बससेवा उपलब्ध आहे. चिंचवडसाठी 5 बससेवा: 13:10, 16:05, 16:45, 18:00, 18:30. स्वारगेट-निरा मार्गे 09:15, 10:30, 12:30, 15:15, 17:15, 19:15 वाजता बससेवा आहे."
+      },
+      {
+        "question": "सासवडवरून मुंबई, ठाणे, दादर, कल्याणसाठी बस किती वाजता आहेत?",
+        "answer": "ठाण्यासाठी 6 बससेवा: 07:00, 11:15, 11:30, 14:15, 16:20, 17:45. मुंबईसाठी 7 बससेवा: 10:00, 10:45, 11:00, 11:45, 12:30, 13:35, 22:25. दादरसाठी 5 बससेवा: 07:15, 08:00, 11:20, 14:45, 20:10. बोरीवलीसाठी 4 बससेवा: 07:40, 14:10, 16:10, 22:00. कुर्ल्यासाठी 2 बससेवा: 14:20, 15:25. परळसाठी 4 बससेवा: 12:20, 15:45, 18:20, 18:30. चिंचवड-कल्याण हंगामी बस 08:15 वाजता."
+      },
+      {
+        "question": "सासवडवरून पंढरपूर, फलटण, बारामतीसाठी बस किती वाजता आहेत?",
+        "answer": "पुणे-पंढरपूर मार्गे सासवडवरून 21 बससेवा उपलब्ध आहेत: 06:00, 06:35, 07:40, 08:00, 08:30, 09:00, 09:30, 10:30, 10:45, 11:15, 12:15, 13:15, 13:45, 14:30, 15:30, 16:30, 17:15, 18:30, 19:00, 19:30, 20:15. पुणे-फलटण मार्गे 15 बससेवा, फलटण-स्वारगेट मार्गे 10 बससेवा, पुणे-बारामती मार्गे 7 बससेवा उपलब्ध आहेत."
+      },
+      {
+        "question": "सासवडवरून नाशिक, औरंगाबाद, नंदुरबारसाठी बस आहे का?",
+        "answer": "नाशिकसाठी पुणे स्टेशन-नाशिक मार्गे 7 बससेवा: 05:30, 06:00, 07:30, 08:30, 09:30, 10:30, 13:00. तसेच थेट नाशिक बस 08:30, 08:45, 09:25, 11:05, 14:15 वाजता सुटते. छत्रपती संभाजीनगर (औरंगाबाद) साठी शिवाजीनगरहून हंगामी बस 06:00, 07:00 वाजता सुटते. नंदुरबारसाठी थेट बस नसली तरी नाशिक किंवा धुळे मार्गे जाता येते."
+      },
+      {
+        "question": "सासवडवरून दक्षिण महाराष्ट्रासाठी (कोल्हापूर, सांगली, मिरज) बस किती वाजता आहेत?",
+        "answer": "कोल्हापूर-आदमापूर हंगामी बस 11:00 वाजता सुटते. पुणे-सांगोला मार्गे 10 बससेवा: 06:25, 07:30, 10:15, 11:40, 14:20, 15:15, 16:00, 18:00, 18:15, 19:15. पुणे-मंगळवेढा: 07:25, 10:30. पुणे-आटपाडी: 06:40, 07:30, 13:25. पुणे-जत: 07:50. पुणे-कवठेमहांकाळ: 09:15."
+      },
+      {
+        "question": "सासवड बसस्थानकावरून स्थानिक गावांसाठी (वीर, यवत, सुपा) बस किती वाजता आहेत?",
+        "answer": "वीरसाठी 10 बससेवा: 07:30, 08:00, 09:15, 10:15, 11:15, 11:45, 14:00, 16:00, 16:30, 18:00. यवतसाठी 8 बससेवा: 07:30, 08:30, 10:30, 11:15, 13:15, 14:15, 16:15, 18:15. सुपासाठी 8 बससेवा: 07:30, 09:15, 10:30, 12:00, 13:00, 14:00, 16:45, 19:45. कापूरहोळसाठी 10 बससेवा, सोमुर्डीसाठी 4 बससेवा, परिंचे परिसरासाठी अनेक बससेवा उपलब्ध आहेत."
+      },
+      {
+        "question": "सासवडवरून कोकणात (अलिबाग, उरण, अर्नाळा) जाण्यासाठी बस किती वाजता आहेत?",
+        "answer": "अलिबागसाठी 13:50 वाजता बस आहे. उरणसाठी 10:25 आणि 14:30 वाजता बससेवा आहे. उरण-अकलूज बस 13:00 वाजता सुटते. अर्नाळ्यासाठी 13:00 वाजता बस आहे. जव्हारसाठी 10:30, बोईसरसाठी 11:05, नालासोपाऱ्यासाठी 14:00 वाजता बससेवा आहे."
+      },
+      {
+        "question": "सासवड बसस्थानकावर ऑनलाइन तिकीट बुकिंगची सुविधा आहे का?",
+        "answer": "होय, सासवड बस स्थानकावरून प्रवासासाठी तुम्ही MSRTC च्या अधिकृत वेबसाइटवरून ऑनलाइन तिकीट बुक करू शकता. तसेच redBus, Abhibus, Goibibo सारख्या प्लॅटफॉर्मवरूनही सहज तिकीट बुकिंग करता येते. आगावू बुकिंग केल्यास प्रवाशांना सीट निवडण्याची सोय असते. तिकीट खिडकीवरूनही थेट तिकीट खरेदी करता येते."
+      },
+      {
+        "question": "सासवड बसस्थानकावर प्रवाशांसाठी कोणकोणत्या सुविधा उपलब्ध आहेत?",
+        "answer": "सासवड बसस्थानकावर प्रवाशांसाठी स्वच्छ प्रतीक्षालय, तिकीट खिडक्या, वेळापत्रक फलक, महिला व पुरुषांसाठी स्वतंत्र प्रतिक्षा कक्ष, पिण्याच्या पाण्याची सुविधा आणि खाद्यपदार्थांची दुकाने उपलब्ध आहेत. तसेच सुरक्षेसाठी बसस्थानक परिसरात पोलिस बंदोबस्त असतो. टोल फ्री क्रमांक 1800 221250 वर प्रवाशी कोणतीही तक्रार किंवा मदत मागू शकतात."
+      }
+    ],
+    "seo_content": {
+      "title": "Saswad Bus Stand Timetable 2026 | MSRTC Bus Schedule & Ticket Booking",
+      "content": "<p>Plan your journey with the latest Saswad Bus Stand timetable for 2026. Saswad depot is a vital MSRTC hub in Purandar taluka, Pune district, providing reliable bus connectivity to major cities like Pune (Swargate, Pune Station, Chinchwad), Mumbai (Thane, Dadar, Borivali, Kurla, Parel), Nashik, Pandharpur, Solapur, Phaltan, Baramati, Kolhapur, Sangli and surrounding rural areas including Veer, Yawat, Supa, Kapurhol, Somurdi, Parinche, and Nira.</p><p>Whether you're a daily commuter, student, farmer, pilgrim, or business traveler, you can find detailed departure times, ticket prices, and online booking options here. The bus stand operates frequent services throughout the day with routes to:</p><ul><li><strong>Pune (Swargate/Pune Station):</strong> 05:30 to 20:15 with 50+ buses daily</li><li><strong>Mumbai & Thane:</strong> 07:00 to 22:25 with 30+ buses daily to Thane, Dadar, Borivali, Kurla, Parel</li><li><strong>Pandharpur:</strong> 06:00 to 20:15 with 21 buses daily for pilgrims</li><li><strong>Nashik:</strong> 05:30 to 14:15 with 12 buses daily</li><li><strong>Phaltan & Baramati:</strong> 07:50 to 20:15 with 40+ buses daily</li><li><strong>Konkan:</strong> Regular services to Alibaug, Uran, Arnala, Jawhar, Boisar</li><li><strong>Local Villages:</strong> Frequent services to Veer, Yawat, Supa, Kapurhol, Nira and surrounding areas</li></ul><p>Passengers can avail clean waiting areas, digital timetable boards, ticket counters, food stalls, drinking water, and separate waiting rooms for ladies. Stay updated with the latest MSRTC schedules and enjoy a hassle-free travel experience from Saswad Bus Stand. For online booking, visit the MSRTC official website or use popular platforms like redBus. For any assistance, contact toll free number 1800 221250.</p>"
+    }
+  },
+  "seo": {
+    "title": "Saswad Bus Stand Timetable 2026 | MSRTC Ticket Price | सासवड बस स्थानक वेळापत्रक",
+    "description": "Check Saswad Bus Stand timetable 2026 for MSRTC buses. Saswad to Pune, Mumbai, Thane, Nashik, Pandharpur, Phaltan, Baramati, Solapur bus schedules, ticket prices. Contact: 1800 221250. सासवड बस स्थानक वेळापत्रक.",
+    "keywords": "Saswad Bus Stand, MSRTC Saswad, Saswad to Pune bus, Saswad to Mumbai bus, Saswad to Thane bus, Saswad to Nashik bus, Saswad to Pandharpur bus, Saswad timetable 2026, सासवड बस स्थानक, Purandar bus depot"
+  },
+  "related_depots": []
+}
