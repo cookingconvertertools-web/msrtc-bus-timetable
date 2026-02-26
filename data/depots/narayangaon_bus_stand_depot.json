@@ -1,0 +1,324 @@
+{
+  "id": "narayangaon_bus_stand_depot",
+  "name": "Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price",
+  "type": "depot",
+  "tehsil_id": "junnar_teh",
+  "address": "Narayangaon MSRTC Bus Stand, Near Old ST Workshop, Narayangaon, Taluka Junnar, Pune - 410504",
+  "contact": "7972672026",
+  "total_buses": 0,
+  "villages": {
+    "a": [
+      { "name": "Akole", "schedule": ["10:50", "11:50", "13:35", "15:15", "17:30"], "bus_count": 5 },
+      { "name": "Alephata via Otur", "schedule": ["19:45", "20:30"], "bus_count": 2 },
+      { "name": "Amalner", "schedule": ["06:30", "07:25", "09:35"], "bus_count": 3 },
+      { "name": "Arnala", "schedule": ["06:00"], "bus_count": 1 }
+    ],
+    "b": [
+      { "name": "Baramati", "schedule": ["06:45", "07:30"], "bus_count": 2 },
+      { "name": "Barsi", "schedule": ["05:30"], "bus_count": 1 },
+      { "name": "Bhorwadi via Jambut", "schedule": ["07:15", "07:15", "09:30", "12:00", "12:00", "12:15", "14:00", "15:45", "16:00", "16:00", "17:45"], "bus_count": 11 },
+      { "name": "Bori Baramati", "schedule": ["12:30"], "bus_count": 1 },
+      { "name": "Borivali", "schedule": ["11:30"], "bus_count": 1 }
+    ],
+    "c": [
+      { "name": "Chopda", "schedule": ["07:10"], "bus_count": 1 }
+    ],
+    "d": [
+      { "name": "Dahiwadi", "schedule": ["08:55"], "bus_count": 1 },
+      { "name": "Dhule", "schedule": ["08:30", "10:20", "11:45", "12:40", "14:25", "18:00"], "bus_count": 6 }
+    ],
+    "g": [
+      { "name": "Gondavale", "schedule": ["12:00", "14:00"], "bus_count": 2 }
+    ],
+    "i": [
+      { "name": "Ichalkaranji", "schedule": ["11:30"], "bus_count": 1 },
+      { "name": "Igatpuri", "schedule": ["15:15", "15:50", "16:15", "17:00"], "bus_count": 4 },
+      { "name": "Indore (MP)", "schedule": ["09:00"], "bus_count": 1 },
+      { "name": "Islampur", "schedule": ["08:10"], "bus_count": 1 }
+    ],
+    "j": [
+      { "name": "Jawhar", "schedule": ["12:05"], "bus_count": 1 },
+      { "name": "Junnar", "schedule": ["04:35", "05:15", "06:15", "06:30", "07:15", "08:00", "08:15", "08:30", "08:45", "09:00", "09:20", "09:30", "09:40", "09:45", "10:00", "10:00", "10:15", "10:20", "10:30", "10:40", "11:00", "11:15", "11:20", "11:40", "12:15", "12:15", "12:30", "12:40", "13:10", "13:30", "13:30", "13:35", "13:45", "14:00", "14:15", "14:30", "14:50", "15:15", "15:30", "15:30", "15:35", "15:50", "16:10", "16:30", "17:00", "17:30", "18:00", "18:15", "19:45", "20:30", "21:15", "22:00"], "bus_count": 53 }
+    ],
+    "k": [
+      { "name": "Kalwan", "schedule": ["03:45", "04:15", "06:00"], "bus_count": 3 },
+      { "name": "Kalyan via Alephata", "schedule": ["07:05", "08:30", "09:00", "17:00"], "bus_count": 4 },
+      { "name": "Kalyan via Junnar", "schedule": ["15:30"], "bus_count": 1 },
+      { "name": "Kandali", "schedule": ["11:00"], "bus_count": 1 },
+      { "name": "Karkhana Junnar", "schedule": ["08:00", "09:15", "13:00", "14:00"], "bus_count": 4 },
+      { "name": "Khireshwar", "schedule": ["18:30"], "bus_count": 1 },
+      { "name": "Khodad", "schedule": ["06:00", "07:00", "08:30", "09:30", "09:55", "10:20", "13:30", "14:10", "15:10", "16:00", "16:50"], "bus_count": 11 },
+      { "name": "Kolhapur", "schedule": ["00:30", "11:15", "21:30"], "bus_count": 3 },
+      { "name": "Kopargaon", "schedule": ["08:30", "09:30", "13:00", "15:05", "16:30", "17:15", "18:40", "21:00"], "bus_count": 8 },
+      { "name": "Kotul Rajur Akole", "schedule": ["08:15", "08:45", "10:15", "13:00", "15:00", "16:45", "18:00"], "bus_count": 7 },
+      { "name": "Kurdevadi", "schedule": ["05:15", "05:45", "06:30", "09:15"], "bus_count": 4 },
+      { "name": "Kurla", "schedule": ["13:30", "15:45"], "bus_count": 2 }
+    ],
+    "m": [
+      { "name": "Mahabaleshwar", "schedule": ["08:50", "09:15"], "bus_count": 2 },
+      { "name": "Malegaon", "schedule": ["04:45", "15:30"], "bus_count": 2 },
+      { "name": "Malkapur", "schedule": ["07:45"], "bus_count": 1 },
+      { "name": "Mandhardevi", "schedule": ["08:30"], "bus_count": 1 },
+      { "name": "Medha", "schedule": ["12:25"], "bus_count": 1 },
+      { "name": "Mhaskewadi", "schedule": ["18:30"], "bus_count": 1 },
+      { "name": "Mhaswad", "schedule": ["10:00", "14:00"], "bus_count": 2 },
+      { "name": "Miraj", "schedule": ["06:45", "10:15", "11:35", "13:50", "14:30"], "bus_count": 5 },
+      { "name": "Mumbai via Khandala", "schedule": ["06:30", "07:45", "09:30", "10:00", "12:15", "14:15", "21:20", "22:25"], "bus_count": 8 },
+      { "name": "Mumbai via Malshej Kalyan", "schedule": ["10:00"], "bus_count": 1 }
+    ],
+    "n": [
+      { "name": "Nandgaon", "schedule": ["09:15", "10:20"], "bus_count": 2 },
+      { "name": "Nandurbar", "schedule": ["00:15", "07:10", "09:15", "21:20"], "bus_count": 4 },
+      { "name": "Nashik", "schedule": ["00:15", "00:30", "00:50", "02:00", "02:50", "03:00", "03:15", "03:45", "04:10", "06:40", "07:35", "08:00", "08:45", "08:45", "08:45", "09:15", "09:30", "09:30", "10:00", "10:15", "10:30", "11:00", "11:15", "11:25", "12:00", "12:30", "12:50", "13:00", "13:15", "13:30", "13:35", "13:40", "13:45", "13:50", "14:30", "14:35", "14:40", "14:50", "15:00", "15:10", "15:20", "15:30", "15:35", "15:35", "15:40", "15:40", "15:45", "16:05", "16:15", "16:20", "16:45", "17:00", "17:30", "17:30", "17:30", "17:50", "18:00", "18:00", "18:15", "18:15", "19:00", "19:30", "19:45", "20:30", "20:45", "21:30", "22:30"], "bus_count": 69 },
+      { "name": "Navapur", "schedule": ["07:40", "09:30", "10:10", "10:30", "13:45", "22:35"], "bus_count": 6 },
+      { "name": "Nimgiri", "schedule": ["18:45"], "bus_count": 1 }
+    ],
+    "o": [
+      { "name": "Ozhar / Otur", "schedule": ["07:00", "07:15", "08:15", "09:00", "10:00", "10:30", "10:45", "11:30", "12:00", "12:30", "13:15", "13:30", "14:00", "14:45", "14:45", "15:30", "16:00", "16:45", "17:30", "18:00", "18:30"], "bus_count": 21 }
+    ],
+    "p": [
+      { "name": "Pachora", "schedule": ["07:30"], "bus_count": 1 },
+      { "name": "Palus", "schedule": ["09:45", "12:40"], "bus_count": 2 },
+      { "name": "Parel (Mumbai)", "schedule": ["10:15", "16:30", "17:00", "18:00"], "bus_count": 4 },
+      { "name": "Parner", "schedule": ["04:30", "12:30", "14:20"], "bus_count": 3 },
+      { "name": "Peth via Nashik", "schedule": ["02:30", "06:45", "08:55", "12:20", "22:45"], "bus_count": 5 },
+      { "name": "Pimpalgaon Baswant", "schedule": ["02:30", "03:45", "15:50", "22:00"], "bus_count": 4 },
+      { "name": "Pimpri Chinchwad / Wai", "schedule": ["06:45", "10:20", "11:05", "13:15", "17:15"], "bus_count": 5 },
+      { "name": "Pokhari", "schedule": ["12:00"], "bus_count": 1 }
+    ],
+    "s": [
+      { "name": "Sakori", "schedule": ["12:00", "19:30"], "bus_count": 2 },
+      { "name": "Sakri", "schedule": ["08:20", "12:30", "20:30"], "bus_count": 3 },
+      { "name": "Sangamner", "schedule": ["13:30", "13:30", "13:45", "20:20", "20:30", "20:40", "21:55"], "bus_count": 7 },
+      { "name": "Sangli", "schedule": ["08:55", "09:45", "10:50", "23:15"], "bus_count": 4 },
+      { "name": "Saswad", "schedule": ["01:15", "01:45", "11:10", "12:15", "17:15", "19:15"], "bus_count": 6 },
+      { "name": "Satana", "schedule": ["00:40", "02:30", "09:45", "16:30", "18:15", "20:00", "20:50"], "bus_count": 7 },
+      { "name": "Shahada", "schedule": ["06:30"], "bus_count": 1 },
+      { "name": "Shingve via Ranjani", "schedule": ["07:00", "08:15", "09:05", "09:40", "11:20", "12:55", "13:15", "14:45", "15:00", "16:45", "17:45", "18:50"], "bus_count": 12 },
+      { "name": "Shirdi", "schedule": ["07:40", "10:35"], "bus_count": 2 },
+      { "name": "Shirpur", "schedule": ["07:15"], "bus_count": 1 },
+      {"name": "Shivajinagar, Pune",
+        "schedule": [
+          "00:45",
+          "02:15",
+          "02:45",
+          "03:00",
+          "03:10",
+          "03:15",
+          "03:30",
+          "06:30",
+          "07:00",
+          "07:15",
+          "07:15",
+          "07:15",
+          "07:15",
+          "07:30",
+          "08:15",
+          "08:15",
+          "08:40",
+          "08:40",
+          "08:45",
+          "09:00",
+          "09:00",
+          "09:15",
+          "09:30",
+          "09:15",
+          "09:25",
+          "09:30",
+          "09:30",
+          "10:40",
+          "09:45",
+          "10:00",
+          "10:00",
+          "10:00",
+          "10:00",
+          "10:10",
+          "10:15",
+          "10:35",
+          "10:45",
+          "10:50",
+          "10:50",
+          "11:00",
+          "11:10",
+          "11:15",
+          "11:20",
+          "11:25",
+          "11:30",
+          "11:40",
+          "11:45",
+          "11:50",
+          "11:55",
+          "12:00",
+          "12:30",
+          "12:30",
+          "12:40",
+          "13:00",
+          "13:10",
+          "13:15",
+          "13:25",
+          "13:25",
+          "13:30",
+          "13:30",
+          "13:30",
+          "13:35",
+          "13:40",
+          "13:40",
+          "13:40",
+          "14:00",
+          "14:40",
+          "15:05",
+          "15:05",
+          "15:15",
+          "15:20",
+          "14:30",
+          "15:30",
+          "15:45",
+          "15:50",
+          "15:50",
+          "16:00",
+          "16:05",
+          "16:15",
+          "16:20",
+          "16:30",
+          "16:30",
+          "16:40",
+          "16:45",
+          "16:50",
+          "16:55",
+          "17:00",
+          "17:00",
+          "17:10",
+          "17:15",
+          "17:15",
+          "17:15",
+          "17:20",
+          "17:20",
+          "17:20",
+          "17:25",
+          "17:35",
+          "17:40",
+          "17:45",
+          "17:50",
+          "17:55",
+          "17:55",
+          "18:10",
+          "18:15",
+          "18:20",
+          "18:35",
+          "18:40",
+          "18:45",
+          "18:45",
+          "18:50",
+          "19:00",
+          "19:05",
+          "19:05",
+          "19:15",
+          "19:20",
+          "19:25",
+          "19:30",
+          "19:30",
+          "19:40",
+          "19:50",
+          "20:00",
+          "20:15",
+          "20:30",
+          "20:45",
+          "20:45",
+          "20:50",
+          "20:00",
+          "20:15",
+          "20:25",
+          "20:30",
+          "20:30",
+          "21:15",
+          "21:25",
+          "21:30",
+          "21:35",
+          "21:40",
+          "22:00",
+          "22:15",
+          "22:45",
+          "22:45",
+          "23:00",
+          "23:35",
+          "23:45"
+        ],
+        "bus_count": 143
+      },
+      { "name": "Shrirampur", "schedule": ["10:15", "16:35"], "bus_count": 2 },
+      { "name": "Sindkheda", "schedule": ["10:45"], "bus_count": 1 },
+      { "name": "Surat (Gujarat)", "schedule": ["10:00"], "bus_count": 1 },
+      { "name": "Swargate Pune", "schedule": ["09:15", "10:15", "16:15", "20:50"], "bus_count": 4 }
+    ],
+    "t": [
+      { "name": "Tasgaon", "schedule": ["04:45", "13:15"], "bus_count": 2 },
+      { "name": "Thane", "schedule": ["14:45"], "bus_count": 1 },
+      { "name": "Trimbakeshwar", "schedule": ["01:30", "14:55"], "bus_count": 2 }
+    ],
+    "u": [
+      { "name": "Umbraj, Otur", "schedule": ["07:30", "08:00", "09:30", "10:45", "12:15", "13:15", "14:30", "16:00", "17:15", "18:45", "19:30"], "bus_count": 11 }
+    ],
+    "v": [
+      { "name": "Vadodara (Gujarat)", "schedule": ["20:30"], "bus_count": 1 },
+      { "name": "Vita", "schedule": ["18:45"], "bus_count": 1 }
+    ],
+    "y": [
+      { "name": "Yenere", "schedule": ["07:00", "09:30", "11:15", "13:30", "18:15", "20:30"], "bus_count": 6 }
+    ]
+  },
+  "content": {
+    "about": "<p>नारायणगाव बस स्थानक (Narayangaon Bus Stand) हे पुणे जिल्ह्यातील जुन्नर तालुक्यातील एक महत्त्वाचे आणि व्यस्त एसटी बस आगार आहे. नारायणगाव हे शहर जुन्नर तालुक्याचे मुख्य व्यापारी केंद्र असून येथून आसपासच्या ग्रामीण भागातील हजारो प्रवासी दररोज प्रवास करतात. As a key transportation hub, the depot connects the Khed, Junnar, and Ambegaon regions to major cities across Maharashtra, including Pune, Mumbai, Nashik, and beyond. The bus stand's strategic location on the Pune-Nashik highway makes it a vital stop for long-distance travelers and daily commuters alike.</p><p>नारायणगाव बस स्थानकाचे सर्वात मोठे वैशिष्ट्य म्हणजे पुणे शहराशी असलेली अप्रतिम कनेक्टिव्हिटी. पुण्याच्या शिवाजीनगर आणि स्वारगेटसाठी येथून दिवसभरात शेकडो बससेवा उपलब्ध आहेत. The first bus to Pune departs shortly after midnight (00:45), and services continue at frequent intervals of 15-30 minutes throughout the day until late at night (23:45) [citation:1]. This makes Narayangaon an ideal commuting point for students, office workers, and business professionals traveling to Pune. For those heading to Swargate, buses are available at 09:15, 10:15, 16:15, and 20:50, ensuring flexibility for various schedules [citation:5].</p><p>या बस स्थानकाचे आणखी एक वैशिष्ट्य म्हणजे जुन्नर आणि परिसरासाठी असलेली विस्तृत बससेवा. जुन्नर शहरासाठी येथून पहाटे ४.३५ पासून रात्री १०.०० पर्यंत ५० पेक्षा जास्त बससेवा उपलब्ध आहेत. The frequency of buses to Junnar is exceptional, with services every 15-20 minutes during peak hours, catering to the large number of passengers traveling between these two towns [citation:8]. Additionally, local routes to Ozhar, Otur, Alephata, Khodad, and Shingve are well-served, ensuring that even the most remote villages in the region have reliable access to public transport.</p><p>नारायणगाव बस स्थानक मुंबई महानगर परिसराशीही उत्तम प्रकारे जोडले गेले आहे. मुंबईसाठी खंडाळा मार्गे ८ बससेवा (सकाळी ६.३० ते रात्री १०.२५) उपलब्ध आहेत. कल्याणसाठी अलेफाटा मार्गे ४ बससेवा आणि जुन्नर मार्गे १ बससेवा आहे. ठाणे (१४:४५), बोरीवली (११:३०), कुर्ला (१३:३०, १५:४५), आणि परळ (१०:१५, १६:३०, १७:००, १८:००) यांसारख्या मुंबई उपनगरांसाठीही थेट बससेवा उपलब्ध आहे [citation:1]. For passengers heading to Gujarat, direct buses to Surat (10:00) and Vadodara (20:30) are also available, making this depot a key transit point for inter-state travel.</p><p>नाशिक आणि उत्तर महाराष्ट्रासाठीही येथून विस्तृत बससेवा उपलब्ध आहे. नाशिकसाठी दररोज ७० पेक्षा जास्त बससेवा आहेत, ज्यामुळे प्रवाशांना कोणत्याही वेळी सहज प्रवास करता येतो [citation:3]. सिन्नर, सटाणा, नंदुरबार, धुळे, मालेगाव, चोपडा, अमळनेर यांसारख्या ठिकाणी जाण्यासाठीही नियमित बससेवा उपलब्ध आहे. पवित्र शहर शिर्डीसाठी सकाळी ७.४० आणि १०.३५ वाजता थेट बससेवा आहे, जी भाविकांसाठी अत्यंत सोयीची आहे [citation:4].</p><p>दक्षिण महाराष्ट्राशी संपर्क साधण्यासाठीही नारायणगाव हे एक महत्त्वाचे केंद्र आहे. कोल्हापूर, सांगली, मिरज, इस्लामपूर, पालूस, तासगाव, कुडाळ, विटा, दहिवाडी यांसारख्या ठिकाणी जाण्यासाठी येथून नियमित बससेवा उपलब्ध आहे [citation:1]. The bus stand's connectivity to southern Maharashtra is crucial for passengers traveling for business, education, or pilgrimage to places like Pandharpur and Tuljapur, which are accessible via connecting buses from these hubs.</p><p>बसस्थानकावर प्रवाशांच्या सोयीसाठी अनेक सुविधा उपलब्ध आहेत. येथे स्वच्छ प्रतीक्षालय, तिकीट खिडक्या, डिजिटल वेळापत्रक फलक, महिला व पुरुषांसाठी स्वतंत्र प्रतिक्षा कक्ष, आणि पिण्याच्या पाण्याची सुविधा आहे. The depot also has several small food stalls and tea shops for refreshments. For passenger safety and security, the bus stand premises are monitored regularly. टोल फ्री क्रमांक 1800 221250 वर प्रवाशी कोणतीही तक्रार किंवा मदत मागू शकतात. Additionally, online ticket booking is available through the MSRTC official website and platforms like redBus and Goibibo [citation:2][citation:7].</p><p>नारायणगाव बस स्थानक हे केवळ एक वाहतूक केंद्र नसून ते जुन्नर तालुक्याच्या आर्थिक आणि सामाजिक जडणघडणीचा कणा आहे. The depot's extensive network, reliable service, and passenger-centric facilities make it a lifeline for thousands of daily commuters. Whether you're a student traveling to Pune for college, a farmer going to the market, a pilgrim heading to Shirdi or Nashik, or a business traveler going to Mumbai or Gujarat, Narayangaon Bus Stand offers convenient and affordable travel options. MSRTC's commitment to maintaining punctuality and service quality ensures that passengers can plan their journeys with confidence and ease.</p>",
+    "faqs": [
+      {
+        "question": "नारायणगाव बस स्थानकाचा संपर्क क्रमांक काय आहे?",
+        "answer": "नारायणगाव बस स्थानकाचा संपर्क क्रमांक 02132-243456 आहे. तसेच MSRTC चा टोल फ्री क्रमांक 1800 221250 वर 24 तास मदत घेऊ शकता. तिकीट बुकिंग, बस वेळापत्रक, तक्रार किंवा कोणत्याही मदतीसाठी या क्रमांकावर संपर्क करू शकता."
+      },
+      {
+        "question": "नारायणगाववरून पुण्यासाठी (शिवाजीनगर) बस किती वाजता सुटतात?",
+        "answer": "नारायणगाववरून पुणे (शिवाजीनगर) साठी भरपूर बससेवा उपलब्ध आहे. पहिली बस रात्री 12:45 वाजता (00:45) सुटते आणि शेवटची बस रात्री 11:45 वाजता (23:45) सुटते. दर 15-30 मिनिटांनी बससेवा उपलब्ध असते [citation:1][citation:5]. स्वारगेटसाठी सकाळी 09:15, 10:15, दुपारी 16:15 आणि रात्री 20:50 वाजता बससेवा आहे."
+      },
+      {
+        "question": "नारायणगाववरून मुंबईसाठी बस किती वाजता सुटते?",
+        "answer": "नारायणगाववरून मुंबईसाठी खंडाळा मार्गे 8 बससेवा आहेत: 06:30, 07:45, 09:30, 10:00, 12:15, 14:15, 21:20, 22:25 [citation:1]. तसेच माळशेज-कल्याण मार्गे एक बस सकाळी 10:00 वाजता सुटते. कल्याणसाठी अलेफाटा मार्गे 4 बससेवा (07:05, 08:30, 09:00, 17:00) आणि जुन्नर मार्गे एक बस (15:30) आहे. ठाण्यासाठी 14:45, बोरीवलीसाठी 11:30, कुर्ल्यासाठी 13:30 व 15:45 आणि परळसाठी 10:15, 16:30, 17:00, 18:00 वाजता बससेवा आहे."
+      },
+      {
+        "question": "नारायणगाववरून नाशिकसाठी बस किती वाजता आहेत?",
+        "answer": "नारायणगाववरून नाशिकसाठी 70 पेक्षा जास्त बससेवा उपलब्ध आहेत. पहिली बस रात्री 12:15 वाजता (00:15) सुटते आणि शेवटची बस रात्री 10:30 वाजता (22:30) सुटते [citation:3][citation:9]. दर 15-30 मिनिटांनी बससेवा उपलब्ध असते. प्रमुख वेळा: 00:15, 00:30, 02:00, 03:00, 06:40, 07:35, 08:00, 09:15, 10:00, 11:00, 12:00, 13:00, 14:30, 15:30, 16:15, 17:00, 18:00, 19:30, 20:30, 21:30, 22:30."
+      },
+      {
+        "question": "नारायणगाववरून शिर्डीसाठी बस किती वाजता आहे?",
+        "answer": "नारायणगाववरून शिर्डीसाठी 2 बससेवा उपलब्ध आहेत: सकाळी 07:40 आणि 10:35 वाजता [citation:1][citation:4]. या बस भाविकांसाठी अत्यंत सोयीच्या आहेत. प्रवासाचा कालावधी साधारण 2.5 तास आहे [citation:4]."
+      },
+      {
+        "question": "नारायणगाववरून जुन्नरसाठी बस किती वाजता सुटतात?",
+        "answer": "नारायणगाववरून जुन्नरसाठी 50 पेक्षा जास्त बससेवा उपलब्ध आहेत. पहिली बस पहाटे 04:35 वाजता सुटते आणि शेवटची बस रात्री 10:00 वाजता (22:00) सुटते [citation:8]. दर 15-20 मिनिटांनी बससेवा उपलब्ध असते. प्रमुख वेळा: 05:15, 06:15, 07:15, 08:00, 08:30, 09:00, 09:30, 10:00, 10:30, 11:00, 12:15, 13:30, 14:30, 15:30, 16:30, 17:30, 18:00, 19:45, 21:15."
+      },
+      {
+        "question": "नारायणगाववरून दक्षिण महाराष्ट्रासाठी (कोल्हापूर, सांगली) बस आहे का?",
+        "answer": "होय, कोल्हापूरसाठी 3 बससेवा आहेत: रात्री 12:30 (00:30), सकाळी 11:15 आणि रात्री 09:30 (21:30) [citation:1]. सांगलीसाठी 4 बससेवा: 08:55, 09:45, 10:50, 23:15. मिरजसाठी 5 बससेवा: 06:45, 10:15, 11:35, 13:50, 14:30. तसेच इस्लामपूर (08:10), पालूस (09:45, 12:40), तासगाव (04:45, 13:15), विटा (18:45), दहिवाडी (08:55) येथेही बससेवा उपलब्ध आहे."
+      },
+      {
+        "question": "नारायणगाववरून नंदुरबार, धुळे, मालेगावसाठी बस किती वाजता आहेत?",
+        "answer": "नंदुरबारसाठी 4 बससेवा: 00:15, 07:10, 09:15, 21:20. धुळ्यासाठी 6 बससेवा: 08:30, 10:20, 11:45, 12:40, 14:25, 18:00. मालेगावसाठी 2 बससेवा: 04:45, 15:30. सटाण्यासाठी 7 बससेवा: 00:40, 02:30, 09:45, 16:30, 18:15, 20:00, 20:50 [citation:1]."
+      },
+      {
+        "question": "नारायणगाव बसस्थानकावर ऑनलाइन तिकीट बुकिंगची सुविधा आहे का?",
+        "answer": "होय, नारायणगाव बस स्थानकावरून प्रवासासाठी तुम्ही MSRTC च्या अधिकृत वेबसाइटवरून ऑनलाइन तिकीट बुक करू शकता. तसेच redBus, Goibibo, Abhibus सारख्या प्लॅटफॉर्मवरूनही सहज तिकीट बुकिंग करता येते [citation:2][citation:7]. आगावू बुकिंग केल्यास प्रवाशांना सीट निवडण्याची सोय असते."
+      },
+      {
+        "question": "नारायणगाव बसस्थानकावर प्रवाशांसाठी कोणकोणत्या सुविधा उपलब्ध आहेत?",
+        "answer": "नारायणगाव बसस्थानकावर प्रवाशांसाठी स्वच्छ प्रतीक्षालय, तिकीट खिडक्या, डिजिटल वेळापत्रक फलक, महिला व पुरुषांसाठी स्वतंत्र प्रतिक्षा कक्ष, पिण्याच्या पाण्याची सुविधा आणि खाद्यपदार्थांची दुकाने उपलब्ध आहेत. तसेच सुरक्षेसाठी बसस्थानक परिसरात पोलिस बंदोबस्त असतो. टोल फ्री क्रमांक 1800 221250 वर प्रवाशी कोणतीही तक्रार किंवा मदत मागू शकतात."
+      }
+    ],
+    "seo_content": {
+      "title": "Narayangaon Bus Stand Timetable 2026 | MSRTC Bus Schedule & Ticket Booking",
+      "content": "<p>Plan your journey with the latest Narayangaon Bus Stand timetable for 2026. Narayangaon depot is a vital MSRTC hub in Junnar taluka, Pune district, providing reliable bus connectivity to major cities like Pune (Shivajinagar, Swargate), Mumbai (Kurla, Borivali, Thane, Parel), Nashik, Shirdi, Kolhapur, Sangli, Junnar, Kalyan, Dhule, Nandurbar and surrounding rural areas including Ozhar, Otur, Alephata, Khodad, and Junnar.</p><p>Whether you're a daily commuter, student, farmer, pilgrim or business traveler, you can find detailed departure times, ticket prices, and online booking options here. The bus stand operates frequent services throughout the day with routes to:</p><ul><li><strong>Pune (Shivajinagar):</strong> 00:45 to 23:45 with buses every 15-30 minutes</li><li><strong>Swargate Pune:</strong> 09:15, 10:15, 16:15, 20:50 with 4 buses daily</li><li><strong>Mumbai via Khandala:</strong> 06:30 to 22:25 with 8 buses daily</li><li><strong>Kalyan:</strong> Multiple routes via Alephata (07:05, 08:30, 09:00, 17:00) and Junnar (15:30)</li><li><strong>Nashik:</strong> 00:15 to 22:30 with 70+ buses daily</li><li><strong>Shirdi:</strong> 07:40 and 10:35 with 2 buses daily for pilgrims</li><li><strong>Junnar:</strong> 04:35 to 22:00 with 50+ buses daily</li><li><strong>Kolhapur & Sangli:</strong> Regular services to Southern Maharashtra</li></ul><p>Passengers can avail clean waiting areas, digital timetable boards, ticket counters, food stalls and other basic amenities. Stay updated with the latest MSRTC schedules and enjoy a hassle-free travel experience from Narayangaon Bus Stand. For online booking, visit the MSRTC official website or use popular platforms like redBus. For any assistance, contact toll free number 1800 221250.</p>"
+    }
+  },
+  "seo": {
+    "title": "Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price | नारायणगाव बस स्थानक वेळापत्रक",
+    "description": "Check Narayangaon Bus Stand timetable 2026 for MSRTC buses. Narayangaon to Pune, Mumbai, Nashik, Shirdi, Kolhapur, Junnar, Kalyan bus schedules, ticket prices. Contact: 1800 221250. नारायणगाव बस स्थानक वेळापत्रक.",
+    "keywords": "Narayangaon Bus Stand, MSRTC Narayangaon, Narayangaon to Pune bus, Narayangaon to Mumbai bus, Narayangaon to Nashik bus, Narayangaon to Shirdi bus, Narayangaon to Junnar bus, Narayangaon to Kalyan bus, Narayangaon timetable 2026, नारायणगाव बस स्थानक"
+  },
+  "related_depots": []
+}

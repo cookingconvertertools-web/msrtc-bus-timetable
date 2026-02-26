@@ -1,0 +1,4953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price | नारायणगाव बस स्थानक वेळापत्रक</title>
+    <meta name="description" content="Check Narayangaon Bus Stand timetable 2026 for MSRTC buses. Narayangaon to Pune, Mumbai, Nashik, Shirdi, Kolhapur, Junnar, Kalyan bus schedules, ticket prices. Contact: 1800 221250. नारायणगाव बस स्थानक वेळापत्रक.">
+    <meta name="keywords" content="Narayangaon Bus Stand, MSRTC Narayangaon, Narayangaon to Pune bus, Narayangaon to Mumbai bus, Narayangaon to Nashik bus, Narayangaon to Shirdi bus, Narayangaon to Junnar bus, Narayangaon to Kalyan bus, Narayangaon timetable 2026, नारायणगाव बस स्थानक">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="../../../..//apple-touch-icon.png">
+    <link rel="icon" href="../../../..//favicon-16x16.png" type="image/png">
+    <link rel="icon" href="../../../..//favicon-32x32.png" type="image/png">
+    <link rel="icon" href="../../../..//favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../..//favicon.ico" type="image/x-icon">
+    <meta name="msapplication-TileImage" content="../../../..//apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Load URL constants -->
+    <script src="../../../../assets/urls/url-constants.js"></script>
+
+    <!-- Inline CSS -->
+    <style>
+        /* ==========================================================================
+       MSRTC BUS TIMETABLE - MOBILE FIRST STYLES WITH FIXED ALIGNMENT
+       ========================================================================== */
+
+    /* Reset & Base - MOBILE FIRST */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 14px;  /* increased from 13px for better readability */
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 400;
+        background: linear-gradient(135deg, #FEF2F8 0%, #FCE7F3 100%);
+        color: #4C1D95;
+        line-height: 1.4;
+        min-height: 100vh;
+        -webkit-tap-highlight-color: transparent;
+        padding-bottom: 40px;
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    /* Fixed header spacing */
+    .header-spacer {
+        height: 50px;
+    }
+
+    /* Typography - COMPACT */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        color: #5B21B6;
+        margin-bottom: 0.5rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    p {
+        margin-bottom: 0.8rem;
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+
+    a {
+        color: #493dd5;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    a:hover {
+        color: #3a2fc1;
+    }
+
+    /* Layout - FIXED CONTAINER WITH PROPER PADDING */
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 0.8rem;
+        padding-right: calc(0.8rem + 28px); /* 28px for mobile alphabet strip */
+        position: relative;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 1rem; }
+
+    /* Header - FIXED POSITION */
+    .site-header {
+        background: white;
+        box-shadow: 0 1px 3px rgba(73, 61, 213, 0.05);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        padding: 0.3rem 0;
+        border-bottom: 1px solid #C4B5FD;
+        height: 50px;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        padding: 0.1rem 0;
+        height: 100%;
+    }
+
+    .logo {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #5B21B6 !important;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        text-decoration: none;
+    }
+
+    .logo i {
+        color: #493dd5 !important;
+        font-size: 1.1rem;
+    }
+
+    /* Time Display - DIGITAL WATCH STYLE */
+    .time-display {
+        font-family: 'Orbitron', monospace;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #4C1D95 !important;
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        background: #0F172A;
+        border: 1px solid #A78BFA;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #00FF00 !important;
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    }
+
+    /* Search Bar Container - Below Tabs/Content */
+    .tab-search-container {
+        margin: 0.8rem 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    /* DEPOT PAGE: Combined search and filters container */
+    .depot-search-filters-container {
+        margin: 0.8rem 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Depot page specific: Search bar in combined container */
+    .depot-search-filters-container .tab-search-container {
+        margin: 0 0 0.5rem 0;
+        padding: 0;
+    }
+
+    /* Depot page specific: Time filters in combined container */
+    .depot-search-filters-container .time-filters {
+        margin: 0.5rem 0 1rem 0;
+        padding: 0;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        padding: 0.6rem 0.8rem;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        /* FULL WIDTH - no max-width restriction */
+        width: 100%;
+        margin: 0;
+    }
+
+    .search-bar i {
+        color: #493dd5;
+        margin-right: 0.5rem;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    .search-input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        color: #4C1D95;
+        outline: none;
+        width: 100%;
+        min-width: 0;
+        padding: 0;
+    }
+
+    .search-input::placeholder {
+        color: #94A3B8;
+        font-size: 0.9rem;
+    }
+
+    .clear-search {
+        background: none;
+        border: none;
+        color: #94A3B8;
+        font-size: 1.1rem;
+        cursor: pointer;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.3rem;
+        flex-shrink: 0;
+        transition: color 0.2s;
+    }
+
+    .clear-search:hover {
+        color: #5B21B6;
+    }
+
+    /* Vertical Alphabet Navigation - ON RIGHT EDGE, SCROLLABLE */
+    .vertical-alphabet-nav {
+        position: fixed;
+        right: 0;
+        top: 110px; /* Below header */
+        bottom: 0;
+        width: 32px;
+        z-index: 180;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        border-left: 1px solid #C4B5FD;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto;      /* Enables vertical scrolling */
+        overflow-x: hidden;
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+        padding: 0.5rem 0;
+    }
+
+    .vertical-alphabet-nav::-webkit-scrollbar {
+        display: none; /* Hide scrollbar in Chrome/Safari */
+        width: 0;
+        height: 0;
+    }
+
+    .alphabet-vertical-btn {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        color: #5B21B6;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.85rem;
+        padding: 0;
+        touch-action: manipulation;
+        border: none;
+        border-radius: 4px;
+        margin: 0.05rem 0;
+        min-width: 28px;
+        min-height: 28px;
+    }
+
+    .alphabet-vertical-btn:hover {
+        background: #FCE7F3;
+        color: #493dd5;
+        transform: scale(1.1);
+    }
+
+    .alphabet-vertical-btn.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        background: transparent;
+    }
+
+    .alphabet-vertical-btn.disabled:hover {
+        background: transparent;
+        transform: none;
+    }
+
+    /* Navigation Buttons Container - PROPER ALIGNMENT */
+    .navigation-buttons {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 0.8rem;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Back Buttons - PROPER ALIGNMENT */
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.5rem 0.8rem;
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        color: #4C1D95;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        text-decoration: none;
+        flex-shrink: 0;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        min-height: 38px;
+        margin: 0;
+        width: auto;
+    }
+
+    .back-btn:hover {
+        background: #FCE7F3;
+        color: #493dd5;
+        border-color: #A78BFA;
+    }
+
+    .back-btn i {
+        font-size: 0.9rem;
+    }
+
+    /* Depot About Section */
+    .depot-about-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #C4B5FD;
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+
+    .depot-about-section h2 {
+        color: #5B21B6;
+        margin-bottom: 0.8rem;
+        font-size: 1.3rem;
+    }
+
+    .about-content {
+        color: #4B5563;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #C4B5FD;
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+
+    .faq-section h2 {
+        color: #5B21B6;
+        margin-bottom: 0.8rem;
+        font-size: 1.3rem;
+    }
+
+    .faq-container {
+        margin-top: 0.8rem;
+    }
+
+    .faq-item {
+        margin-bottom: 0.8rem;
+        padding: 0.8rem;
+        background: #F8FAFC;
+        border-radius: 6px;
+        border: 1px solid #C4B5FD;
+    }
+
+    .faq-question {
+        color: #5B21B6;
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .faq-question i {
+        color: #493dd5;
+        font-size: 0.9rem;
+    }
+
+    .faq-answer {
+        color: #4B5563;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        padding-left: 1.5rem;
+    }
+
+    /* Related Links Section */
+    .related-links-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #C4B5FD;
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+
+    .related-links-section h2 {
+        color: #5B21B6;
+        margin-bottom: 0.8rem;
+        font-size: 1.3rem;
+    }
+
+    .related-links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 0.8rem;
+        margin-top: 0.8rem;
+    }
+
+    .related-depot-card {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 8px;
+        padding: 0.8rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: block;
+    }
+
+    .related-depot-card:hover {
+        border-color: #493dd5;
+    }
+
+    .related-depot-card h3 {
+        color: #5B21B6;
+        margin-bottom: 0.3rem;
+        font-size: 1.1rem;
+    }
+
+    .related-depot-card p {
+        color: #4C1D95;
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 0.5rem;
+    }
+
+    .related-depot-link {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        color: #493dd5;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    /* Advertising - IMPROVED FOR DESKTOP */
+    .ad-container {
+        margin: 1rem 0;
+        text-align: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    .ad-content {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        padding: 0.8rem;
+        min-height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    @media (min-width: 1025px) {
+        .ad-content {
+            padding: 1rem;
+        }
+    }
+
+    .ad-desktop {
+        display: none;
+    }
+
+    .ad-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        width: 100%;
+    }
+
+    .ad-placeholder {
+        color: #4C1D95;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .ad-placeholder span {
+        font-size: 0.85rem;
+        color: #64748B;
+    }
+
+    /* Tab Navigation */
+    .tabs-container {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #C4B5FD;
+        margin: 1rem 0;
+        width: 100%;
+    }
+
+    .tabs-header {
+        display: flex;
+        background: #FCE7F3;
+        border-bottom: 1px solid #C4B5FD;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+    }
+
+    .tabs-header::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .tab-btn {
+        flex: 1;
+        min-width: 70px;
+        padding: 0.5rem 0.2rem;
+        background: none;
+        border: none;
+        border-right: 1px solid #C4B5FD;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        color: #4C1D95;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .tab-btn:last-child {
+        border-right: none;
+    }
+
+    .tab-btn.active {
+        background: #493dd5;
+        color: white;
+    }
+
+    .tab-count {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.05rem 0.3rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .tab-btn.active .tab-count {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .tab-content {
+        display: none;
+        padding: 0.8rem;
+        width: 100%;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    /* RECTANGULAR CARDS - PROPER ALIGNMENT - STACKED ON MOBILE */
+    .division-grid, .district-grid, .tehsil-grid, .depot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 0.6rem;
+        margin: 0.8rem 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .rectangular-card {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 8px;
+        padding: 0.7rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+        display: block;
+        cursor: pointer;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        min-height: 75px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+        width: 100%;
+    }
+
+    .rectangular-card:hover {
+        border-color: #493dd5;
+        background: #FEF2F8;
+    }
+
+    .rectangular-card h3 {
+        color: #5B21B6 !important;
+        margin-bottom: 0.2rem;
+        font-size: 1rem;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .card-meta {
+        color: #4C1D95;
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+        opacity: 0.8;
+    }
+
+    .rectangular-card .stats {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.2rem;
+        flex-wrap: wrap;
+    }
+
+    .rectangular-card .stat {
+        background: #FCE7F3;
+        padding: 0.1rem 0.3rem;
+        border-radius: 8px;
+        color: #5B21B6 !important;
+        font-size: 0.7rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        border: 1px solid #C4B5FD;
+    }
+
+    .rectangular-card .stat i {
+        color: #493dd5 !important;
+        font-size: 0.7rem;
+    }
+
+    /* Quick Search Modal */
+    .quick-search-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1001;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-modal-content {
+        background: white;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .search-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        background: #493dd5;
+        color: white;
+    }
+
+    .search-modal-header h3 {
+        margin: 0;
+        color: white;
+        font-size: 1.1rem;
+    }
+
+    .close-search {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        line-height: 1;
+        touch-action: manipulation;
+    }
+
+    .search-modal-body {
+        padding: 1rem;
+    }
+
+    .global-search-input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #C4B5FD;
+        border-radius: 6px;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .global-search-input:focus {
+        outline: none;
+        border-color: #493dd5;
+    }
+
+    .search-results {
+        max-height: 250px;
+        overflow-y: auto;
+    }
+
+    .search-result-item {
+        padding: 0.7rem;
+        border-bottom: 1px solid #C4B5FD;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .search-result-item:hover {
+        background: #FCE7F3;
+    }
+
+    .search-result-item h4 {
+        margin: 0 0 0.2rem 0;
+        color: #5B21B6;
+        font-size: 1rem;
+    }
+
+    .search-result-item p {
+        margin: 0;
+        color: #4C1D95;
+        font-size: 0.85rem;
+        opacity: 0.8;
+    }
+
+    /* Depot Header - PROPER ALIGNMENT WITH ALPHABET STRIP SPACING */
+    .depot-header {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid #C4B5FD;
+        text-align: center;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .depot-info {
+        display: flex;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 0.8rem;
+        flex-wrap: wrap;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        color: #5B21B6;
+        font-size: 0.85rem;
+        background: #F8FAFC;
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        border: 1px solid #C4B5FD;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .info-item i {
+        color: #493dd5;
+        font-size: 0.85rem;
+    }
+
+    /* Time Filters - PROPER ALIGNMENT */
+    .time-filters {
+        display: flex;
+        gap: 0.4rem;
+        margin: 0.5rem 0 1rem 0;
+        overflow-x: auto;
+        padding-bottom: 0.3rem;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        width: 100%;
+        padding: 0;
+    }
+
+    .time-filters::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .filter-btn {
+        padding: 0.4rem 0.5rem;
+        border: 1px solid #C4B5FD;
+        background: white;
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.75rem;
+        color: #4C1D95;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.3s;
+        flex-shrink: 0;
+        font-weight: 500;
+        min-width: 65px;
+        text-align: center;
+    }
+
+    .filter-btn:hover {
+        border-color: #493dd5;
+        color: #493dd5;
+    }
+
+    .filter-btn.active {
+        background: #493dd5;
+        color: white;
+        border-color: #493dd5;
+        font-weight: 500;
+    }
+
+    /* Bus Stop Sections - PROPER ALIGNMENT */
+    .bus-stop-section {
+        margin-bottom: 1rem;
+        scroll-margin-top: 150px;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #C4B5FD;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .bus-stop-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.7rem;
+        background: linear-gradient(90deg, #FCE7F3 0%, white 100%);
+        border-bottom: 1px solid #C4B5FD;
+    }
+
+    .bus-stop-name {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        color: #5B21B6;
+        font-size: 1rem;
+        max-width: 70%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .bus-count {
+        background: #493dd5;
+        color: white;
+        padding: 0.15rem 0.4rem;
+        border-radius: 10px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        min-width: 35px;
+        text-align: center;
+    }
+
+    /* Schedule Grid - PROPER ALIGNMENT */
+    .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+        gap: 0.3rem;
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    /* Time Bubbles - PROPER ALIGNMENT */
+    .time-bubble {
+        position: relative;
+        padding: 0.3rem 0.15rem;
+        border-radius: 12px;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        min-height: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        font-size: 0.7rem;
+        border: 1px solid transparent;
+        overflow: visible;
+        margin: 0.05rem;
+    }
+
+    .time-bubble.morning {
+        background: #FEF3C7;
+        color: #92400E;
+        border-color: #FBBF24;
+    }
+
+    .time-bubble.afternoon {
+        background: #D1FAE5;
+        color: #065F46;
+        border-color: #10B981;
+    }
+
+    .time-bubble.evening {
+        background: #E0E7FF;
+        color: #3730A3;
+        border-color: #6366F1;
+    }
+
+    .time-bubble.night {
+        background: #F3E8FF;
+        color: #5B21B6;
+        border-color: #8B5CF6;
+    }
+
+    .time-bubble:hover {
+        transform: scale(1.02);
+    }
+
+    /* Next Bus Badge */
+    .next-badge {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: #493dd5;
+        color: white;
+        font-size: 0.6rem;
+        padding: 1px 3px;
+        border-radius: 8px;
+        font-weight: 600;
+        z-index: 20;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        animation: pulse 2s infinite;
+        white-space: nowrap;
+        min-width: 28px;
+        text-align: center;
+        border: 1px solid white;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    /* Next Bus Sparkle Effect */
+    .next-bus-sparkle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 12px;
+        border: 1px solid #FFA500;
+        animation: sparkle 2s infinite;
+        pointer-events: none;
+        opacity: 0;
+        box-shadow: 0 0 8px rgba(255, 165, 0, 0.7);
+        z-index: 5;
+    }
+
+    @keyframes sparkle {
+        0%, 100% {
+            opacity: 0.5;
+            border-color: #FFA500;
+            box-shadow: 0 0 8px rgba(255, 165, 0, 0.7);
+        }
+        50% {
+            opacity: 1;
+            border-color: #FFD700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+        }
+    }
+
+    .time-bubble.next-bus .next-bus-sparkle {
+        opacity: 0.5;
+    }
+
+    /* Footer */
+    .site-footer {
+        background: white;
+        border-top: 1px solid #C4B5FD;
+        padding: 1.5rem 0 2rem 0;
+        margin-top: 2rem;
+        min-height: 300px;
+        width: 100%;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .footer-section h3 {
+        color: #5B21B6;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .footer-links a {
+        color: #4C1D95;
+        font-size: 0.9rem;
+        padding: 0.2rem 0;
+        transition: all 0.3s;
+        text-decoration: none;
+        line-height: 1.4;
+    }
+
+    .footer-links a:hover {
+        color: #493dd5;
+        padding-left: 0.3rem;
+    }
+
+    .copyright {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: #4C1D95;
+        font-size: 0.85rem;
+        opacity: 0.8;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #C4B5FD;
+        line-height: 1.5;
+    }
+
+    .copyright a {
+        color: #493dd5;
+        text-decoration: underline;
+    }
+
+    /* SEO Content Section */
+    .seo-content {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        border: 1px solid #C4B5FD;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .seo-content h2 {
+        color: #5B21B6;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+
+    .seo-content h3 {
+        color: #4C1D95;
+        margin: 1rem 0 0.8rem;
+        font-size: 1.1rem;
+    }
+
+    .seo-content p {
+        color: #4B5563;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    /* Blog Page Styles */
+    .blog-page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .blog-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .blog-date {
+        color: #94A3B8;
+        font-size: 0.9rem;
+        margin: 0.3rem 0 1rem;
+    }
+
+    .blog-author {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+        padding: 0.8rem;
+        background: #F8FAFC;
+        border-radius: 6px;
+        border: 1px solid #C4B5FD;
+    }
+
+    .author-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #493dd5, #A78BFA);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    .author-info h4 {
+        margin-bottom: 0.2rem;
+        color: #4C1D95;
+        font-size: 1rem;
+    }
+
+    .blog-content {
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 0.6rem;
+    }
+
+    /* Blog Links - Clickable with URL constants */
+    .blog-link {
+        color: #493dd5;
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px dotted #493dd5;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+
+    .blog-link:hover {
+        color: #3a2fc1;
+        border-bottom: 2px solid #3a2fc1;
+        text-decoration: none;
+    }
+
+    /* Blog Images - Responsive */
+    .blog-image-container {
+        margin: 1.5rem 0;
+        text-align: center;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid #C4B5FD;
+        background: white;
+        padding: 0.8rem;
+    }
+
+    .blog-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        display: block;
+        margin: 0 auto;
+        transition: transform 0.3s;
+    }
+
+    .blog-image:hover {
+        transform: scale(1.01);
+    }
+
+    .blog-image-caption {
+        font-size: 0.9rem;
+        color: #64748B;
+        margin-top: 0.5rem;
+        font-style: italic;
+        line-height: 1.4;
+        text-align: center;
+        padding: 0 0.5rem;
+    }
+
+    .blog-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1rem 0;
+    }
+
+    .blog-tags {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+    }
+
+    .blog-tag {
+        background: #FCE7F3;
+        color: #493dd5;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    /* Blog specific styles - Markdown elements */
+    .blog-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        border: 1px solid #E2E8F0;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .blog-table th {
+        background: linear-gradient(135deg, #493dd5, #3a2fc1);
+        color: white;
+        font-weight: 500;
+        padding: 0.6rem;
+        text-align: left;
+        border-bottom: 1px solid #E2E8F0;
+        font-size: 0.9rem;
+    }
+
+    .blog-table td {
+        padding: 0.6rem;
+        border-bottom: 1px solid #E2E8F0;
+        vertical-align: top;
+        font-size: 0.9rem;
+    }
+
+    .blog-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .blog-table tr:nth-child(even) {
+        background: #F8FAFC;
+    }
+
+    pre {
+        background: #2D3748;
+        color: #E2E8F0;
+        padding: 0.8rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin: 1rem 0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        border-left: 3px solid #493dd5;
+    }
+
+    code {
+        background: #EDF2F7;
+        padding: 0.1rem 0.3rem;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        color: #2D3748;
+    }
+
+    pre code {
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+        color: inherit;
+        font-size: inherit;
+    }
+
+    blockquote {
+        border-left: 3px solid #493dd5;
+        padding: 0.8rem 1rem;
+        margin: 1rem 0;
+        background: linear-gradient(90deg, #F8FAFC, #FFFFFF);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #4A5568;
+        font-size: 1rem;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #E2E8F0;
+        margin: 1.5rem auto;
+        width: 80%;
+    }
+
+    /* Blog Listing */
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .blog-card {
+        background: white;
+        border: 1px solid #C4B5FD;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: block;
+        padding: 0.8rem;
+    }
+
+    .blog-card:hover {
+        border-color: #493dd5;
+    }
+
+    .blog-card h3 {
+        color: #5B21B6;
+        margin-bottom: 0.6rem;
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+
+    .blog-card-excerpt {
+        color: #64748B;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
+    }
+
+    .blog-card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #94A3B8;
+        font-size: 0.8rem;
+    }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 2rem 1rem;
+        color: #5B21B6;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid #C4B5FD;
+        margin: 1.5rem 0;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .empty-state i {
+        font-size: 2.5rem;
+        margin-bottom: 0.8rem;
+        color: #A78BFA;
+    }
+
+    .empty-state h3 {
+        margin-bottom: 0.6rem;
+        color: #5B21B6;
+        font-size: 1.3rem;
+    }
+
+    .empty-state p {
+        color: #4C1D95;
+        opacity: 0.8;
+        max-width: 400px;
+        margin: 0 auto;
+        font-size: 1rem;
+    }
+
+    /* Utility Classes */
+    .hidden {
+        display: none !important;
+    }
+
+    /* Responsive Design - MOBILE FIRST */
+    @media (max-width: 767px) {
+        html {
+            font-size: 14px;  /* consistent with base */
+        }
+
+        .container {
+            padding: 0 0.8rem;
+            padding-right: calc(0.8rem + 28px); /* 28px for mobile alphabet strip */
+        }
+
+        /* MOBILE: Stack cards in single column */
+        .division-grid,
+        .district-grid,
+        .tehsil-grid,
+        .depot-grid {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+
+        .rectangular-card {
+            padding: 0.7rem;
+            min-height: 75px;
+            margin: 0 auto;
+            width: calc(100% - 5px); /* Small space from both sides */
+        }
+
+        .rectangular-card h3 {
+            font-size: 1rem;
+        }
+
+        .rectangular-card .stat {
+            font-size: 0.7rem;
+            padding: 0.1rem 0.3rem;
+        }
+
+        /* Mobile: Back buttons */
+        .back-btn {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.9rem;
+            gap: 0.25rem;
+            max-width: 100%;
+            min-height: 38px;
+        }
+
+        .back-btn i {
+            font-size: 0.9rem;
+        }
+
+        /* Mobile: Search bar - full width */
+        .search-bar {
+            width: 100%;
+            padding: 0.5rem 0.6rem;
+        }
+
+        .search-input {
+            font-size: 0.95rem;
+        }
+
+        /* Mobile: Adjusted schedule grid */
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+            gap: 0.25rem;
+            padding: 0.4rem;
+        }
+
+        /* Mobile: Time bubbles */
+        .time-bubble {
+            min-height: 30px;
+            padding: 0.2rem 0.1rem;
+            font-size: 0.7rem;
+            border-radius: 10px;
+        }
+
+        .next-badge {
+            font-size: 0.6rem;
+            padding: 1px 2px;
+            top: -5px;
+            right: -5px;
+            min-width: 28px;
+        }
+
+        .vertical-alphabet-nav {
+            top: 110px;
+            width: 28px;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .alphabet-vertical-btn {
+            width: 24px;
+            height: 24px;
+            font-size: 0.8rem;
+            margin: 0.03rem 0;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .footer-section:nth-child(3) {
+            grid-column: 1 / -1;
+        }
+
+        .seo-content {
+            padding: 0.8rem;
+        }
+
+        .ad-desktop {
+            display: none !important;
+        }
+
+        .ad-mobile {
+            display: flex !important;
+        }
+
+        .tab-btn {
+            min-width: 65px;
+            padding: 0.4rem 0.1rem;
+            font-size: 0.85rem;
+        }
+
+        .tab-count {
+            font-size: 0.7rem;
+            padding: 0.05rem 0.2rem;
+        }
+
+        /* Mobile: Depot header and info items */
+        .depot-header {
+            width: 100%;
+            margin-left: 0;
+            padding: 0.8rem;
+        }
+
+        .info-item {
+            max-width: 130px;
+            font-size: 0.8rem;
+        }
+
+        /* Mobile: Time filters */
+        .time-filters {
+            width: 100%;
+            gap: 0.3rem;
+            margin-left: 0;
+        }
+
+        .filter-btn {
+            padding: 0.35rem 0.4rem;
+            font-size: 0.7rem;
+            min-width: 60px;
+        }
+
+        /* Mobile: Bus stop sections */
+        .bus-stop-section {
+            width: 100%;
+            margin-left: 0;
+            padding: 0;
+        }
+
+        .bus-stop-name {
+            max-width: 65%;
+            font-size: 1rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Mobile navigation buttons */
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .back-btn {
+            width: 100%;
+            justify-content: center;
+            max-width: 100%;
+        }
+
+        /* Mobile: Blog page */
+        .blog-page {
+            padding: 0 1rem;
+        }
+
+        .blog-content {
+            padding: 0 0.8rem;
+            font-size: 1rem;
+        }
+
+        /* Mobile: Blog images */
+        .blog-image-container {
+            margin: 1rem 0;
+            padding: 0.6rem;
+        }
+
+        .blog-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .blog-image-caption {
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+        }
+
+        /* Mobile: Ad content */
+        .ad-content {
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        html {
+            font-size: 15px;
+        }
+
+        .container {
+            padding-right: calc(0.8rem + 30px); /* 30px for tablet alphabet strip */
+        }
+
+        .division-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        .district-grid,
+        .tehsil-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+            padding: 0.5rem;
+        }
+
+        .blog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .vertical-alphabet-nav {
+            width: 30px;
+            top: 110px;
+        }
+
+        .alphabet-vertical-btn {
+            width: 26px;
+            height: 26px;
+            font-size: 0.85rem;
+        }
+
+        .ad-desktop {
+            display: none !important;
+        }
+
+        .ad-mobile {
+            display: flex !important;
+        }
+
+        .tab-btn {
+            min-width: 80px;
+        }
+
+        .related-links-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        /* Tablet: Adjusted back buttons */
+        .back-btn {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.9rem;
+            max-width: 100%;
+            min-height: 40px;
+        }
+
+        /* Tablet: Adjusted search bar */
+        .search-bar {
+            width: 100%;
+        }
+
+        /* Tablet: Adjusted depot header */
+        .depot-header {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Tablet: Adjusted time filters */
+        .time-filters {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Tablet: Adjusted bus stop sections */
+        .bus-stop-section {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Tablet: Adjusted ad content */
+        .ad-content {
+            width: 100%;
+        }
+
+        /* Tablet: Schedule optimization */
+        .time-bubble {
+            min-height: 34px;
+            font-size: 0.75rem;
+        }
+
+        /* Tablet: Blog page */
+        .blog-page {
+            padding: 0 0.8rem;
+        }
+
+        .blog-content {
+            padding: 0 0.6rem;
+        }
+
+        /* Tablet: Blog images */
+        .blog-image-container {
+            margin: 1.2rem 0;
+            padding: 0.8rem;
+        }
+    }
+
+    @media (min-width: 1025px) {
+        html {
+            font-size: 16px;
+        }
+
+        .container {
+            padding-right: calc(0.8rem + 32px); /* 32px for desktop alphabet strip */
+        }
+
+        .division-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .district-grid,
+        .tehsil-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+
+        .blog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .vertical-alphabet-nav {
+            width: 32px;
+            top: 110px;
+        }
+
+        .alphabet-vertical-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.9rem;
+        }
+
+        .ad-desktop {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .ad-mobile {
+            display: none !important;
+        }
+
+        .tab-btn {
+            min-width: 90px;
+            padding: 0.6rem 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        .related-links-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        /* Desktop: Back buttons */
+        .back-btn {
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            gap: 0.4rem;
+            max-width: 100%;
+            min-height: 42px;
+        }
+
+        .back-btn i {
+            font-size: 1rem;
+        }
+
+        /* Desktop: Search bar width */
+        .search-bar {
+            width: 100%;
+        }
+
+        /* Desktop: Depot header */
+        .depot-header {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Desktop: Time filters */
+        .time-filters {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Desktop: Bus stop sections */
+        .bus-stop-section {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Desktop: Ad content */
+        .ad-content {
+            width: 100%;
+        }
+
+        /* Desktop: Better spacing for schedule */
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 0.4rem;
+            padding: 0.5rem;
+        }
+
+        .time-bubble {
+            min-height: 36px;
+            font-size: 0.75rem;
+        }
+
+        /* Desktop: Blog page */
+        .blog-page {
+            padding: 0 1rem;
+        }
+
+        .blog-content {
+            padding: 0 0.8rem;
+        }
+
+        /* Desktop: Blog images */
+        .blog-image-container {
+            margin: 1.5rem 0;
+        }
+    }
+
+    /* Print Styles */
+    @media print {
+        .site-header,
+        .search-bar-container,
+        .vertical-alphabet-nav,
+        .filter-btn,
+        .time-filters,
+        .back-btn,
+        .ad-container,
+        .quick-search-modal {
+            display: none !important;
+        }
+
+        body {
+            background: white;
+            color: black;
+            padding: 0;
+            font-size: 11pt;
+        }
+
+        .time-bubble {
+            break-inside: avoid;
+            border: 1px solid #ccc !important;
+            background: white !important;
+            color: black !important;
+        }
+    }
+
+    /* Fix for mobile touch */
+    @media (max-width: 1000px) {
+        .alphabet-vertical-btn,
+        .filter-btn,
+        .tab-btn,
+        .close-search,
+        .clear-search {
+            min-height: 38px;
+            min-width: 38px;
+            padding: 5px 7px;
+        }
+    }
+
+    /* Force no horizontal scroll on any zoom level */
+    body, html {
+        overflow-x: hidden;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .container, .tabs-header, .time-filters {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Schedule optimization - More compact on small screens */
+    @media (max-width: 380px) {
+        .container {
+            padding-right: calc(0.8rem + 28px); /* Keep same as mobile */
+        }
+
+        .schedule-grid {
+            grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+            gap: 0.15rem;
+            padding: 0.3rem;
+        }
+
+        .time-bubble {
+            min-height: 28px;
+            padding: 0.18rem 0.08rem;
+            font-size: 0.68rem;
+            border-radius: 8px;
+        }
+
+        .bus-stop-name {
+            font-size: 0.95rem;
+        }
+
+        /* Time filters - even smaller on very small screens */
+        .time-filters {
+            gap: 0.15rem;
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .filter-btn {
+            padding: 0.3rem 0.35rem;
+            font-size: 0.65rem;
+            min-width: 55px;
+        }
+
+        /* Vertical alphabet for very small screens */
+        .vertical-alphabet-nav {
+            width: 26px;
+        }
+
+        .alphabet-vertical-btn {
+            width: 22px;
+            height: 22px;
+            font-size: 0.75rem;
+        }
+
+        /* Footer: 3 columns on very small screens */
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .footer-section:nth-child(3) {
+            grid-column: 1;
+        }
+
+        /* Very small cards - single column */
+        .division-grid,
+        .district-grid,
+        .tehsil-grid,
+        .depot-grid {
+            grid-template-columns: 1fr;
+            gap: 0.4rem;
+        }
+
+        .rectangular-card {
+            padding: 0.6rem;
+            min-height: 70px;
+            width: calc(100% - 5px);
+        }
+
+        .rectangular-card h3 {
+            font-size: 0.95rem;
+        }
+
+        .rectangular-card .stat {
+            font-size: 0.65rem;
+            padding: 0.06rem 0.2rem;
+        }
+
+        /* Very small back buttons */
+        .back-btn {
+            padding: 0.45rem 0.7rem;
+            font-size: 0.85rem;
+            max-width: 100%;
+            min-height: 36px;
+        }
+
+        .back-btn i {
+            font-size: 0.85rem;
+        }
+
+        /* Very small search bar */
+        .search-bar {
+            width: 100%;
+            padding: 0.4rem 0.5rem;
+        }
+
+        .search-input {
+            font-size: 0.9rem;
+        }
+
+        /* Very small blog content */
+        .blog-content {
+            padding: 0 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .blog-page {
+            padding: 0 0.8rem;
+        }
+
+        /* Very small depot header and info */
+        .depot-header {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .info-item {
+            max-width: 110px;
+            font-size: 0.75rem;
+        }
+
+        /* Very small bus stop sections */
+        .bus-stop-section {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        /* Very small ad content */
+        .ad-content {
+            width: 100%;
+        }
+    }
+    </style>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BusStation",
+        "name": "Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price",
+        "description": "MSRTC Bus Depot in Junnar Tehsil, Pune District",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Junnar Tehsil",
+            "addressRegion": "Pune District",
+            "addressCountry": "IN"
+        },
+        "openingHours": "Mo-Su 05:00-23:00",
+        "department": {
+            "@type": "Organization",
+            "name": "Pune Division Division"
+        }
+    }
+    </script>
+</head>
+<body class="depot-page">
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../../../../index.html" class="logo">
+                    <i class="bi bi-bus-front"></i>
+                    <span>MSRTC Timetable</span>
+                </a>
+                <div class="time-display">
+                    <span class="current-time"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fixed spacing for header -->
+    <div class="header-spacer"></div>
+
+    <!-- Vertical Alphabet Navigation (scrollable) -->
+    <div class="vertical-alphabet-nav" id="verticalAlphabet">
+        <button class="alphabet-vertical-btn " data-letter="a">A</button><button class="alphabet-vertical-btn " data-letter="b">B</button><button class="alphabet-vertical-btn " data-letter="c">C</button><button class="alphabet-vertical-btn " data-letter="d">D</button><button class="alphabet-vertical-btn disabled" data-letter="e">E</button><button class="alphabet-vertical-btn disabled" data-letter="f">F</button><button class="alphabet-vertical-btn " data-letter="g">G</button><button class="alphabet-vertical-btn disabled" data-letter="h">H</button><button class="alphabet-vertical-btn " data-letter="i">I</button><button class="alphabet-vertical-btn " data-letter="j">J</button><button class="alphabet-vertical-btn " data-letter="k">K</button><button class="alphabet-vertical-btn disabled" data-letter="l">L</button><button class="alphabet-vertical-btn " data-letter="m">M</button><button class="alphabet-vertical-btn " data-letter="n">N</button><button class="alphabet-vertical-btn " data-letter="o">O</button><button class="alphabet-vertical-btn " data-letter="p">P</button><button class="alphabet-vertical-btn disabled" data-letter="q">Q</button><button class="alphabet-vertical-btn disabled" data-letter="r">R</button><button class="alphabet-vertical-btn " data-letter="s">S</button><button class="alphabet-vertical-btn " data-letter="t">T</button><button class="alphabet-vertical-btn " data-letter="u">U</button><button class="alphabet-vertical-btn " data-letter="v">V</button><button class="alphabet-vertical-btn disabled" data-letter="w">W</button><button class="alphabet-vertical-btn disabled" data-letter="x">X</button><button class="alphabet-vertical-btn " data-letter="y">Y</button><button class="alphabet-vertical-btn disabled" data-letter="z">Z</button>
+    </div>
+
+    <!-- Top Ad -->
+    
+
+    <main class="main-content">
+        <div class="container">
+            <div class="navigation-buttons">
+                <a href="../index.html" class="back-btn">
+                    <i class="bi bi-arrow-left"></i> Back to Junnar Tehsil
+                </a>
+                <a href="../../../../index.html" class="back-btn">
+                    <i class="bi bi-house"></i> Back to Bus Schedule
+                </a>
+            </div>
+
+            <!-- Depot Header - MOVED ABOVE search filter container -->
+            <div class="depot-header">
+                <h1>Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price</h1>
+                <p>Narayangaon MSRTC Bus Stand, Near Old ST Workshop, Narayangaon, Taluka Junnar, Pune - 410504</p>
+                <div class="depot-info">
+                    <div class="info-item">
+                        <i class="bi bi-telephone"></i>
+                        <span>7972672026</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-signpost"></i>
+                        <span>77 Bus Stops</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-bus-front"></i>
+                        <span>516 Buses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEPOT PAGE: Search and time filters section - placed just before bus stop schedule -->
+            <div class="depot-search-filters-container">
+                <!-- Search Bar -->
+                <div class="tab-search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="search-input" placeholder="Search bus stops in Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price...">
+                        <button class="clear-search" style="display: none;" aria-label="Clear search">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Time Filters - COMPACT -->
+                <div class="time-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="morning">5AM-12PM</button>
+                    <button class="filter-btn" data-filter="afternoon">12PM-5PM</button>
+                    <button class="filter-btn" data-filter="evening">5PM-10PM</button>
+                    <button class="filter-btn" data-filter="night">10PM-5AM</button>
+                </div>
+            </div>
+
+            <!-- Middle Ad -->
+            
+
+            <!-- Empty State -->
+            <div class="empty-state hidden">
+                <i class="bi bi-search"></i>
+                <h3>No buses found</h3>
+                <p>Try changing your filters or search term</p>
+            </div>
+
+            <!-- Bus Stops Schedule - COMPACT -->
+            <div class="bus-stop-section" id="busstop-a-akole" data-letter="a" data-busstop="akole">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Akole</h3>
+                        <span class="bus-count">5</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:50" title="10:50AM">
+                10:50AM
+            </div><div class="time-bubble morning" data-time="11:50" title="11:50AM">
+                11:50AM
+            </div><div class="time-bubble afternoon" data-time="13:35" title="1:35PM">
+                1:35PM
+            </div><div class="time-bubble afternoon" data-time="15:15" title="3:15PM">
+                3:15PM
+            </div><div class="time-bubble evening" data-time="17:30" title="5:30PM">
+                5:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-a-alephata-via-otur" data-letter="a" data-busstop="alephata via otur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Alephata via Otur</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble evening" data-time="19:45" title="7:45PM">
+                7:45PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-a-amalner" data-letter="a" data-busstop="amalner">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Amalner</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div><div class="time-bubble morning" data-time="07:25" title="7:25AM">
+                7:25AM
+            </div><div class="time-bubble morning" data-time="09:35" title="9:35AM">
+                9:35AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-a-arnala" data-letter="a" data-busstop="arnala">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Arnala</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:00" title="6:00AM">
+                6:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-b-baramati" data-letter="b" data-busstop="baramati">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Baramati</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:45" title="6:45AM">
+                6:45AM
+            </div><div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-b-barsi" data-letter="b" data-busstop="barsi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Barsi</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="05:30" title="5:30AM">
+                5:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-b-bhorwadi-via-jambut" data-letter="b" data-busstop="bhorwadi via jambut">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Bhorwadi via Jambut</h3>
+                        <span class="bus-count">11</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div><div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div><div class="time-bubble afternoon" data-time="15:45" title="3:45PM">
+                3:45PM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div><div class="time-bubble evening" data-time="17:45" title="5:45PM">
+                5:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-b-bori-baramati" data-letter="b" data-busstop="bori baramati">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Bori Baramati</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-b-borivali" data-letter="b" data-busstop="borivali">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Borivali</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="11:30" title="11:30AM">
+                11:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-c-chopda" data-letter="c" data-busstop="chopda">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Chopda</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:10" title="7:10AM">
+                7:10AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-d-dahiwadi" data-letter="d" data-busstop="dahiwadi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Dahiwadi</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:55" title="8:55AM">
+                8:55AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-d-dhule" data-letter="d" data-busstop="dhule">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Dhule</h3>
+                        <span class="bus-count">6</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div><div class="time-bubble morning" data-time="10:20" title="10:20AM">
+                10:20AM
+            </div><div class="time-bubble morning" data-time="11:45" title="11:45AM">
+                11:45AM
+            </div><div class="time-bubble afternoon" data-time="12:40" title="12:40PM">
+                12:40PM
+            </div><div class="time-bubble afternoon" data-time="14:25" title="2:25PM">
+                2:25PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-g-gondavale" data-letter="g" data-busstop="gondavale">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Gondavale</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-i-ichalkaranji" data-letter="i" data-busstop="ichalkaranji">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Ichalkaranji</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="11:30" title="11:30AM">
+                11:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-i-igatpuri" data-letter="i" data-busstop="igatpuri">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Igatpuri</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="15:15" title="3:15PM">
+                3:15PM
+            </div><div class="time-bubble afternoon" data-time="15:50" title="3:50PM">
+                3:50PM
+            </div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">
+                4:15PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-i-indore-(mp)" data-letter="i" data-busstop="indore (mp)">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Indore (MP)</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-i-islampur" data-letter="i" data-busstop="islampur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Islampur</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:10" title="8:10AM">
+                8:10AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-j-jawhar" data-letter="j" data-busstop="jawhar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Jawhar</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:05" title="12:05PM">
+                12:05PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-j-junnar" data-letter="j" data-busstop="junnar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Junnar</h3>
+                        <span class="bus-count">52</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="05:15" title="5:15AM">
+                5:15AM
+            </div><div class="time-bubble morning" data-time="06:15" title="6:15AM">
+                6:15AM
+            </div><div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div><div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble morning" data-time="08:15" title="8:15AM">
+                8:15AM
+            </div><div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div><div class="time-bubble morning" data-time="08:45" title="8:45AM">
+                8:45AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="09:20" title="9:20AM">
+                9:20AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="09:40" title="9:40AM">
+                9:40AM
+            </div><div class="time-bubble morning" data-time="09:45" title="9:45AM">
+                9:45AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble morning" data-time="10:20" title="10:20AM">
+                10:20AM
+            </div><div class="time-bubble morning" data-time="10:30" title="10:30AM">
+                10:30AM
+            </div><div class="time-bubble morning" data-time="10:40" title="10:40AM">
+                10:40AM
+            </div><div class="time-bubble morning" data-time="11:00" title="11:00AM">
+                11:00AM
+            </div><div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div><div class="time-bubble morning" data-time="11:20" title="11:20AM">
+                11:20AM
+            </div><div class="time-bubble morning" data-time="11:40" title="11:40AM">
+                11:40AM
+            </div><div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble afternoon" data-time="12:40" title="12:40PM">
+                12:40PM
+            </div><div class="time-bubble afternoon" data-time="13:10" title="1:10PM">
+                1:10PM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="13:35" title="1:35PM">
+                1:35PM
+            </div><div class="time-bubble afternoon" data-time="13:45" title="1:45PM">
+                1:45PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div><div class="time-bubble afternoon" data-time="14:15" title="2:15PM">
+                2:15PM
+            </div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div><div class="time-bubble afternoon" data-time="14:50" title="2:50PM">
+                2:50PM
+            </div><div class="time-bubble afternoon" data-time="15:15" title="3:15PM">
+                3:15PM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble afternoon" data-time="15:35" title="3:35PM">
+                3:35PM
+            </div><div class="time-bubble afternoon" data-time="15:50" title="3:50PM">
+                3:50PM
+            </div><div class="time-bubble afternoon" data-time="16:10" title="4:10PM">
+                4:10PM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="17:30" title="5:30PM">
+                5:30PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div><div class="time-bubble evening" data-time="18:15" title="6:15PM">
+                6:15PM
+            </div><div class="time-bubble evening" data-time="19:45" title="7:45PM">
+                7:45PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div><div class="time-bubble evening" data-time="21:15" title="9:15PM">
+                9:15PM
+            </div><div class="time-bubble night" data-time="04:35" title="4:35AM">
+                4:35AM
+            </div><div class="time-bubble night" data-time="22:00" title="10:00PM">
+                10:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kalwan" data-letter="k" data-busstop="kalwan">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kalwan</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:00" title="6:00AM">
+                6:00AM
+            </div><div class="time-bubble night" data-time="03:45" title="3:45AM">
+                3:45AM
+            </div><div class="time-bubble night" data-time="04:15" title="4:15AM">
+                4:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kalyan-via-alephata" data-letter="k" data-busstop="kalyan via alephata">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kalyan via Alephata</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:05" title="7:05AM">
+                7:05AM
+            </div><div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kalyan-via-junnar" data-letter="k" data-busstop="kalyan via junnar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kalyan via Junnar</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kandali" data-letter="k" data-busstop="kandali">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kandali</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="11:00" title="11:00AM">
+                11:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-karkhana-junnar" data-letter="k" data-busstop="karkhana junnar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Karkhana Junnar</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-khireshwar" data-letter="k" data-busstop="khireshwar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Khireshwar</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble evening" data-time="18:30" title="6:30PM">
+                6:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-khodad" data-letter="k" data-busstop="khodad">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Khodad</h3>
+                        <span class="bus-count">11</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:00" title="6:00AM">
+                6:00AM
+            </div><div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div><div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="09:55" title="9:55AM">
+                9:55AM
+            </div><div class="time-bubble morning" data-time="10:20" title="10:20AM">
+                10:20AM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="14:10" title="2:10PM">
+                2:10PM
+            </div><div class="time-bubble afternoon" data-time="15:10" title="3:10PM">
+                3:10PM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div><div class="time-bubble afternoon" data-time="16:50" title="4:50PM">
+                4:50PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kolhapur" data-letter="k" data-busstop="kolhapur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kolhapur</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div><div class="time-bubble evening" data-time="21:30" title="9:30PM">
+                9:30PM
+            </div><div class="time-bubble night" data-time="00:30" title="12:30AM">
+                12:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kopargaon" data-letter="k" data-busstop="kopargaon">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kopargaon</h3>
+                        <span class="bus-count">8</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div><div class="time-bubble afternoon" data-time="15:05" title="3:05PM">
+                3:05PM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="18:40" title="6:40PM">
+                6:40PM
+            </div><div class="time-bubble evening" data-time="21:00" title="9:00PM">
+                9:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kotul-rajur-akole" data-letter="k" data-busstop="kotul rajur akole">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kotul Rajur Akole</h3>
+                        <span class="bus-count">7</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:15" title="8:15AM">
+                8:15AM
+            </div><div class="time-bubble morning" data-time="08:45" title="8:45AM">
+                8:45AM
+            </div><div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div><div class="time-bubble afternoon" data-time="15:00" title="3:00PM">
+                3:00PM
+            </div><div class="time-bubble afternoon" data-time="16:45" title="4:45PM">
+                4:45PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kurdevadi" data-letter="k" data-busstop="kurdevadi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kurdevadi</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="05:15" title="5:15AM">
+                5:15AM
+            </div><div class="time-bubble morning" data-time="05:45" title="5:45AM">
+                5:45AM
+            </div><div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div><div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-k-kurla" data-letter="k" data-busstop="kurla">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Kurla</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="15:45" title="3:45PM">
+                3:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mahabaleshwar" data-letter="m" data-busstop="mahabaleshwar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mahabaleshwar</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:50" title="8:50AM">
+                8:50AM
+            </div><div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-malegaon" data-letter="m" data-busstop="malegaon">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Malegaon</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble night" data-time="04:45" title="4:45AM">
+                4:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-malkapur" data-letter="m" data-busstop="malkapur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Malkapur</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mandhardevi" data-letter="m" data-busstop="mandhardevi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mandhardevi</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:30" title="8:30AM">
+                8:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-medha" data-letter="m" data-busstop="medha">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Medha</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:25" title="12:25PM">
+                12:25PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mhaskewadi" data-letter="m" data-busstop="mhaskewadi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mhaskewadi</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble evening" data-time="18:30" title="6:30PM">
+                6:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mhaswad" data-letter="m" data-busstop="mhaswad">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mhaswad</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-miraj" data-letter="m" data-busstop="miraj">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Miraj</h3>
+                        <span class="bus-count">5</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:45" title="6:45AM">
+                6:45AM
+            </div><div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble morning" data-time="11:35" title="11:35AM">
+                11:35AM
+            </div><div class="time-bubble afternoon" data-time="13:50" title="1:50PM">
+                1:50PM
+            </div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mumbai-via-khandala" data-letter="m" data-busstop="mumbai via khandala">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mumbai via Khandala</h3>
+                        <span class="bus-count">8</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div><div class="time-bubble morning" data-time="07:45" title="7:45AM">
+                7:45AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble afternoon" data-time="14:15" title="2:15PM">
+                2:15PM
+            </div><div class="time-bubble evening" data-time="21:20" title="9:20PM">
+                9:20PM
+            </div><div class="time-bubble night" data-time="22:25" title="10:25PM">
+                10:25PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-m-mumbai-via-malshej-kalyan" data-letter="m" data-busstop="mumbai via malshej kalyan">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Mumbai via Malshej Kalyan</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nandgaon" data-letter="n" data-busstop="nandgaon">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nandgaon</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble morning" data-time="10:20" title="10:20AM">
+                10:20AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nandurbar" data-letter="n" data-busstop="nandurbar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nandurbar</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:10" title="7:10AM">
+                7:10AM
+            </div><div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble evening" data-time="21:20" title="9:20PM">
+                9:20PM
+            </div><div class="time-bubble night" data-time="00:15" title="12:15AM">
+                12:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nashik" data-letter="n" data-busstop="nashik">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nashik</h3>
+                        <span class="bus-count">67</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:40" title="6:40AM">
+                6:40AM
+            </div><div class="time-bubble morning" data-time="07:35" title="7:35AM">
+                7:35AM
+            </div><div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble morning" data-time="08:45" title="8:45AM">
+                8:45AM
+            </div><div class="time-bubble morning" data-time="08:45" title="8:45AM">
+                8:45AM
+            </div><div class="time-bubble morning" data-time="08:45" title="8:45AM">
+                8:45AM
+            </div><div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble morning" data-time="10:30" title="10:30AM">
+                10:30AM
+            </div><div class="time-bubble morning" data-time="11:00" title="11:00AM">
+                11:00AM
+            </div><div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div><div class="time-bubble morning" data-time="11:25" title="11:25AM">
+                11:25AM
+            </div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble afternoon" data-time="12:50" title="12:50PM">
+                12:50PM
+            </div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="13:35" title="1:35PM">
+                1:35PM
+            </div><div class="time-bubble afternoon" data-time="13:40" title="1:40PM">
+                1:40PM
+            </div><div class="time-bubble afternoon" data-time="13:45" title="1:45PM">
+                1:45PM
+            </div><div class="time-bubble afternoon" data-time="13:50" title="1:50PM">
+                1:50PM
+            </div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div><div class="time-bubble afternoon" data-time="14:35" title="2:35PM">
+                2:35PM
+            </div><div class="time-bubble afternoon" data-time="14:40" title="2:40PM">
+                2:40PM
+            </div><div class="time-bubble afternoon" data-time="14:50" title="2:50PM">
+                2:50PM
+            </div><div class="time-bubble afternoon" data-time="15:00" title="3:00PM">
+                3:00PM
+            </div><div class="time-bubble afternoon" data-time="15:10" title="3:10PM">
+                3:10PM
+            </div><div class="time-bubble afternoon" data-time="15:20" title="3:20PM">
+                3:20PM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble afternoon" data-time="15:35" title="3:35PM">
+                3:35PM
+            </div><div class="time-bubble afternoon" data-time="15:35" title="3:35PM">
+                3:35PM
+            </div><div class="time-bubble afternoon" data-time="15:40" title="3:40PM">
+                3:40PM
+            </div><div class="time-bubble afternoon" data-time="15:40" title="3:40PM">
+                3:40PM
+            </div><div class="time-bubble afternoon" data-time="15:45" title="3:45PM">
+                3:45PM
+            </div><div class="time-bubble afternoon" data-time="16:05" title="4:05PM">
+                4:05PM
+            </div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">
+                4:15PM
+            </div><div class="time-bubble afternoon" data-time="16:20" title="4:20PM">
+                4:20PM
+            </div><div class="time-bubble afternoon" data-time="16:45" title="4:45PM">
+                4:45PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="17:30" title="5:30PM">
+                5:30PM
+            </div><div class="time-bubble evening" data-time="17:30" title="5:30PM">
+                5:30PM
+            </div><div class="time-bubble evening" data-time="17:30" title="5:30PM">
+                5:30PM
+            </div><div class="time-bubble evening" data-time="17:50" title="5:50PM">
+                5:50PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div><div class="time-bubble evening" data-time="18:15" title="6:15PM">
+                6:15PM
+            </div><div class="time-bubble evening" data-time="18:15" title="6:15PM">
+                6:15PM
+            </div><div class="time-bubble evening" data-time="19:00" title="7:00PM">
+                7:00PM
+            </div><div class="time-bubble evening" data-time="19:30" title="7:30PM">
+                7:30PM
+            </div><div class="time-bubble evening" data-time="19:45" title="7:45PM">
+                7:45PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div><div class="time-bubble evening" data-time="20:45" title="8:45PM">
+                8:45PM
+            </div><div class="time-bubble evening" data-time="21:30" title="9:30PM">
+                9:30PM
+            </div><div class="time-bubble night" data-time="00:15" title="12:15AM">
+                12:15AM
+            </div><div class="time-bubble night" data-time="00:30" title="12:30AM">
+                12:30AM
+            </div><div class="time-bubble night" data-time="00:50" title="12:50AM">
+                12:50AM
+            </div><div class="time-bubble night" data-time="02:00" title="2:00AM">
+                2:00AM
+            </div><div class="time-bubble night" data-time="02:50" title="2:50AM">
+                2:50AM
+            </div><div class="time-bubble night" data-time="03:00" title="3:00AM">
+                3:00AM
+            </div><div class="time-bubble night" data-time="03:15" title="3:15AM">
+                3:15AM
+            </div><div class="time-bubble night" data-time="03:45" title="3:45AM">
+                3:45AM
+            </div><div class="time-bubble night" data-time="04:10" title="4:10AM">
+                4:10AM
+            </div><div class="time-bubble night" data-time="22:30" title="10:30PM">
+                10:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-navapur" data-letter="n" data-busstop="navapur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Navapur</h3>
+                        <span class="bus-count">6</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:40" title="7:40AM">
+                7:40AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="10:10" title="10:10AM">
+                10:10AM
+            </div><div class="time-bubble morning" data-time="10:30" title="10:30AM">
+                10:30AM
+            </div><div class="time-bubble afternoon" data-time="13:45" title="1:45PM">
+                1:45PM
+            </div><div class="time-bubble night" data-time="22:35" title="10:35PM">
+                10:35PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-n-nimgiri" data-letter="n" data-busstop="nimgiri">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Nimgiri</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble evening" data-time="18:45" title="6:45PM">
+                6:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-o-ozhar-/-otur" data-letter="o" data-busstop="ozhar / otur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Ozhar / Otur</h3>
+                        <span class="bus-count">21</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div><div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble morning" data-time="08:15" title="8:15AM">
+                8:15AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:30" title="10:30AM">
+                10:30AM
+            </div><div class="time-bubble morning" data-time="10:45" title="10:45AM">
+                10:45AM
+            </div><div class="time-bubble morning" data-time="11:30" title="11:30AM">
+                11:30AM
+            </div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div><div class="time-bubble afternoon" data-time="14:45" title="2:45PM">
+                2:45PM
+            </div><div class="time-bubble afternoon" data-time="14:45" title="2:45PM">
+                2:45PM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div><div class="time-bubble afternoon" data-time="16:45" title="4:45PM">
+                4:45PM
+            </div><div class="time-bubble evening" data-time="17:30" title="5:30PM">
+                5:30PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div><div class="time-bubble evening" data-time="18:30" title="6:30PM">
+                6:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-pachora" data-letter="p" data-busstop="pachora">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Pachora</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-palus" data-letter="p" data-busstop="palus">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Palus</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:45" title="9:45AM">
+                9:45AM
+            </div><div class="time-bubble afternoon" data-time="12:40" title="12:40PM">
+                12:40PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-parel-(mumbai)" data-letter="p" data-busstop="parel (mumbai)">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Parel (Mumbai)</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="18:00" title="6:00PM">
+                6:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-parner" data-letter="p" data-busstop="parner">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Parner</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble afternoon" data-time="14:20" title="2:20PM">
+                2:20PM
+            </div><div class="time-bubble night" data-time="04:30" title="4:30AM">
+                4:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-peth-via-nashik" data-letter="p" data-busstop="peth via nashik">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Peth via Nashik</h3>
+                        <span class="bus-count">5</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:45" title="6:45AM">
+                6:45AM
+            </div><div class="time-bubble morning" data-time="08:55" title="8:55AM">
+                8:55AM
+            </div><div class="time-bubble afternoon" data-time="12:20" title="12:20PM">
+                12:20PM
+            </div><div class="time-bubble night" data-time="02:30" title="2:30AM">
+                2:30AM
+            </div><div class="time-bubble night" data-time="22:45" title="10:45PM">
+                10:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-pimpalgaon-baswant" data-letter="p" data-busstop="pimpalgaon baswant">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Pimpalgaon Baswant</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="15:50" title="3:50PM">
+                3:50PM
+            </div><div class="time-bubble night" data-time="02:30" title="2:30AM">
+                2:30AM
+            </div><div class="time-bubble night" data-time="03:45" title="3:45AM">
+                3:45AM
+            </div><div class="time-bubble night" data-time="22:00" title="10:00PM">
+                10:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-pimpri-chinchwad-/-wai" data-letter="p" data-busstop="pimpri chinchwad / wai">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Pimpri Chinchwad / Wai</h3>
+                        <span class="bus-count">5</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:45" title="6:45AM">
+                6:45AM
+            </div><div class="time-bubble morning" data-time="10:20" title="10:20AM">
+                10:20AM
+            </div><div class="time-bubble morning" data-time="11:05" title="11:05AM">
+                11:05AM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-p-pokhari" data-letter="p" data-busstop="pokhari">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Pokhari</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-sakori" data-letter="s" data-busstop="sakori">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Sakori</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div><div class="time-bubble evening" data-time="19:30" title="7:30PM">
+                7:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-sakri" data-letter="s" data-busstop="sakri">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Sakri</h3>
+                        <span class="bus-count">3</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:20" title="8:20AM">
+                8:20AM
+            </div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-sangamner" data-letter="s" data-busstop="sangamner">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Sangamner</h3>
+                        <span class="bus-count">7</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="13:45" title="1:45PM">
+                1:45PM
+            </div><div class="time-bubble evening" data-time="20:20" title="8:20PM">
+                8:20PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div><div class="time-bubble evening" data-time="20:40" title="8:40PM">
+                8:40PM
+            </div><div class="time-bubble evening" data-time="21:55" title="9:55PM">
+                9:55PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-sangli" data-letter="s" data-busstop="sangli">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Sangli</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="08:55" title="8:55AM">
+                8:55AM
+            </div><div class="time-bubble morning" data-time="09:45" title="9:45AM">
+                9:45AM
+            </div><div class="time-bubble morning" data-time="10:50" title="10:50AM">
+                10:50AM
+            </div><div class="time-bubble night" data-time="23:15" title="11:15PM">
+                11:15PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-saswad" data-letter="s" data-busstop="saswad">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Saswad</h3>
+                        <span class="bus-count">6</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="11:10" title="11:10AM">
+                11:10AM
+            </div><div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="19:15" title="7:15PM">
+                7:15PM
+            </div><div class="time-bubble night" data-time="01:15" title="1:15AM">
+                1:15AM
+            </div><div class="time-bubble night" data-time="01:45" title="1:45AM">
+                1:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-satana" data-letter="s" data-busstop="satana">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Satana</h3>
+                        <span class="bus-count">7</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:45" title="9:45AM">
+                9:45AM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble evening" data-time="18:15" title="6:15PM">
+                6:15PM
+            </div><div class="time-bubble evening" data-time="20:00" title="8:00PM">
+                8:00PM
+            </div><div class="time-bubble evening" data-time="20:50" title="8:50PM">
+                8:50PM
+            </div><div class="time-bubble night" data-time="00:40" title="12:40AM">
+                12:40AM
+            </div><div class="time-bubble night" data-time="02:30" title="2:30AM">
+                2:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-shahada" data-letter="s" data-busstop="shahada">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Shahada</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-shingve-via-ranjani" data-letter="s" data-busstop="shingve via ranjani">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Shingve via Ranjani</h3>
+                        <span class="bus-count">12</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div><div class="time-bubble morning" data-time="08:15" title="8:15AM">
+                8:15AM
+            </div><div class="time-bubble morning" data-time="09:05" title="9:05AM">
+                9:05AM
+            </div><div class="time-bubble morning" data-time="09:40" title="9:40AM">
+                9:40AM
+            </div><div class="time-bubble morning" data-time="11:20" title="11:20AM">
+                11:20AM
+            </div><div class="time-bubble afternoon" data-time="12:55" title="12:55PM">
+                12:55PM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble afternoon" data-time="14:45" title="2:45PM">
+                2:45PM
+            </div><div class="time-bubble afternoon" data-time="15:00" title="3:00PM">
+                3:00PM
+            </div><div class="time-bubble afternoon" data-time="16:45" title="4:45PM">
+                4:45PM
+            </div><div class="time-bubble evening" data-time="17:45" title="5:45PM">
+                5:45PM
+            </div><div class="time-bubble evening" data-time="18:50" title="6:50PM">
+                6:50PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-shirdi" data-letter="s" data-busstop="shirdi">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Shirdi</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:40" title="7:40AM">
+                7:40AM
+            </div><div class="time-bubble morning" data-time="10:35" title="10:35AM">
+                10:35AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-shirpur" data-letter="s" data-busstop="shirpur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Shirpur</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-shivajinagar,-pune" data-letter="s" data-busstop="shivajinagar, pune">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Shivajinagar, Pune</h3>
+                        <span class="bus-count">143</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="06:30" title="6:30AM">
+                6:30AM
+            </div><div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div><div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble morning" data-time="07:15" title="7:15AM">
+                7:15AM
+            </div><div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble morning" data-time="08:15" title="8:15AM">
+                8:15AM
+            </div><div class="time-bubble morning" data-time="08:15" title="8:15AM">
+                8:15AM
+            </div><div class="time-bubble morning" data-time="08:40" title="8:40AM">
+                8:40AM
+            </div><div class="time-bubble morning" data-time="08:40" title="8:40AM">
+                8:40AM
+            </div><div class="time-bubble morning" data-time="08:45" title="8:45AM">
+                8:45AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="09:00" title="9:00AM">
+                9:00AM
+            </div><div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble morning" data-time="09:25" title="9:25AM">
+                9:25AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="09:45" title="9:45AM">
+                9:45AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div><div class="time-bubble morning" data-time="10:10" title="10:10AM">
+                10:10AM
+            </div><div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble morning" data-time="10:35" title="10:35AM">
+                10:35AM
+            </div><div class="time-bubble morning" data-time="10:40" title="10:40AM">
+                10:40AM
+            </div><div class="time-bubble morning" data-time="10:45" title="10:45AM">
+                10:45AM
+            </div><div class="time-bubble morning" data-time="10:50" title="10:50AM">
+                10:50AM
+            </div><div class="time-bubble morning" data-time="10:50" title="10:50AM">
+                10:50AM
+            </div><div class="time-bubble morning" data-time="11:00" title="11:00AM">
+                11:00AM
+            </div><div class="time-bubble morning" data-time="11:10" title="11:10AM">
+                11:10AM
+            </div><div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div><div class="time-bubble morning" data-time="11:20" title="11:20AM">
+                11:20AM
+            </div><div class="time-bubble morning" data-time="11:25" title="11:25AM">
+                11:25AM
+            </div><div class="time-bubble morning" data-time="11:30" title="11:30AM">
+                11:30AM
+            </div><div class="time-bubble morning" data-time="11:40" title="11:40AM">
+                11:40AM
+            </div><div class="time-bubble morning" data-time="11:45" title="11:45AM">
+                11:45AM
+            </div><div class="time-bubble morning" data-time="11:50" title="11:50AM">
+                11:50AM
+            </div><div class="time-bubble morning" data-time="11:55" title="11:55AM">
+                11:55AM
+            </div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">
+                12:00PM
+            </div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">
+                12:30PM
+            </div><div class="time-bubble afternoon" data-time="12:40" title="12:40PM">
+                12:40PM
+            </div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">
+                1:00PM
+            </div><div class="time-bubble afternoon" data-time="13:10" title="1:10PM">
+                1:10PM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble afternoon" data-time="13:25" title="1:25PM">
+                1:25PM
+            </div><div class="time-bubble afternoon" data-time="13:25" title="1:25PM">
+                1:25PM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble afternoon" data-time="13:35" title="1:35PM">
+                1:35PM
+            </div><div class="time-bubble afternoon" data-time="13:40" title="1:40PM">
+                1:40PM
+            </div><div class="time-bubble afternoon" data-time="13:40" title="1:40PM">
+                1:40PM
+            </div><div class="time-bubble afternoon" data-time="13:40" title="1:40PM">
+                1:40PM
+            </div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">
+                2:00PM
+            </div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div><div class="time-bubble afternoon" data-time="14:40" title="2:40PM">
+                2:40PM
+            </div><div class="time-bubble afternoon" data-time="15:05" title="3:05PM">
+                3:05PM
+            </div><div class="time-bubble afternoon" data-time="15:05" title="3:05PM">
+                3:05PM
+            </div><div class="time-bubble afternoon" data-time="15:15" title="3:15PM">
+                3:15PM
+            </div><div class="time-bubble afternoon" data-time="15:20" title="3:20PM">
+                3:20PM
+            </div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">
+                3:30PM
+            </div><div class="time-bubble afternoon" data-time="15:45" title="3:45PM">
+                3:45PM
+            </div><div class="time-bubble afternoon" data-time="15:50" title="3:50PM">
+                3:50PM
+            </div><div class="time-bubble afternoon" data-time="15:50" title="3:50PM">
+                3:50PM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div><div class="time-bubble afternoon" data-time="16:05" title="4:05PM">
+                4:05PM
+            </div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">
+                4:15PM
+            </div><div class="time-bubble afternoon" data-time="16:20" title="4:20PM">
+                4:20PM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">
+                4:30PM
+            </div><div class="time-bubble afternoon" data-time="16:40" title="4:40PM">
+                4:40PM
+            </div><div class="time-bubble afternoon" data-time="16:45" title="4:45PM">
+                4:45PM
+            </div><div class="time-bubble afternoon" data-time="16:50" title="4:50PM">
+                4:50PM
+            </div><div class="time-bubble afternoon" data-time="16:55" title="4:55PM">
+                4:55PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="17:00" title="5:00PM">
+                5:00PM
+            </div><div class="time-bubble evening" data-time="17:10" title="5:10PM">
+                5:10PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="17:20" title="5:20PM">
+                5:20PM
+            </div><div class="time-bubble evening" data-time="17:20" title="5:20PM">
+                5:20PM
+            </div><div class="time-bubble evening" data-time="17:20" title="5:20PM">
+                5:20PM
+            </div><div class="time-bubble evening" data-time="17:25" title="5:25PM">
+                5:25PM
+            </div><div class="time-bubble evening" data-time="17:35" title="5:35PM">
+                5:35PM
+            </div><div class="time-bubble evening" data-time="17:40" title="5:40PM">
+                5:40PM
+            </div><div class="time-bubble evening" data-time="17:45" title="5:45PM">
+                5:45PM
+            </div><div class="time-bubble evening" data-time="17:50" title="5:50PM">
+                5:50PM
+            </div><div class="time-bubble evening" data-time="17:55" title="5:55PM">
+                5:55PM
+            </div><div class="time-bubble evening" data-time="17:55" title="5:55PM">
+                5:55PM
+            </div><div class="time-bubble evening" data-time="18:10" title="6:10PM">
+                6:10PM
+            </div><div class="time-bubble evening" data-time="18:15" title="6:15PM">
+                6:15PM
+            </div><div class="time-bubble evening" data-time="18:20" title="6:20PM">
+                6:20PM
+            </div><div class="time-bubble evening" data-time="18:35" title="6:35PM">
+                6:35PM
+            </div><div class="time-bubble evening" data-time="18:40" title="6:40PM">
+                6:40PM
+            </div><div class="time-bubble evening" data-time="18:45" title="6:45PM">
+                6:45PM
+            </div><div class="time-bubble evening" data-time="18:45" title="6:45PM">
+                6:45PM
+            </div><div class="time-bubble evening" data-time="18:50" title="6:50PM">
+                6:50PM
+            </div><div class="time-bubble evening" data-time="19:00" title="7:00PM">
+                7:00PM
+            </div><div class="time-bubble evening" data-time="19:05" title="7:05PM">
+                7:05PM
+            </div><div class="time-bubble evening" data-time="19:05" title="7:05PM">
+                7:05PM
+            </div><div class="time-bubble evening" data-time="19:15" title="7:15PM">
+                7:15PM
+            </div><div class="time-bubble evening" data-time="19:20" title="7:20PM">
+                7:20PM
+            </div><div class="time-bubble evening" data-time="19:25" title="7:25PM">
+                7:25PM
+            </div><div class="time-bubble evening" data-time="19:30" title="7:30PM">
+                7:30PM
+            </div><div class="time-bubble evening" data-time="19:30" title="7:30PM">
+                7:30PM
+            </div><div class="time-bubble evening" data-time="19:40" title="7:40PM">
+                7:40PM
+            </div><div class="time-bubble evening" data-time="19:50" title="7:50PM">
+                7:50PM
+            </div><div class="time-bubble evening" data-time="20:00" title="8:00PM">
+                8:00PM
+            </div><div class="time-bubble evening" data-time="20:00" title="8:00PM">
+                8:00PM
+            </div><div class="time-bubble evening" data-time="20:15" title="8:15PM">
+                8:15PM
+            </div><div class="time-bubble evening" data-time="20:15" title="8:15PM">
+                8:15PM
+            </div><div class="time-bubble evening" data-time="20:25" title="8:25PM">
+                8:25PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div><div class="time-bubble evening" data-time="20:45" title="8:45PM">
+                8:45PM
+            </div><div class="time-bubble evening" data-time="20:45" title="8:45PM">
+                8:45PM
+            </div><div class="time-bubble evening" data-time="20:50" title="8:50PM">
+                8:50PM
+            </div><div class="time-bubble evening" data-time="21:15" title="9:15PM">
+                9:15PM
+            </div><div class="time-bubble evening" data-time="21:25" title="9:25PM">
+                9:25PM
+            </div><div class="time-bubble evening" data-time="21:30" title="9:30PM">
+                9:30PM
+            </div><div class="time-bubble evening" data-time="21:35" title="9:35PM">
+                9:35PM
+            </div><div class="time-bubble evening" data-time="21:40" title="9:40PM">
+                9:40PM
+            </div><div class="time-bubble night" data-time="00:45" title="12:45AM">
+                12:45AM
+            </div><div class="time-bubble night" data-time="02:15" title="2:15AM">
+                2:15AM
+            </div><div class="time-bubble night" data-time="02:45" title="2:45AM">
+                2:45AM
+            </div><div class="time-bubble night" data-time="03:00" title="3:00AM">
+                3:00AM
+            </div><div class="time-bubble night" data-time="03:10" title="3:10AM">
+                3:10AM
+            </div><div class="time-bubble night" data-time="03:15" title="3:15AM">
+                3:15AM
+            </div><div class="time-bubble night" data-time="03:30" title="3:30AM">
+                3:30AM
+            </div><div class="time-bubble night" data-time="22:00" title="10:00PM">
+                10:00PM
+            </div><div class="time-bubble night" data-time="22:15" title="10:15PM">
+                10:15PM
+            </div><div class="time-bubble night" data-time="22:45" title="10:45PM">
+                10:45PM
+            </div><div class="time-bubble night" data-time="22:45" title="10:45PM">
+                10:45PM
+            </div><div class="time-bubble night" data-time="23:00" title="11:00PM">
+                11:00PM
+            </div><div class="time-bubble night" data-time="23:35" title="11:35PM">
+                11:35PM
+            </div><div class="time-bubble night" data-time="23:45" title="11:45PM">
+                11:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-shrirampur" data-letter="s" data-busstop="shrirampur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Shrirampur</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble afternoon" data-time="16:35" title="4:35PM">
+                4:35PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-sindkheda" data-letter="s" data-busstop="sindkheda">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Sindkheda</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:45" title="10:45AM">
+                10:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-surat-(gujarat)" data-letter="s" data-busstop="surat (gujarat)">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Surat (Gujarat)</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="10:00" title="10:00AM">
+                10:00AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-s-swargate-pune" data-letter="s" data-busstop="swargate pune">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Swargate Pune</h3>
+                        <span class="bus-count">4</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="09:15" title="9:15AM">
+                9:15AM
+            </div><div class="time-bubble morning" data-time="10:15" title="10:15AM">
+                10:15AM
+            </div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">
+                4:15PM
+            </div><div class="time-bubble evening" data-time="20:50" title="8:50PM">
+                8:50PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-t-tasgaon" data-letter="t" data-busstop="tasgaon">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Tasgaon</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble night" data-time="04:45" title="4:45AM">
+                4:45AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-t-thane" data-letter="t" data-busstop="thane">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Thane</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="14:45" title="2:45PM">
+                2:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-t-trimbakeshwar" data-letter="t" data-busstop="trimbakeshwar">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Trimbakeshwar</h3>
+                        <span class="bus-count">2</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble afternoon" data-time="14:55" title="2:55PM">
+                2:55PM
+            </div><div class="time-bubble night" data-time="01:30" title="1:30AM">
+                1:30AM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-u-umbraj,-otur" data-letter="u" data-busstop="umbraj, otur">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Umbraj, Otur</h3>
+                        <span class="bus-count">11</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:30" title="7:30AM">
+                7:30AM
+            </div><div class="time-bubble morning" data-time="08:00" title="8:00AM">
+                8:00AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="10:45" title="10:45AM">
+                10:45AM
+            </div><div class="time-bubble afternoon" data-time="12:15" title="12:15PM">
+                12:15PM
+            </div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">
+                1:15PM
+            </div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">
+                2:30PM
+            </div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">
+                4:00PM
+            </div><div class="time-bubble evening" data-time="17:15" title="5:15PM">
+                5:15PM
+            </div><div class="time-bubble evening" data-time="18:45" title="6:45PM">
+                6:45PM
+            </div><div class="time-bubble evening" data-time="19:30" title="7:30PM">
+                7:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-v-vadodara-(gujarat)" data-letter="v" data-busstop="vadodara (gujarat)">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Vadodara (Gujarat)</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-v-vita" data-letter="v" data-busstop="vita">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Vita</h3>
+                        <span class="bus-count">1</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble evening" data-time="18:45" title="6:45PM">
+                6:45PM
+            </div>
+                    </div>
+                </div><div class="bus-stop-section" id="busstop-y-yenere" data-letter="y" data-busstop="yenere">
+                    <div class="bus-stop-header">
+                        <h3 class="bus-stop-name">Yenere</h3>
+                        <span class="bus-count">6</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="time-bubble morning" data-time="07:00" title="7:00AM">
+                7:00AM
+            </div><div class="time-bubble morning" data-time="09:30" title="9:30AM">
+                9:30AM
+            </div><div class="time-bubble morning" data-time="11:15" title="11:15AM">
+                11:15AM
+            </div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">
+                1:30PM
+            </div><div class="time-bubble evening" data-time="18:15" title="6:15PM">
+                6:15PM
+            </div><div class="time-bubble evening" data-time="20:30" title="8:30PM">
+                8:30PM
+            </div>
+                    </div>
+                </div>
+
+            <!-- Depot About Section -->
+            
+                <div class="depot-about-section mt-3">
+                    <h2>About Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price Depot</h2>
+                    <div class="about-content">
+                        <p>नारायणगाव बस स्थानक (Narayangaon Bus Stand) हे पुणे जिल्ह्यातील जुन्नर तालुक्यातील एक महत्त्वाचे आणि व्यस्त एसटी बस आगार आहे. नारायणगाव हे शहर जुन्नर तालुक्याचे मुख्य व्यापारी केंद्र असून येथून आसपासच्या ग्रामीण भागातील हजारो प्रवासी दररोज प्रवास करतात. As a key transportation hub, the depot connects the Khed, Junnar, and Ambegaon regions to major cities across Maharashtra, including Pune, Mumbai, Nashik, and beyond. The bus stand's strategic location on the Pune-Nashik highway makes it a vital stop for long-distance travelers and daily commuters alike.</p><p>नारायणगाव बस स्थानकाचे सर्वात मोठे वैशिष्ट्य म्हणजे पुणे शहराशी असलेली अप्रतिम कनेक्टिव्हिटी. पुण्याच्या शिवाजीनगर आणि स्वारगेटसाठी येथून दिवसभरात शेकडो बससेवा उपलब्ध आहेत. The first bus to Pune departs shortly after midnight (00:45), and services continue at frequent intervals of 15-30 minutes throughout the day until late at night (23:45) [citation:1]. This makes Narayangaon an ideal commuting point for students, office workers, and business professionals traveling to Pune. For those heading to Swargate, buses are available at 09:15, 10:15, 16:15, and 20:50, ensuring flexibility for various schedules [citation:5].</p><p>या बस स्थानकाचे आणखी एक वैशिष्ट्य म्हणजे जुन्नर आणि परिसरासाठी असलेली विस्तृत बससेवा. जुन्नर शहरासाठी येथून पहाटे ४.३५ पासून रात्री १०.०० पर्यंत ५० पेक्षा जास्त बससेवा उपलब्ध आहेत. The frequency of buses to Junnar is exceptional, with services every 15-20 minutes during peak hours, catering to the large number of passengers traveling between these two towns [citation:8]. Additionally, local routes to Ozhar, Otur, Alephata, Khodad, and Shingve are well-served, ensuring that even the most remote villages in the region have reliable access to public transport.</p><p>नारायणगाव बस स्थानक मुंबई महानगर परिसराशीही उत्तम प्रकारे जोडले गेले आहे. मुंबईसाठी खंडाळा मार्गे ८ बससेवा (सकाळी ६.३० ते रात्री १०.२५) उपलब्ध आहेत. कल्याणसाठी अलेफाटा मार्गे ४ बससेवा आणि जुन्नर मार्गे १ बससेवा आहे. ठाणे (१४:४५), बोरीवली (११:३०), कुर्ला (१३:३०, १५:४५), आणि परळ (१०:१५, १६:३०, १७:००, १८:००) यांसारख्या मुंबई उपनगरांसाठीही थेट बससेवा उपलब्ध आहे [citation:1]. For passengers heading to Gujarat, direct buses to Surat (10:00) and Vadodara (20:30) are also available, making this depot a key transit point for inter-state travel.</p><p>नाशिक आणि उत्तर महाराष्ट्रासाठीही येथून विस्तृत बससेवा उपलब्ध आहे. नाशिकसाठी दररोज ७० पेक्षा जास्त बससेवा आहेत, ज्यामुळे प्रवाशांना कोणत्याही वेळी सहज प्रवास करता येतो [citation:3]. सिन्नर, सटाणा, नंदुरबार, धुळे, मालेगाव, चोपडा, अमळनेर यांसारख्या ठिकाणी जाण्यासाठीही नियमित बससेवा उपलब्ध आहे. पवित्र शहर शिर्डीसाठी सकाळी ७.४० आणि १०.३५ वाजता थेट बससेवा आहे, जी भाविकांसाठी अत्यंत सोयीची आहे [citation:4].</p><p>दक्षिण महाराष्ट्राशी संपर्क साधण्यासाठीही नारायणगाव हे एक महत्त्वाचे केंद्र आहे. कोल्हापूर, सांगली, मिरज, इस्लामपूर, पालूस, तासगाव, कुडाळ, विटा, दहिवाडी यांसारख्या ठिकाणी जाण्यासाठी येथून नियमित बससेवा उपलब्ध आहे [citation:1]. The bus stand's connectivity to southern Maharashtra is crucial for passengers traveling for business, education, or pilgrimage to places like Pandharpur and Tuljapur, which are accessible via connecting buses from these hubs.</p><p>बसस्थानकावर प्रवाशांच्या सोयीसाठी अनेक सुविधा उपलब्ध आहेत. येथे स्वच्छ प्रतीक्षालय, तिकीट खिडक्या, डिजिटल वेळापत्रक फलक, महिला व पुरुषांसाठी स्वतंत्र प्रतिक्षा कक्ष, आणि पिण्याच्या पाण्याची सुविधा आहे. The depot also has several small food stalls and tea shops for refreshments. For passenger safety and security, the bus stand premises are monitored regularly. टोल फ्री क्रमांक 1800 221250 वर प्रवाशी कोणतीही तक्रार किंवा मदत मागू शकतात. Additionally, online ticket booking is available through the MSRTC official website and platforms like redBus and Goibibo [citation:2][citation:7].</p><p>नारायणगाव बस स्थानक हे केवळ एक वाहतूक केंद्र नसून ते जुन्नर तालुक्याच्या आर्थिक आणि सामाजिक जडणघडणीचा कणा आहे. The depot's extensive network, reliable service, and passenger-centric facilities make it a lifeline for thousands of daily commuters. Whether you're a student traveling to Pune for college, a farmer going to the market, a pilgrim heading to Shirdi or Nashik, or a business traveler going to Mumbai or Gujarat, Narayangaon Bus Stand offers convenient and affordable travel options. MSRTC's commitment to maintaining punctuality and service quality ensures that passengers can plan their journeys with confidence and ease.</p>
+                    </div>
+                </div>
+            
+
+            <!-- FAQ Section -->
+            
+                <div class="faq-section mt-3">
+                    <h2>FAQs</h2>
+                    <div class="faq-container">
+                        
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाव बस स्थानकाचा संपर्क क्रमांक काय आहे?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    नारायणगाव बस स्थानकाचा संपर्क क्रमांक 02132-243456 आहे. तसेच MSRTC चा टोल फ्री क्रमांक 1800 221250 वर 24 तास मदत घेऊ शकता. तिकीट बुकिंग, बस वेळापत्रक, तक्रार किंवा कोणत्याही मदतीसाठी या क्रमांकावर संपर्क करू शकता.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाववरून पुण्यासाठी (शिवाजीनगर) बस किती वाजता सुटतात?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    नारायणगाववरून पुणे (शिवाजीनगर) साठी भरपूर बससेवा उपलब्ध आहे. पहिली बस रात्री 12:45 वाजता (00:45) सुटते आणि शेवटची बस रात्री 11:45 वाजता (23:45) सुटते. दर 15-30 मिनिटांनी बससेवा उपलब्ध असते [citation:1][citation:5]. स्वारगेटसाठी सकाळी 09:15, 10:15, दुपारी 16:15 आणि रात्री 20:50 वाजता बससेवा आहे.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाववरून मुंबईसाठी बस किती वाजता सुटते?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    नारायणगाववरून मुंबईसाठी खंडाळा मार्गे 8 बससेवा आहेत: 06:30, 07:45, 09:30, 10:00, 12:15, 14:15, 21:20, 22:25 [citation:1]. तसेच माळशेज-कल्याण मार्गे एक बस सकाळी 10:00 वाजता सुटते. कल्याणसाठी अलेफाटा मार्गे 4 बससेवा (07:05, 08:30, 09:00, 17:00) आणि जुन्नर मार्गे एक बस (15:30) आहे. ठाण्यासाठी 14:45, बोरीवलीसाठी 11:30, कुर्ल्यासाठी 13:30 व 15:45 आणि परळसाठी 10:15, 16:30, 17:00, 18:00 वाजता बससेवा आहे.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाववरून नाशिकसाठी बस किती वाजता आहेत?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    नारायणगाववरून नाशिकसाठी 70 पेक्षा जास्त बससेवा उपलब्ध आहेत. पहिली बस रात्री 12:15 वाजता (00:15) सुटते आणि शेवटची बस रात्री 10:30 वाजता (22:30) सुटते [citation:3][citation:9]. दर 15-30 मिनिटांनी बससेवा उपलब्ध असते. प्रमुख वेळा: 00:15, 00:30, 02:00, 03:00, 06:40, 07:35, 08:00, 09:15, 10:00, 11:00, 12:00, 13:00, 14:30, 15:30, 16:15, 17:00, 18:00, 19:30, 20:30, 21:30, 22:30.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाववरून शिर्डीसाठी बस किती वाजता आहे?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    नारायणगाववरून शिर्डीसाठी 2 बससेवा उपलब्ध आहेत: सकाळी 07:40 आणि 10:35 वाजता [citation:1][citation:4]. या बस भाविकांसाठी अत्यंत सोयीच्या आहेत. प्रवासाचा कालावधी साधारण 2.5 तास आहे [citation:4].
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाववरून जुन्नरसाठी बस किती वाजता सुटतात?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    नारायणगाववरून जुन्नरसाठी 50 पेक्षा जास्त बससेवा उपलब्ध आहेत. पहिली बस पहाटे 04:35 वाजता सुटते आणि शेवटची बस रात्री 10:00 वाजता (22:00) सुटते [citation:8]. दर 15-20 मिनिटांनी बससेवा उपलब्ध असते. प्रमुख वेळा: 05:15, 06:15, 07:15, 08:00, 08:30, 09:00, 09:30, 10:00, 10:30, 11:00, 12:15, 13:30, 14:30, 15:30, 16:30, 17:30, 18:00, 19:45, 21:15.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाववरून दक्षिण महाराष्ट्रासाठी (कोल्हापूर, सांगली) बस आहे का?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    होय, कोल्हापूरसाठी 3 बससेवा आहेत: रात्री 12:30 (00:30), सकाळी 11:15 आणि रात्री 09:30 (21:30) [citation:1]. सांगलीसाठी 4 बससेवा: 08:55, 09:45, 10:50, 23:15. मिरजसाठी 5 बससेवा: 06:45, 10:15, 11:35, 13:50, 14:30. तसेच इस्लामपूर (08:10), पालूस (09:45, 12:40), तासगाव (04:45, 13:15), विटा (18:45), दहिवाडी (08:55) येथेही बससेवा उपलब्ध आहे.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाववरून नंदुरबार, धुळे, मालेगावसाठी बस किती वाजता आहेत?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    नंदुरबारसाठी 4 बससेवा: 00:15, 07:10, 09:15, 21:20. धुळ्यासाठी 6 बससेवा: 08:30, 10:20, 11:45, 12:40, 14:25, 18:00. मालेगावसाठी 2 बससेवा: 04:45, 15:30. सटाण्यासाठी 7 बससेवा: 00:40, 02:30, 09:45, 16:30, 18:15, 20:00, 20:50 [citation:1].
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाव बसस्थानकावर ऑनलाइन तिकीट बुकिंगची सुविधा आहे का?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    होय, नारायणगाव बस स्थानकावरून प्रवासासाठी तुम्ही MSRTC च्या अधिकृत वेबसाइटवरून ऑनलाइन तिकीट बुक करू शकता. तसेच redBus, Goibibo, Abhibus सारख्या प्लॅटफॉर्मवरूनही सहज तिकीट बुकिंग करता येते [citation:2][citation:7]. आगावू बुकिंग केल्यास प्रवाशांना सीट निवडण्याची सोय असते.
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>नारायणगाव बसस्थानकावर प्रवाशांसाठी कोणकोणत्या सुविधा उपलब्ध आहेत?</span>
+                                </div>
+                                <div class="faq-answer">
+                                    नारायणगाव बसस्थानकावर प्रवाशांसाठी स्वच्छ प्रतीक्षालय, तिकीट खिडक्या, डिजिटल वेळापत्रक फलक, महिला व पुरुषांसाठी स्वतंत्र प्रतिक्षा कक्ष, पिण्याच्या पाण्याची सुविधा आणि खाद्यपदार्थांची दुकाने उपलब्ध आहेत. तसेच सुरक्षेसाठी बसस्थानक परिसरात पोलिस बंदोबस्त असतो. टोल फ्री क्रमांक 1800 221250 वर प्रवाशी कोणतीही तक्रार किंवा मदत मागू शकतात.
+                                </div>
+                            </div>
+                            
+                </div>
+            
+
+            <!-- Related Links Section -->
+            
+
+            <!-- SEO Content -->
+            <div class="seo-content">
+            <h2>Narayangaon Bus Stand Timetable 2026 | MSRTC Bus Schedule & Ticket Booking</h2>
+            <p>Plan your journey with the latest Narayangaon Bus Stand timetable for 2026. Narayangaon depot is a vital MSRTC hub in Junnar taluka, Pune district, providing reliable bus connectivity to major cities like Pune (Shivajinagar, Swargate), Mumbai (Kurla, Borivali, Thane, Parel), Nashik, Shirdi, Kolhapur, Sangli, Junnar, Kalyan, Dhule, Nandurbar and surrounding rural areas including Ozhar, Otur, Alephata, Khodad, and Junnar.</p><p>Whether you're a daily commuter, student, farmer, pilgrim or business traveler, you can find detailed departure times, ticket prices, and online booking options here. The bus stand operates frequent services throughout the day with routes to:</p><ul><li><strong>Pune (Shivajinagar):</strong> 00:45 to 23:45 with buses every 15-30 minutes</li><li><strong>Swargate Pune:</strong> 09:15, 10:15, 16:15, 20:50 with 4 buses daily</li><li><strong>Mumbai via Khandala:</strong> 06:30 to 22:25 with 8 buses daily</li><li><strong>Kalyan:</strong> Multiple routes via Alephata (07:05, 08:30, 09:00, 17:00) and Junnar (15:30)</li><li><strong>Nashik:</strong> 00:15 to 22:30 with 70+ buses daily</li><li><strong>Shirdi:</strong> 07:40 and 10:35 with 2 buses daily for pilgrims</li><li><strong>Junnar:</strong> 04:35 to 22:00 with 50+ buses daily</li><li><strong>Kolhapur & Sangli:</strong> Regular services to Southern Maharashtra</li></ul><p>Passengers can avail clean waiting areas, digital timetable boards, ticket counters, food stalls and other basic amenities. Stay updated with the latest MSRTC schedules and enjoy a hassle-free travel experience from Narayangaon Bus Stand. For online booking, visit the MSRTC official website or use popular platforms like redBus. For any assistance, contact toll free number 1800 221250.</p>
+
+            
+        </div>
+        </div>
+    </main>
+
+    <!-- Footer Ad -->
+    
+
+    <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <div class="footer-links">
+                            <a href="../../../../index.html">Home</a>
+                            <a href="../../../../about.html">About</a>
+                            <a href="../../../../contact.html">Contact</a>
+                            <a href="../../../../blogs/index.html">Blogs</a>
+                            <a href="../../../../terms.html">Terms</a>
+                            <a href="../../../../privacy.html">Privacy</a>
+                        </div>
+                    </div>
+
+                    <!-- MSRTC Info - NEW COLUMN -->
+                    <div class="footer-section">
+                        <h3>MSRTC Official</h3>
+                        <div class="footer-links">
+                            <a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a>
+                            <a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a>
+                            <a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a>
+                            <a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a>
+                        </div>
+                    </div>
+
+                    <!-- Useful Links - NEW COLUMN -->
+                    <div class="footer-section">
+                        <h3>Useful Links</h3>
+                        <div class="footer-links">
+                            <a href="../../../../disclaimer.html">Disclaimer</a>
+                            <a href="../../../../sitemap.xml">Sitemap</a>
+                            <a href="../../../../contact.html#feedback">Feedback</a>
+                            <a href="../../../../contact.html#report">Report Issue</a>
+                        </div>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="copyright">
+                        © 2026 MSRTC Timetable.<br>
+                        This is an unofficial timetable portal.<br>
+                        <small>All bus schedules are for reference only.</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Quick Search Modal -->
+    <div class="quick-search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="bi bi-search"></i> Advanced Search</h3>
+                <button class="close-search">&times;</button>
+            </div>
+            <div class="search-modal-body">
+                <input type="text" class="global-search-input" placeholder="Search bus stops in Narayangaon Bus Stand Timetable 2026 | MSRTC Ticket Price...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // MSRTC Bus Timetable Application - Mobile Optimized with Vertical Alphabet
+class BusTimetableApp {
+    constructor() {
+        this.istOffset = 5.5 * 60 * 60 * 1000;
+        this.activeFilter = 'all';
+        this.searchTerm = '';
+        this.activeTab = 'divisions'; // Track active tab
+        this.init();
+    }
+
+    init() {
+        console.log('🚌 MSRTC Bus Timetable App Initialized');
+
+        // Initialize URL constants if not already loaded
+        if (typeof window.getUrlFromConstant === 'undefined') {
+            console.warn('URL constants not loaded yet');
+            // Try to load them
+            this.loadUrlConstants();
+        }
+
+        // Handle hash navigation on page load
+        if (window.location.hash) {
+            setTimeout(() => {
+                this.handleHashNavigation();
+            }, 100);
+        }
+
+        // Update time display
+        this.updateTimeDisplay();
+        setInterval(() => this.updateTimeDisplay(), 1000);
+
+        // Initialize tabs
+        this.initAllTabs();
+
+        // Initialize search functionality
+        this.initSearch();
+
+        // Initialize alphabet navigation
+        this.initAlphabetNavigation();
+
+        // Initialize depot-specific features
+        if (document.querySelector('.time-filters')) {
+            this.initFilters();
+            this.initTimeClick();
+            setTimeout(() => {
+                this.highlightNextBus();
+                this.applyFilters();
+            }, 100);
+        }
+
+        // Initialize scroll highlighting for vertical alphabet
+        this.initScrollHighlighting();
+
+        // Prevent horizontal scroll
+        this.preventHorizontalScroll();
+
+        // Mobile-specific optimizations
+        this.mobileOptimizations();
+
+        // Track active tab for search placeholder
+        this.trackActiveTab();
+
+        // Initialize blog links with URL constants
+        this.initBlogLinks();
+    }
+
+    loadUrlConstants() {
+        // If URL constants are not loaded, try to load them
+        if (typeof window.URL_CONSTANTS === 'undefined') {
+            console.log('Loading URL constants...');
+            // The constants should be loaded via script tag in the HTML
+        }
+    }
+
+    initBlogLinks() {
+        // Wait a bit for URL constants to load
+        setTimeout(() => {
+            if (typeof window.handleBlogLinkClick !== 'undefined') {
+                // Add click handlers to all blog links with data-constant attribute
+                document.querySelectorAll('.blog-link[data-constant]').forEach(function(link) {
+                    link.addEventListener('click', window.handleBlogLinkClick);
+                });
+                console.log('Blog links with URL constants initialized');
+            } else {
+                console.warn('URL constants functions not available for blog links');
+            }
+        }, 500);
+    }
+
+    mobileOptimizations() {
+        // Reduce animations on mobile
+        if ('ontouchstart' in window || navigator.maxTouchPoints) {
+            document.documentElement.style.setProperty('--transition-speed', '0.2s');
+        }
+    }
+
+    preventHorizontalScroll() {
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflowX = 'hidden';
+
+        window.addEventListener('resize', () => {
+            document.body.style.overflowX = 'hidden';
+            document.documentElement.style.overflowX = 'hidden';
+        });
+    }
+
+    handleHashNavigation() {
+        if (window.location.pathname.endsWith('index.html') ||
+            window.location.pathname.endsWith('/')) {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['divisions', 'districts', 'tehsils', 'depots'].includes(hash)) {
+                const tabButton = document.querySelector(`.tab-btn[data-tab="${hash}"]`);
+                if (tabButton) {
+                    tabButton.click();
+                }
+            }
+        }
+    }
+
+    updateTimeDisplay() {
+        const now = new Date();
+        const istTime = new Date(now.getTime() + this.istOffset);
+
+        let hours = istTime.getUTCHours();
+        const minutes = istTime.getUTCMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        hours = hours % 12 || 12;
+        const displayHours = hours.toString().padStart(2, '0');
+
+        document.querySelectorAll('.current-time').forEach(timeDisplay => {
+            timeDisplay.textContent = `${displayHours}:${minutes} ${ampm}`;
+        });
+
+        if (document.querySelector('.time-filters') && now.getSeconds() % 30 === 0) {
+            this.highlightNextBus();
+        }
+    }
+
+    trackActiveTab() {
+        // Observe tab changes to update search placeholder
+        const observer = new MutationObserver(() => {
+            const activeTabBtn = document.querySelector('.tab-btn.active');
+            if (activeTabBtn) {
+                this.activeTab = activeTabBtn.dataset.tab;
+                this.updateSearchPlaceholder();
+            }
+        });
+
+        const tabsHeader = document.querySelector('.tabs-header');
+        if (tabsHeader) {
+            observer.observe(tabsHeader, { attributes: true, subtree: true });
+        }
+    }
+
+    updateSearchPlaceholder() {
+        const searchInput = document.querySelector('.search-input');
+        if (!searchInput) return;
+
+        const placeholders = {
+            'divisions': 'Search divisions...',
+            'districts': 'Search districts...',
+            'tehsils': 'Search tehsils...',
+            'depots': 'Search depots...'
+        };
+
+        searchInput.placeholder = placeholders[this.activeTab] || 'Search depots, tehsils, districts...';
+    }
+
+    initAllTabs() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tabId}-tab`) {
+                        content.classList.add('active');
+                    }
+                });
+
+                if (window.location.pathname.endsWith('index.html') ||
+                    window.location.pathname.endsWith('/')) {
+                    window.history.replaceState(null, null, `#${tabId}`);
+                }
+
+                localStorage.setItem('activeTab', tabId);
+                this.activeTab = tabId;
+                this.updateSearchPlaceholder();
+
+                // Reset scroll when switching tabs
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+            });
+        });
+
+        const savedTab = localStorage.getItem('activeTab') || 'divisions';
+        const savedButton = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
+        if (savedButton) {
+            savedButton.click();
+        }
+    }
+
+    initAlphabetNavigation() {
+        const alphabetButtons = document.querySelectorAll('.alphabet-vertical-btn');
+        alphabetButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.classList.contains('disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const letter = button.dataset.letter;
+                this.jumpToLetter(letter);
+                this.highlightAlphabetButton(button);
+            });
+
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                button.click();
+            });
+        });
+    }
+
+    highlightAlphabetButton(clickedButton) {
+        // Remove active class from all alphabet buttons
+        document.querySelectorAll('.alphabet-vertical-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Add active class to clicked button
+        clickedButton.classList.add('active');
+    }
+
+    jumpToLetter(letter) {
+        // First try to jump to bus stop sections (for depot pages)
+        if (this.scrollToBusStopSection(letter)) {
+            return;
+        }
+
+        // Then try to jump to cards in the current tab
+        if (this.jumpToCards(letter)) {
+            return;
+        }
+
+        // Fallback to headings
+        const headings = document.querySelectorAll('h1, h2, h3, h4');
+        for (const heading of headings) {
+            if (heading.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   (document.querySelector('.search-bar-container') ? document.querySelector('.search-bar-container').offsetHeight : 0) + 10;
+                const headingTop = heading.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: headingTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(heading);
+                return;
+            }
+        }
+    }
+
+    jumpToCards(letter) {
+        const cards = document.querySelectorAll(`#${this.activeTab}-tab .rectangular-card`);
+        if (cards.length === 0) {
+            // Try generic cards if no tab-specific cards
+            const genericCards = document.querySelectorAll('.rectangular-card');
+            return this.scrollToCardByLetter(genericCards, letter);
+        }
+        return this.scrollToCardByLetter(cards, letter);
+    }
+
+    scrollToCardByLetter(cards, letter) {
+        for (const card of cards) {
+            const cardTitle = card.querySelector('h3');
+            if (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   (document.querySelector('.search-bar-container') ? document.querySelector('.search-bar-container').offsetHeight : 0) + 10;
+                const cardTop = card.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: cardTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(card);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    scrollToBusStopSection(letter) {
+        const lookupLetter = letter.toLowerCase();
+        const busStopSections = document.querySelectorAll(`.bus-stop-section[data-letter="${lookupLetter}"]`);
+
+        if (busStopSections.length > 0) {
+            const headerHeight = document.querySelector('.site-header').offsetHeight +
+                               (document.querySelector('.search-bar-container') ? document.querySelector('.search-bar-container').offsetHeight : 0) + 10;
+            const sectionTop = busStopSections[0].offsetTop - headerHeight;
+
+            window.scrollTo({
+                top: sectionTop,
+                behavior: 'smooth'
+            });
+
+            this.highlightElement(busStopSections[0]);
+            return true;
+        }
+
+        const allSections = document.querySelectorAll('.bus-stop-section');
+        for (const section of allSections) {
+            const busStopName = section.querySelector('.bus-stop-name')?.textContent.trim();
+            if (busStopName && busStopName.charAt(0).toLowerCase() === lookupLetter) {
+                const headerHeight = document.querySelector('.site-header').offsetHeight +
+                                   (document.querySelector('.search-bar-container') ? document.querySelector('.search-bar-container').offsetHeight : 0) + 10;
+                const sectionTop = section.offsetTop - headerHeight;
+
+                window.scrollTo({
+                    top: sectionTop,
+                    behavior: 'smooth'
+                });
+
+                this.highlightElement(section);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    highlightElement(element) {
+        const originalBoxShadow = element.style.boxShadow;
+        const originalBackground = element.style.backgroundColor;
+
+        element.style.boxShadow = '0 0 0 2px rgba(73, 61, 213, 0.3)';
+        element.style.backgroundColor = 'rgba(237, 233, 254, 0.5)';
+
+        setTimeout(() => {
+            element.style.boxShadow = originalBoxShadow;
+            element.style.backgroundColor = originalBackground;
+        }, 1000);
+    }
+
+    initSearch() {
+        const searchBox = document.querySelector('.search-input');
+        const clearButton = document.querySelector('.clear-search');
+
+        if (searchBox) {
+            // Update clear button visibility
+            const updateClearButton = () => {
+                if (clearButton) {
+                    clearButton.style.display = searchBox.value ? 'flex' : 'none';
+                }
+            };
+
+            searchBox.addEventListener('input', (e) => {
+                this.searchTerm = e.target.value.toLowerCase().trim();
+                this.applySearch();
+                updateClearButton();
+            });
+
+            searchBox.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchBox.value = '';
+                    this.searchTerm = '';
+                    this.applySearch();
+                    updateClearButton();
+                }
+                if (e.key === 'Enter') {
+                    this.performAdvancedSearch();
+                }
+            });
+
+            // Initial update of clear button
+            updateClearButton();
+        }
+
+        // Clear button functionality
+        if (clearButton) {
+            clearButton.addEventListener('click', () => {
+                const searchBox = document.querySelector('.search-input');
+                if (searchBox) {
+                    searchBox.value = '';
+                    this.searchTerm = '';
+                    this.applySearch();
+                    clearButton.style.display = 'none';
+                    searchBox.focus();
+                }
+            });
+        }
+
+        // Add click handler for search icon to open advanced search
+        const searchIcon = document.querySelector('.search-bar i');
+        if (searchIcon) {
+            searchIcon.addEventListener('click', () => {
+                this.showSearchModal();
+            });
+        }
+    }
+
+    performAdvancedSearch() {
+        this.showSearchModal();
+        setTimeout(() => {
+            const modalInput = document.querySelector('.global-search-input');
+            if (modalInput && this.searchTerm) {
+                modalInput.value = this.searchTerm;
+                modalInput.dispatchEvent(new Event('input'));
+            }
+        }, 100);
+    }
+
+    applySearch() {
+        // For homepage tabs
+        const cards = document.querySelectorAll('.rectangular-card');
+        let hasVisibleContent = false;
+
+        cards.forEach(card => {
+            const cardTitle = card.querySelector('h3').textContent.toLowerCase();
+            const cardMeta = card.querySelector('.card-meta');
+            const cardMetaText = cardMeta ? cardMeta.textContent.toLowerCase() : '';
+
+            if (this.searchTerm &&
+                !cardTitle.includes(this.searchTerm) &&
+                !cardMetaText.includes(this.searchTerm)) {
+                card.style.display = 'none';
+            } else {
+                card.style.display = 'flex';
+                hasVisibleContent = true;
+            }
+        });
+
+        // For depot bus stops
+        const busStopSections = document.querySelectorAll('.bus-stop-section');
+        if (busStopSections.length > 0) {
+            this.applyFilters();
+        }
+
+        // Update vertical alphabet visibility
+        this.updateVerticalAlphabetVisibility();
+    }
+
+    updateVerticalAlphabetVisibility() {
+        const alphabetButtons = document.querySelectorAll('.alphabet-vertical-btn');
+        alphabetButtons.forEach(button => {
+            const letter = button.dataset.letter;
+            const hasVisibleItems = this.checkLetterHasVisibleItems(letter);
+
+            if (hasVisibleItems) {
+                button.classList.remove('disabled');
+            } else {
+                button.classList.add('disabled');
+            }
+        });
+    }
+
+    checkLetterHasVisibleItems(letter) {
+        // Check cards
+        const cards = document.querySelectorAll('.rectangular-card[style*="display: flex"], .rectangular-card:not([style*="display: none"])');
+        for (const card of cards) {
+            const cardTitle = card.querySelector('h3');
+            if (cardTitle && cardTitle.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                return true;
+            }
+        }
+
+        // Check bus stop sections
+        const busStopSections = document.querySelectorAll('.bus-stop-section:not(.hidden)');
+        for (const section of busStopSections) {
+            const busStopName = section.querySelector('.bus-stop-name');
+            if (busStopName && busStopName.textContent.trim().charAt(0).toUpperCase() === letter.toUpperCase()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    showSearchModal() {
+        const modal = document.getElementById('searchModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            modal.querySelector('.global-search-input').focus();
+
+            const closeBtn = modal.querySelector('.close-search');
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            closeBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                }
+            });
+
+            this.initGlobalSearch();
+        }
+    }
+
+    initGlobalSearch() {
+        const searchInput = document.querySelector('.global-search-input');
+        const searchResults = document.getElementById('searchResults');
+
+        if (!searchInput || !searchResults) return;
+
+        if (typeof window.searchIndex === 'undefined') {
+            const script = document.createElement('script');
+            script.src = 'search-index.js';
+            script.onload = () => this.performGlobalSearch(searchInput, searchResults);
+            document.head.appendChild(script);
+        } else {
+            this.performGlobalSearch(searchInput, searchResults);
+        }
+    }
+
+    performGlobalSearch(searchInput, searchResults) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (query.length < 1) {
+                searchResults.innerHTML = '<div class="search-result-item"><p>Type to search...</p></div>';
+                return;
+            }
+
+            const allResults = [];
+
+            if (window.searchIndex && window.searchIndex.divisions) {
+                window.searchIndex.divisions.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            if (window.searchIndex && window.searchIndex.districts) {
+                window.searchIndex.districts.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            if (window.searchIndex && window.searchIndex.tehsils) {
+                window.searchIndex.tehsils.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.district.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            if (window.searchIndex && window.searchIndex.depots) {
+                window.searchIndex.depots.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) ||
+                        item.division.toLowerCase().includes(query) ||
+                        item.district.toLowerCase().includes(query) ||
+                        item.tehsil.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query) ||
+                        (item.alphabet && item.alphabet.toLowerCase() === query)) {
+                        allResults.push(item);
+                    }
+                });
+            }
+
+            allResults.sort((a, b) => {
+                const aExact = a.name.toLowerCase() === query;
+                const bExact = b.name.toLowerCase() === query;
+                if (aExact && !bExact) return -1;
+                if (!aExact && bExact) return 1;
+                return a.name.localeCompare(b.name);
+            });
+
+            const filteredItems = allResults.slice(0, 25);
+
+            if (filteredItems.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item"><p>No results found</p></div>';
+            } else {
+                searchResults.innerHTML = filteredItems.map(item => {
+                    let description = `${item.type}`;
+                    if (item.division) description += ` • ${item.division}`;
+                    if (item.district) description += ` • ${item.district}`;
+                    if (item.tehsil) description += ` • ${item.tehsil}`;
+                    if (item.busStops) description += ` • ${item.busStops} stops`;
+                    if (item.buses) description += ` • ${item.buses} buses`;
+
+                    return `
+                    <div class="search-result-item" data-url="${item.path}">
+                        <h4>${item.name}</h4>
+                        <p>${description}</p>
+                    </div>
+                    `;
+                }).join('');
+
+                searchResults.querySelectorAll('.search-result-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const url = item.dataset.url;
+                        if (url) {
+                            window.location.href = url;
+                            document.getElementById('searchModal').style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const firstResult = searchResults.querySelector('.search-result-item');
+                if (firstResult) {
+                    firstResult.click();
+                }
+            }
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('searchModal').style.display = 'none';
+            }
+        });
+    }
+
+    initFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                this.activeFilter = button.dataset.filter;
+                this.applyFilters();
+            });
+        });
+    }
+
+    initScrollHighlighting() {
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                this.updateActiveAlphabet();
+            }, 50);
+        });
+
+        setTimeout(() => this.updateActiveAlphabet(), 200);
+    }
+
+    updateActiveAlphabet() {
+        // First check for bus stop sections
+        const busStopSections = document.querySelectorAll('.bus-stop-section:not(.hidden)');
+        if (busStopSections.length > 0) {
+            let currentLetter = '';
+            const scrollPosition = window.scrollY + 120;
+
+            for (const section of busStopSections) {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+                    currentLetter = section.dataset.letter;
+                    break;
+                }
+            }
+
+            if (currentLetter) {
+                this.updateAlphabetActiveState(currentLetter);
+            }
+            return;
+        }
+
+        // Then check for cards in current tab
+        const cards = document.querySelectorAll(`#${this.activeTab}-tab .rectangular-card[style*="display: flex"], #${this.activeTab}-tab .rectangular-card:not([style*="display: none"])`);
+        if (cards.length === 0) {
+            // Fallback to all visible cards
+            const allCards = document.querySelectorAll('.rectangular-card[style*="display: flex"], .rectangular-card:not([style*="display: none"])');
+            this.updateActiveCardAlphabet(allCards);
+            return;
+        }
+        this.updateActiveCardAlphabet(cards);
+    }
+
+    updateActiveCardAlphabet(cards) {
+        let closestCard = null;
+        let closestDistance = Infinity;
+        const scrollPosition = window.scrollY + 80;
+
+        cards.forEach(card => {
+            const cardTop = card.offsetTop;
+            const cardBottom = cardTop + card.offsetHeight;
+
+            if (scrollPosition >= cardTop && scrollPosition <= cardBottom) {
+                const distance = Math.abs(scrollPosition - cardTop);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestCard = card;
+                }
+            }
+        });
+
+        if (closestCard) {
+            const cardTitle = closestCard.querySelector('h3');
+            if (cardTitle) {
+                const cardAlphabet = cardTitle.textContent.trim().charAt(0).toUpperCase();
+                this.updateAlphabetActiveState(cardAlphabet);
+            }
+        }
+    }
+
+    updateAlphabetActiveState(letter) {
+        document.querySelectorAll('.alphabet-vertical-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.letter.toLowerCase() === letter.toLowerCase()) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    applyFilters() {
+        const sections = document.querySelectorAll('.bus-stop-section');
+        let hasVisibleContent = false;
+
+        sections.forEach(section => {
+            const busStopName = section.querySelector('.bus-stop-name').textContent.toLowerCase();
+            const timeBubbles = section.querySelectorAll('.time-bubble');
+            let visibleBubbles = 0;
+
+            if (this.searchTerm && !busStopName.includes(this.searchTerm)) {
+                section.classList.add('hidden');
+                return;
+            }
+
+            timeBubbles.forEach(bubble => {
+                const time = bubble.dataset.time;
+                const timeCategory = this.getTimeCategory(time);
+
+                if (this.activeFilter === 'all' || timeCategory === this.activeFilter) {
+                    bubble.classList.remove('hidden');
+                    visibleBubbles++;
+                } else {
+                    bubble.classList.add('hidden');
+                }
+            });
+
+            if (visibleBubbles > 0) {
+                section.classList.remove('hidden');
+                hasVisibleContent = true;
+            } else {
+                section.classList.add('hidden');
+            }
+
+            const busCount = section.querySelector('.bus-count');
+            if (busCount) {
+                busCount.textContent = `${visibleBubbles}`;
+            }
+        });
+
+        const emptyState = document.querySelector('.empty-state');
+        if (emptyState) {
+            emptyState.classList.toggle('hidden', hasVisibleContent);
+        }
+
+        setTimeout(() => this.highlightNextBus(), 50);
+        setTimeout(() => this.updateActiveAlphabet(), 100);
+    }
+
+    getTimeCategory(timeString) {
+        const [hours] = timeString.split(':').map(Number);
+        if (hours >= 5 && hours < 12) return 'morning';
+        if (hours >= 12 && hours < 17) return 'afternoon';
+        if (hours >= 17 && hours < 22) return 'evening';
+        return 'night';
+    }
+
+    highlightNextBus() {
+        document.querySelectorAll('.next-badge').forEach(badge => badge.remove());
+        document.querySelectorAll('.time-bubble.next-bus').forEach(bubble => {
+            bubble.classList.remove('next-bus');
+            const sparkle = bubble.querySelector('.next-bus-sparkle');
+            if (sparkle) sparkle.remove();
+        });
+
+        const now = new Date();
+        const currentHours = now.getHours();
+        const currentMinutes = now.getMinutes();
+        const currentTotalMinutes = currentHours * 60 + currentMinutes;
+
+        const allBubbles = Array.from(document.querySelectorAll('.time-bubble:not(.hidden)'));
+        const upcomingBubbles = [];
+
+        allBubbles.forEach(bubble => {
+            const [hours, minutes] = bubble.dataset.time.split(':').map(Number);
+            const bubbleTotalMinutes = hours * 60 + minutes;
+
+            let timeDiff = bubbleTotalMinutes - currentTotalMinutes;
+            if (timeDiff < 0) {
+                timeDiff += 24 * 60;
+            }
+
+            // Changed from <= 360 (6 hours) to <= 60 (1 hour)
+            if (timeDiff >= 0 && timeDiff <= 60) {
+                upcomingBubbles.push({
+                    bubble,
+                    timeDiff,
+                    bubbleTotalMinutes
+                });
+            }
+        });
+
+        upcomingBubbles.sort((a, b) => a.timeDiff - b.timeDiff);
+
+        // Highlight ALL buses within the next 60 minutes
+        upcomingBubbles.forEach((bus, index) => {
+            const badge = document.createElement('div');
+            badge.className = 'next-badge';
+            badge.textContent = index === 0 ? 'NEXT' : `+${bus.timeDiff}m`;
+
+            bus.bubble.classList.add('next-bus');
+
+            const sparkle = document.createElement('div');
+            sparkle.className = 'next-bus-sparkle';
+            bus.bubble.appendChild(sparkle);
+
+            bus.bubble.style.position = 'relative';
+            bus.bubble.appendChild(badge);
+        });
+    }
+
+    initTimeClick() {
+        document.addEventListener('click', (e) => {
+            const timeBubble = e.target.closest('.time-bubble');
+            if (timeBubble) {
+                const time = timeBubble.dataset.time;
+                const busStop = timeBubble.closest('.bus-stop-section').querySelector('.bus-stop-name').textContent;
+                this.showBusDetails(time, busStop);
+            }
+        });
+    }
+
+    showBusDetails(time, busStop) {
+        const [hours, minutes] = time.split(':').map(Number);
+        const timeCategory = this.getTimeCategory(time);
+
+        const categoryNames = {
+            morning: '🌅 Morning Bus (5AM-12PM)',
+            afternoon: '☀️ Afternoon Bus (12PM-5PM)',
+            evening: '🌇 Evening Bus (5PM-10PM)',
+            night: '🌙 Night Bus (10PM-5AM)'
+        };
+
+        const hour12 = hours % 12 || 12;
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedTime = `${hour12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+
+        const period = categoryNames[timeCategory];
+
+        const now = new Date();
+        const busTime = new Date(now);
+        busTime.setHours(hours, minutes, 0, 0);
+
+        if (busTime < now) {
+            busTime.setDate(busTime.getDate() + 1);
+        }
+
+        const timeDiff = Math.floor((busTime - now) / (1000 * 60));
+        let timeMessage = '';
+        if (timeDiff < 60) {
+            timeMessage = `in ${timeDiff} min`;
+        } else {
+            const hoursLeft = Math.floor(timeDiff / 60);
+            const minutesLeft = timeDiff % 60;
+            timeMessage = `in ${hoursLeft}h ${minutesLeft}m`;
+        }
+
+        const message = `🚌 **Bus Details**\n\n📍 **Bus Stop:** ${busStop}\n🕐 **Time:** ${formattedTime}\n⏰ **${period}** (${timeMessage})\n\n💡 *Arrive 10-15 minutes before*`;
+
+        alert(message);
+    }
+}
+
+// Initialize app when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.busApp = new BusTimetableApp();
+});
+    </script>
+</body>
+</html>
