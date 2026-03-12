@@ -4543,7 +4543,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .back-btn {
             width: 100%;
-            justify-content: center;
+            justify-content: flex-start;
             max-width: 100%;
         }
 
