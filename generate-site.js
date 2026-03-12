@@ -29,6 +29,7 @@ class SiteGenerator {
 
         this.config = this.loadConfig();
         this.content = this.loadContent();
+        this.ads = this.loadAds(); // <<< ADD THIS LINE
         this.blogs = this.loadBlogs();
         this.data = {
             divisions: {},
@@ -411,6 +412,36 @@ class SiteGenerator {
         }
     }
 
+    // <<< NEW METHOD: loadAds
+    loadAds() {
+        console.log('📢 Loading ads configuration...');
+
+        // Try multiple possible locations: data/ads.json, data/ads/ads.json
+        const possiblePaths = [
+            path.join(this.dataDir, 'ads.json'),
+            path.join(this.dataDir, 'ads', 'ads.json')
+        ];
+
+        for (const adsPath of possiblePaths) {
+            if (fs.existsSync(adsPath)) {
+                try {
+                    const adsData = JSON.parse(fs.readFileSync(adsPath, 'utf8'));
+                    if (Array.isArray(adsData)) {
+                        console.log(`   ✓ Loaded ${adsData.length} ads from ${path.relative(this.baseDir, adsPath)}`);
+                        return adsData;
+                    } else {
+                        console.warn(`   ⚠️  Ads file exists but is not an array: ${adsPath}`);
+                    }
+                } catch (error) {
+                    console.error(`   ✗ Error loading ads from ${adsPath}:`, error.message);
+                }
+            }
+        }
+
+        console.log('   ℹ️  No ads.json found, proceeding without ads');
+        return [];
+    }
+
     loadBlogs() {
         const blogs = [];
         if (fs.existsSync(this.blogsDir)) {
@@ -740,6 +771,19 @@ class SiteGenerator {
         return lines[index];
     }
 
+    // <<< NEW METHOD: renderHeadScripts
+    renderHeadScripts() {
+        if (!this.ads || !Array.isArray(this.ads)) return '';
+
+        const enabledAds = this.ads.filter(ad => ad.show === true);
+        if (enabledAds.length === 0) return '';
+
+        return enabledAds.map(ad => {
+            // Add a comment with the ad name for clarity
+            return `    <!-- Ad: ${ad.name} -->\n    ${ad.script}`;
+        }).join('\n');
+    }
+
     generateSite() {
         console.log('\n🚀 Starting MSRTC Bus Timetable Site Generation...');
         console.log('==============================================\n');
@@ -789,6 +833,9 @@ class SiteGenerator {
     <title>${seoContent.title || 'MSRTC Bus Timetable - Maharashtra State Transport'}</title>
     <meta name="description" content="${seoContent.description || 'Real-time MSRTC bus schedules and timetables for Maharashtra State Road Transport Corporation'}">
     <meta name="keywords" content="${seoContent.keywords || 'MSRTC, Maharashtra bus, bus schedule, bus timing, state transport'}">
+
+    <!-- Ads scripts -->
+    ${this.renderHeadScripts()}
 
     <!-- Favicon -->
     ${faviconLinks}
@@ -1083,6 +1130,9 @@ class SiteGenerator {
     <title>${pageContent.seo?.title || page}</title>
     <meta name="description" content="${pageContent.seo?.description || page}">
 
+    <!-- Ads scripts -->
+    ${this.renderHeadScripts()}
+
     <!-- Favicon -->
     ${faviconLinks}
 
@@ -1208,6 +1258,9 @@ class SiteGenerator {
     <meta name="description" content="Latest news, updates, and articles about MSRTC bus services, schedule changes, and transportation in Maharashtra">
     <meta name="keywords" content="MSRTC blog, bus news, Maharashtra transport updates, schedule changes">
     <link rel="canonical" href="${this.config.base_url}/blogs/index.html">
+
+    <!-- Ads scripts -->
+    ${this.renderHeadScripts()}
 
     <!-- Favicon -->
     ${faviconLinks}
@@ -1338,6 +1391,9 @@ class SiteGenerator {
     <meta name="description" content="${blog.seo?.description || blog.excerpt || blog.content.substring(0, 160)}">
     <meta name="keywords" content="${blog.seo?.keywords || blog.tags?.join(', ') || 'MSRTC, bus, Maharashtra, transport'}">
     <link rel="canonical" href="${this.config.base_url}/blogs/${blog.id}.html">
+
+    <!-- Ads scripts -->
+    ${this.renderHeadScripts()}
 
     <!-- Favicon -->
     ${faviconLinks}
@@ -1588,6 +1644,9 @@ class SiteGenerator {
     <meta name="description" content="${seo.description || `MSRTC bus schedules for ${division.name} division covering ${districts.length} districts in Maharashtra`}">
     <meta name="keywords" content="${seo.keywords || `MSRTC, ${division.name} division, bus schedule, Maharashtra transport`}">
 
+    <!-- Ads scripts -->
+    ${this.renderHeadScripts()}
+
     <!-- Favicon -->
     ${faviconLinks}
 
@@ -1722,6 +1781,9 @@ class SiteGenerator {
     <title>${seo.title || `${district.name} District - ${division.name} - ${this.config.site_name}`}</title>
     <meta name="description" content="${seo.description || `MSRTC bus schedules for ${district.name} district in ${division.name} division`}">
     <meta name="keywords" content="${seo.keywords || `MSRTC, ${district.name} district, ${division.name} division, bus schedule`}">
+
+    <!-- Ads scripts -->
+    ${this.renderHeadScripts()}
 
     <!-- Favicon -->
     ${faviconLinks}
@@ -1863,6 +1925,9 @@ class SiteGenerator {
     <title>${seo.title || `${tehsil.name} Tehsil - ${district.name} - ${this.config.site_name}`}</title>
     <meta name="description" content="${seo.description || `MSRTC bus schedules for ${tehsil.name} tehsil in ${district.name} district`}">
     <meta name="keywords" content="${seo.keywords || `MSRTC, ${tehsil.name} tehsil, ${district.name} district, bus schedule`}">
+
+    <!-- Ads scripts -->
+    ${this.renderHeadScripts()}
 
     <!-- Favicon -->
     ${faviconLinks}
@@ -2022,6 +2087,9 @@ class SiteGenerator {
     <title>${seo.title || `${depot.name} Depot - ${tehsil.name} - ${this.config.site_name}`}</title>
     <meta name="description" content="${seo.description || `MSRTC bus schedule for ${depot.name} depot in ${tehsil.name}, ${district.name}. Find bus timings to bus stops from ${depot.name}.`}">
     <meta name="keywords" content="${seo.keywords || `${depot.name} bus timing, ${tehsil.name} depot, ${district.name} MSRTC, bus schedule ${depot.name}`}">
+
+    <!-- Ads scripts -->
+    ${this.renderHeadScripts()}
 
     <!-- Favicon -->
     ${faviconLinks}
@@ -6039,6 +6107,7 @@ Allow: /`;
         console.log(`📝 Blogs: ${this.blogs.length}`);
         console.log(`🔗 Related Depots Data: ${Object.keys(this.relatedDepotsData).length} depots have related depots`);
         console.log(`🔗 URL Constants: ${Object.keys(this.urlConstants).length} constants loaded`);
+        console.log(`📢 Ads: ${this.ads ? this.ads.length : 0} ads loaded`); // <<< ADD THIS LINE
 
         let totalBusStops = 0;
         let totalBuses = 0;
