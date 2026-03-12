@@ -14,6 +14,18 @@ window.searchIndex = {
       "alphabet": "A"
     },
     {
+      "id": "ashti_bus_stand_depot",
+      "name": "Ashti Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/wardha_dist/ashti_wardha_teh/ashti_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Wardha District",
+      "tehsil": "Ashti Tehsil",
+      "busStops": 21,
+      "buses": 192,
+      "alphabet": "A"
+    },
+    {
       "id": "ballarpur_bus_stand_depot",
       "name": "Ballarpur Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -23,6 +35,18 @@ window.searchIndex = {
       "tehsil": "Ballarpur Tehsil",
       "busStops": 29,
       "buses": 287,
+      "alphabet": "B"
+    },
+    {
+      "id": "beed_bus_stand_depot",
+      "name": "Beed Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "chhatrapati_sambhajinagar_div/beed_dist/beed_teh/beed_bus_stand_depot/index.html",
+      "division": "Chhatrapati Sambhajinagar Division",
+      "district": "Beed District",
+      "tehsil": "Beed Tehsil",
+      "busStops": 110,
+      "buses": 357,
       "alphabet": "B"
     },
     {
@@ -110,6 +134,18 @@ window.searchIndex = {
       "alphabet": "D"
     },
     {
+      "id": "deoli_bus_stand_depot",
+      "name": "Deoli Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/wardha_dist/deoli_teh/deoli_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Wardha District",
+      "tehsil": "Deoli Tehsil",
+      "busStops": 59,
+      "buses": 291,
+      "alphabet": "D"
+    },
+    {
       "id": "dhamangaon_railway_bus_stand_depot",
       "name": "Dhamangaon Railway Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -153,8 +189,8 @@ window.searchIndex = {
       "division": "Nagpur Division",
       "district": "Wardha District",
       "tehsil": "Hinganghat Tehsil",
-      "busStops": 52,
-      "buses": 264,
+      "busStops": 54,
+      "buses": 301,
       "alphabet": "H"
     },
     {
@@ -167,6 +203,18 @@ window.searchIndex = {
       "tehsil": "Jalgaon Tehsil",
       "busStops": 112,
       "buses": 619,
+      "alphabet": "J"
+    },
+    {
+      "id": "jamb_bus_stand_depot",
+      "name": "Jamb Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/wardha_dist/samudrapur_teh/jamb_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Wardha District",
+      "tehsil": "Samudrapur Tehsil",
+      "busStops": 40,
+      "buses": 384,
       "alphabet": "J"
     },
     {
@@ -230,6 +278,18 @@ window.searchIndex = {
       "alphabet": "P"
     },
     {
+      "id": "pulgaon_bus_stand_depot",
+      "name": "Pulgaon Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/wardha_dist/pulgaon_teh/pulgaon_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Wardha District",
+      "tehsil": "Pulgaon Tehsil",
+      "busStops": 29,
+      "buses": 138,
+      "alphabet": "P"
+    },
+    {
       "id": "pusad_bus_stand_depot",
       "name": "Pusad Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -278,6 +338,18 @@ window.searchIndex = {
       "alphabet": "S"
     },
     {
+      "id": "seloo_bus_stand_depot",
+      "name": "Seloo Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/wardha_dist/seloo_teh/seloo_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Wardha District",
+      "tehsil": "Seloo Tehsil",
+      "busStops": 19,
+      "buses": 61,
+      "alphabet": "S"
+    },
+    {
       "id": "sitabuldi_depot",
       "name": "Sitabuldi Main Depot",
       "type": "Depot",
@@ -311,6 +383,18 @@ window.searchIndex = {
       "tehsil": "Wani Tehsil",
       "busStops": 44,
       "buses": 148,
+      "alphabet": "W"
+    },
+    {
+      "id": "wardha_bus_stand_depot",
+      "name": "Wardha Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "type": "Depot",
+      "path": "nagpur_div/wardha_dist/wardha_teh/wardha_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Wardha District",
+      "tehsil": "Wardha Tehsil",
+      "busStops": 33,
+      "buses": 289,
       "alphabet": "W"
     },
     {
@@ -354,7 +438,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "chhatrapati_sambhajinagar_div/index.html",
       "districts": 8,
-      "depots": 0,
+      "depots": 1,
       "alphabet": "C"
     },
     {
@@ -372,7 +456,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "nagpur_div/index.html",
       "districts": 6,
-      "depots": 14,
+      "depots": 20,
       "alphabet": "N"
     },
     {
@@ -432,7 +516,7 @@ window.searchIndex = {
       "path": "chhatrapati_sambhajinagar_div/beed_dist/index.html",
       "division": "Chhatrapati Sambhajinagar Division",
       "tehsils": 11,
-      "depots": 0,
+      "depots": 1,
       "alphabet": "B"
     },
     {
@@ -731,8 +815,8 @@ window.searchIndex = {
       "type": "District",
       "path": "nagpur_div/wardha_dist/index.html",
       "division": "Nagpur Division",
-      "tehsils": 7,
-      "depots": 1,
+      "tehsils": 8,
+      "depots": 7,
       "alphabet": "W"
     },
     {
@@ -964,7 +1048,7 @@ window.searchIndex = {
       "path": "nagpur_div/wardha_dist/ashti_wardha_teh/index.html",
       "division": "Nagpur Division",
       "district": "Wardha District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "A"
     },
     {
@@ -1074,7 +1158,7 @@ window.searchIndex = {
       "path": "chhatrapati_sambhajinagar_div/beed_dist/beed_teh/index.html",
       "division": "Chhatrapati Sambhajinagar Division",
       "district": "Beed District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "B"
     },
     {
@@ -1404,7 +1488,7 @@ window.searchIndex = {
       "path": "nagpur_div/wardha_dist/deoli_teh/index.html",
       "division": "Nagpur Division",
       "district": "Wardha District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "D"
     },
     {
@@ -2918,6 +3002,16 @@ window.searchIndex = {
       "alphabet": "P"
     },
     {
+      "id": "pulgaon_teh",
+      "name": "Pulgaon Tehsil",
+      "type": "Tehsil",
+      "path": "nagpur_div/wardha_dist/pulgaon_teh/index.html",
+      "division": "Nagpur Division",
+      "district": "Wardha District",
+      "depots": 1,
+      "alphabet": "P"
+    },
+    {
       "id": "pune_city_teh",
       "name": "Pune City Tehsil",
       "type": "Tehsil",
@@ -3094,7 +3188,7 @@ window.searchIndex = {
       "path": "nagpur_div/wardha_dist/samudrapur_teh/index.html",
       "division": "Nagpur Division",
       "district": "Wardha District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "S"
     },
     {
@@ -3184,7 +3278,7 @@ window.searchIndex = {
       "path": "nagpur_div/wardha_dist/seloo_teh/index.html",
       "division": "Nagpur Division",
       "district": "Wardha District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "S"
     },
     {
@@ -3674,7 +3768,7 @@ window.searchIndex = {
       "path": "nagpur_div/wardha_dist/wardha_teh/index.html",
       "division": "Nagpur Division",
       "district": "Wardha District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "W"
     },
     {
