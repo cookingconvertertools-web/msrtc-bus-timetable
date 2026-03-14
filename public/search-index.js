@@ -3,14 +3,14 @@ window.searchIndex = {
   "depots": [
     {
       "id": "amravati_bus_stand_depot",
-      "name": "Amravati Bus Stand Timetable 2026 | MSRTC Ticket Price",
+      "name": "Amravati Bus Stand Timetable 2026 | Amravati MSRTC Bus",
       "type": "Depot",
       "path": "amravati_div/amravati_dist/amravati_teh/amravati_bus_stand_depot/index.html",
       "division": "Amravati Division",
       "district": "Amravati District",
       "tehsil": "Amravati Tehsil",
-      "busStops": 1,
-      "buses": 59,
+      "busStops": 72,
+      "buses": 543,
       "alphabet": "A"
     },
     {
@@ -24,6 +24,18 @@ window.searchIndex = {
       "busStops": 21,
       "buses": 192,
       "alphabet": "A"
+    },
+    {
+      "id": "badnera_bus_stand_depot",
+      "name": "Badnera Bus Stand Timetable 2026 | Badnera MSRTC Bus",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/badnera_teh/badnera_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Badnera Tehsil",
+      "busStops": 54,
+      "buses": 226,
+      "alphabet": "B"
     },
     {
       "id": "ballarpur_bus_stand_depot",
@@ -158,6 +170,18 @@ window.searchIndex = {
       "alphabet": "D"
     },
     {
+      "id": "dharni_bus_stand_depot",
+      "name": "Dharni Bus Stand Timetable 2026 | Dharni MSRTC Bus",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/dharni_teh/dharni_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Dharni Tehsil",
+      "busStops": 16,
+      "buses": 42,
+      "alphabet": "D"
+    },
+    {
       "id": "digras_bus_stand_depot",
       "name": "Digras Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -218,6 +242,18 @@ window.searchIndex = {
       "alphabet": "J"
     },
     {
+      "id": "kurha_bus_stand_depot",
+      "name": "Kurha Bus Stand Timetable 2026 | Kurha MSRTC Bus",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/kurha_teh/kurha_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Kurha Tehsil",
+      "busStops": 7,
+      "buses": 137,
+      "alphabet": "K"
+    },
+    {
       "id": "mor_bhavan_depot",
       "name": "Mor Bhavan Depot",
       "type": "Depot",
@@ -254,6 +290,18 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
+      "id": "nagpur_imamwada_bus_stand",
+      "name": "Nagpur Imamwada Bus Stand Timetable 2026 | Nagpur MSRTC Bus",
+      "type": "Depot",
+      "path": "nagpur_div/nagpur_dist/nagpur_city_teh/nagpur_imamwada_bus_stand/index.html",
+      "division": "Nagpur Division",
+      "district": "Nagpur District",
+      "tehsil": "Nagpur City Tehsil",
+      "busStops": 55,
+      "buses": 303,
+      "alphabet": "N"
+    },
+    {
       "id": "pandharkawda_bus_stand_depot",
       "name": "Pandharkawda Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -263,6 +311,18 @@ window.searchIndex = {
       "tehsil": "Pandharkawda Tehsil",
       "busStops": 19,
       "buses": 115,
+      "alphabet": "P"
+    },
+    {
+      "id": "paratwada_bus_stand_depot",
+      "name": "Paratwada Bus Stand Timetable 2026 | Paratwada MSRTC Bus",
+      "type": "Depot",
+      "path": "amravati_div/amravati_dist/paratwada_teh/paratwada_bus_stand_depot/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "tehsil": "Paratwada Tehsil",
+      "busStops": 29,
+      "buses": 173,
       "alphabet": "P"
     },
     {
@@ -429,7 +489,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "amravati_div/index.html",
       "districts": 5,
-      "depots": 11,
+      "depots": 15,
       "alphabet": "A"
     },
     {
@@ -456,7 +516,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "nagpur_div/index.html",
       "districts": 6,
-      "depots": 20,
+      "depots": 21,
       "alphabet": "N"
     },
     {
@@ -505,8 +565,8 @@ window.searchIndex = {
       "type": "District",
       "path": "amravati_div/amravati_dist/index.html",
       "division": "Amravati Division",
-      "tehsils": 10,
-      "depots": 4,
+      "tehsils": 14,
+      "depots": 8,
       "alphabet": "A"
     },
     {
@@ -676,7 +736,7 @@ window.searchIndex = {
       "path": "nagpur_div/nagpur_dist/index.html",
       "division": "Nagpur Division",
       "tehsils": 13,
-      "depots": 2,
+      "depots": 3,
       "alphabet": "N"
     },
     {
@@ -1079,6 +1139,16 @@ window.searchIndex = {
       "division": "Chhatrapati Sambhajinagar Division",
       "district": "Jalna District",
       "depots": 0,
+      "alphabet": "B"
+    },
+    {
+      "id": "badnera_teh",
+      "name": "Badnera Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/amravati_dist/badnera_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "depots": 1,
       "alphabet": "B"
     },
     {
@@ -1559,6 +1629,16 @@ window.searchIndex = {
       "division": "Chhatrapati Sambhajinagar Division",
       "district": "Nanded District",
       "depots": 0,
+      "alphabet": "D"
+    },
+    {
+      "id": "dharni_teh",
+      "name": "Dharni Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/amravati_dist/dharni_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "depots": 1,
       "alphabet": "D"
     },
     {
@@ -2232,6 +2312,16 @@ window.searchIndex = {
       "alphabet": "K"
     },
     {
+      "id": "kurha_teh",
+      "name": "Kurha Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/amravati_dist/kurha_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "depots": 1,
+      "alphabet": "K"
+    },
+    {
       "id": "kurkheda_teh",
       "name": "Kurkheda Tehsil",
       "type": "Tehsil",
@@ -2608,7 +2698,7 @@ window.searchIndex = {
       "path": "nagpur_div/nagpur_dist/nagpur_city_teh/index.html",
       "division": "Nagpur Division",
       "district": "Nagpur District",
-      "depots": 2,
+      "depots": 3,
       "alphabet": "N"
     },
     {
@@ -2829,6 +2919,16 @@ window.searchIndex = {
       "division": "Chhatrapati Sambhajinagar Division",
       "district": "Dharashiv District",
       "depots": 0,
+      "alphabet": "P"
+    },
+    {
+      "id": "paratwada_teh",
+      "name": "Paratwada Tehsil",
+      "type": "Tehsil",
+      "path": "amravati_div/amravati_dist/paratwada_teh/index.html",
+      "division": "Amravati Division",
+      "district": "Amravati District",
+      "depots": 1,
       "alphabet": "P"
     },
     {
