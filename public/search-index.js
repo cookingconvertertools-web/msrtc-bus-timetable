@@ -218,6 +218,18 @@ window.searchIndex = {
       "alphabet": "H"
     },
     {
+      "id": "jalalkhed_bus_stand_depot",
+      "name": "Jalalkhed Bus Stand Timetable 2026 | Jalalkhed MSRTC Bus",
+      "type": "Depot",
+      "path": "nagpur_div/nagpur_dist/narkhed_teh/jalalkhed_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Nagpur District",
+      "tehsil": "Narkhed Tehsil",
+      "busStops": 18,
+      "buses": 124,
+      "alphabet": "J"
+    },
+    {
       "id": "jalgaon_bus_stand_depot",
       "name": "Jalgaon Bus Stand Timetable 2026 | MSRTC Ticket Price",
       "type": "Depot",
@@ -242,6 +254,30 @@ window.searchIndex = {
       "alphabet": "J"
     },
     {
+      "id": "katol_bus_stand_depot",
+      "name": "Katol Bus Stand Timetable 2026 | Katol MSRTC Bus",
+      "type": "Depot",
+      "path": "nagpur_div/nagpur_dist/katol_teh/katol_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Nagpur District",
+      "tehsil": "Katol Tehsil",
+      "busStops": 21,
+      "buses": 342,
+      "alphabet": "K"
+    },
+    {
+      "id": "kondhali_bus_stand_depot",
+      "name": "Kondhali Bus Stand Timetable 2026 | Kondhali MSRTC Bus",
+      "type": "Depot",
+      "path": "nagpur_div/nagpur_dist/katol_teh/kondhali_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Nagpur District",
+      "tehsil": "Katol Tehsil",
+      "busStops": 48,
+      "buses": 442,
+      "alphabet": "K"
+    },
+    {
       "id": "kurha_bus_stand_depot",
       "name": "Kurha Bus Stand Timetable 2026 | Kurha MSRTC Bus",
       "type": "Depot",
@@ -252,6 +288,18 @@ window.searchIndex = {
       "busStops": 7,
       "buses": 137,
       "alphabet": "K"
+    },
+    {
+      "id": "mauda_bus_stand_depot",
+      "name": "Mauda Bus Stand Timetable 2026 | Mauda MSRTC Bus",
+      "type": "Depot",
+      "path": "nagpur_div/nagpur_dist/mauda_teh/mauda_bus_stand_depot/index.html",
+      "division": "Nagpur Division",
+      "district": "Nagpur District",
+      "tehsil": "Mauda Tehsil",
+      "busStops": 41,
+      "buses": 319,
+      "alphabet": "M"
     },
     {
       "id": "mor_bhavan_depot",
@@ -290,10 +338,10 @@ window.searchIndex = {
       "alphabet": "M"
     },
     {
-      "id": "nagpur_imamwada_bus_stand",
+      "id": "nagpur_imamwada_bus_stand_depot",
       "name": "Nagpur Imamwada Bus Stand Timetable 2026 | Nagpur MSRTC Bus",
       "type": "Depot",
-      "path": "nagpur_div/nagpur_dist/nagpur_city_teh/nagpur_imamwada_bus_stand/index.html",
+      "path": "nagpur_div/nagpur_dist/nagpur_city_teh/nagpur_imamwada_bus_stand_depot/index.html",
       "division": "Nagpur Division",
       "district": "Nagpur District",
       "tehsil": "Nagpur City Tehsil",
@@ -516,7 +564,7 @@ window.searchIndex = {
       "type": "Division",
       "path": "nagpur_div/index.html",
       "districts": 6,
-      "depots": 21,
+      "depots": 25,
       "alphabet": "N"
     },
     {
@@ -736,7 +784,7 @@ window.searchIndex = {
       "path": "nagpur_div/nagpur_dist/index.html",
       "division": "Nagpur Division",
       "tehsils": 13,
-      "depots": 3,
+      "depots": 7,
       "alphabet": "N"
     },
     {
@@ -2158,7 +2206,7 @@ window.searchIndex = {
       "path": "nagpur_div/nagpur_dist/katol_teh/index.html",
       "division": "Nagpur Division",
       "district": "Nagpur District",
-      "depots": 0,
+      "depots": 2,
       "alphabet": "K"
     },
     {
@@ -2528,7 +2576,7 @@ window.searchIndex = {
       "path": "nagpur_div/nagpur_dist/mauda_teh/index.html",
       "division": "Nagpur Division",
       "district": "Nagpur District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "M"
     },
     {
@@ -2778,7 +2826,7 @@ window.searchIndex = {
       "path": "nagpur_div/nagpur_dist/narkhed_teh/index.html",
       "division": "Nagpur Division",
       "district": "Nagpur District",
-      "depots": 0,
+      "depots": 1,
       "alphabet": "N"
     },
     {
