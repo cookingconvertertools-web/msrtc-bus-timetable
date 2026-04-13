@@ -13,10 +13,10 @@
   },
   "ads": {
     "top_ad": {
-      "enabled": false,
-      "label": "Advertisement",
-      "mobile_code": "<div class='ad-content'><i class='bi bi-phone'></i><span>Download Official MSRTC App</span><button class='ad-btn'>Download Now</button></div>",
-      "desktop_code": "<div class='ad-content'><i class='bi bi-phone' style='font-size: 1.5rem;'></i><div><strong>MSRTC Official App</strong><p>Book tickets, check schedules & more</p></div><button class='ad-btn'>Get App</button></div>"
+      "enabled": true,
+      "label": "Fastrack Dezire FX1 Smart Watch",
+      "mobile_code": "<a href=\"https://amzn.to/3Oy3X1f\" target=\"_blank\" rel=\"noopener noreferrer\"><img src=\"/assets/images/fasttrack_digital_watch_480_200.jpg\" alt=\"Fastrack Watch\" style=\"max-width:100%; border-radius:8px;\"></a>",
+      "desktop_code": "<a href=\"https://amzn.to/3Oy3X1f\" target=\"_blank\" rel=\"noopener noreferrer\"><img src=\"/assets/images/fasttrack_digital_watch_1_728_90.jpg\" alt=\"Fastrack Watch\" style=\"max-width:100%; border-radius:8px;\"></a>"
     },
     "middle_ad": {
       "enabled": false,
