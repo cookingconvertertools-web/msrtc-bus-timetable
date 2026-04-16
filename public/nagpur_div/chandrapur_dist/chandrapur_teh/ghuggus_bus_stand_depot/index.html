@@ -5,7 +5,11 @@
     <link rel="icon" href="../../../..//favicon-32x32.png" type="image/png">
     <link rel="icon" href="../../../..//favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../../../..//favicon.ico" type="image/x-icon">
-    <meta name="msapplication-TileImage" content="../../../..//apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../../../../assets/urls/url-constants.js"></script><style>/* ==========================================================================
+    <meta name="msapplication-TileImage" content="../../../..//apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../../../../assets/urls/url-constants.js"></script><script>
+            window.GOOGLE_SHEETS_API_KEY = "AIzaSyBRxEdreU4LR5bvusbhNpANolDFaxfDIxU";
+            window.SPREADSHEET_ID = "11jH9ApW--IA9ae8mJNi0bY6-d0vKodxAmzfIg3XKe0k";
+            window.SHEET_NAME = "affiliate_ads";
+        </script><style>/* ==========================================================================
        MSRTC BUS TIMETABLE - MOBILE FIRST STYLES
        ========================================================================== */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -45,7 +49,6 @@
     .back-btn { display:inline-flex; align-items:center; gap:0.3rem; padding:0.5rem 0.8rem; background:white; border:1px solid #C4B5FD; border-radius:6px; color:#4C1D95; font-family:'Inter',sans-serif; font-weight:500; cursor:pointer; transition:all 0.3s; font-size:0.9rem; text-decoration:none; flex-shrink:0; max-width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-height:38px; margin:0; width:auto; }
     .back-btn:hover { background:#FCE7F3; color:#493dd5; border-color:#A78BFA; }
     .depot-about-section, .faq-section, .related-links-section { background:white; border-radius:8px; padding:1rem; border:1px solid #C4B5FD; margin-top:1.5rem; width:100%; }
-    /* FAQ styling - bold questions and good spacing */
     .faq-container { display:flex; flex-direction:column; gap:1rem; }
     .faq-item { border-bottom:1px solid #C4B5FD; padding-bottom:0.75rem; }
     .faq-question { display:flex; align-items:center; gap:0.5rem; font-weight:700; color:#5B21B6; font-size:1rem; margin-bottom:0.5rem; }
@@ -134,7 +137,6 @@
     .maharashtra-darshan-bullets li { margin-bottom:0.8rem; padding-left:0.5rem; break-inside:avoid; }
     @media (max-width:768px) { .maharashtra-darshan-bullets ul { columns:1; } }
     .maharashtra-intro { background:linear-gradient(135deg, #FEF2F8, #FCE7F3); border-radius:16px; padding:1.5rem; margin:1.5rem 0; text-align:center; }
-    /* Blog image styles */
     .blog-content img {
         max-width: 100%;
         height: auto;
@@ -147,12 +149,12 @@
     <header class="site-header"><div class="container"><div class="header-content"><a href="../../../../index.html" class="logo"><i class="bi bi-bus-front"></i><span>MSRTC Timetable</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet"><button class="alphabet-vertical-btn disabled" data-letter="a">A</button><button class="alphabet-vertical-btn disabled" data-letter="b">B</button><button class="alphabet-vertical-btn " data-letter="c">C</button><button class="alphabet-vertical-btn disabled" data-letter="d">D</button><button class="alphabet-vertical-btn disabled" data-letter="e">E</button><button class="alphabet-vertical-btn disabled" data-letter="f">F</button><button class="alphabet-vertical-btn disabled" data-letter="g">G</button><button class="alphabet-vertical-btn disabled" data-letter="h">H</button><button class="alphabet-vertical-btn disabled" data-letter="i">I</button><button class="alphabet-vertical-btn disabled" data-letter="j">J</button><button class="alphabet-vertical-btn disabled" data-letter="k">K</button><button class="alphabet-vertical-btn disabled" data-letter="l">L</button><button class="alphabet-vertical-btn disabled" data-letter="m">M</button><button class="alphabet-vertical-btn " data-letter="n">N</button><button class="alphabet-vertical-btn disabled" data-letter="o">O</button><button class="alphabet-vertical-btn disabled" data-letter="p">P</button><button class="alphabet-vertical-btn disabled" data-letter="q">Q</button><button class="alphabet-vertical-btn disabled" data-letter="r">R</button><button class="alphabet-vertical-btn disabled" data-letter="s">S</button><button class="alphabet-vertical-btn disabled" data-letter="t">T</button><button class="alphabet-vertical-btn " data-letter="u">U</button><button class="alphabet-vertical-btn disabled" data-letter="v">V</button><button class="alphabet-vertical-btn disabled" data-letter="w">W</button><button class="alphabet-vertical-btn disabled" data-letter="x">X</button><button class="alphabet-vertical-btn " data-letter="y">Y</button><button class="alphabet-vertical-btn disabled" data-letter="z">Z</button></div>
-    <div class="ad-container top_ad" data-ad-slot="top_ad"></div>
+    <div class="ad-container top" data-ad-slot="top"></div>
     <main class="main-content"><div class="container">
         <div class="navigation-buttons"><a href="../../../../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../../../../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="depot-header"><h1>Ghuggus Bus Stand Timetable 2026 | MSRTC Ticket Price</h1><p>Ghuggus Bus Stand, Ghuggus, Chandrapur District - 442505</p><div class="depot-info"><div class="info-item"><i class="bi bi-telephone"></i><span>07172-245678</span></div><div class="info-item"><i class="bi bi-signpost"></i><span>4 Bus Stops</span></div><div class="info-item"><i class="bi bi-bus-front"></i><span>44 Buses</span></div></div></div>
         <div class="depot-search-filters-container"><div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search bus stops in Ghuggus Bus Stand Timetable 2026 | MSRTC Ticket Price..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div><div class="time-filters"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="morning">5AM-12PM</button><button class="filter-btn" data-filter="afternoon">12PM-5PM</button><button class="filter-btn" data-filter="evening">5PM-10PM</button><button class="filter-btn" data-filter="night">10PM-5AM</button></div></div>
-        <div class="ad-container middle_ad" data-ad-slot="middle_ad"></div>
+        <div class="ad-container middle" data-ad-slot="middle"></div>
         <div class="empty-state hidden"><i class="bi bi-search"></i><h3>No buses found</h3><p>Try changing your filters or search term</p></div>
         <div class="bus-stop-section" id="busstop-c-chandrapur" data-letter="c" data-busstop="chandrapur"><div class="bus-stop-header"><h3 class="bus-stop-name">Chandrapur</h3><span class="bus-count">31</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:00" title="6:00AM">6:00AM</div><div class="time-bubble morning" data-time="06:50" title="6:50AM">6:50AM</div><div class="time-bubble morning" data-time="07:20" title="7:20AM">7:20AM</div><div class="time-bubble morning" data-time="07:50" title="7:50AM">7:50AM</div><div class="time-bubble morning" data-time="08:20" title="8:20AM">8:20AM</div><div class="time-bubble morning" data-time="08:50" title="8:50AM">8:50AM</div><div class="time-bubble morning" data-time="09:20" title="9:20AM">9:20AM</div><div class="time-bubble morning" data-time="09:50" title="9:50AM">9:50AM</div><div class="time-bubble morning" data-time="10:20" title="10:20AM">10:20AM</div><div class="time-bubble morning" data-time="10:50" title="10:50AM">10:50AM</div><div class="time-bubble morning" data-time="11:20" title="11:20AM">11:20AM</div><div class="time-bubble morning" data-time="11:50" title="11:50AM">11:50AM</div><div class="time-bubble afternoon" data-time="12:20" title="12:20PM">12:20PM</div><div class="time-bubble afternoon" data-time="12:50" title="12:50PM">12:50PM</div><div class="time-bubble afternoon" data-time="13:20" title="1:20PM">1:20PM</div><div class="time-bubble afternoon" data-time="13:50" title="1:50PM">1:50PM</div><div class="time-bubble afternoon" data-time="14:20" title="2:20PM">2:20PM</div><div class="time-bubble afternoon" data-time="14:50" title="2:50PM">2:50PM</div><div class="time-bubble afternoon" data-time="15:20" title="3:20PM">3:20PM</div><div class="time-bubble afternoon" data-time="15:50" title="3:50PM">3:50PM</div><div class="time-bubble afternoon" data-time="16:20" title="4:20PM">4:20PM</div><div class="time-bubble afternoon" data-time="16:50" title="4:50PM">4:50PM</div><div class="time-bubble evening" data-time="17:20" title="5:20PM">5:20PM</div><div class="time-bubble evening" data-time="17:50" title="5:50PM">5:50PM</div><div class="time-bubble evening" data-time="18:20" title="6:20PM">6:20PM</div><div class="time-bubble evening" data-time="18:50" title="6:50PM">6:50PM</div><div class="time-bubble evening" data-time="19:20" title="7:20PM">7:20PM</div><div class="time-bubble evening" data-time="19:30" title="7:30PM">7:30PM</div><div class="time-bubble evening" data-time="20:25" title="8:25PM">8:25PM</div><div class="time-bubble evening" data-time="20:45" title="8:45PM">8:45PM</div><div class="time-bubble night" data-time="22:20" title="10:20PM">10:20PM</div></div></div><div class="bus-stop-section" id="busstop-n-nakoda" data-letter="n" data-busstop="nakoda"><div class="bus-stop-header"><h3 class="bus-stop-name">Nakoda</h3><span class="bus-count">4</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="07:20" title="7:20AM">7:20AM</div><div class="time-bubble evening" data-time="19:10" title="7:10PM">7:10PM</div><div class="time-bubble evening" data-time="20:10" title="8:10PM">8:10PM</div><div class="time-bubble evening" data-time="21:55" title="9:55PM">9:55PM</div></div></div><div class="bus-stop-section" id="busstop-u-usgaon" data-letter="u" data-busstop="usgaon"><div class="bus-stop-header"><h3 class="bus-stop-name">Usgaon</h3><span class="bus-count">3</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:25" title="6:25AM">6:25AM</div><div class="time-bubble morning" data-time="09:25" title="9:25AM">9:25AM</div><div class="time-bubble evening" data-time="18:15" title="6:15PM">6:15PM</div></div></div><div class="bus-stop-section" id="busstop-y-yerur-(via-chandrapur)" data-letter="y" data-busstop="yerur (via chandrapur)"><div class="bus-stop-header"><h3 class="bus-stop-name">Yerur (via Chandrapur)</h3><span class="bus-count">6</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:10" title="6:10AM">6:10AM</div><div class="time-bubble morning" data-time="08:10" title="8:10AM">8:10AM</div><div class="time-bubble morning" data-time="10:20" title="10:20AM">10:20AM</div><div class="time-bubble afternoon" data-time="12:35" title="12:35PM">12:35PM</div><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">2:30PM</div><div class="time-bubble evening" data-time="18:45" title="6:45PM">6:45PM</div></div></div>
         <div class="depot-about-section mt-3"><h2>About Ghuggus Bus Stand Timetable 2026 | MSRTC Ticket Price Depot</h2><div class="about-content"><p><p>घुग्घुस बस स्थानक (Ghuggus Bus Stand) हे चंद्रपूर जिल्ह्यातील एक महत्त्वाचे MSRTC बस स्थानक असून औद्योगिक आणि निवासी भागाला जिल्हा मुख्यालयाशी जोडणारे प्रमुख वाहतूक केंद्र आहे. Ghuggus is well known for its coal mines, thermal power activity and heavy workforce movement, and this directly reflects in the high frequency of buses operating from the bus stand. सकाळी लवकरपासून रात्री उशिरापर्यंत घुग्घुस ते चंद्रपूर दर ३० मिनिटांनी बस सेवा उपलब्ध असल्यामुळे विद्यार्थी, कामगार, व्यापारी आणि शासकीय कर्मचारी यांना दैनंदिन प्रवासासाठी मोठी सोय होते. Chandrapur being the district headquarters, most passengers from Ghuggus depend on this route for hospitals, courts, railway station and administrative offices. येरूर मार्गे जाणाऱ्या बसेस ग्रामीण भागासाठी अत्यंत उपयुक्त असून सकाळी, दुपारी आणि संध्याकाळी ठराविक वेळांना उपलब्ध आहेत. नकोडा आणि उसगावसारख्या गावांसाठी थेट बस सेवा असल्यामुळे आजूबाजूच्या लहान गावांचा संपर्क घुग्घुसशी मजबूत राहतो. Ghuggus Bus Stand plays a vital role in last-mile connectivity by linking nearby villages with Chandrapur city transport network. बस स्थानक परिसरात तिकीट खिडक्या, बस थांबे, वेळापत्रक फलक आणि प्राथमिक प्रवासी सुविधा उपलब्ध आहेत. सणासुदीच्या काळात आणि उद्योगांतील शिफ्ट बदलाच्या वेळेत प्रवाशांची संख्या लक्षणीय वाढते आणि त्यानुसार बस फेऱ्यांचा उपयोग मोठ्या प्रमाणात होतो. Affordable fares, frequent services and predictable timings make Ghuggus Bus Stand a dependable transit point for daily commuters and long-distance travelers alike.</p></p></div></div>
@@ -160,17 +162,16 @@
         <div class="related-links-section mt-3"><h2>Related Depots</h2><div class="related-links-grid"><a href="../../../../amravati_div/yavatmal_dist/wani_teh/wani_bus_stand_depot/index.html" class="related-depot-card"><h3>Wani Bus Stand Timetable 2026 | MSRTC Ticket Price</h3><p>44 bus stops • 148 buses</p><span class="related-depot-link"><i class="bi bi-arrow-right"></i> View</span></a><a href="../../../../nagpur_div/chandrapur_dist/chandrapur_teh/chandrapur_bus_stand_depot/index.html" class="related-depot-card"><h3>Chandrapur Bus Stand Timetable 2026 | MSRTC Ticket Price</h3><p>67 bus stops • 366 buses</p><span class="related-depot-link"><i class="bi bi-arrow-right"></i> View</span></a></div></div>
         <div class="seo-content"><h2>Ghuggus Bus Stand Timetable 2026 | MSRTC Buses to Chandrapur</h2><p>Ghuggus Bus Stand provides frequent MSRTC bus services to Chandrapur, Yerur, Nakoda and Usgaon with updated daily timetable.</p></div>
     </div></main>
-    <div class="ad-container footer_ad" data-ad-slot="footer_ad"></div>
+    <div class="ad-container footer" data-ad-slot="footer"></div>
     <footer class="site-footer"><div class="container"><div class="footer-content"><div class="footer-section"><h3>Quick Links</h3><div class="footer-links"><a href="../../../../index.html">Home</a><a href="../../../../bus-schedule.html">Bus Schedule</a><a href="../../../../about.html">About</a><a href="../../../../contact.html">Contact</a><a href="../../../../blogs/index.html">Blogs</a><a href="../../../../terms.html">Terms</a><a href="../../../../privacy.html">Privacy</a></div></div><div class="footer-section"><h3>MSRTC Official</h3><div class="footer-links"><a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a><a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a><a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a><a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a></div></div><div class="footer-section"><h3>Useful Links</h3><div class="footer-links"><a href="../../../../disclaimer.html">Disclaimer</a><a href="../../../../sitemap.xml">Sitemap</a><a href="../../../../contact.html#feedback">Feedback</a><a href="../../../../contact.html#report">Report Issue</a></div></div><div class="copyright">© 2026 MSRTC Timetable.<br>This is an unofficial timetable portal.<br><small>All bus schedules are for reference only.</small></div></div></div></footer>
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search bus stops in Ghuggus Bus Stand Timetable 2026 | MSRTC Ticket Price..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "https://msrtcbusinfo.org/ads-config.json"; // MSRTC Bus Timetable Application - with Remote Ad Control
+    <script>// MSRTC Bus Timetable Application - with Google Sheets Ad Control
 class BusTimetableApp {
     constructor() {
         this.istOffset = 5.5 * 60 * 60 * 1000;
         this.activeFilter = 'all';
         this.searchTerm = '';
         this.isDepotPage = document.querySelector('.bus-stop-section') !== null;
-        this.adConfig = null;
         this.init();
     }
     async init() {
@@ -191,8 +192,8 @@ class BusTimetableApp {
         if (!this.isDepotPage && document.getElementById('divisionFilter')) {
             this.initDropdowns();
         }
-        // Remote ads: fetch config and render
-        await this.loadRemoteAds();
+        // Load ads from Google Sheets
+        await this.loadAdsFromSheets();
     }
     updateTimeDisplay() {
         const now = new Date();
@@ -536,59 +537,97 @@ class BusTimetableApp {
     mobileOptimizations() { if('ontouchstart' in window) document.documentElement.style.setProperty('--transition-speed','0.2s'); }
     preventHorizontalScroll() { document.body.style.overflowX='hidden'; document.documentElement.style.overflowX='hidden'; window.addEventListener('resize',()=>{ document.body.style.overflowX='hidden'; document.documentElement.style.overflowX='hidden'; }); }
 
-    // ==================== REMOTE AD CONTROL ====================
-    async loadRemoteAds() {
-        const configUrl = window.adConfigUrl || '/assets/ads/config.json';
+    // ==================== GOOGLE SHEETS AD CONTROL ====================
+    async loadAdsFromSheets() {
+        const apiKey = window.GOOGLE_SHEETS_API_KEY;
+        const spreadsheetId = window.SPREADSHEET_ID;
+        const sheetName = window.SHEET_NAME;
+        if (!apiKey || !spreadsheetId) {
+            console.warn('⚠️ Google Sheets API key or spreadsheet ID missing. Ads disabled.');
+            this.hideAllAdContainers();
+            return;
+        }
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}&_t=${Date.now()}`;
         try {
-            const response = await fetch(configUrl + '?t=' + Date.now());
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            const config = await response.json();
-            this.adConfig = config;
-            console.log('✅ Remote ad config loaded:', config);
-            this.renderAllAds();
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            if (!data.values || data.values.length < 2) {
+                console.warn('⚠️ No ad data found in spreadsheet.');
+                this.hideAllAdContainers();
+                return;
+            }
+            const headers = data.values[0];
+            const rows = data.values.slice(1);
+            // Find column indices (case-insensitive)
+            const getColIndex = (name) => headers.findIndex(h => h && h.toLowerCase() === name.toLowerCase());
+            const idIdx = getColIndex('id');
+            const topIdx = getColIndex('top');
+            const middleIdx = getColIndex('middle');
+            const footerIdx = getColIndex('footer');
+            const titleIdx = getColIndex('title');
+            const mobileIdx = getColIndex('mobile');
+            const desktopIdx = getColIndex('desktop');
+            if (idIdx === -1) {
+                console.warn('⚠️ Spreadsheet missing "id" column. Ads disabled.');
+                this.hideAllAdContainers();
+                return;
+            }
+            const pageId = this.getCurrentPageId();
+            const adRow = rows.find(row => row[idIdx] && row[idIdx].toString() === pageId);
+            if (!adRow) {
+                console.log(`ℹ️ No ad config for page ID "${pageId}". Ads hidden.`);
+                this.hideAllAdContainers();
+                return;
+            }
+            const parseBool = (val) => {
+                if (val === undefined || val === null) return false;
+                if (typeof val === 'boolean') return val;
+                const str = String(val).toLowerCase();
+                return str === 'true' || str === '1' || str === 'yes';
+            };
+            const getValue = (idx) => (idx !== -1 && adRow[idx]) ? adRow[idx].toString() : '';
+            const adConfig = {
+                top: { enabled: topIdx !== -1 ? parseBool(adRow[topIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
+                middle: { enabled: middleIdx !== -1 ? parseBool(adRow[middleIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
+                footer: { enabled: footerIdx !== -1 ? parseBool(adRow[footerIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) }
+            };
+            this.renderAds(adConfig);
         } catch (err) {
-            console.warn('⚠️ Failed to load remote ad config:', err);
-            document.querySelectorAll('.ad-container').forEach(container => {
-                container.style.display = 'none';
-            });
+            console.warn('⚠️ Failed to load ads from Google Sheets:', err);
+            this.hideAllAdContainers();
         }
     }
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // Blog pages: /blogs/xyz.html or /blogs/xyz (no .html)
+        // Blog pages: /blogs/xyz.html or /blogs/xyz
         const blogMatch = path.match(/\/blogs\/([^\/]+)(?:\.html)?$/);
-        if (blogMatch) return { type: 'blog', id: blogMatch[1] };
-
-        // Depot pages: match any alphanumeric + underscore ID at the end (after last slash)
-        // Examples: /.../chandrapur_bus_stand_depot or /.../chandrapur_bus_stand_depot/
-        const depotMatch = path.match(/\/([a-zA-Z0-9_]+)(?:\/|$)/);
-        if (depotMatch && !path.includes('/blogs/')) {
+        if (blogMatch) return blogMatch[1];
+        // Depot pages: path ends with /depot-id/index.html or /depot-id/
+        const depotMatch = path.match(/\/([a-zA-Z0-9_]+)(?:\/index\.html|\/)?$/);
+        if (depotMatch && !path.includes('/blogs/') && !path.includes('/assets/')) {
             const id = depotMatch[1];
             // Ignore known non-depot paths
             if (!['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer', 'index', 'blogs'].includes(id)) {
-                return { type: 'depot', id: id };
+                return id;
             }
         }
-        return { type: 'global', id: null };
+        return 'global';
     }
 
-    renderAllAds() {
-        const pageInfo = this.getCurrentPageId();
-        const defaultConfig = this.adConfig?.default || {};
-        let pageSpecific = null;
-        if (pageInfo.type === 'depot' && this.adConfig?.depots?.[pageInfo.id]) {
-            pageSpecific = this.adConfig.depots[pageInfo.id];
-        } else if (pageInfo.type === 'blog' && this.adConfig?.blogs?.[pageInfo.id]) {
-            pageSpecific = this.adConfig.blogs[pageInfo.id];
-        }
-        const slots = ['top_ad', 'middle_ad', 'footer_ad'];
+    hideAllAdContainers() {
+        document.querySelectorAll('.ad-container').forEach(container => {
+            container.style.display = 'none';
+        });
+    }
+
+    renderAds(config) {
+        const slots = ['top', 'middle', 'footer'];
         slots.forEach(slot => {
             const container = document.querySelector(`.ad-container.${slot}`);
             if (!container) return;
-            let slotConfig = null;
-            if (pageSpecific && pageSpecific[slot]) slotConfig = pageSpecific[slot];
-            else if (defaultConfig[slot]) slotConfig = defaultConfig[slot];
+            const slotConfig = config[slot];
             if (!slotConfig || !slotConfig.enabled) {
                 container.style.display = 'none';
                 return;
@@ -599,18 +638,11 @@ class BusTimetableApp {
     }
 
     renderAdInContainer(container, config) {
-        const linkUrl = config.link_url || '#';
         const title = config.title || 'Advertisement';
-        const mobileSrc = config.image_mobile || '';
-        const desktopSrc = config.image_desktop || '';
+        const mobileSrc = config.mobile || '';
+        const desktopSrc = config.desktop || '';
         const inner = document.createElement('div');
         inner.className = 'ad-content';
-        let linkHtml = '';
-        if (linkUrl !== '#') {
-            linkHtml = `<a href="${linkUrl}" class="ad-block" target="_blank" rel="noopener noreferrer">`;
-        } else {
-            linkHtml = `<div class="ad-block">`;
-        }
         let pictureHtml = '';
         if (mobileSrc && desktopSrc) {
             pictureHtml = `<picture class="ad-image"><source media="(max-width: 767px)" srcset="${mobileSrc}"><img src="${desktopSrc}" alt="${title}" loading="lazy"></picture>`;
@@ -622,7 +654,7 @@ class BusTimetableApp {
             pictureHtml = `<div class="ad-image"></div>`;
         }
         const titleHtml = `<div class="ad-title">${title}</div>`;
-        const full = `${linkHtml}${titleHtml}${pictureHtml}${linkUrl !== '#' ? '</a>' : '</div>'}`;
+        const full = `<div class="ad-block">${titleHtml}${pictureHtml}</div>`;
         inner.innerHTML = full;
         container.innerHTML = '';
         container.appendChild(inner);

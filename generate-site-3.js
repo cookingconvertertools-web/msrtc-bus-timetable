@@ -32,7 +32,6 @@ class SiteGenerator {
 
         this.config = this.loadConfig();
         this.content = this.loadContent();
-        this.ads = this.loadAds();
         this.blogs = this.loadBlogs();
         this.data = {
             divisions: {},
@@ -49,6 +48,15 @@ class SiteGenerator {
 
         // Load all data
         this.loadAllData();
+
+        // Google Sheets config (from site-config.json)
+        this.googleSheets = this.config.google_sheets || {};
+        this.spreadsheetId = this.googleSheets.spreadsheet_id || '';
+        this.sheetName = this.googleSheets.sheet_name || 'Sheet1';
+        this.apiKey = process.env.GOOGLE_SHEETS_API_KEY || '';
+        if (!this.apiKey) {
+            console.warn('⚠️  WARNING: GOOGLE_SHEETS_API_KEY environment variable not set. Ads will not work.');
+        }
     }
 
     cleanPublicDirectory() {
@@ -82,20 +90,16 @@ class SiteGenerator {
             });
 
             // Recursively copy entire assets/img folder to public/assets/images/
-            // Use fs.cpSync if available (Node.js 16.7+), else implement recursive copy
             try {
-                // Node.js 16.7.0 introduced fs.cpSync
                 if (fs.cpSync) {
                     fs.cpSync(this.imagesDir, this.publicImagesDir, { recursive: true, force: true });
                     console.log(`   ✓ Recursively copied all images (including subfolders) to ${this.publicImagesDir}`);
                 } else {
-                    // Fallback for older Node versions
                     this.copyFolderRecursive(this.imagesDir, this.publicImagesDir);
                     console.log(`   ✓ Recursively copied all images (fallback) to ${this.publicImagesDir}`);
                 }
             } catch (err) {
                 console.error(`   ✗ Error recursively copying images: ${err.message}`);
-                // Fallback to simple file copy for backward compatibility
                 imageFiles.forEach(file => {
                     if (faviconFiles.includes(file)) return;
                     const sourcePath = path.join(this.imagesDir, file);
@@ -116,7 +120,6 @@ class SiteGenerator {
         }
     }
 
-    // Helper: recursive folder copy for older Node versions
     copyFolderRecursive(src, dest) {
         if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
         const entries = fs.readdirSync(src, { withFileTypes: true });
@@ -297,15 +300,20 @@ class SiteGenerator {
     loadConfig() {
         const configPath = path.join(this.baseDir, 'site-config.json');
         try {
-            return JSON.parse(fs.readFileSync(configPath, 'utf8'));
+            const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+            // Ensure google_sheets section exists
+            if (!config.google_sheets) {
+                console.warn('⚠️  No google_sheets section in site-config.json. Ads will be disabled.');
+                config.google_sheets = {};
+            }
+            return config;
         } catch (error) {
             console.error('❌ Error loading site-config.json:', error.message);
             return {
                 base_url: 'http://localhost:3000',
                 site_name: 'MSRTC Bus Timetable',
                 theme: { bg_gradient_start: '#F5F3FF', bg_gradient_end: '#EDE9FE', primary_color: '#493dd5', secondary_color: '#3a2fc1' },
-                ads: { top_ad: { enabled: false }, middle_ad: { enabled: false }, footer_ad: { enabled: false } },
-                ad_config_url: '/assets/ads/config.json'
+                google_sheets: {}
             };
         }
     }
@@ -329,28 +337,6 @@ class SiteGenerator {
         }
     }
 
-    loadAds() {
-        console.log('📢 Loading ads configuration...');
-        const possiblePaths = [path.join(this.dataDir, 'ads.json'), path.join(this.dataDir, 'ads', 'ads.json')];
-        for (const adsPath of possiblePaths) {
-            if (fs.existsSync(adsPath)) {
-                try {
-                    const adsData = JSON.parse(fs.readFileSync(adsPath, 'utf8'));
-                    if (Array.isArray(adsData)) {
-                        console.log(`   ✓ Loaded ${adsData.length} ads from ${path.relative(this.baseDir, adsPath)}`);
-                        return adsData;
-                    } else {
-                        console.warn(`   ⚠️  Ads file exists but is not an array: ${adsPath}`);
-                    }
-                } catch (error) {
-                    console.error(`   ✗ Error loading ads from ${adsPath}:`, error.message);
-                }
-            }
-        }
-        console.log('   ℹ️  No ads.json found, proceeding without ads');
-        return [];
-    }
-
     loadBlogs() {
         const blogs = [];
         if (fs.existsSync(this.blogsDir)) {
@@ -371,35 +357,26 @@ class SiteGenerator {
         return blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 
-    // ========== MARKDOWN PROCESSING (bold, italic, links, images) ==========
-    // Blog images are used as-is (no base_url prepended)
     processBlogContent(content) {
         if (!content) return '';
         let html = content;
-
         // Convert images: ![alt](url) – leave URL unchanged
         html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="blog-image" loading="lazy">');
-
         // Convert links: [text](url)
         html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-
-        // Convert headings (must be at start of line, order matters: longest first)
+        // Convert headings
         html = html.replace(/^###### (.*?)$/gm, '<h6>$1</h6>');
         html = html.replace(/^##### (.*?)$/gm, '<h5>$1</h5>');
         html = html.replace(/^#### (.*?)$/gm, '<h4>$1</h4>');
         html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
         html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
         html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
-
-        // Convert bold: **text** or __text__
+        // Convert bold and italic
         html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
-
-        // Convert italic: *text* or _text_
         html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
         html = html.replace(/_(.*?)_/g, '<em>$1</em>');
-
-        // Convert line breaks: double newline to paragraph, single newline to <br>
+        // Convert line breaks
         const paragraphs = html.split(/\n\s*\n/);
         html = paragraphs.map(p => {
             p = p.trim();
@@ -407,17 +384,24 @@ class SiteGenerator {
             p = p.replace(/\n/g, '<br>');
             return `<p>${p}</p>`;
         }).join('');
-
         return html;
     }
 
-    // Helper for other content (e.g., depot about section) – same markdown processor
     processMarkdown(content) {
         return this.processBlogContent(content);
     }
 
     renderHeadScripts() {
         return '';
+    }
+
+    // Helper: get global Google Sheets script block
+    getGoogleSheetsScriptBlock() {
+        return `<script>
+            window.GOOGLE_SHEETS_API_KEY = "${this.apiKey.replace(/"/g, '\\"')}";
+            window.SPREADSHEET_ID = "${this.spreadsheetId.replace(/"/g, '\\"')}";
+            window.SHEET_NAME = "${this.sheetName.replace(/"/g, '\\"')}";
+        </script>`;
     }
 
     generateSite() {
@@ -436,16 +420,13 @@ class SiteGenerator {
         this.printStats();
     }
 
-    // ---------- Helper: get reliable depot path ----------
     getDepotRelativePath(depot) {
         let tehsil = this.data.tehsils[depot.tehsil_id];
         let district = tehsil ? this.data.districts[tehsil.district_id] : null;
         let division = district ? this.data.divisions[district.division_id] : null;
-
         const divId = division ? division.id : 'unknown';
         const distId = district ? district.id : 'unknown';
         const tehId = tehsil ? tehsil.id : 'unknown';
-
         if (!division || !district || !tehsil) {
             console.warn(`   ⚠️  Incomplete hierarchy for depot "${depot.name}" (ID: ${depot.id}). Using fallback path: ${divId}/${distId}/${tehId}/${depot.id}/index.html`);
         }
@@ -507,24 +488,25 @@ class SiteGenerator {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>${this.getInlineCSS()}</style>
     <script src="assets/urls/url-constants.js"></script>
+    ${this.getGoogleSheetsScriptBlock()}
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"${this.config.site_name}","url":"${this.config.base_url}","description":"${this.escapeHtml(seoContent.description || '')}"}</script>
 </head>
 <body>
     <header class="site-header"><div class="container"><div class="header-content"><div class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></div><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
-    ${this.renderAdContainer('top_ad')}
+    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
         <h1 class="text-center">${this.escapeHtml(homepageContent.title || 'MSRTC Bus Timetable')}</h1>
         <p class="text-center">${this.escapeHtml(homepageContent.subtitle || 'Your guide to Maharashtra Darshan by bus')}</p>
         <div class="maharashtra-intro">${maharashtraIntro}</div>
         ${blogCardsHtml}
-        ${this.renderAdContainer('middle_ad')}
+        ${this.renderAdContainer('middle')}
         <div class="maharashtra-details">${bulletsHtml}<div class="final-paragraph">${finalParagraph}</div></div>
     </div></main>
-    ${this.renderAdContainer('footer_ad')}
+    ${this.renderAdContainer('footer')}
     ${this.renderFooter()}
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "${this.config.ad_config_url || '/assets/ads/config.json'}"; ${this.getInlineJS()}</script>
+    <script>${this.getInlineJS()}</script>
 </body>
 </html>`;
         this.writeFile('index.html', html);
@@ -541,25 +523,25 @@ class SiteGenerator {
         const depots = Object.values(this.data.depots).sort((a, b) => a.name.localeCompare(b.name));
         const html = `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${seoContent.title} - ${this.config.site_name}</title><meta name="description" content="${seoContent.description}"><meta name="keywords" content="${seoContent.keywords}">${this.renderHeadScripts()}${faviconLinks}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><style>${this.getInlineCSS()}</style><script src="assets/urls/url-constants.js"></script></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${seoContent.title} - ${this.config.site_name}</title><meta name="description" content="${seoContent.description}"><meta name="keywords" content="${seoContent.keywords}">${this.renderHeadScripts()}${faviconLinks}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><style>${this.getInlineCSS()}</style><script src="assets/urls/url-constants.js"></script>${this.getGoogleSheetsScriptBlock()}</head>
 <body>
     <header class="site-header"><div class="container"><div class="header-content"><a href="index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet">${this.renderVerticalAlphabet()}</div>
-    ${this.renderAdContainer('top_ad')}
+    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
         <div class="navigation-buttons"><a href="index.html" class="back-btn"><i class="bi bi-house"></i> Home</a></div>
         <h1 class="text-center">All MSRTC Bus Depots</h1><p class="text-center">Find and filter depots across Maharashtra</p>
         <div class="filter-dropdowns"><div class="dropdown-group"><label>Division</label><select id="divisionFilter"><option value="">All Divisions</option></select></div><div class="dropdown-group"><label>District</label><select id="districtFilter"><option value="">All Districts</option></select></div><div class="dropdown-group"><label>Tehsil</label><select id="tehsilFilter"><option value="">All Tehsils</option></select></div><div class="dropdown-group"><label>Depot</label><select id="depotFilter"><option value="">All Depots</option></select></div></div>
         <div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search depots by name..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div>
-        ${this.renderAdContainer('middle_ad')}
+        ${this.renderAdContainer('middle')}
         <div class="depot-grid" id="depotsGrid">${this.renderAllDepotCards()}</div>
         <div class="empty-state hidden" id="emptyDepotsState"><i class="bi bi-bus-front"></i><h3>No depots found</h3><p>Try changing your filters or search term</p></div>
     </div></main>
-    ${this.renderAdContainer('footer_ad')}
+    ${this.renderAdContainer('footer')}
     ${this.renderFooter()}
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.DIVISIONS_DATA = ${JSON.stringify(divisions)}; window.DISTRICTS_DATA = ${JSON.stringify(districts)}; window.TEHSILS_DATA = ${JSON.stringify(tehsils)}; window.DEPOTS_DATA = ${JSON.stringify(depots)}; window.adConfigUrl = "${this.config.ad_config_url || '/assets/ads/config.json'}"; ${this.getInlineJS()}</script>
+    <script>window.DIVISIONS_DATA = ${JSON.stringify(divisions)}; window.DISTRICTS_DATA = ${JSON.stringify(districts)}; window.TEHSILS_DATA = ${JSON.stringify(tehsils)}; window.DEPOTS_DATA = ${JSON.stringify(depots)}; ${this.getInlineJS()}</script>
 </body>
 </html>`;
         this.writeFile('bus-schedule.html', html);
@@ -646,21 +628,21 @@ class SiteGenerator {
             const faviconLinks = this.generateFaviconLinks('.');
             const html = `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${this.escapeHtml(pageContent.seo?.title || page)}</title><meta name="description" content="${this.escapeHtml(pageContent.seo?.description || page)}">${this.renderHeadScripts()}${faviconLinks}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="assets/urls/url-constants.js"></script><style>${this.getInlineCSS()}</style></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${this.escapeHtml(pageContent.seo?.title || page)}</title><meta name="description" content="${this.escapeHtml(pageContent.seo?.description || page)}">${this.renderHeadScripts()}${faviconLinks}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="assets/urls/url-constants.js"></script>${this.getGoogleSheetsScriptBlock()}<style>${this.getInlineCSS()}</style></head>
 <body>
     <header class="site-header"><div class="container"><div class="header-content"><a href="index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet">${this.renderVerticalAlphabet()}</div>
-    ${this.renderAdContainer('top_ad')}
+    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
         <div class="navigation-buttons"><a href="index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search depots, tehsils, districts..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div>
         <h1>${this.escapeHtml(pageContent.title)}</h1><div class="page-content">${pageContent.content}</div>${pageContent.seo_content ? this.renderSEOContent(pageContent.seo_content) : ''}
     </div></main>
-    ${this.renderAdContainer('footer_ad')}
+    ${this.renderAdContainer('footer')}
     ${this.renderFooter()}
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "${this.config.ad_config_url || '/assets/ads/config.json'}"; ${this.getInlineJS()}</script>
+    <script>${this.getInlineJS()}</script>
 </body>
 </html>`;
             this.writeFile(`${page}.html`, html);
@@ -668,7 +650,6 @@ class SiteGenerator {
         });
     }
 
-    // ====================== ENHANCED BLOG PAGES METHOD ======================
     generateBlogPages() {
         console.log('📝 Generating blog pages...');
         const blogsPublicDir = path.join(this.publicDir, 'blogs');
@@ -678,20 +659,20 @@ class SiteGenerator {
         // Blog listing page
         const blogListingHTML = `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Blogs & Updates - ${this.config.site_name}</title><meta name="description" content="Latest news, updates, and articles about MSRTC bus services"><link rel="canonical" href="${this.config.base_url}/blogs/index.html">${this.renderHeadScripts()}${faviconLinks}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../assets/urls/url-constants.js"></script><style>${this.getInlineCSS()}</style></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Blogs & Updates - ${this.config.site_name}</title><meta name="description" content="Latest news, updates, and articles about MSRTC bus services"><link rel="canonical" href="${this.config.base_url}/blogs/index.html">${this.renderHeadScripts()}${faviconLinks}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../assets/urls/url-constants.js"></script>${this.getGoogleSheetsScriptBlock()}<style>${this.getInlineCSS()}</style></head>
 <body>
     <header class="site-header"><div class="container"><div class="header-content"><a href="../index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
-    ${this.renderAdContainer('top_ad')}
+    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
         <div class="navigation-buttons"><a href="../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <h1>Blogs & Updates</h1><p>Latest news and articles about MSRTC bus services in Maharashtra</p>
         ${this.blogs.length > 0 ? `<div class="blog-grid">${this.blogs.map(blog => `<a href="${blog.id}.html" class="blog-card"><div class="blog-card-content"><h3>${this.escapeHtml(blog.title)}</h3><div class="blog-card-excerpt">${this.escapeHtml(blog.excerpt || blog.content.substring(0, 120) + '...')}</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>${new Date(blog.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div></div></div></a>`).join('')}</div>` : `<div class="empty-state"><i class="bi bi-newspaper"></i><h3>No blog posts yet</h3><p>Check back soon for updates and articles about MSRTC services.</p></div>`}
     </div></main>
-    ${this.renderAdContainer('footer_ad')}
+    ${this.renderAdContainer('footer')}
     ${this.renderFooter('../')}
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "${this.config.ad_config_url || '/assets/ads/config.json'}"; ${this.getInlineJS()}</script>
+    <script>${this.getInlineJS()}</script>
 </body>
 </html>`;
         this.writeFile('blogs/index.html', blogListingHTML);
@@ -711,7 +692,6 @@ class SiteGenerator {
                         console.warn(`   ⚠️  Blog "${blog.id}" references unknown depot ID: ${depotId}`);
                         continue;
                     }
-                    // Get hierarchy
                     const tehsil = this.data.tehsils[depot.tehsil_id];
                     const district = tehsil ? this.data.districts[tehsil.district_id] : null;
                     const division = district ? this.data.divisions[district.division_id] : null;
@@ -719,7 +699,6 @@ class SiteGenerator {
                         console.warn(`   ⚠️  Incomplete hierarchy for depot ${depot.name} (${depot.id})`);
                         continue;
                     }
-                    // Calculate bus stops and bus count
                     let busStopCount = 0, busCount = 0;
                     if (depot.villages) {
                         Object.values(depot.villages).forEach(busStopList => {
@@ -729,7 +708,6 @@ class SiteGenerator {
                             });
                         });
                     }
-                    // Build absolute root-relative path (works from any depth)
                     const depotPath = `/${division.id}/${district.id}/${tehsil.id}/${depot.id}/index.html`;
                     depotCards.push(`<a href="${depotPath}" class="related-depot-card">
                         <h3>${this.escapeHtml(depot.name)}</h3>
@@ -747,11 +725,11 @@ class SiteGenerator {
 
             const blogHTML = `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${this.escapeHtml(blog.seo?.title || blog.title)} - ${this.config.site_name}</title><meta name="description" content="${this.escapeHtml(blog.seo?.description || blog.excerpt || blog.content.substring(0, 160))}"><meta name="keywords" content="${this.escapeHtml(blog.seo?.keywords || (blog.tags ? blog.tags.join(', ') : 'MSRTC, bus, Maharashtra'))}"><link rel="canonical" href="${this.config.base_url}/blogs/${blog.id}.html">${this.renderHeadScripts()}${faviconLinks}<meta property="og:title" content="${this.escapeHtml(blog.title)}"><meta property="og:description" content="${this.escapeHtml(blog.excerpt || blog.content.substring(0, 200))}"><meta property="og:type" content="article"><meta property="og:url" content="${this.config.base_url}/blogs/${blog.id}.html"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../assets/urls/url-constants.js"></script><style>${this.getInlineCSS()}</style></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${this.escapeHtml(blog.seo?.title || blog.title)} - ${this.config.site_name}</title><meta name="description" content="${this.escapeHtml(blog.seo?.description || blog.excerpt || blog.content.substring(0, 160))}"><meta name="keywords" content="${this.escapeHtml(blog.seo?.keywords || (blog.tags ? blog.tags.join(', ') : 'MSRTC, bus, Maharashtra'))}"><link rel="canonical" href="${this.config.base_url}/blogs/${blog.id}.html">${this.renderHeadScripts()}${faviconLinks}<meta property="og:title" content="${this.escapeHtml(blog.title)}"><meta property="og:description" content="${this.escapeHtml(blog.excerpt || blog.content.substring(0, 200))}"><meta property="og:type" content="article"><meta property="og:url" content="${this.config.base_url}/blogs/${blog.id}.html"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../assets/urls/url-constants.js"></script>${this.getGoogleSheetsScriptBlock()}<style>${this.getInlineCSS()}</style></head>
 <body>
     <header class="site-header"><div class="container"><div class="header-content"><a href="../index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
-    ${this.renderAdContainer('top_ad')}
+    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container blog-page">
         <div class="navigation-buttons"><a href="../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="blog-header"><h1>${this.escapeHtml(blog.title)}</h1><div class="blog-date"><i class="bi bi-calendar"></i>${new Date(blog.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div></div>
@@ -761,16 +739,15 @@ class SiteGenerator {
         ${blog.seo_content ? this.renderSEOContent(blog.seo_content) : ''}
         ${relatedDepotsHtml}
     </div></main>
-    ${this.renderAdContainer('footer_ad')}
+    ${this.renderAdContainer('footer')}
     ${this.renderFooter('../')}
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search bus stops..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "${this.config.ad_config_url || '/assets/ads/config.json'}"; ${this.getInlineJS()}</script>
+    <script>${this.getInlineJS()}</script>
 </body>
 </html>`;
             this.writeFile(`blogs/${blog.id}.html`, blogHTML);
         });
     }
-    // ====================== END ENHANCED BLOG PAGES METHOD ======================
 
     generateDepotPages() {
         console.log('🚌 Generating depot pages (all depots)...');
@@ -811,17 +788,17 @@ class SiteGenerator {
         const faviconLinks = this.generateFaviconLinks('../../../../');
         return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${this.escapeHtml(seo.title || `${depot.name} Depot - ${tehsilName} - ${this.config.site_name}`)}</title><meta name="description" content="${this.escapeHtml(seo.description || `MSRTC bus schedule for ${depot.name} depot in ${tehsilName}, ${districtName}.`)}"><meta name="keywords" content="${this.escapeHtml(seo.keywords || `${depot.name} bus timing, ${tehsilName} depot`)}">${this.renderHeadScripts()}${faviconLinks}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../../../../assets/urls/url-constants.js"></script><style>${this.getInlineCSS()}</style></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${this.escapeHtml(seo.title || `${depot.name} Depot - ${tehsilName} - ${this.config.site_name}`)}</title><meta name="description" content="${this.escapeHtml(seo.description || `MSRTC bus schedule for ${depot.name} depot in ${tehsilName}, ${districtName}.`)}"><meta name="keywords" content="${this.escapeHtml(seo.keywords || `${depot.name} bus timing, ${tehsilName} depot`)}">${this.renderHeadScripts()}${faviconLinks}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../../../../assets/urls/url-constants.js"></script>${this.getGoogleSheetsScriptBlock()}<style>${this.getInlineCSS()}</style></head>
 <body class="depot-page">
     <header class="site-header"><div class="container"><div class="header-content"><a href="../../../../index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet">${this.renderBusStopVerticalAlphabet(villageLetters)}</div>
-    ${this.renderAdContainer('top_ad')}
+    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
         <div class="navigation-buttons"><a href="../../../../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../../../../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="depot-header"><h1>${this.escapeHtml(depot.name)}</h1><p>${this.escapeHtml(depot.address || 'MSRTC Bus Depot')}</p><div class="depot-info">${depot.contact ? `<div class="info-item"><i class="bi bi-telephone"></i><span>${this.escapeHtml(depot.contact)}</span></div>` : ''}<div class="info-item"><i class="bi bi-signpost"></i><span>${totalBusStopCount} Bus Stops</span></div><div class="info-item"><i class="bi bi-bus-front"></i><span>${totalBusCount} Buses</span></div></div></div>
         <div class="depot-search-filters-container"><div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search bus stops in ${this.escapeHtml(depot.name)}..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div><div class="time-filters"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="morning">5AM-12PM</button><button class="filter-btn" data-filter="afternoon">12PM-5PM</button><button class="filter-btn" data-filter="evening">5PM-10PM</button><button class="filter-btn" data-filter="night">10PM-5AM</button></div></div>
-        ${this.renderAdContainer('middle_ad')}
+        ${this.renderAdContainer('middle')}
         <div class="empty-state hidden"><i class="bi bi-search"></i><h3>No buses found</h3><p>Try changing your filters or search term</p></div>
         ${this.renderBusStopSections(villages, villageLetters)}
         ${depotContent ? `<div class="depot-about-section mt-3"><h2>About ${this.escapeHtml(depot.name)} Depot</h2><div class="about-content">${depotContent}</div></div>` : ''}
@@ -833,10 +810,10 @@ class SiteGenerator {
         ${relatedDepots.length > 0 || fallbackRelatedDepots.length > 0 ? `<div class="related-links-section mt-3"><h2>${relatedDepots.length > 0 ? 'Related Depots' : 'Other Depots in ' + this.escapeHtml(tehsilName)}</h2><div class="related-links-grid">${relatedDepots.length > 0 ? relatedDepots.map(rd => this.renderRelatedDepotCard(rd, division ? division.id : 'unknown', district ? district.id : 'unknown', tehsil ? tehsil.id : 'unknown', depot.id)).join('') : fallbackRelatedDepots.map(rd => this.renderRelatedDepotCard(rd, division ? division.id : 'unknown', district ? district.id : 'unknown', tehsil ? tehsil.id : 'unknown', depot.id)).join('')}</div></div>` : ''}
         ${content.seo_content ? this.renderSEOContent(content.seo_content) : ''}
     </div></main>
-    ${this.renderAdContainer('footer_ad')}
+    ${this.renderAdContainer('footer')}
     ${this.renderFooter('../../../../')}
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search bus stops in ${this.escapeHtml(depot.name)}..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "${this.config.ad_config_url || '/assets/ads/config.json'}"; ${this.getInlineJS()}</script>
+    <script>${this.getInlineJS()}</script>
 </body>
 </html>`;
     }
@@ -923,14 +900,9 @@ class SiteGenerator {
         }).join('');
     }
 
-    // NEW: renders an empty ad container that will be filled by client-side JS
-    renderAdContainer(adType) {
-        return `<div class="ad-container ${adType}" data-ad-slot="${adType}"></div>`;
-    }
-
-    // LEGACY: kept for backward compatibility but not used for remote ads
-    renderAd(adType) {
-        return this.renderAdContainer(adType);
+    renderAdContainer(slotType) {
+        // slotType is 'top', 'middle', or 'footer'
+        return `<div class="ad-container ${slotType}" data-ad-slot="${slotType}"></div>`;
     }
 
     renderSEOContent(seoContent) {
@@ -979,7 +951,6 @@ class SiteGenerator {
         console.log('   ✓ URL constants file generated');
     }
 
-    // ========== UTILITIES ==========
     escapeHtml(text) {
         if (!text) return '';
         return text.replace(/[&<>]/g, function(m) {
@@ -1035,7 +1006,6 @@ class SiteGenerator {
         console.log(`📝 Blogs: ${this.blogs.length}`);
         console.log(`🔗 Related Depots Data: ${Object.keys(this.relatedDepotsData).length} depots have related depots`);
         console.log(`🔗 URL Constants: ${Object.keys(this.urlConstants).length} constants loaded`);
-        console.log(`📢 Ads: ${this.ads ? this.ads.length : 0} ads loaded`);
         let totalBusStops = 0, totalBuses = 0;
         Object.values(this.data.depots).forEach(depot => {
             if (depot.villages) Object.values(depot.villages).forEach(bsl => { totalBusStops += bsl.length; bsl.forEach(bs => { totalBuses += bs.schedule ? bs.schedule.length : 0; }); });
@@ -1121,7 +1091,6 @@ class SiteGenerator {
     .back-btn { display:inline-flex; align-items:center; gap:0.3rem; padding:0.5rem 0.8rem; background:white; border:1px solid ${borderLight}; border-radius:6px; color:${textPrimary}; font-family:'Inter',sans-serif; font-weight:500; cursor:pointer; transition:all 0.3s; font-size:0.9rem; text-decoration:none; flex-shrink:0; max-width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-height:38px; margin:0; width:auto; }
     .back-btn:hover { background:${bgEnd}; color:${primary}; border-color:${borderDark}; }
     .depot-about-section, .faq-section, .related-links-section { background:white; border-radius:8px; padding:1rem; border:1px solid ${borderLight}; margin-top:1.5rem; width:100%; }
-    /* FAQ styling - bold questions and good spacing */
     .faq-container { display:flex; flex-direction:column; gap:1rem; }
     .faq-item { border-bottom:1px solid ${borderLight}; padding-bottom:0.75rem; }
     .faq-question { display:flex; align-items:center; gap:0.5rem; font-weight:700; color:${textSecondary}; font-size:1rem; margin-bottom:0.5rem; }
@@ -1210,7 +1179,6 @@ class SiteGenerator {
     .maharashtra-darshan-bullets li { margin-bottom:0.8rem; padding-left:0.5rem; break-inside:avoid; }
     @media (max-width:768px) { .maharashtra-darshan-bullets ul { columns:1; } }
     .maharashtra-intro { background:linear-gradient(135deg, ${bgStart}, ${bgEnd}); border-radius:16px; padding:1.5rem; margin:1.5rem 0; text-align:center; }
-    /* Blog image styles */
     .blog-content img {
         max-width: 100%;
         height: auto;
@@ -1221,16 +1189,15 @@ class SiteGenerator {
     }`;
     }
 
-    // ========== JAVASCRIPT (full inline script with remote ad control & fixed depot ID detection) ==========
+    // ========== JAVASCRIPT (full inline script with Google Sheets ad control) ==========
     getInlineJS() {
-        return `// MSRTC Bus Timetable Application - with Remote Ad Control
+        return `// MSRTC Bus Timetable Application - with Google Sheets Ad Control
 class BusTimetableApp {
     constructor() {
         this.istOffset = 5.5 * 60 * 60 * 1000;
         this.activeFilter = 'all';
         this.searchTerm = '';
         this.isDepotPage = document.querySelector('.bus-stop-section') !== null;
-        this.adConfig = null;
         this.init();
     }
     async init() {
@@ -1251,8 +1218,8 @@ class BusTimetableApp {
         if (!this.isDepotPage && document.getElementById('divisionFilter')) {
             this.initDropdowns();
         }
-        // Remote ads: fetch config and render
-        await this.loadRemoteAds();
+        // Load ads from Google Sheets
+        await this.loadAdsFromSheets();
     }
     updateTimeDisplay() {
         const now = new Date();
@@ -1596,59 +1563,97 @@ class BusTimetableApp {
     mobileOptimizations() { if('ontouchstart' in window) document.documentElement.style.setProperty('--transition-speed','0.2s'); }
     preventHorizontalScroll() { document.body.style.overflowX='hidden'; document.documentElement.style.overflowX='hidden'; window.addEventListener('resize',()=>{ document.body.style.overflowX='hidden'; document.documentElement.style.overflowX='hidden'; }); }
 
-    // ==================== REMOTE AD CONTROL ====================
-    async loadRemoteAds() {
-        const configUrl = window.adConfigUrl || '/assets/ads/config.json';
+    // ==================== GOOGLE SHEETS AD CONTROL ====================
+    async loadAdsFromSheets() {
+        const apiKey = window.GOOGLE_SHEETS_API_KEY;
+        const spreadsheetId = window.SPREADSHEET_ID;
+        const sheetName = window.SHEET_NAME;
+        if (!apiKey || !spreadsheetId) {
+            console.warn('⚠️ Google Sheets API key or spreadsheet ID missing. Ads disabled.');
+            this.hideAllAdContainers();
+            return;
+        }
+        const url = \`https://sheets.googleapis.com/v4/spreadsheets/\${spreadsheetId}/values/\${sheetName}?key=\${apiKey}&_t=\${Date.now()}\`;
         try {
-            const response = await fetch(configUrl + '?t=' + Date.now());
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            const config = await response.json();
-            this.adConfig = config;
-            console.log('✅ Remote ad config loaded:', config);
-            this.renderAllAds();
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(\`HTTP \${response.status}\`);
+            const data = await response.json();
+            if (!data.values || data.values.length < 2) {
+                console.warn('⚠️ No ad data found in spreadsheet.');
+                this.hideAllAdContainers();
+                return;
+            }
+            const headers = data.values[0];
+            const rows = data.values.slice(1);
+            // Find column indices (case-insensitive)
+            const getColIndex = (name) => headers.findIndex(h => h && h.toLowerCase() === name.toLowerCase());
+            const idIdx = getColIndex('id');
+            const topIdx = getColIndex('top');
+            const middleIdx = getColIndex('middle');
+            const footerIdx = getColIndex('footer');
+            const titleIdx = getColIndex('title');
+            const mobileIdx = getColIndex('mobile');
+            const desktopIdx = getColIndex('desktop');
+            if (idIdx === -1) {
+                console.warn('⚠️ Spreadsheet missing "id" column. Ads disabled.');
+                this.hideAllAdContainers();
+                return;
+            }
+            const pageId = this.getCurrentPageId();
+            const adRow = rows.find(row => row[idIdx] && row[idIdx].toString() === pageId);
+            if (!adRow) {
+                console.log(\`ℹ️ No ad config for page ID "\${pageId}". Ads hidden.\`);
+                this.hideAllAdContainers();
+                return;
+            }
+            const parseBool = (val) => {
+                if (val === undefined || val === null) return false;
+                if (typeof val === 'boolean') return val;
+                const str = String(val).toLowerCase();
+                return str === 'true' || str === '1' || str === 'yes';
+            };
+            const getValue = (idx) => (idx !== -1 && adRow[idx]) ? adRow[idx].toString() : '';
+            const adConfig = {
+                top: { enabled: topIdx !== -1 ? parseBool(adRow[topIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
+                middle: { enabled: middleIdx !== -1 ? parseBool(adRow[middleIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
+                footer: { enabled: footerIdx !== -1 ? parseBool(adRow[footerIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) }
+            };
+            this.renderAds(adConfig);
         } catch (err) {
-            console.warn('⚠️ Failed to load remote ad config:', err);
-            document.querySelectorAll('.ad-container').forEach(container => {
-                container.style.display = 'none';
-            });
+            console.warn('⚠️ Failed to load ads from Google Sheets:', err);
+            this.hideAllAdContainers();
         }
     }
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // Blog pages: /blogs/xyz.html or /blogs/xyz (no .html)
+        // Blog pages: /blogs/xyz.html or /blogs/xyz
         const blogMatch = path.match(/\\/blogs\\/([^\\/]+)(?:\\.html)?$/);
-        if (blogMatch) return { type: 'blog', id: blogMatch[1] };
-
-        // Depot pages: match any alphanumeric + underscore ID at the end (after last slash)
-        // Examples: /.../chandrapur_bus_stand_depot or /.../chandrapur_bus_stand_depot/
-        const depotMatch = path.match(/\\/([a-zA-Z0-9_]+)(?:\\/|$)/);
-        if (depotMatch && !path.includes('/blogs/')) {
+        if (blogMatch) return blogMatch[1];
+        // Depot pages: path ends with /depot-id/index.html or /depot-id/
+        const depotMatch = path.match(/\\/([a-zA-Z0-9_]+)(?:\\/index\\.html|\\/)?$/);
+        if (depotMatch && !path.includes('/blogs/') && !path.includes('/assets/')) {
             const id = depotMatch[1];
             // Ignore known non-depot paths
             if (!['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer', 'index', 'blogs'].includes(id)) {
-                return { type: 'depot', id: id };
+                return id;
             }
         }
-        return { type: 'global', id: null };
+        return 'global';
     }
 
-    renderAllAds() {
-        const pageInfo = this.getCurrentPageId();
-        const defaultConfig = this.adConfig?.default || {};
-        let pageSpecific = null;
-        if (pageInfo.type === 'depot' && this.adConfig?.depots?.[pageInfo.id]) {
-            pageSpecific = this.adConfig.depots[pageInfo.id];
-        } else if (pageInfo.type === 'blog' && this.adConfig?.blogs?.[pageInfo.id]) {
-            pageSpecific = this.adConfig.blogs[pageInfo.id];
-        }
-        const slots = ['top_ad', 'middle_ad', 'footer_ad'];
+    hideAllAdContainers() {
+        document.querySelectorAll('.ad-container').forEach(container => {
+            container.style.display = 'none';
+        });
+    }
+
+    renderAds(config) {
+        const slots = ['top', 'middle', 'footer'];
         slots.forEach(slot => {
             const container = document.querySelector(\`.ad-container.\${slot}\`);
             if (!container) return;
-            let slotConfig = null;
-            if (pageSpecific && pageSpecific[slot]) slotConfig = pageSpecific[slot];
-            else if (defaultConfig[slot]) slotConfig = defaultConfig[slot];
+            const slotConfig = config[slot];
             if (!slotConfig || !slotConfig.enabled) {
                 container.style.display = 'none';
                 return;
@@ -1659,18 +1664,11 @@ class BusTimetableApp {
     }
 
     renderAdInContainer(container, config) {
-        const linkUrl = config.link_url || '#';
         const title = config.title || 'Advertisement';
-        const mobileSrc = config.image_mobile || '';
-        const desktopSrc = config.image_desktop || '';
+        const mobileSrc = config.mobile || '';
+        const desktopSrc = config.desktop || '';
         const inner = document.createElement('div');
         inner.className = 'ad-content';
-        let linkHtml = '';
-        if (linkUrl !== '#') {
-            linkHtml = \`<a href="\${linkUrl}" class="ad-block" target="_blank" rel="noopener noreferrer">\`;
-        } else {
-            linkHtml = \`<div class="ad-block">\`;
-        }
         let pictureHtml = '';
         if (mobileSrc && desktopSrc) {
             pictureHtml = \`<picture class="ad-image"><source media="(max-width: 767px)" srcset="\${mobileSrc}"><img src="\${desktopSrc}" alt="\${title}" loading="lazy"></picture>\`;
@@ -1682,7 +1680,7 @@ class BusTimetableApp {
             pictureHtml = \`<div class="ad-image"></div>\`;
         }
         const titleHtml = \`<div class="ad-title">\${title}</div>\`;
-        const full = \`\${linkHtml}\${titleHtml}\${pictureHtml}\${linkUrl !== '#' ? '</a>' : '</div>'}\`;
+        const full = \`<div class="ad-block">\${titleHtml}\${pictureHtml}</div>\`;
         inner.innerHTML = full;
         container.innerHTML = '';
         container.appendChild(inner);
