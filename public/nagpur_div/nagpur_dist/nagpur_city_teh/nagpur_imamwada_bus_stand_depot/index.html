@@ -163,7 +163,7 @@
     <div class="ad-container footer_ad" data-ad-slot="footer_ad"></div>
     <footer class="site-footer"><div class="container"><div class="footer-content"><div class="footer-section"><h3>Quick Links</h3><div class="footer-links"><a href="../../../../index.html">Home</a><a href="../../../../bus-schedule.html">Bus Schedule</a><a href="../../../../about.html">About</a><a href="../../../../contact.html">Contact</a><a href="../../../../blogs/index.html">Blogs</a><a href="../../../../terms.html">Terms</a><a href="../../../../privacy.html">Privacy</a></div></div><div class="footer-section"><h3>MSRTC Official</h3><div class="footer-links"><a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a><a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a><a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a><a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a></div></div><div class="footer-section"><h3>Useful Links</h3><div class="footer-links"><a href="../../../../disclaimer.html">Disclaimer</a><a href="../../../../sitemap.xml">Sitemap</a><a href="../../../../contact.html#feedback">Feedback</a><a href="../../../../contact.html#report">Report Issue</a></div></div><div class="copyright">© 2026 MSRTC Timetable.<br>This is an unofficial timetable portal.<br><small>All bus schedules are for reference only.</small></div></div></div></footer>
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search bus stops in Nagpur Imamwada Bus Stand Timetable 2026 | Nagpur MSRTC Bus..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "/ads-config.json"; // MSRTC Bus Timetable Application - with Remote Ad Control
+    <script>window.adConfigUrl = "https://msrtcbusinfo.org/ads-config.json"; // MSRTC Bus Timetable Application - with Remote Ad Control
 class BusTimetableApp {
     constructor() {
         this.istOffset = 5.5 * 60 * 60 * 1000;
@@ -548,7 +548,6 @@ class BusTimetableApp {
             this.renderAllAds();
         } catch (err) {
             console.warn('⚠️ Failed to load remote ad config:', err);
-            // Optionally hide all ad containers
             document.querySelectorAll('.ad-container').forEach(container => {
                 container.style.display = 'none';
             });
@@ -557,13 +556,13 @@ class BusTimetableApp {
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // Depot page: e.g. /division/district/tehsil/123/index.html → extract 123
-        const depotMatch = path.match(/\/(\d+)\/index\.html$/);
+        // Depot page: e.g. /division/district/tehsil/123/index.html or /.../chandrapur_bus_stand_depot/index.html
+        // Match any non-slash characters before /index.html
+        const depotMatch = path.match(/\/([^\/]+)\/index\.html$/);
         if (depotMatch) return { type: 'depot', id: depotMatch[1] };
-        // Blog page: /blogs/xyz.html → extract xyz
+        // Blog page: /blogs/xyz.html
         const blogMatch = path.match(/\/blogs\/([^\/]+)\.html$/);
         if (blogMatch) return { type: 'blog', id: blogMatch[1] };
-        // Home, bus-schedule, static pages
         return { type: 'global', id: null };
     }
 

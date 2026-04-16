@@ -305,7 +305,7 @@ class SiteGenerator {
                 site_name: 'MSRTC Bus Timetable',
                 theme: { bg_gradient_start: '#F5F3FF', bg_gradient_end: '#EDE9FE', primary_color: '#493dd5', secondary_color: '#3a2fc1' },
                 ads: { top_ad: { enabled: false }, middle_ad: { enabled: false }, footer_ad: { enabled: false } },
-                ad_config_url: '/assets/ads/config.json'  // fallback local path
+                ad_config_url: '/assets/ads/config.json'
             };
         }
     }
@@ -371,13 +371,20 @@ class SiteGenerator {
         return blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 
-    // ========== MARKDOWN PROCESSING (bold, italic, links, images) ==========
+    // ========== MARKDOWN PROCESSING (bold, italic, links, images) WITH BASE_URL ==========
     processBlogContent(content) {
         if (!content) return '';
         let html = content;
 
-        // Convert images: ![alt](url)
-        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="blog-image" loading="lazy">');
+        // Convert images: ![alt](url) - prepend base_url if url starts with '/'
+        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, url) => {
+            let finalUrl = url;
+            if (url.startsWith('/') && this.config.base_url) {
+                const base = this.config.base_url.replace(/\/$/, '');
+                finalUrl = base + url;
+            }
+            return `<img src="${finalUrl}" alt="${alt}" class="blog-image" loading="lazy">`;
+        });
 
         // Convert links: [text](url)
         html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
@@ -1220,7 +1227,7 @@ class SiteGenerator {
     }`;
     }
 
-    // ========== JAVASCRIPT (full inline script with remote ad control) ==========
+    // ========== JAVASCRIPT (full inline script with remote ad control & fixed depot ID detection) ==========
     getInlineJS() {
         return `// MSRTC Bus Timetable Application - with Remote Ad Control
 class BusTimetableApp {
@@ -1607,7 +1614,6 @@ class BusTimetableApp {
             this.renderAllAds();
         } catch (err) {
             console.warn('⚠️ Failed to load remote ad config:', err);
-            // Optionally hide all ad containers
             document.querySelectorAll('.ad-container').forEach(container => {
                 container.style.display = 'none';
             });
@@ -1616,13 +1622,13 @@ class BusTimetableApp {
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // Depot page: e.g. /division/district/tehsil/123/index.html → extract 123
-        const depotMatch = path.match(/\\/(\\d+)\\/index\\.html$/);
+        // Depot page: e.g. /division/district/tehsil/123/index.html or /.../chandrapur_bus_stand_depot/index.html
+        // Match any non-slash characters before /index.html
+        const depotMatch = path.match(/\\/([^\\/]+)\\/index\\.html$/);
         if (depotMatch) return { type: 'depot', id: depotMatch[1] };
-        // Blog page: /blogs/xyz.html → extract xyz
+        // Blog page: /blogs/xyz.html
         const blogMatch = path.match(/\\/blogs\\/([^\\/]+)\\.html$/);
         if (blogMatch) return { type: 'blog', id: blogMatch[1] };
-        // Home, bus-schedule, static pages
         return { type: 'global', id: null };
     }
 
