@@ -494,8 +494,8 @@ class SiteGenerator {
 <body>
     <header class="site-header"><div class="container"><div class="header-content"><div class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></div><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
-    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
+        ${this.renderAdContainer('top')}
         <h1 class="text-center">${this.escapeHtml(homepageContent.title || 'MSRTC Bus Timetable')}</h1>
         <p class="text-center">${this.escapeHtml(homepageContent.subtitle || 'Your guide to Maharashtra Darshan by bus')}</p>
         <div class="maharashtra-intro">${maharashtraIntro}</div>
@@ -528,8 +528,8 @@ class SiteGenerator {
     <header class="site-header"><div class="container"><div class="header-content"><a href="index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet">${this.renderVerticalAlphabet()}</div>
-    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
+        ${this.renderAdContainer('top')}
         <div class="navigation-buttons"><a href="index.html" class="back-btn"><i class="bi bi-house"></i> Home</a></div>
         <h1 class="text-center">All MSRTC Bus Depots</h1><p class="text-center">Find and filter depots across Maharashtra</p>
         <div class="filter-dropdowns"><div class="dropdown-group"><label>Division</label><select id="divisionFilter"><option value="">All Divisions</option></select></div><div class="dropdown-group"><label>District</label><select id="districtFilter"><option value="">All Districts</option></select></div><div class="dropdown-group"><label>Tehsil</label><select id="tehsilFilter"><option value="">All Tehsils</option></select></div><div class="dropdown-group"><label>Depot</label><select id="depotFilter"><option value="">All Depots</option></select></div></div>
@@ -633,8 +633,8 @@ class SiteGenerator {
     <header class="site-header"><div class="container"><div class="header-content"><a href="index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet">${this.renderVerticalAlphabet()}</div>
-    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
+        ${this.renderAdContainer('top')}
         <div class="navigation-buttons"><a href="index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search depots, tehsils, districts..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div>
         <h1>${this.escapeHtml(pageContent.title)}</h1><div class="page-content">${pageContent.content}</div>${pageContent.seo_content ? this.renderSEOContent(pageContent.seo_content) : ''}
@@ -664,8 +664,8 @@ class SiteGenerator {
 <body>
     <header class="site-header"><div class="container"><div class="header-content"><a href="../index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
-    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
+        ${this.renderAdContainer('top')}
         <div class="navigation-buttons"><a href="../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <h1>Blogs & Updates</h1><p>Latest news and articles about MSRTC bus services in Maharashtra</p>
         ${this.blogs.length > 0 ? `<div class="blog-grid">${this.blogs.map(blog => `<a href="${blog.id}.html" class="blog-card"><div class="blog-card-content"><h3>${this.escapeHtml(blog.title)}</h3><div class="blog-card-excerpt">${this.escapeHtml(blog.excerpt || blog.content.substring(0, 120) + '...')}</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>${new Date(blog.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div></div></div></a>`).join('')}</div>` : `<div class="empty-state"><i class="bi bi-newspaper"></i><h3>No blog posts yet</h3><p>Check back soon for updates and articles about MSRTC services.</p></div>`}
@@ -731,8 +731,8 @@ class SiteGenerator {
 <body>
     <header class="site-header"><div class="container"><div class="header-content"><a href="../index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
-    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container blog-page">
+        ${this.renderAdContainer('top')}
         <div class="navigation-buttons"><a href="../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="blog-header"><h1>${this.escapeHtml(blog.title)}</h1><div class="blog-date"><i class="bi bi-calendar"></i>${new Date(blog.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div></div>
         ${blog.author ? `<div class="blog-author"><div class="author-avatar">${this.escapeHtml(blog.author.charAt(0).toUpperCase())}</div><div class="author-info"><h4>${this.escapeHtml(blog.author)}</h4></div></div>` : ''}
@@ -796,8 +796,8 @@ class SiteGenerator {
     <header class="site-header"><div class="container"><div class="header-content"><a href="../../../../index.html" class="logo"><i class="bi bi-bus-front"></i><span>${this.config.site_name}</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet">${this.renderBusStopVerticalAlphabet(villageLetters)}</div>
-    ${this.renderAdContainer('top')}
     <main class="main-content"><div class="container">
+        ${this.renderAdContainer('top')}
         <div class="navigation-buttons"><a href="../../../../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../../../../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="depot-header"><h1>${this.escapeHtml(depot.name)}</h1><p>${this.escapeHtml(depot.address || 'MSRTC Bus Depot')}</p><div class="depot-info">${depot.contact ? `<div class="info-item"><i class="bi bi-telephone"></i><span>${this.escapeHtml(depot.contact)}</span></div>` : ''}<div class="info-item"><i class="bi bi-signpost"></i><span>${totalBusStopCount} Bus Stops</span></div><div class="info-item"><i class="bi bi-bus-front"></i><span>${totalBusCount} Buses</span></div></div></div>
         <div class="depot-search-filters-container"><div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search bus stops in ${this.escapeHtml(depot.name)}..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div><div class="time-filters"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="morning">5AM-12PM</button><button class="filter-btn" data-filter="afternoon">12PM-5PM</button><button class="filter-btn" data-filter="evening">5PM-10PM</button><button class="filter-btn" data-filter="night">10PM-5AM</button></div></div>
