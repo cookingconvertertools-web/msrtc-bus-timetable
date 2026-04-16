@@ -371,20 +371,14 @@ class SiteGenerator {
         return blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 
-    // ========== MARKDOWN PROCESSING (bold, italic, links, images) WITH BASE_URL ==========
+    // ========== MARKDOWN PROCESSING (bold, italic, links, images) ==========
+    // Blog images are used as-is (no base_url prepended)
     processBlogContent(content) {
         if (!content) return '';
         let html = content;
 
-        // Convert images: ![alt](url) - prepend base_url if url starts with '/'
-        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, url) => {
-            let finalUrl = url;
-            if (url.startsWith('/') && this.config.base_url) {
-                const base = this.config.base_url.replace(/\/$/, '');
-                finalUrl = base + url;
-            }
-            return `<img src="${finalUrl}" alt="${alt}" class="blog-image" loading="lazy">`;
-        });
+        // Convert images: ![alt](url) – leave URL unchanged
+        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="blog-image" loading="lazy">');
 
         // Convert links: [text](url)
         html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
@@ -1622,25 +1616,20 @@ class BusTimetableApp {
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // First, check for blog pages (must come before depot, because blog URLs contain "/blogs/")
-        const blogMatch = path.match(/\/blogs\/([^\/]+)(?:\.html)?$/);
+        // Blog pages: /blogs/xyz.html or /blogs/xyz (no .html)
+        const blogMatch = path.match(/\\/blogs\\/([^\\/]+)(?:\\.html)?$/);
         if (blogMatch) return { type: 'blog', id: blogMatch[1] };
 
-        // Depot pages: match any path that ends with a depot ID (alphanumeric + underscores)
-        // but does NOT contain "/blogs/". It can have optional trailing slash or /index.html.
-        // We exclude the root and bus-schedule.html etc.
-        const depotMatch = path.match(/\/([a-zA-Z0-9_]+)(?:\/|\/index\.html)?$/);
-        if (depotMatch && !path.includes('/blogs/') && !path.endsWith('/') && path !== '/' && !path.endsWith('bus-schedule.html') && !path.endsWith('index.html')) {
-            // Additional safety: make sure the matched segment is not a known non-depot page
+        // Depot pages: match any alphanumeric + underscore ID at the end (after last slash)
+        // Examples: /.../chandrapur_bus_stand_depot or /.../chandrapur_bus_stand_depot/
+        const depotMatch = path.match(/\\/([a-zA-Z0-9_]+)(?:\\/|$)/);
+        if (depotMatch && !path.includes('/blogs/')) {
             const id = depotMatch[1];
-            // Avoid matching file names like "bus-schedule" or "about"
-            if (['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer'].includes(id)) {
-                return { type: 'global', id: null };
+            // Ignore known non-depot paths
+            if (!['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer', 'index', 'blogs'].includes(id)) {
+                return { type: 'depot', id: id };
             }
-            return { type: 'depot', id: id };
         }
-
-        // Also handle URLs that explicitly end with /index.html but without the depot ID in the last segment? Not needed.
         return { type: 'global', id: null };
     }
 
