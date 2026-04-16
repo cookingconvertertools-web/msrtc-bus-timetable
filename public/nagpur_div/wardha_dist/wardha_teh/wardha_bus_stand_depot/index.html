@@ -569,25 +569,20 @@ class BusTimetableApp {
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // First, check for blog pages (must come before depot, because blog URLs contain "/blogs/")
-        const blogMatch = path.match(//blogs/([^/]+)(?:.html)?$/);
+        // Blog pages: /blogs/xyz.html or /blogs/xyz (no .html)
+        const blogMatch = path.match(/\/blogs\/([^\/]+)(?:\.html)?$/);
         if (blogMatch) return { type: 'blog', id: blogMatch[1] };
 
-        // Depot pages: match any path that ends with a depot ID (alphanumeric + underscores)
-        // but does NOT contain "/blogs/". It can have optional trailing slash or /index.html.
-        // We exclude the root and bus-schedule.html etc.
-        const depotMatch = path.match(//([a-zA-Z0-9_]+)(?:/|/index.html)?$/);
-        if (depotMatch && !path.includes('/blogs/') && !path.endsWith('/') && path !== '/' && !path.endsWith('bus-schedule.html') && !path.endsWith('index.html')) {
-            // Additional safety: make sure the matched segment is not a known non-depot page
+        // Depot pages: match any alphanumeric + underscore ID at the end (after last slash)
+        // Examples: /.../chandrapur_bus_stand_depot or /.../chandrapur_bus_stand_depot/
+        const depotMatch = path.match(/\/([a-zA-Z0-9_]+)(?:\/|$)/);
+        if (depotMatch && !path.includes('/blogs/')) {
             const id = depotMatch[1];
-            // Avoid matching file names like "bus-schedule" or "about"
-            if (['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer'].includes(id)) {
-                return { type: 'global', id: null };
+            // Ignore known non-depot paths
+            if (!['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer', 'index', 'blogs'].includes(id)) {
+                return { type: 'depot', id: id };
             }
-            return { type: 'depot', id: id };
         }
-
-        // Also handle URLs that explicitly end with /index.html but without the depot ID in the last segment? Not needed.
         return { type: 'global', id: null };
     }
 
