@@ -1,0 +1,384 @@
+Below is the **updated specification** that adds support for blog images, a remote ad‑control system (via a Cloudflare‑hosted JSON file), and responsive ad layout (desktop: 1/3 title + 2/3 image; mobile: stacked). All existing functionality remains untouched. Copy this entire document and give it to your AI agent.
+
+---
+
+# MSRTC Bus Timetable Static Site Generator – Final Specification (with Blog Images & Remote Ad Control)
+
+## 1. Overview
+Build a Node.js static site generator (no external dependencies) that produces a mobile‑first, SEO‑friendly website for MSRTC bus timetables with a **two‑page homepage structure**:
+
+- **New homepage** (`index.html`) – Maharashtra Darshan focused: introduction, latest blog cards, two buttons (“Read All Blogs” / “View All Bus Schedule”), 10 bullet points, final paragraph.
+- **Bus schedule page** (`bus-schedule.html`) – cascading dropdown filters (Division → District → Tehsil → Depot) + grid of all depots.
+- **Depot detail pages** – one per depot, showing bus stop schedules, time filters, next‑bus highlighting, FAQs, related depots.
+- **Blog pages** – listing (`blogs/index.html`) and individual posts (`blogs/<id>.html`), **with support for images inside blog content**.
+- **Static pages** – about, contact, terms, privacy, disclaimer.
+- **Assets** – images, URL constants, search index, sitemap, robots.txt.
+- **Remote ad control** – all pages fetch a live JSON configuration (hosted on Cloudflare or any static URL) that defines which ads to show (enabled/disabled, image URLs, title text) per page (depot/blog/global), per position (top/middle/footer), and per device (mobile/desktop). Ads are displayed as a combined title+image block: on desktop, title takes 1/3 width, image 2/3; on mobile they stack vertically.
+
+**No division, district, or tehsil HTML pages** – those JSON files are used only for dropdown data and hierarchy.
+
+**Navigation:** All pages include a “Home” button (or logo link) that returns to `index.html`. The bus schedule page also includes a “Home” button.
+
+---
+
+## 2. File & Directory Structure (Input)
+```
+project-root/
+├── site-config.json
+├── content.json
+├── data/
+│   ├── divisions/          # <id>.json
+│   ├── districts/          # <id>.json
+│   ├── tehsils/            # <id>.json
+│   ├── depots/             # <id>.json
+│   ├── related-depots/     # any .json files
+│   ├── blogs/              # <id>.json
+│   └── ads.json            # optional (legacy, kept for fallback)
+├── assets/
+│   ├── img/
+│   │   ├── favicon.ico etc.
+│   │   ├── blogs/          # <-- NEW: blog images (optional)
+│   │   └── ads/            # <-- NEW: ad images (optional, but recommended)
+│   └── urls/               # .js files with URL constants
+└── templates/              # (optional, can be ignored)
+```
+
+### 2.1 Output Directory (`public/`)
+```
+public/
+├── index.html
+├── bus-schedule.html
+├── about.html, contact.html, terms.html, privacy.html, disclaimer.html
+├── blogs/
+│   ├── index.html
+│   └── <blog-id>.html
+├── <division-id>/<district-id>/<tehsil-id>/<depot-id>/index.html
+├── assets/
+│   ├── images/
+│   │   ├── (all images from assets/img, including blogs/ and ads/ subfolders)
+│   └── urls/url-constants.js
+├── search-index.js
+├── sitemap.xml
+├── robots.txt
+└── favicon files (root)
+```
+
+**Important:** The generator copies the entire `assets/img/` folder recursively to `public/assets/images/`. This means any subfolder (e.g., `blogs/`, `ads/`) is preserved. You can later upload new images directly into `public/assets/images/ads/` without rebuilding the site.
+
+---
+
+## 3. JSON Data Schemas (Existing – unchanged)
+
+### 3.1 `site-config.json` – same as before
+### 3.2 `content.json` – same as before
+### 3.3 Division, District, Tehsil Files – unchanged
+### 3.4 Depot File – unchanged
+### 3.5 Related Depots – unchanged
+### 3.6 Blog File – unchanged, except that the `content` field can now contain Markdown images (see Section 5).
+
+---
+
+## 4. New: Remote Ad Control Configuration
+
+The generator **does not** hardcode any ad images. Instead, every generated page includes JavaScript that fetches a live JSON configuration from a URL defined in `site-config.json` (or a default path). This JSON controls:
+
+- Which ads are shown on which page (depot, blog, or global).
+- For each ad slot (top, middle, footer) per page:
+  - `enabled` (true/false)
+  - `title` (text to display in the 1/3 column on desktop, above image on mobile)
+  - `image_mobile` (URL of image for screens < 768px)
+  - `image_desktop` (URL of image for screens ≥ 768px)
+  - `link_url` (optional – makes the whole ad clickable)
+
+### 4.1 Location of the Remote JSON
+
+The remote JSON must be accessible via a URL. In `site-config.json`, add:
+
+```json
+"ad_config_url": "https://your-cloudflare-worker-or-static-host.com/ads-config.json"
+```
+
+If not provided, the JavaScript falls back to `"/assets/ads/config.json"` (so you can host the file inside the same `public/` directory and update it without rebuilding).
+
+### 4.2 Structure of the Remote JSON
+
+```json
+{
+  "depots": {
+    "123": {
+      "top_ad": {
+        "enabled": true,
+        "title": "Special Offer near Pune Depot",
+        "image_mobile": "/assets/images/ads/pune-depot-mobile.jpg",
+        "image_desktop": "/assets/images/ads/pune-depot-desktop.jpg",
+        "link_url": "https://example.com/offer"
+      },
+      "middle_ad": { "enabled": false },
+      "footer_ad": { "enabled": true, "title": "Book Now", "image_mobile": "...", "image_desktop": "..." }
+    },
+    "456": { ... }
+  },
+  "blogs": {
+    "my-blog-post": {
+      "top_ad": { "enabled": true, "title": "Read more", "image_mobile": "...", "image_desktop": "..." }
+    }
+  },
+  "default": {
+    "top_ad": { "enabled": true, "title": "Default Ad", "image_mobile": "/assets/images/ads/default-mobile.jpg", "image_desktop": "/assets/images/ads/default-desktop.jpg" },
+    "middle_ad": { "enabled": false },
+    "footer_ad": { "enabled": true, ... }
+  }
+}
+```
+
+### 4.3 How Pages Use the Remote JSON
+
+- On page load, the JavaScript fetches this JSON (with cache‑busting via `?t=Date.now()` or a short TTL).
+- It determines the current page type:
+  - Depot page: extracts depot ID from the URL path (e.g., `/division/district/tehsil/123/index.html` → `123`).
+  - Blog page: extracts blog ID from URL (e.g., `/blogs/my-blog.html` → `my-blog`).
+  - Other pages (home, bus-schedule, static): use `"default"` or a special key `"global"`.
+- For each ad container (`.ad-container.top_ad`, `.middle_ad`, `.footer_ad`), it looks up the corresponding configuration (page‑specific first, then fallback to `default`).
+- If `enabled` is `true`, it renders the ad as a **combined title+image block**:
+  - Desktop: flex row, title occupies 1/3 width, image occupies 2/3 width.
+  - Mobile: flex column, title above image.
+  - If `link_url` is provided, the entire block becomes a clickable `<a>` tag.
+  - The image uses `srcset` or separate `image_mobile` / `image_desktop` based on `window.innerWidth`.
+- If `enabled` is `false`, the ad container is hidden (`display: none`).
+
+### 4.4 Manual Image Uploads Without Rebuilding
+
+Because the generator copies the `assets/img/ads/` folder to `public/assets/images/ads/`, you can later upload new images directly into `public/assets/images/ads/` (via FTP, SCP, or file manager) and update the remote JSON to point to those local paths (e.g., `"/assets/images/ads/new-image.jpg"`). No rebuild is required.
+
+---
+
+## 5. Blog Images (Markdown Support)
+
+### 5.1 Directory & Copying
+
+- Place blog images in `assets/img/blogs/` (any filenames, any subfolder structure).
+- The generator’s existing `copyImagesToPublic()` method must be extended to **recursively copy** the entire `assets/img/` directory, preserving subfolders. This will copy `blogs/` and `ads/` subfolders to `public/assets/images/blogs/` and `public/assets/images/ads/`.
+
+### 5.2 Markdown Image Syntax
+
+The `processBlogContent()` method must be enhanced to convert standard Markdown image syntax:
+
+`![alt text](image-url)` → `<img src="image-url" alt="alt text" class="blog-image">`
+
+**Important:** The image URL should be relative to the site root, e.g., `/assets/images/blogs/my-photo.jpg`. The generator does **not** modify the URL; it trusts the author to use the correct path.
+
+### 5.3 Example Blog JSON
+
+```json
+{
+  "id": "pune-trip",
+  "title": "A Day in Pune",
+  "date": "2025-03-15",
+  "content": "We started at Pune depot. ![Pune Bus Stand](/assets/images/blogs/pune-bus.jpg) The journey was amazing."
+}
+```
+
+### 5.4 CSS for Blog Images
+
+Add to the inline CSS:
+
+```css
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+  display: block;
+}
+```
+
+---
+
+## 6. Ad Display Layout (Responsive Title + Image)
+
+### 6.1 HTML Structure (injected by JavaScript)
+
+```html
+<div class="ad-container top_ad">
+  <div class="ad-content">
+    <a href="[link_url]" class="ad-block" target="_blank" rel="noopener">
+      <div class="ad-title">[title]</div>
+      <picture class="ad-image">
+        <source media="(max-width: 767px)" srcset="[image_mobile]">
+        <img src="[image_desktop]" alt="[title]">
+      </picture>
+    </a>
+  </div>
+</div>
+```
+
+### 6.2 CSS
+
+```css
+.ad-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+.ad-title {
+  flex: 1;  /* 1/3 of the space? Actually flex:1 vs flex:2 gives 1/3 + 2/3 */
+  font-weight: 600;
+  font-size: 1rem;
+}
+.ad-image {
+  flex: 2;
+}
+.ad-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+@media (max-width: 767px) {
+  .ad-block {
+    flex-direction: column;
+    text-align: center;
+  }
+  .ad-title {
+    margin-bottom: 0.5rem;
+  }
+}
+```
+
+To achieve exactly 1/3 – 2/3, use:
+
+```css
+.ad-title { flex: 1; }
+.ad-image { flex: 2; }
+```
+
+---
+
+## 7. SiteGenerator Class – Required Methods (Updated)
+
+Keep all existing methods from the original specification. Add or modify the following:
+
+### 7.1 `copyImagesToPublic()` – must now copy recursively
+
+Replace the simple file loop with recursive directory copy (using `fs.cpSync` if Node.js ≥ 16.7.0, or a custom recursive function). It should copy the entire `assets/img/` folder to `public/assets/images/`, including all subfolders (`blogs/`, `ads/`, etc.). Favicon files are still copied to the root as before.
+
+### 7.2 `processBlogContent()` – add image conversion
+
+Add a regex replace **before** the existing link/bold/italic replacements:
+
+```javascript
+// Convert images: ![alt](url)
+html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="blog-image" loading="lazy">');
+```
+
+### 7.3 `getInlineJS()` – add ad‑fetching logic
+
+Inside the `BusTimetableApp` class, add a new method `loadRemoteAds()` that:
+
+- Reads `window.adConfigUrl` (set in HTML via `<script>` or from `site-config.json` embedded in a meta tag).
+- Fetches the JSON.
+- Determines page type and ID.
+- Renders ads as described in Section 4.3 and 6.
+- Calls this method on `init()`.
+
+Also add a helper `getCurrentPageId()` that:
+- For depot pages: extracts the last path segment before `index.html` (e.g., `.../123/index.html` → `123`).
+- For blog pages: extracts from `window.location.pathname` (e.g., `/blogs/my-post.html` → `my-post`).
+- Otherwise returns `null` (use `default` config).
+
+### 7.4 `generateNewHomepage()`, `generateBusSchedulePage()`, `generateDepotPages()`, `generateStaticPages()`, `generateBlogPages()`
+
+In each of these methods, ensure the generated HTML includes a `<script>` block that sets `window.adConfigUrl` (from `site-config.json`) or falls back to `"/assets/ads/config.json"`. Example:
+
+```html
+<script>window.adConfigUrl = "https://your-cdn.com/ads-config.json";</script>
+```
+
+If `ad_config_url` is not defined in `site-config.json`, use the fallback.
+
+---
+
+## 8. CSS Additions
+
+Append the following to the existing inline CSS string:
+
+```css
+/* Blog images */
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Ad blocks (remote controlled) */
+.ad-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--text-primary, #4C1D95);
+  width: 100%;
+}
+.ad-title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.ad-image {
+  flex: 2;
+}
+.ad-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+@media (max-width: 767px) {
+  .ad-block {
+    flex-direction: column;
+    text-align: center;
+  }
+  .ad-title {
+    margin-bottom: 0.5rem;
+  }
+}
+```
+
+---
+
+## 9. Execution & Output – unchanged
+
+- Run `node site-generator.js`.
+- All files written to `public/`.
+- No external dependencies.
+
+---
+
+## 10. Deliverables for AI
+
+Produce a single `site-generator.js` file that:
+
+1. Contains the full `SiteGenerator` class with all methods described in **this** final specification.
+2. Includes the complete inline CSS string (original + new styles for blog images and responsive ad blocks).
+3. Includes the complete inline JavaScript string (original `BusTimetableApp` plus the new `loadRemoteAds()` method).
+4. Recursively copies `assets/img/` to `public/assets/images/` (including subfolders).
+5. Converts Markdown images in blog content.
+6. Fetches the remote ad JSON and renders ads as described.
+
+The AI must not ask for clarifications – this specification is self‑sufficient.
+
+##
+
+Device	Width	Height	Aspect	File size
+Desktop	1200px	600px	2:1	~80‑120 KB (JPEG)
+Mobile	640px	360px	16:9	~40‑60 KB
+
+---
+
+**End of Updated Specification**

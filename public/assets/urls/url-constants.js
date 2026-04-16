@@ -1,4 +1,3 @@
-// URL Constants - Auto-generated from assets/urls/
 window.URL_CONSTANTS = {
   "CHANDRAPURBUSSTAND": "https://msrtcbusinfo.org/nagpur_div/chandrapur_dist/chandrapur_teh/chandrapur_bus_stand_depot/",
   "GHUGUSBUSSTAND": "https://msrtcbusinfo.org/nagpur_div/chandrapur_dist/chandrapur_teh/ghugus_bus_stand_depot/",
@@ -8,38 +7,6 @@ window.URL_CONSTANTS = {
   "MSRTCBOOKING": "https://msrtc.maharashtra.gov.in/booking/ticket_booking.html",
   "MSRTCCONTACT": "https://msrtc.maharashtra.gov.in/contact_us.html"
 };
-
-// Function to get URL from constant
-window.getUrlFromConstant = function(constantName) {
-    if (window.URL_CONSTANTS && window.URL_CONSTANTS[constantName]) {
-        return window.URL_CONSTANTS[constantName];
-    }
-    console.warn('URL constant not found:', constantName);
-    return '#';
-};
-
-// Function to handle blog link clicks
-window.handleBlogLinkClick = function(event) {
-    const link = event.currentTarget;
-    const constantName = link.dataset.constant;
-
-    if (constantName) {
-        const url = window.getUrlFromConstant(constantName);
-        if (url && url !== '#') {
-            window.open(url, '_blank', 'noopener,noreferrer');
-            event.preventDefault();
-            return false;
-        }
-    }
-    return true;
-};
-
-// Initialize blog links after DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click handlers to all blog links with data-constant attribute
-    document.querySelectorAll('.blog-link[data-constant]').forEach(function(link) {
-        link.addEventListener('click', window.handleBlogLinkClick);
-    });
-
-    console.log('URL constants initialized with', Object.keys(window.URL_CONSTANTS || {}).length, 'constants');
-});
+window.getUrlFromConstant = function(c){ return window.URL_CONSTANTS[c] || '#'; };
+window.handleBlogLinkClick = function(e){ const c = e.currentTarget.dataset.constant; if(c){ const url = window.getUrlFromConstant(c); if(url && url!=='#'){ window.open(url, '_blank', 'noopener,noreferrer'); e.preventDefault(); return false; } } return true; };
+document.addEventListener('DOMContentLoaded', function(){ document.querySelectorAll('.blog-link[data-constant]').forEach(function(link){ link.addEventListener('click', window.handleBlogLinkClick); }); console.log('URL constants initialized with', Object.keys(window.URL_CONSTANTS || {}).length, 'constants'); });
