@@ -150,7 +150,7 @@
     <main class="main-content"><div class="container">
         <div class="navigation-buttons"><a href="../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <h1>Blogs & Updates</h1><p>Latest news and articles about MSRTC bus services in Maharashtra</p>
-        <div class="blog-grid"><a href="chandrapur_bus_stand_blog.html" class="blog-card"><div class="blog-card-content"><h3>Chandrapur MSRTC Bus Stand Complete Guide | Timetable, Booking, Contact Number &amp; Routes</h3><div class="blog-card-excerpt">Complete Chandrapur Bus Stand guide with MSRTC timetable, online booking, Ghugus to Chandrapur bus timings, contact number, route-wise schedules, PDFs, and reservation details in English + Marathi.</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>5 Feb 2026</div></div></div></a><a href="blogs.html" class="blog-card"><div class="blog-card-content"><h3>Complete Guide to MSRTC Bus Services in Maharashtra 2024</h3><div class="blog-card-excerpt">A comprehensive guide covering everything you need to know about MSRTC bus services, schedules, travel tips, and latest updates across Maharashtra. Learn about booking, fares, routes, and more.</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>15 Jan 2024</div></div></div></a><a href="chandraput_mahakali.html" class="blog-card"><div class="blog-card-content"><h3>चंद्रपूरची महाकाली देवी: चंद्रपूर जिल्ह्याचा आध्यात्मिक केंद्रबिंदू</h3><div class="blog-card-excerpt">चंद्रपूर जिल्ह्यातील महाकाली मंदिर – इतिहास, श्रद्धा आणि राज्यभरातून येणाऱ्या भक्तांचे प्रमुख आध्यात्मिक स्थळ.</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>15 Jan 2024</div></div></div></a></div>
+        <div class="blog-grid"><a href="chandrapur_bus_stand_blog.html" class="blog-card"><div class="blog-card-content"><h3>Chandrapur MSRTC Bus Stand Complete Guide | Timetable, Booking, Contact Number &amp; Routes</h3><div class="blog-card-excerpt">Complete Chandrapur Bus Stand guide with MSRTC timetable, online booking, Ghugus to Chandrapur bus timings, contact number, route-wise schedules, PDFs, and reservation details in English + Marathi.</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>5 Feb 2026</div></div></div></a><a href="blogs.html" class="blog-card"><div class="blog-card-content"><h3>Complete Guide to MSRTC Bus Services in Maharashtra 2024</h3><div class="blog-card-excerpt">A comprehensive guide covering everything you need to know about MSRTC bus services, schedules, travel tips, and latest updates across Maharashtra. Learn about booking, fares, routes, and more.</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>15 Jan 2024</div></div></div></a><a href="chandrapur_mahakali.html" class="blog-card"><div class="blog-card-content"><h3>चंद्रपूरची महाकाली देवी: चंद्रपूर जिल्ह्याचा आध्यात्मिक केंद्रबिंदू</h3><div class="blog-card-excerpt">चंद्रपूर जिल्ह्यातील महाकाली मंदिर – इतिहास, श्रद्धा आणि राज्यभरातून येणाऱ्या भक्तांचे प्रमुख आध्यात्मिक स्थळ.</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>15 Jan 2024</div></div></div></a></div>
     </div></main>
     <div class="ad-container footer_ad" data-ad-slot="footer_ad"></div>
     <footer class="site-footer"><div class="container"><div class="footer-content"><div class="footer-section"><h3>Quick Links</h3><div class="footer-links"><a href="../index.html">Home</a><a href="../bus-schedule.html">Bus Schedule</a><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../blogs/index.html">Blogs</a><a href="../terms.html">Terms</a><a href="../privacy.html">Privacy</a></div></div><div class="footer-section"><h3>MSRTC Official</h3><div class="footer-links"><a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a><a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a><a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a><a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a></div></div><div class="footer-section"><h3>Useful Links</h3><div class="footer-links"><a href="../disclaimer.html">Disclaimer</a><a href="../sitemap.xml">Sitemap</a><a href="../contact.html#feedback">Feedback</a><a href="../contact.html#report">Report Issue</a></div></div><div class="copyright">© 2026 MSRTC Timetable.<br>This is an unofficial timetable portal.<br><small>All bus schedules are for reference only.</small></div></div></div></footer>
@@ -548,13 +548,25 @@ class BusTimetableApp {
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // Depot page: e.g. /division/district/tehsil/123/index.html or /.../chandrapur_bus_stand_depot/index.html
-        // Match any non-slash characters before /index.html
-        const depotMatch = path.match(/\/([^\/]+)\/index\.html$/);
-        if (depotMatch) return { type: 'depot', id: depotMatch[1] };
-        // Blog page: /blogs/xyz.html
-        const blogMatch = path.match(/\/blogs\/([^\/]+)\.html$/);
+        // First, check for blog pages (must come before depot, because blog URLs contain "/blogs/")
+        const blogMatch = path.match(//blogs/([^/]+)(?:.html)?$/);
         if (blogMatch) return { type: 'blog', id: blogMatch[1] };
+
+        // Depot pages: match any path that ends with a depot ID (alphanumeric + underscores)
+        // but does NOT contain "/blogs/". It can have optional trailing slash or /index.html.
+        // We exclude the root and bus-schedule.html etc.
+        const depotMatch = path.match(//([a-zA-Z0-9_]+)(?:/|/index.html)?$/);
+        if (depotMatch && !path.includes('/blogs/') && !path.endsWith('/') && path !== '/' && !path.endsWith('bus-schedule.html') && !path.endsWith('index.html')) {
+            // Additional safety: make sure the matched segment is not a known non-depot page
+            const id = depotMatch[1];
+            // Avoid matching file names like "bus-schedule" or "about"
+            if (['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer'].includes(id)) {
+                return { type: 'global', id: null };
+            }
+            return { type: 'depot', id: id };
+        }
+
+        // Also handle URLs that explicitly end with /index.html but without the depot ID in the last segment? Not needed.
         return { type: 'global', id: null };
     }
 
