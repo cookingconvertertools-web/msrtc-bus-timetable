@@ -5,7 +5,11 @@
     <link rel="icon" href="../../../..//favicon-32x32.png" type="image/png">
     <link rel="icon" href="../../../..//favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../../../..//favicon.ico" type="image/x-icon">
-    <meta name="msapplication-TileImage" content="../../../..//apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../../../../assets/urls/url-constants.js"></script><style>/* ==========================================================================
+    <meta name="msapplication-TileImage" content="../../../..//apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="../../../../assets/urls/url-constants.js"></script><script>
+            window.GOOGLE_SHEETS_API_KEY = "AIzaSyBRxEdreU4LR5bvusbhNpANolDFaxfDIxU";
+            window.SPREADSHEET_ID = "11jH9ApW--IA9ae8mJNi0bY6-d0vKodxAmzfIg3XKe0k";
+            window.SHEET_NAME = "affiliate_ads";
+        </script><style>/* ==========================================================================
        MSRTC BUS TIMETABLE - MOBILE FIRST STYLES
        ========================================================================== */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -45,7 +49,6 @@
     .back-btn { display:inline-flex; align-items:center; gap:0.3rem; padding:0.5rem 0.8rem; background:white; border:1px solid #C4B5FD; border-radius:6px; color:#4C1D95; font-family:'Inter',sans-serif; font-weight:500; cursor:pointer; transition:all 0.3s; font-size:0.9rem; text-decoration:none; flex-shrink:0; max-width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-height:38px; margin:0; width:auto; }
     .back-btn:hover { background:#FCE7F3; color:#493dd5; border-color:#A78BFA; }
     .depot-about-section, .faq-section, .related-links-section { background:white; border-radius:8px; padding:1rem; border:1px solid #C4B5FD; margin-top:1.5rem; width:100%; }
-    /* FAQ styling - bold questions and good spacing */
     .faq-container { display:flex; flex-direction:column; gap:1rem; }
     .faq-item { border-bottom:1px solid #C4B5FD; padding-bottom:0.75rem; }
     .faq-question { display:flex; align-items:center; gap:0.5rem; font-weight:700; color:#5B21B6; font-size:1rem; margin-bottom:0.5rem; }
@@ -134,7 +137,6 @@
     .maharashtra-darshan-bullets li { margin-bottom:0.8rem; padding-left:0.5rem; break-inside:avoid; }
     @media (max-width:768px) { .maharashtra-darshan-bullets ul { columns:1; } }
     .maharashtra-intro { background:linear-gradient(135deg, #FEF2F8, #FCE7F3); border-radius:16px; padding:1.5rem; margin:1.5rem 0; text-align:center; }
-    /* Blog image styles */
     .blog-content img {
         max-width: 100%;
         height: auto;
@@ -147,12 +149,12 @@
     <header class="site-header"><div class="container"><div class="header-content"><a href="../../../../index.html" class="logo"><i class="bi bi-bus-front"></i><span>MSRTC Timetable</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet"><button class="alphabet-vertical-btn " data-letter="a">A</button><button class="alphabet-vertical-btn " data-letter="b">B</button><button class="alphabet-vertical-btn " data-letter="c">C</button><button class="alphabet-vertical-btn " data-letter="d">D</button><button class="alphabet-vertical-btn disabled" data-letter="e">E</button><button class="alphabet-vertical-btn disabled" data-letter="f">F</button><button class="alphabet-vertical-btn " data-letter="g">G</button><button class="alphabet-vertical-btn " data-letter="h">H</button><button class="alphabet-vertical-btn disabled" data-letter="i">I</button><button class="alphabet-vertical-btn disabled" data-letter="j">J</button><button class="alphabet-vertical-btn " data-letter="k">K</button><button class="alphabet-vertical-btn disabled" data-letter="l">L</button><button class="alphabet-vertical-btn " data-letter="m">M</button><button class="alphabet-vertical-btn " data-letter="n">N</button><button class="alphabet-vertical-btn disabled" data-letter="o">O</button><button class="alphabet-vertical-btn " data-letter="p">P</button><button class="alphabet-vertical-btn disabled" data-letter="q">Q</button><button class="alphabet-vertical-btn " data-letter="r">R</button><button class="alphabet-vertical-btn " data-letter="s">S</button><button class="alphabet-vertical-btn disabled" data-letter="t">T</button><button class="alphabet-vertical-btn " data-letter="u">U</button><button class="alphabet-vertical-btn " data-letter="v">V</button><button class="alphabet-vertical-btn " data-letter="w">W</button><button class="alphabet-vertical-btn disabled" data-letter="x">X</button><button class="alphabet-vertical-btn " data-letter="y">Y</button><button class="alphabet-vertical-btn " data-letter="z">Z</button></div>
-    <div class="ad-container top_ad" data-ad-slot="top_ad"></div>
+    <div class="ad-container top" data-ad-slot="top"></div>
     <main class="main-content"><div class="container">
         <div class="navigation-buttons"><a href="../../../../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../../../../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="depot-header"><h1>Wani Bus Stand Timetable 2026 | MSRTC Ticket Price</h1><p>Wani Bus Stand, Wani, Yavatmal District - 445304</p><div class="depot-info"><div class="info-item"><i class="bi bi-telephone"></i><span>07239-234567</span></div><div class="info-item"><i class="bi bi-signpost"></i><span>44 Bus Stops</span></div><div class="info-item"><i class="bi bi-bus-front"></i><span>148 Buses</span></div></div></div>
         <div class="depot-search-filters-container"><div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search bus stops in Wani Bus Stand Timetable 2026 | MSRTC Ticket Price..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div><div class="time-filters"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="morning">5AM-12PM</button><button class="filter-btn" data-filter="afternoon">12PM-5PM</button><button class="filter-btn" data-filter="evening">5PM-10PM</button><button class="filter-btn" data-filter="night">10PM-5AM</button></div></div>
-        <div class="ad-container middle_ad" data-ad-slot="middle_ad"></div>
+        <div class="ad-container middle" data-ad-slot="middle"></div>
         <div class="empty-state hidden"><i class="bi bi-search"></i><h3>No buses found</h3><p>Try changing your filters or search term</p></div>
         <div class="bus-stop-section" id="busstop-a-adilabad" data-letter="a" data-busstop="adilabad"><div class="bus-stop-header"><h3 class="bus-stop-name">Adilabad</h3><span class="bus-count">4</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:00" title="6:00AM">6:00AM</div><div class="time-bubble morning" data-time="07:15" title="7:15AM">7:15AM</div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">1:00PM</div><div class="time-bubble evening" data-time="17:00" title="5:00PM">5:00PM</div></div></div><div class="bus-stop-section" id="busstop-a-aheri" data-letter="a" data-busstop="aheri"><div class="bus-stop-header"><h3 class="bus-stop-name">Aheri</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:30" title="8:30AM">8:30AM</div></div></div><div class="bus-stop-section" id="busstop-a-akola" data-letter="a" data-busstop="akola"><div class="bus-stop-header"><h3 class="bus-stop-name">Akola</h3><span class="bus-count">3</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:30" title="6:30AM">6:30AM</div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">1:00PM</div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">2:00PM</div></div></div><div class="bus-stop-section" id="busstop-a-ambejogai" data-letter="a" data-busstop="ambejogai"><div class="bus-stop-header"><h3 class="bus-stop-name">Ambejogai</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:15" title="6:15AM">6:15AM</div><div class="time-bubble evening" data-time="20:45" title="8:45PM">8:45PM</div></div></div><div class="bus-stop-section" id="busstop-a-amravati" data-letter="a" data-busstop="amravati"><div class="bus-stop-header"><h3 class="bus-stop-name">Amravati</h3><span class="bus-count">5</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="05:45" title="5:45AM">5:45AM</div><div class="time-bubble morning" data-time="07:40" title="7:40AM">7:40AM</div><div class="time-bubble morning" data-time="08:00" title="8:00AM">8:00AM</div><div class="time-bubble morning" data-time="09:45" title="9:45AM">9:45AM</div><div class="time-bubble evening" data-time="17:45" title="5:45PM">5:45PM</div></div></div><div class="bus-stop-section" id="busstop-b-bordharan-(virkund)" data-letter="b" data-busstop="bordharan (virkund)"><div class="bus-stop-header"><h3 class="bus-stop-name">Bordharan (Virkund)</h3><span class="bus-count">4</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:15" title="6:15AM">6:15AM</div><div class="time-bubble morning" data-time="09:00" title="9:00AM">9:00AM</div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">12:00PM</div><div class="time-bubble evening" data-time="17:00" title="5:00PM">5:00PM</div></div></div><div class="bus-stop-section" id="busstop-b-bothli" data-letter="b" data-busstop="bothli"><div class="bus-stop-header"><h3 class="bus-stop-name">Bothli</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble afternoon" data-time="14:30" title="2:30PM">2:30PM</div><div class="time-bubble evening" data-time="19:30" title="7:30PM">7:30PM</div></div></div><div class="bus-stop-section" id="busstop-b-bramhapuri" data-letter="b" data-busstop="bramhapuri"><div class="bus-stop-header"><h3 class="bus-stop-name">Bramhapuri</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">12:30PM</div></div></div><div class="bus-stop-section" id="busstop-c-chandrapur-(via-ghugus)" data-letter="c" data-busstop="chandrapur (via ghugus)"><div class="bus-stop-header"><h3 class="bus-stop-name">Chandrapur (via Ghugus)</h3><span class="bus-count">12</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:45" title="8:45AM">8:45AM</div><div class="time-bubble morning" data-time="09:45" title="9:45AM">9:45AM</div><div class="time-bubble morning" data-time="10:45" title="10:45AM">10:45AM</div><div class="time-bubble morning" data-time="11:45" title="11:45AM">11:45AM</div><div class="time-bubble afternoon" data-time="12:55" title="12:55PM">12:55PM</div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">1:15PM</div><div class="time-bubble afternoon" data-time="15:15" title="3:15PM">3:15PM</div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">4:15PM</div><div class="time-bubble evening" data-time="17:15" title="5:15PM">5:15PM</div><div class="time-bubble evening" data-time="18:45" title="6:45PM">6:45PM</div><div class="time-bubble evening" data-time="19:45" title="7:45PM">7:45PM</div><div class="time-bubble evening" data-time="20:45" title="8:45PM">8:45PM</div></div></div><div class="bus-stop-section" id="busstop-c-chandrapur-(via-warora)" data-letter="c" data-busstop="chandrapur (via warora)"><div class="bus-stop-header"><h3 class="bus-stop-name">Chandrapur (via Warora)</h3><span class="bus-count">13</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="05:45" title="5:45AM">5:45AM</div><div class="time-bubble morning" data-time="08:30" title="8:30AM">8:30AM</div><div class="time-bubble morning" data-time="08:50" title="8:50AM">8:50AM</div><div class="time-bubble morning" data-time="09:00" title="9:00AM">9:00AM</div><div class="time-bubble morning" data-time="09:30" title="9:30AM">9:30AM</div><div class="time-bubble morning" data-time="09:35" title="9:35AM">9:35AM</div><div class="time-bubble morning" data-time="10:15" title="10:15AM">10:15AM</div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">12:00PM</div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">1:00PM</div><div class="time-bubble afternoon" data-time="15:00" title="3:00PM">3:00PM</div><div class="time-bubble afternoon" data-time="16:45" title="4:45PM">4:45PM</div><div class="time-bubble evening" data-time="17:45" title="5:45PM">5:45PM</div><div class="time-bubble night" data-time="04:45" title="4:45AM">4:45AM</div></div></div><div class="bus-stop-section" id="busstop-c-chimur" data-letter="c" data-busstop="chimur"><div class="bus-stop-header"><h3 class="bus-stop-name">Chimur</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble evening" data-time="20:00" title="8:00PM">8:00PM</div></div></div><div class="bus-stop-section" id="busstop-d-darwha" data-letter="d" data-busstop="darwha"><div class="bus-stop-header"><h3 class="bus-stop-name">Darwha</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="07:30" title="7:30AM">7:30AM</div></div></div><div class="bus-stop-section" id="busstop-g-gadchiroli" data-letter="g" data-busstop="gadchiroli"><div class="bus-stop-header"><h3 class="bus-stop-name">Gadchiroli</h3><span class="bus-count">4</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="11:15" title="11:15AM">11:15AM</div><div class="time-bubble afternoon" data-time="14:15" title="2:15PM">2:15PM</div><div class="time-bubble afternoon" data-time="14:45" title="2:45PM">2:45PM</div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">3:30PM</div></div></div><div class="bus-stop-section" id="busstop-g-ghatanji" data-letter="g" data-busstop="ghatanji"><div class="bus-stop-header"><h3 class="bus-stop-name">Ghatanji</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="10:45" title="10:45AM">10:45AM</div><div class="time-bubble morning" data-time="11:45" title="11:45AM">11:45AM</div></div></div><div class="bus-stop-section" id="busstop-g-ghugus" data-letter="g" data-busstop="ghugus"><div class="bus-stop-header"><h3 class="bus-stop-name">Ghugus</h3><span class="bus-count">6</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="05:30" title="5:30AM">5:30AM</div><div class="time-bubble morning" data-time="08:00" title="8:00AM">8:00AM</div><div class="time-bubble morning" data-time="10:00" title="10:00AM">10:00AM</div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">12:30PM</div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">3:30PM</div><div class="time-bubble evening" data-time="18:00" title="6:00PM">6:00PM</div></div></div><div class="bus-stop-section" id="busstop-g-gondpipari" data-letter="g" data-busstop="gondpipari"><div class="bus-stop-header"><h3 class="bus-stop-name">Gondpipari</h3><span class="bus-count">3</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:00" title="6:00AM">6:00AM</div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">12:00PM</div><div class="time-bubble evening" data-time="17:15" title="5:15PM">5:15PM</div></div></div><div class="bus-stop-section" id="busstop-h-hinganghat" data-letter="h" data-busstop="hinganghat"><div class="bus-stop-header"><h3 class="bus-stop-name">Hinganghat</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="11:30" title="11:30AM">11:30AM</div></div></div><div class="bus-stop-section" id="busstop-k-katol" data-letter="k" data-busstop="katol"><div class="bus-stop-header"><h3 class="bus-stop-name">Katol</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">4:00PM</div></div></div><div class="bus-stop-section" id="busstop-k-korpana" data-letter="k" data-busstop="korpana"><div class="bus-stop-header"><h3 class="bus-stop-name">Korpana</h3><span class="bus-count">5</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="07:00" title="7:00AM">7:00AM</div><div class="time-bubble morning" data-time="09:45" title="9:45AM">9:45AM</div><div class="time-bubble morning" data-time="11:45" title="11:45AM">11:45AM</div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">12:30PM</div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">1:00PM</div></div></div><div class="bus-stop-section" id="busstop-m-manjri" data-letter="m" data-busstop="manjri"><div class="bus-stop-header"><h3 class="bus-stop-name">Manjri</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:00" title="8:00AM">8:00AM</div><div class="time-bubble morning" data-time="11:15" title="11:15AM">11:15AM</div></div></div><div class="bus-stop-section" id="busstop-m-mukutban" data-letter="m" data-busstop="mukutban"><div class="bus-stop-header"><h3 class="bus-stop-name">Mukutban</h3><span class="bus-count">6</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:30" title="8:30AM">8:30AM</div><div class="time-bubble morning" data-time="10:00" title="10:00AM">10:00AM</div><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">12:30PM</div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">1:30PM</div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">2:00PM</div><div class="time-bubble afternoon" data-time="16:15" title="4:15PM">4:15PM</div></div></div><div class="bus-stop-section" id="busstop-n-nagpur" data-letter="n" data-busstop="nagpur"><div class="bus-stop-header"><h3 class="bus-stop-name">Nagpur</h3><span class="bus-count">7</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:00" title="6:00AM">6:00AM</div><div class="time-bubble morning" data-time="07:00" title="7:00AM">7:00AM</div><div class="time-bubble morning" data-time="09:30" title="9:30AM">9:30AM</div><div class="time-bubble morning" data-time="11:30" title="11:30AM">11:30AM</div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">1:00PM</div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">2:00PM</div><div class="time-bubble evening" data-time="17:00" title="5:00PM">5:00PM</div></div></div><div class="bus-stop-section" id="busstop-n-nanded" data-letter="n" data-busstop="nanded"><div class="bus-stop-header"><h3 class="bus-stop-name">Nanded</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="10:40" title="10:40AM">10:40AM</div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">12:00PM</div></div></div><div class="bus-stop-section" id="busstop-p-pandharkawada" data-letter="p" data-busstop="pandharkawada"><div class="bus-stop-header"><h3 class="bus-stop-name">Pandharkawada</h3><span class="bus-count">3</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:30" title="8:30AM">8:30AM</div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">1:00PM</div><div class="time-bubble afternoon" data-time="16:30" title="4:30PM">4:30PM</div></div></div><div class="bus-stop-section" id="busstop-p-parbhani" data-letter="p" data-busstop="parbhani"><div class="bus-stop-header"><h3 class="bus-stop-name">Parbhani</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="07:30" title="7:30AM">7:30AM</div></div></div><div class="bus-stop-section" id="busstop-p-patan-(mukutban)" data-letter="p" data-busstop="patan (mukutban)"><div class="bus-stop-header"><h3 class="bus-stop-name">Patan (Mukutban)</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble evening" data-time="18:30" title="6:30PM">6:30PM</div></div></div><div class="bus-stop-section" id="busstop-p-pulgaon" data-letter="p" data-busstop="pulgaon"><div class="bus-stop-header"><h3 class="bus-stop-name">Pulgaon</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">12:30PM</div></div></div><div class="bus-stop-section" id="busstop-p-pusad" data-letter="p" data-busstop="pusad"><div class="bus-stop-header"><h3 class="bus-stop-name">Pusad</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble afternoon" data-time="12:30" title="12:30PM">12:30PM</div></div></div><div class="bus-stop-section" id="busstop-r-rajura" data-letter="r" data-busstop="rajura"><div class="bus-stop-header"><h3 class="bus-stop-name">Rajura</h3><span class="bus-count">6</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:00" title="6:00AM">6:00AM</div><div class="time-bubble afternoon" data-time="12:45" title="12:45PM">12:45PM</div><div class="time-bubble afternoon" data-time="13:15" title="1:15PM">1:15PM</div><div class="time-bubble afternoon" data-time="15:15" title="3:15PM">3:15PM</div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">3:30PM</div><div class="time-bubble evening" data-time="17:30" title="5:30PM">5:30PM</div></div></div><div class="bus-stop-section" id="busstop-r-ralegaon-(via-kumbha)" data-letter="r" data-busstop="ralegaon (via kumbha)"><div class="bus-stop-header"><h3 class="bus-stop-name">Ralegaon (via Kumbha)</h3><span class="bus-count">4</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:30" title="8:30AM">8:30AM</div><div class="time-bubble morning" data-time="08:30" title="8:30AM">8:30AM</div><div class="time-bubble afternoon" data-time="13:30" title="1:30PM">1:30PM</div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">3:30PM</div></div></div><div class="bus-stop-section" id="busstop-r-ralegaon-(via-nandepara)" data-letter="r" data-busstop="ralegaon (via nandepara)"><div class="bus-stop-header"><h3 class="bus-stop-name">Ralegaon (via Nandepara)</h3><span class="bus-count">5</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="06:30" title="6:30AM">6:30AM</div><div class="time-bubble morning" data-time="10:00" title="10:00AM">10:00AM</div><div class="time-bubble morning" data-time="11:15" title="11:15AM">11:15AM</div><div class="time-bubble afternoon" data-time="15:45" title="3:45PM">3:45PM</div><div class="time-bubble evening" data-time="17:00" title="5:00PM">5:00PM</div></div></div><div class="bus-stop-section" id="busstop-r-risod" data-letter="r" data-busstop="risod"><div class="bus-stop-header"><h3 class="bus-stop-name">Risod</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:30" title="8:30AM">8:30AM</div></div></div><div class="bus-stop-section" id="busstop-s-shegaon" data-letter="s" data-busstop="shegaon"><div class="bus-stop-header"><h3 class="bus-stop-name">Shegaon</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="07:45" title="7:45AM">7:45AM</div><div class="time-bubble morning" data-time="08:45" title="8:45AM">8:45AM</div></div></div><div class="bus-stop-section" id="busstop-s-shindola" data-letter="s" data-busstop="shindola"><div class="bus-stop-header"><h3 class="bus-stop-name">Shindola</h3><span class="bus-count">4</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="09:00" title="9:00AM">9:00AM</div><div class="time-bubble morning" data-time="11:30" title="11:30AM">11:30AM</div><div class="time-bubble morning" data-time="11:45" title="11:45AM">11:45AM</div><div class="time-bubble afternoon" data-time="14:15" title="2:15PM">2:15PM</div></div></div><div class="bus-stop-section" id="busstop-s-shivni-(dhobe)" data-letter="s" data-busstop="shivni (dhobe)"><div class="bus-stop-header"><h3 class="bus-stop-name">Shivni (Dhobe)</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:00" title="8:00AM">8:00AM</div><div class="time-bubble afternoon" data-time="16:00" title="4:00PM">4:00PM</div></div></div><div class="bus-stop-section" id="busstop-s-sukali-(bezgaon)" data-letter="s" data-busstop="sukali (bezgaon)"><div class="bus-stop-header"><h3 class="bus-stop-name">Sukali (Bezgaon)</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="05:30" title="5:30AM">5:30AM</div><div class="time-bubble morning" data-time="11:45" title="11:45AM">11:45AM</div></div></div><div class="bus-stop-section" id="busstop-u-umarkhed" data-letter="u" data-busstop="umarkhed"><div class="bus-stop-header"><h3 class="bus-stop-name">Umarkhed</h3><span class="bus-count">2</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="10:40" title="10:40AM">10:40AM</div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">12:00PM</div></div></div><div class="bus-stop-section" id="busstop-v-vadki" data-letter="v" data-busstop="vadki"><div class="bus-stop-header"><h3 class="bus-stop-name">Vadki</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="11:45" title="11:45AM">11:45AM</div></div></div><div class="bus-stop-section" id="busstop-w-wardha" data-letter="w" data-busstop="wardha"><div class="bus-stop-header"><h3 class="bus-stop-name">Wardha</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="09:15" title="9:15AM">9:15AM</div></div></div><div class="bus-stop-section" id="busstop-w-washim" data-letter="w" data-busstop="washim"><div class="bus-stop-header"><h3 class="bus-stop-name">Washim</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="09:15" title="9:15AM">9:15AM</div></div></div><div class="bus-stop-section" id="busstop-y-yavatmal" data-letter="y" data-busstop="yavatmal"><div class="bus-stop-header"><h3 class="bus-stop-name">Yavatmal</h3><span class="bus-count">16</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="05:00" title="5:00AM">5:00AM</div><div class="time-bubble morning" data-time="06:45" title="6:45AM">6:45AM</div><div class="time-bubble morning" data-time="07:00" title="7:00AM">7:00AM</div><div class="time-bubble morning" data-time="07:55" title="7:55AM">7:55AM</div><div class="time-bubble morning" data-time="09:00" title="9:00AM">9:00AM</div><div class="time-bubble morning" data-time="09:30" title="9:30AM">9:30AM</div><div class="time-bubble morning" data-time="10:15" title="10:15AM">10:15AM</div><div class="time-bubble afternoon" data-time="12:00" title="12:00PM">12:00PM</div><div class="time-bubble afternoon" data-time="13:00" title="1:00PM">1:00PM</div><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">2:00PM</div><div class="time-bubble afternoon" data-time="15:00" title="3:00PM">3:00PM</div><div class="time-bubble afternoon" data-time="16:45" title="4:45PM">4:45PM</div><div class="time-bubble evening" data-time="17:45" title="5:45PM">5:45PM</div><div class="time-bubble evening" data-time="18:45" title="6:45PM">6:45PM</div><div class="time-bubble evening" data-time="19:45" title="7:45PM">7:45PM</div><div class="time-bubble evening" data-time="20:45" title="8:45PM">8:45PM</div></div></div><div class="bus-stop-section" id="busstop-z-zhari" data-letter="z" data-busstop="zhari"><div class="bus-stop-header"><h3 class="bus-stop-name">Zhari</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble afternoon" data-time="14:00" title="2:00PM">2:00PM</div></div></div><div class="bus-stop-section" id="busstop-z-zhari-(jamni)" data-letter="z" data-busstop="zhari (jamni)"><div class="bus-stop-header"><h3 class="bus-stop-name">Zhari (Jamni)</h3><span class="bus-count">4</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="08:30" title="8:30AM">8:30AM</div><div class="time-bubble morning" data-time="10:15" title="10:15AM">10:15AM</div><div class="time-bubble afternoon" data-time="15:30" title="3:30PM">3:30PM</div><div class="time-bubble evening" data-time="21:00" title="9:00PM">9:00PM</div></div></div><div class="bus-stop-section" id="busstop-z-zhari-(mukutban)" data-letter="z" data-busstop="zhari (mukutban)"><div class="bus-stop-header"><h3 class="bus-stop-name">Zhari (Mukutban)</h3><span class="bus-count">1</span></div><div class="schedule-grid"><div class="time-bubble morning" data-time="07:30" title="7:30AM">7:30AM</div></div></div>
         <div class="depot-about-section mt-3"><h2>About Wani Bus Stand Timetable 2026 | MSRTC Ticket Price Depot</h2><div class="about-content"><p><p>वणी बसस्थानक (Wani Bus Stand) हे महाराष्ट्र राज्य मार्ग परिवहन महामंडळ म्हणजेच ST महामंडळ / MSRTC (Maharashtra State Road Transport Corporation) अंतर्गत कार्यरत असलेले यवतमाळ जिल्ह्यातील एक अत्यंत महत्त्वाचे आणि कार्यक्षम वाहतूक केंद्र असून विदर्भातील औद्योगिक, व्यापारी, शैक्षणिक आणि ग्रामीण प्रवासासाठी मुख्य दुवा म्हणून ओळखले जाते. Wani town itself is a major coal mining hub with extensive WCL operations, and because of this industrial importance, daily passenger movement through Wani ST Bus Stand remains consistently high throughout the year. वणी बसस्थानकावरून यवतमाळ, चंद्रपूर, नागपूर, अमरावती, आर्णी, दारव्हा, पुसद, राजुरा, घुग्घुस, बल्लारपूर तसेच तेलंगणातील आदिलाबाद व हैदराबाद दिशेने जाणाऱ्या बस सेवा मोठ्या प्रमाणावर उपलब्ध असल्यामुळे हे बसस्थानक जिल्ह्याच्या दक्षिण-पूर्व भागातील प्रमुख transit hub म्हणून कार्य करते. सकाळी अतिशय लवकर सुरू होणाऱ्या ST बस सेवांमुळे खाण कामगार, औद्योगिक कर्मचारी, शासकीय अधिकारी, शिक्षक, विद्यार्थी, व्यापारी आणि ग्रामीण भागातील शेतकरी यांना वेळेत आणि परवडणाऱ्या दरात प्रवासाची सुविधा मिळते. MSRTC Wani Depot अंतर्गत चालणाऱ्या बसेस या केवळ शहर ते शहर प्रवासापुरत्या मर्यादित नसून आसपासच्या दुर्गम व आदिवासी भागातील गावांना जिल्हा मुख्यालयाशी आणि तालुका केंद्रांशी जोडण्याचे अत्यंत महत्त्वाचे काम करतात. वणी ते यवतमाळ हा मार्ग विशेषतः शैक्षणिक आणि प्रशासकीय दृष्टिकोनातून खूप महत्त्वाचा मानला जातो कारण जिल्हाधिकारी कार्यालय, शासकीय रुग्णालये, महाविद्यालये आणि विविध परीक्षा केंद्रे यवतमाळ येथे असल्यामुळे दररोज शेकडो प्रवासी या मार्गाचा वापर करतात. नागपूर मार्गावरील बस सेवा देखील वणी बसस्थानकाची ओळख ठरते कारण नागपूर हे विदर्भाचे प्रमुख आर्थिक, वैद्यकीय आणि शिक्षण केंद्र असून सकाळी, दुपारी आणि संध्याकाळी नियमित अंतराने नागपूरकडे जाणाऱ्या बसेस उपलब्ध असतात. Chandrapur and Ballarpur routes from Wani Bus Stand are heavily used by industrial workers and daily commuters, especially those associated with thermal power plants, cement industries and coal mines. तेलंगणा राज्याशी लागून असलेल्या भागात वसलेले असल्यामुळे वणी बसस्थानकावरून आदिलाबाद, असिफाबाद आणि हैदराबाद दिशेने जाणाऱ्या बसेस देखील मोठ्या प्रमाणात वापरल्या जातात आणि हे interstate connectivity साठी MSRTC ची भूमिका अधोरेखित करते. ST महामंडळाच्या धोरणानुसार वणी बसस्थानकावरून सुटणाऱ्या बस वेळापत्रकात सकाळी लवकर, दिवसा मध्यम वारंवारता आणि संध्याकाळी व रात्री उशिरा लांब पल्ल्याच्या फेऱ्यांचा समावेश केला जातो जेणेकरून विविध प्रवासी गटांच्या गरजा पूर्ण करता येतील. वणी बसस्थानक परिसरात तिकीट खिडक्या, प्रवासी प्रतीक्षालय, बस थांबे, वेळापत्रक सूचना फलक, पिण्याच्या पाण्याची सोय, स्वच्छतागृहे आणि स्थानिक मार्गदर्शन उपलब्ध असून MSRTC प्रशासनाकडून शिस्तबद्ध आणि सुरक्षित वाहतुकीवर भर दिला जातो. ग्रामीण भागातील प्रवाशांसाठी वणी हे मुख्य दळणवळण केंद्र असल्यामुळे आठवडी बाजार, शेती माल वाहतूक, बँकिंग, आरोग्य सेवा आणि प्रशासकीय कामांसाठी येणाऱ्या नागरिकांची संख्या मोठी असते. English context wise, Wani Bus Stand acts as a regional mobility anchor that links coal belt settlements, agrarian villages and semi-urban towns with district and divisional headquarters through a reliable ST Mahamandal network. The presence of early morning departures helps shift-based mine workers and students reach their destinations on time, while daytime services support trade, healthcare visits and administrative travel. Evening and late-night buses from Wani are particularly important for long-distance routes, enabling overnight journeys to major cities like Nagpur and Hyderabad at affordable fares compared to private transport. Seasonal peaks during festivals such as Diwali, Dasara and summer vacation periods witness increased passenger load, and during such times MSRTC often augments services or adjusts schedules to manage demand. वणी बसस्थानक हे केवळ प्रवासाचे ठिकाण नसून सामाजिक आणि आर्थिक हालचालींचे केंद्र आहे जिथे दररोज विविध पार्श्वभूमीतील लोक एकत्र येतात आणि सार्वजनिक वाहतुकीच्या माध्यमातून आपली जीवनशैली पुढे नेतात. Overall, Wani Bus Stand under ST Mahamandal and MSRTC framework plays a crucial role in strengthening regional connectivity, supporting industrial productivity, enabling educational access and ensuring inclusive mobility for rural, semi-urban and urban populations across Vidarbha and adjoining Telangana regions through an extensive, affordable and dependable public transport system operating throughout the day.</p></p></div></div>
@@ -160,17 +162,16 @@
         <div class="related-links-section mt-3"><h2>Related Depots</h2><div class="related-links-grid"><a href="../../../../amravati_div/yavatmal_dist/pandharkawada_teh/pandharkawda_bus_stand_depot/index.html" class="related-depot-card"><h3>Pandharkawda Bus Stand Timetable 2026 | MSRTC Ticket Price</h3><p>19 bus stops • 115 buses</p><span class="related-depot-link"><i class="bi bi-arrow-right"></i> View</span></a></div></div>
         <div class="seo-content"><h2>Wani Bus Stand Timetable 2026 | MSRTC Wani Bus Timings</h2><p>Find complete and updated Wani Bus Stand timetable 2026 with MSRTC bus timings for Yavatmal, Nagpur, Chandrapur, Amravati, Nanded and nearby villages. Check earliest bus, last bus and long-route services from Wani.</p></div>
     </div></main>
-    <div class="ad-container footer_ad" data-ad-slot="footer_ad"></div>
+    <div class="ad-container footer" data-ad-slot="footer"></div>
     <footer class="site-footer"><div class="container"><div class="footer-content"><div class="footer-section"><h3>Quick Links</h3><div class="footer-links"><a href="../../../../index.html">Home</a><a href="../../../../bus-schedule.html">Bus Schedule</a><a href="../../../../about.html">About</a><a href="../../../../contact.html">Contact</a><a href="../../../../blogs/index.html">Blogs</a><a href="../../../../terms.html">Terms</a><a href="../../../../privacy.html">Privacy</a></div></div><div class="footer-section"><h3>MSRTC Official</h3><div class="footer-links"><a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a><a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a><a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a><a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a></div></div><div class="footer-section"><h3>Useful Links</h3><div class="footer-links"><a href="../../../../disclaimer.html">Disclaimer</a><a href="../../../../sitemap.xml">Sitemap</a><a href="../../../../contact.html#feedback">Feedback</a><a href="../../../../contact.html#report">Report Issue</a></div></div><div class="copyright">© 2026 MSRTC Timetable.<br>This is an unofficial timetable portal.<br><small>All bus schedules are for reference only.</small></div></div></div></footer>
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search bus stops in Wani Bus Stand Timetable 2026 | MSRTC Ticket Price..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "https://msrtcbusinfo.org/ads-config.json"; // MSRTC Bus Timetable Application - with Remote Ad Control
+    <script>// MSRTC Bus Timetable Application - with Google Sheets Ad Control
 class BusTimetableApp {
     constructor() {
         this.istOffset = 5.5 * 60 * 60 * 1000;
         this.activeFilter = 'all';
         this.searchTerm = '';
         this.isDepotPage = document.querySelector('.bus-stop-section') !== null;
-        this.adConfig = null;
         this.init();
     }
     async init() {
@@ -191,8 +192,8 @@ class BusTimetableApp {
         if (!this.isDepotPage && document.getElementById('divisionFilter')) {
             this.initDropdowns();
         }
-        // Remote ads: fetch config and render
-        await this.loadRemoteAds();
+        // Load ads from Google Sheets
+        await this.loadAdsFromSheets();
     }
     updateTimeDisplay() {
         const now = new Date();
@@ -536,59 +537,97 @@ class BusTimetableApp {
     mobileOptimizations() { if('ontouchstart' in window) document.documentElement.style.setProperty('--transition-speed','0.2s'); }
     preventHorizontalScroll() { document.body.style.overflowX='hidden'; document.documentElement.style.overflowX='hidden'; window.addEventListener('resize',()=>{ document.body.style.overflowX='hidden'; document.documentElement.style.overflowX='hidden'; }); }
 
-    // ==================== REMOTE AD CONTROL ====================
-    async loadRemoteAds() {
-        const configUrl = window.adConfigUrl || '/assets/ads/config.json';
+    // ==================== GOOGLE SHEETS AD CONTROL ====================
+    async loadAdsFromSheets() {
+        const apiKey = window.GOOGLE_SHEETS_API_KEY;
+        const spreadsheetId = window.SPREADSHEET_ID;
+        const sheetName = window.SHEET_NAME;
+        if (!apiKey || !spreadsheetId) {
+            console.warn('⚠️ Google Sheets API key or spreadsheet ID missing. Ads disabled.');
+            this.hideAllAdContainers();
+            return;
+        }
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}&_t=${Date.now()}`;
         try {
-            const response = await fetch(configUrl + '?t=' + Date.now());
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            const config = await response.json();
-            this.adConfig = config;
-            console.log('✅ Remote ad config loaded:', config);
-            this.renderAllAds();
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            if (!data.values || data.values.length < 2) {
+                console.warn('⚠️ No ad data found in spreadsheet.');
+                this.hideAllAdContainers();
+                return;
+            }
+            const headers = data.values[0];
+            const rows = data.values.slice(1);
+            // Find column indices (case-insensitive)
+            const getColIndex = (name) => headers.findIndex(h => h && h.toLowerCase() === name.toLowerCase());
+            const idIdx = getColIndex('id');
+            const topIdx = getColIndex('top');
+            const middleIdx = getColIndex('middle');
+            const footerIdx = getColIndex('footer');
+            const titleIdx = getColIndex('title');
+            const mobileIdx = getColIndex('mobile');
+            const desktopIdx = getColIndex('desktop');
+            if (idIdx === -1) {
+                console.warn('⚠️ Spreadsheet missing "id" column. Ads disabled.');
+                this.hideAllAdContainers();
+                return;
+            }
+            const pageId = this.getCurrentPageId();
+            const adRow = rows.find(row => row[idIdx] && row[idIdx].toString() === pageId);
+            if (!adRow) {
+                console.log(`ℹ️ No ad config for page ID "${pageId}". Ads hidden.`);
+                this.hideAllAdContainers();
+                return;
+            }
+            const parseBool = (val) => {
+                if (val === undefined || val === null) return false;
+                if (typeof val === 'boolean') return val;
+                const str = String(val).toLowerCase();
+                return str === 'true' || str === '1' || str === 'yes';
+            };
+            const getValue = (idx) => (idx !== -1 && adRow[idx]) ? adRow[idx].toString() : '';
+            const adConfig = {
+                top: { enabled: topIdx !== -1 ? parseBool(adRow[topIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
+                middle: { enabled: middleIdx !== -1 ? parseBool(adRow[middleIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
+                footer: { enabled: footerIdx !== -1 ? parseBool(adRow[footerIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) }
+            };
+            this.renderAds(adConfig);
         } catch (err) {
-            console.warn('⚠️ Failed to load remote ad config:', err);
-            document.querySelectorAll('.ad-container').forEach(container => {
-                container.style.display = 'none';
-            });
+            console.warn('⚠️ Failed to load ads from Google Sheets:', err);
+            this.hideAllAdContainers();
         }
     }
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // Blog pages: /blogs/xyz.html or /blogs/xyz (no .html)
+        // Blog pages: /blogs/xyz.html or /blogs/xyz
         const blogMatch = path.match(/\/blogs\/([^\/]+)(?:\.html)?$/);
-        if (blogMatch) return { type: 'blog', id: blogMatch[1] };
-
-        // Depot pages: match any alphanumeric + underscore ID at the end (after last slash)
-        // Examples: /.../chandrapur_bus_stand_depot or /.../chandrapur_bus_stand_depot/
-        const depotMatch = path.match(/\/([a-zA-Z0-9_]+)(?:\/|$)/);
-        if (depotMatch && !path.includes('/blogs/')) {
+        if (blogMatch) return blogMatch[1];
+        // Depot pages: path ends with /depot-id/index.html or /depot-id/
+        const depotMatch = path.match(/\/([a-zA-Z0-9_]+)(?:\/index\.html|\/)?$/);
+        if (depotMatch && !path.includes('/blogs/') && !path.includes('/assets/')) {
             const id = depotMatch[1];
             // Ignore known non-depot paths
             if (!['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer', 'index', 'blogs'].includes(id)) {
-                return { type: 'depot', id: id };
+                return id;
             }
         }
-        return { type: 'global', id: null };
+        return 'global';
     }
 
-    renderAllAds() {
-        const pageInfo = this.getCurrentPageId();
-        const defaultConfig = this.adConfig?.default || {};
-        let pageSpecific = null;
-        if (pageInfo.type === 'depot' && this.adConfig?.depots?.[pageInfo.id]) {
-            pageSpecific = this.adConfig.depots[pageInfo.id];
-        } else if (pageInfo.type === 'blog' && this.adConfig?.blogs?.[pageInfo.id]) {
-            pageSpecific = this.adConfig.blogs[pageInfo.id];
-        }
-        const slots = ['top_ad', 'middle_ad', 'footer_ad'];
+    hideAllAdContainers() {
+        document.querySelectorAll('.ad-container').forEach(container => {
+            container.style.display = 'none';
+        });
+    }
+
+    renderAds(config) {
+        const slots = ['top', 'middle', 'footer'];
         slots.forEach(slot => {
             const container = document.querySelector(`.ad-container.${slot}`);
             if (!container) return;
-            let slotConfig = null;
-            if (pageSpecific && pageSpecific[slot]) slotConfig = pageSpecific[slot];
-            else if (defaultConfig[slot]) slotConfig = defaultConfig[slot];
+            const slotConfig = config[slot];
             if (!slotConfig || !slotConfig.enabled) {
                 container.style.display = 'none';
                 return;
@@ -599,18 +638,11 @@ class BusTimetableApp {
     }
 
     renderAdInContainer(container, config) {
-        const linkUrl = config.link_url || '#';
         const title = config.title || 'Advertisement';
-        const mobileSrc = config.image_mobile || '';
-        const desktopSrc = config.image_desktop || '';
+        const mobileSrc = config.mobile || '';
+        const desktopSrc = config.desktop || '';
         const inner = document.createElement('div');
         inner.className = 'ad-content';
-        let linkHtml = '';
-        if (linkUrl !== '#') {
-            linkHtml = `<a href="${linkUrl}" class="ad-block" target="_blank" rel="noopener noreferrer">`;
-        } else {
-            linkHtml = `<div class="ad-block">`;
-        }
         let pictureHtml = '';
         if (mobileSrc && desktopSrc) {
             pictureHtml = `<picture class="ad-image"><source media="(max-width: 767px)" srcset="${mobileSrc}"><img src="${desktopSrc}" alt="${title}" loading="lazy"></picture>`;
@@ -622,7 +654,7 @@ class BusTimetableApp {
             pictureHtml = `<div class="ad-image"></div>`;
         }
         const titleHtml = `<div class="ad-title">${title}</div>`;
-        const full = `${linkHtml}${titleHtml}${pictureHtml}${linkUrl !== '#' ? '</a>' : '</div>'}`;
+        const full = `<div class="ad-block">${titleHtml}${pictureHtml}</div>`;
         inner.innerHTML = full;
         container.innerHTML = '';
         container.appendChild(inner);

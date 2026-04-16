@@ -30,6 +30,10 @@
       "code": "<div class='ad-content'><i class='bi bi-shield-check'></i><span>Safe Travel with Insurance</span><small>Coverage up to ₹10 Lakhs</small></div>"
     }
   },
+  "google_sheets": {
+    "spreadsheet_id": "11jH9ApW--IA9ae8mJNi0bY6-d0vKodxAmzfIg3XKe0k",
+    "sheet_name": "affiliate_ads"
+  },
   "seo": {
     "default_description": "Official MSRTC bus schedules, timetables, and departure times for Maharashtra state transport",
     "default_keywords": "MSRTC, Maharashtra Bus, Bus Schedule, Bus Timings, State Transport, Bus Timetable",

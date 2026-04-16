@@ -5,7 +5,11 @@
     <link rel="icon" href="./favicon-32x32.png" type="image/png">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <meta name="msapplication-TileImage" content="./apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="assets/urls/url-constants.js"></script><style>/* ==========================================================================
+    <meta name="msapplication-TileImage" content="./apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"><script src="assets/urls/url-constants.js"></script><script>
+            window.GOOGLE_SHEETS_API_KEY = "AIzaSyBRxEdreU4LR5bvusbhNpANolDFaxfDIxU";
+            window.SPREADSHEET_ID = "11jH9ApW--IA9ae8mJNi0bY6-d0vKodxAmzfIg3XKe0k";
+            window.SHEET_NAME = "affiliate_ads";
+        </script><style>/* ==========================================================================
        MSRTC BUS TIMETABLE - MOBILE FIRST STYLES
        ========================================================================== */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -45,7 +49,6 @@
     .back-btn { display:inline-flex; align-items:center; gap:0.3rem; padding:0.5rem 0.8rem; background:white; border:1px solid #C4B5FD; border-radius:6px; color:#4C1D95; font-family:'Inter',sans-serif; font-weight:500; cursor:pointer; transition:all 0.3s; font-size:0.9rem; text-decoration:none; flex-shrink:0; max-width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-height:38px; margin:0; width:auto; }
     .back-btn:hover { background:#FCE7F3; color:#493dd5; border-color:#A78BFA; }
     .depot-about-section, .faq-section, .related-links-section { background:white; border-radius:8px; padding:1rem; border:1px solid #C4B5FD; margin-top:1.5rem; width:100%; }
-    /* FAQ styling - bold questions and good spacing */
     .faq-container { display:flex; flex-direction:column; gap:1rem; }
     .faq-item { border-bottom:1px solid #C4B5FD; padding-bottom:0.75rem; }
     .faq-question { display:flex; align-items:center; gap:0.5rem; font-weight:700; color:#5B21B6; font-size:1rem; margin-bottom:0.5rem; }
@@ -134,7 +137,6 @@
     .maharashtra-darshan-bullets li { margin-bottom:0.8rem; padding-left:0.5rem; break-inside:avoid; }
     @media (max-width:768px) { .maharashtra-darshan-bullets ul { columns:1; } }
     .maharashtra-intro { background:linear-gradient(135deg, #FEF2F8, #FCE7F3); border-radius:16px; padding:1.5rem; margin:1.5rem 0; text-align:center; }
-    /* Blog image styles */
     .blog-content img {
         max-width: 100%;
         height: auto;
@@ -147,23 +149,22 @@
     <header class="site-header"><div class="container"><div class="header-content"><a href="index.html" class="logo"><i class="bi bi-bus-front"></i><span>MSRTC Timetable</span></a><div class="time-display"><span class="current-time"></span></div></div></div></header>
     <div class="header-spacer"></div>
     <div class="vertical-alphabet-nav" id="verticalAlphabet"><button class="alphabet-vertical-btn" data-letter="A">A</button><button class="alphabet-vertical-btn" data-letter="B">B</button><button class="alphabet-vertical-btn" data-letter="C">C</button><button class="alphabet-vertical-btn" data-letter="D">D</button><button class="alphabet-vertical-btn" data-letter="E">E</button><button class="alphabet-vertical-btn" data-letter="F">F</button><button class="alphabet-vertical-btn" data-letter="G">G</button><button class="alphabet-vertical-btn" data-letter="H">H</button><button class="alphabet-vertical-btn" data-letter="I">I</button><button class="alphabet-vertical-btn" data-letter="J">J</button><button class="alphabet-vertical-btn" data-letter="K">K</button><button class="alphabet-vertical-btn" data-letter="L">L</button><button class="alphabet-vertical-btn" data-letter="M">M</button><button class="alphabet-vertical-btn" data-letter="N">N</button><button class="alphabet-vertical-btn" data-letter="O">O</button><button class="alphabet-vertical-btn" data-letter="P">P</button><button class="alphabet-vertical-btn" data-letter="Q">Q</button><button class="alphabet-vertical-btn" data-letter="R">R</button><button class="alphabet-vertical-btn" data-letter="S">S</button><button class="alphabet-vertical-btn" data-letter="T">T</button><button class="alphabet-vertical-btn" data-letter="U">U</button><button class="alphabet-vertical-btn" data-letter="V">V</button><button class="alphabet-vertical-btn" data-letter="W">W</button><button class="alphabet-vertical-btn" data-letter="X">X</button><button class="alphabet-vertical-btn" data-letter="Y">Y</button><button class="alphabet-vertical-btn" data-letter="Z">Z</button></div>
-    <div class="ad-container top_ad" data-ad-slot="top_ad"></div>
+    <div class="ad-container top" data-ad-slot="top"></div>
     <main class="main-content"><div class="container">
         <div class="navigation-buttons"><a href="index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search depots, tehsils, districts..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div>
         <h1>Disclaimer</h1><div class="page-content"><h2>Unofficial Website Notice</h2><p>MSRTC Timetable is an unofficial and independent informational website created to help the public access MSRTC bus timetable information online. This website is not affiliated with, authorized by, sponsored by, or endorsed by the Maharashtra State Road Transport Corporation (MSRTC), ST Mahamandal, or any Government of Maharashtra department.</p><p>All references to MSRTC, Lal Pari, Shivshahi, ST buses, depots, divisions, routes, or services are used strictly for informational and identification purposes only.</p><h2>Source of Information</h2><p>The bus schedules, timings, routes, and related details displayed on this website are collected from publicly available sources, including bus stand notice boards, depot-level timetable displays, and other openly shared MSRTC information. We do not create, modify, approve, or control official MSRTC schedules.</p><h2>No Guarantee of Accuracy</h2><p>While we make reasonable efforts to keep information accurate and updated, MSRTC bus timings and routes may change at any time due to operational requirements, traffic conditions, weather, festivals, strikes, or administrative decisions. Therefore, we do not guarantee the accuracy, completeness, or reliability of any information presented.</p><h2>Passenger Responsibility</h2><p>Passengers are strongly advised to verify bus timings directly with the respective MSRTC bus stand, depot, or official MSRTC communication channels before starting their journey. This website should be used only as a planning and reference tool.</p><h2>Limitation of Liability</h2><p>MSRTC Timetable shall not be held responsible for any loss, inconvenience, missed connections, delays, cancellations, or damages arising from reliance on the information provided on this website. Use of this service is entirely at the user’s own risk.</p><h2>No Official or Professional Advice</h2><p>The information provided on this website does not constitute official, professional, or legal advice and is intended solely for general informational purposes.</p><h2>External Links</h2><p>This website may contain links to external websites for reference or convenience. We do not control or endorse the content, accuracy, or privacy practices of any third-party websites.</p><h2>Acceptance of Disclaimer</h2><p>By using this website, you acknowledge that you understand this is an unofficial service and agree to verify information independently before travel.</p></div>
     </div></main>
-    <div class="ad-container footer_ad" data-ad-slot="footer_ad"></div>
+    <div class="ad-container footer" data-ad-slot="footer"></div>
     <footer class="site-footer"><div class="container"><div class="footer-content"><div class="footer-section"><h3>Quick Links</h3><div class="footer-links"><a href="index.html">Home</a><a href="bus-schedule.html">Bus Schedule</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="blogs/index.html">Blogs</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></div></div><div class="footer-section"><h3>MSRTC Official</h3><div class="footer-links"><a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a><a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a><a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a><a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a></div></div><div class="footer-section"><h3>Useful Links</h3><div class="footer-links"><a href="disclaimer.html">Disclaimer</a><a href="sitemap.xml">Sitemap</a><a href="contact.html#feedback">Feedback</a><a href="contact.html#report">Report Issue</a></div></div><div class="copyright">© 2026 MSRTC Timetable.<br>This is an unofficial timetable portal.<br><small>All bus schedules are for reference only.</small></div></div></div></footer>
     <div class="quick-search-modal" id="searchModal"><div class="search-modal-content"><div class="search-modal-header"><h3><i class="bi bi-search"></i> Advanced Search</h3><button class="close-search">&times;</button></div><div class="search-modal-body"><input type="text" class="global-search-input" placeholder="Search divisions, districts, tehsils, depots..."><div class="search-results" id="searchResults"></div></div></div></div>
-    <script>window.adConfigUrl = "https://msrtcbusinfo.org/ads-config.json"; // MSRTC Bus Timetable Application - with Remote Ad Control
+    <script>// MSRTC Bus Timetable Application - with Google Sheets Ad Control
 class BusTimetableApp {
     constructor() {
         this.istOffset = 5.5 * 60 * 60 * 1000;
         this.activeFilter = 'all';
         this.searchTerm = '';
         this.isDepotPage = document.querySelector('.bus-stop-section') !== null;
-        this.adConfig = null;
         this.init();
     }
     async init() {
@@ -184,8 +185,8 @@ class BusTimetableApp {
         if (!this.isDepotPage && document.getElementById('divisionFilter')) {
             this.initDropdowns();
         }
-        // Remote ads: fetch config and render
-        await this.loadRemoteAds();
+        // Load ads from Google Sheets
+        await this.loadAdsFromSheets();
     }
     updateTimeDisplay() {
         const now = new Date();
@@ -529,59 +530,97 @@ class BusTimetableApp {
     mobileOptimizations() { if('ontouchstart' in window) document.documentElement.style.setProperty('--transition-speed','0.2s'); }
     preventHorizontalScroll() { document.body.style.overflowX='hidden'; document.documentElement.style.overflowX='hidden'; window.addEventListener('resize',()=>{ document.body.style.overflowX='hidden'; document.documentElement.style.overflowX='hidden'; }); }
 
-    // ==================== REMOTE AD CONTROL ====================
-    async loadRemoteAds() {
-        const configUrl = window.adConfigUrl || '/assets/ads/config.json';
+    // ==================== GOOGLE SHEETS AD CONTROL ====================
+    async loadAdsFromSheets() {
+        const apiKey = window.GOOGLE_SHEETS_API_KEY;
+        const spreadsheetId = window.SPREADSHEET_ID;
+        const sheetName = window.SHEET_NAME;
+        if (!apiKey || !spreadsheetId) {
+            console.warn('⚠️ Google Sheets API key or spreadsheet ID missing. Ads disabled.');
+            this.hideAllAdContainers();
+            return;
+        }
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}&_t=${Date.now()}`;
         try {
-            const response = await fetch(configUrl + '?t=' + Date.now());
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            const config = await response.json();
-            this.adConfig = config;
-            console.log('✅ Remote ad config loaded:', config);
-            this.renderAllAds();
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            if (!data.values || data.values.length < 2) {
+                console.warn('⚠️ No ad data found in spreadsheet.');
+                this.hideAllAdContainers();
+                return;
+            }
+            const headers = data.values[0];
+            const rows = data.values.slice(1);
+            // Find column indices (case-insensitive)
+            const getColIndex = (name) => headers.findIndex(h => h && h.toLowerCase() === name.toLowerCase());
+            const idIdx = getColIndex('id');
+            const topIdx = getColIndex('top');
+            const middleIdx = getColIndex('middle');
+            const footerIdx = getColIndex('footer');
+            const titleIdx = getColIndex('title');
+            const mobileIdx = getColIndex('mobile');
+            const desktopIdx = getColIndex('desktop');
+            if (idIdx === -1) {
+                console.warn('⚠️ Spreadsheet missing "id" column. Ads disabled.');
+                this.hideAllAdContainers();
+                return;
+            }
+            const pageId = this.getCurrentPageId();
+            const adRow = rows.find(row => row[idIdx] && row[idIdx].toString() === pageId);
+            if (!adRow) {
+                console.log(`ℹ️ No ad config for page ID "${pageId}". Ads hidden.`);
+                this.hideAllAdContainers();
+                return;
+            }
+            const parseBool = (val) => {
+                if (val === undefined || val === null) return false;
+                if (typeof val === 'boolean') return val;
+                const str = String(val).toLowerCase();
+                return str === 'true' || str === '1' || str === 'yes';
+            };
+            const getValue = (idx) => (idx !== -1 && adRow[idx]) ? adRow[idx].toString() : '';
+            const adConfig = {
+                top: { enabled: topIdx !== -1 ? parseBool(adRow[topIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
+                middle: { enabled: middleIdx !== -1 ? parseBool(adRow[middleIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
+                footer: { enabled: footerIdx !== -1 ? parseBool(adRow[footerIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) }
+            };
+            this.renderAds(adConfig);
         } catch (err) {
-            console.warn('⚠️ Failed to load remote ad config:', err);
-            document.querySelectorAll('.ad-container').forEach(container => {
-                container.style.display = 'none';
-            });
+            console.warn('⚠️ Failed to load ads from Google Sheets:', err);
+            this.hideAllAdContainers();
         }
     }
 
     getCurrentPageId() {
         const path = window.location.pathname;
-        // Blog pages: /blogs/xyz.html or /blogs/xyz (no .html)
+        // Blog pages: /blogs/xyz.html or /blogs/xyz
         const blogMatch = path.match(/\/blogs\/([^\/]+)(?:\.html)?$/);
-        if (blogMatch) return { type: 'blog', id: blogMatch[1] };
-
-        // Depot pages: match any alphanumeric + underscore ID at the end (after last slash)
-        // Examples: /.../chandrapur_bus_stand_depot or /.../chandrapur_bus_stand_depot/
-        const depotMatch = path.match(/\/([a-zA-Z0-9_]+)(?:\/|$)/);
-        if (depotMatch && !path.includes('/blogs/')) {
+        if (blogMatch) return blogMatch[1];
+        // Depot pages: path ends with /depot-id/index.html or /depot-id/
+        const depotMatch = path.match(/\/([a-zA-Z0-9_]+)(?:\/index\.html|\/)?$/);
+        if (depotMatch && !path.includes('/blogs/') && !path.includes('/assets/')) {
             const id = depotMatch[1];
             // Ignore known non-depot paths
             if (!['bus-schedule', 'about', 'contact', 'terms', 'privacy', 'disclaimer', 'index', 'blogs'].includes(id)) {
-                return { type: 'depot', id: id };
+                return id;
             }
         }
-        return { type: 'global', id: null };
+        return 'global';
     }
 
-    renderAllAds() {
-        const pageInfo = this.getCurrentPageId();
-        const defaultConfig = this.adConfig?.default || {};
-        let pageSpecific = null;
-        if (pageInfo.type === 'depot' && this.adConfig?.depots?.[pageInfo.id]) {
-            pageSpecific = this.adConfig.depots[pageInfo.id];
-        } else if (pageInfo.type === 'blog' && this.adConfig?.blogs?.[pageInfo.id]) {
-            pageSpecific = this.adConfig.blogs[pageInfo.id];
-        }
-        const slots = ['top_ad', 'middle_ad', 'footer_ad'];
+    hideAllAdContainers() {
+        document.querySelectorAll('.ad-container').forEach(container => {
+            container.style.display = 'none';
+        });
+    }
+
+    renderAds(config) {
+        const slots = ['top', 'middle', 'footer'];
         slots.forEach(slot => {
             const container = document.querySelector(`.ad-container.${slot}`);
             if (!container) return;
-            let slotConfig = null;
-            if (pageSpecific && pageSpecific[slot]) slotConfig = pageSpecific[slot];
-            else if (defaultConfig[slot]) slotConfig = defaultConfig[slot];
+            const slotConfig = config[slot];
             if (!slotConfig || !slotConfig.enabled) {
                 container.style.display = 'none';
                 return;
@@ -592,18 +631,11 @@ class BusTimetableApp {
     }
 
     renderAdInContainer(container, config) {
-        const linkUrl = config.link_url || '#';
         const title = config.title || 'Advertisement';
-        const mobileSrc = config.image_mobile || '';
-        const desktopSrc = config.image_desktop || '';
+        const mobileSrc = config.mobile || '';
+        const desktopSrc = config.desktop || '';
         const inner = document.createElement('div');
         inner.className = 'ad-content';
-        let linkHtml = '';
-        if (linkUrl !== '#') {
-            linkHtml = `<a href="${linkUrl}" class="ad-block" target="_blank" rel="noopener noreferrer">`;
-        } else {
-            linkHtml = `<div class="ad-block">`;
-        }
         let pictureHtml = '';
         if (mobileSrc && desktopSrc) {
             pictureHtml = `<picture class="ad-image"><source media="(max-width: 767px)" srcset="${mobileSrc}"><img src="${desktopSrc}" alt="${title}" loading="lazy"></picture>`;
@@ -615,7 +647,7 @@ class BusTimetableApp {
             pictureHtml = `<div class="ad-image"></div>`;
         }
         const titleHtml = `<div class="ad-title">${title}</div>`;
-        const full = `${linkHtml}${titleHtml}${pictureHtml}${linkUrl !== '#' ? '</a>' : '</div>'}`;
+        const full = `<div class="ad-block">${titleHtml}${pictureHtml}</div>`;
         inner.innerHTML = full;
         container.innerHTML = '';
         container.appendChild(inner);

@@ -1,0 +1,313 @@
+Here is the **complete updated specification** that replaces the remote ad JSON file with direct **Google Sheets API** access. The API key is stored as an environment variable (e.g., in Cloudflare Workers or your build environment). All ad data is read from a spreadsheet with columns: `id`, `top`, `middle`, `footer`, `title`, `mobile`, `desktop`. Each page fetches the spreadsheet data on load, matches its own `id` (depot ID or blog ID), and shows/hides ad placeholders accordingly.
+
+I have kept every other detail (blog images, recursive copy, etc.) exactly as before, and added clear instructions for the AI.
+
+---
+
+# MSRTC Bus Timetable Static Site Generator – Final Specification (with Google Sheets Ad Control & Environment Variable API Key)
+
+## 1. Overview
+Build a Node.js static site generator (no external dependencies) that produces a mobile‑first, SEO‑friendly website for MSRTC bus timetables with a **two‑page homepage structure**:
+
+- **New homepage** (`index.html`) – Maharashtra Darshan focused: introduction, latest blog cards, two buttons (“Read All Blogs” / “View All Bus Schedule”), 10 bullet points, final paragraph.
+- **Bus schedule page** (`bus-schedule.html`) – cascading dropdown filters (Division → District → Tehsil → Depot) + grid of all depots.
+- **Depot detail pages** – one per depot, showing bus stop schedules, time filters, next‑bus highlighting, FAQs, related depots.
+- **Blog pages** – listing (`blogs/index.html`) and individual posts (`blogs/<id>.html`), **with support for images inside blog content**.
+- **Static pages** – about, contact, terms, privacy, disclaimer.
+- **Assets** – images, URL constants, search index, sitemap, robots.txt.
+- **Remote ad control via Google Sheets** – every page fetches a live spreadsheet (using Google Sheets API v4) with an **API key stored as an environment variable** (e.g., `GOOGLE_SHEETS_API_KEY`). The spreadsheet contains one row per depot/blog ID. Columns: `id`, `top`, `middle`, `footer`, `title`, `mobile`, `desktop`. The page uses its own ID to look up the row and decides which ad slots (top/middle/footer) to show. If a slot is `true`, the ad is displayed with the given title and image URLs; if `false` or the ID is not found, the placeholder is hidden completely (no empty container). All other pages (home, bus-schedule, static) use a special global row (e.g., `id = "global"`).
+
+**No division, district, or tehsil HTML pages** – those JSON files are used only for dropdown data and hierarchy.
+
+**Navigation:** All pages include a “Home” button (or logo link) that returns to `index.html`. The bus schedule page also includes a “Home” button.
+
+---
+
+## 2. File & Directory Structure (Input)
+```
+project-root/
+├── site-config.json
+├── content.json
+├── data/
+│   ├── divisions/          # <id>.json
+│   ├── districts/          # <id>.json
+│   ├── tehsils/            # <id>.json
+│   ├── depots/             # <id>.json
+│   ├── related-depots/     # any .json files
+│   ├── blogs/              # <id>.json
+│   └── (no ads.json anymore)
+├── assets/
+│   ├── img/
+│   │   ├── favicon.ico etc.
+│   │   ├── blogs/          # Blog images
+│   │   └── ads/            # Ad images (optional – used by spreadsheet URLs)
+│   └── urls/               # .js files with URL constants
+└── templates/              # (optional, can be ignored)
+```
+
+### 2.1 Output Directory (`public/`)
+```
+public/
+├── index.html
+├── bus-schedule.html
+├── about.html, contact.html, terms.html, privacy.html, disclaimer.html
+├── blogs/
+│   ├── index.html
+│   └── <blog-id>.html
+├── <division-id>/<district-id>/<tehsil-id>/<depot-id>/index.html
+├── assets/
+│   ├── images/
+│   │   ├── (all images from assets/img, including blogs/ and ads/ subfolders)
+│   └── urls/url-constants.js
+├── search-index.js
+├── sitemap.xml
+├── robots.txt
+└── favicon files (root)
+```
+
+**Important:** The generator copies the entire `assets/img/` folder recursively to `public/assets/images/`. This includes `blogs/` and `ads/` subfolders. You can later upload new ad images directly into `public/assets/images/ads/` without rebuilding.
+
+---
+
+## 3. JSON Data Schemas (Existing – unchanged)
+
+### 3.1 `site-config.json` – same as before
+### 3.2 `content.json` – same as before
+### 3.3 Division, District, Tehsil Files – unchanged
+### 3.4 Depot File – unchanged
+### 3.5 Related Depots – unchanged
+### 3.6 Blog File – unchanged, except that the `content` field can now contain Markdown images (see Section 5).
+
+---
+
+## 4. New: Remote Ad Control via Google Sheets API
+
+**The generator does NOT hardcode any ad images or URLs.** Instead, every generated page includes JavaScript that:
+
+1. Uses the **Google Sheets API v4** with a **public API key** (restricted to the Sheets API and to your spreadsheet’s URL).
+2. The API key is **not embedded in the source code**. It is stored in an **environment variable** (e.g., `GOOGLE_SHEETS_API_KEY`) that is injected into the generated HTML during the build process (or read at build time and written into a JavaScript variable). **For security, the API key is exposed on the client side** because the fetch happens from the browser. To mitigate risks, you must restrict the API key in Google Cloud Console to:
+   - Only the Google Sheets API.
+   - Only your spreadsheet’s ID (by adding a referrer restriction or IP restriction if possible).
+   - Only HTTP referrers from your domain.
+3. The spreadsheet has the following **exact column headers** (case‑sensitive):
+   - `id` – the depot ID (from `depot.json`) or blog ID (from blog JSON), or `"global"` for other pages.
+   - `top` – `TRUE` / `FALSE` (or `true`/`false`). Determines whether the top ad slot is shown.
+   - `middle` – `TRUE` / `FALSE`.
+   - `footer` – `TRUE` / `FALSE`.
+   - `title` – the text to display in the ad’s title section.
+   - `mobile` – the URL of the ad image for screens < 768px.
+   - `desktop` – the URL of the ad image for screens ≥ 768px.
+4. The spreadsheet can be edited live. Changes are reflected on the website within a few minutes (caching is handled by the browser – we recommend a short cache‑busting parameter, e.g., `?t=Date.now()`).
+
+### 4.1 How the Generator Embeds the API Key
+
+In `site-config.json`, add:
+
+```json
+"google_sheets": {
+  "spreadsheet_id": "1ABC123...",
+  "sheet_name": "Sheet1",
+  "api_key_env_var": "GOOGLE_SHEETS_API_KEY"
+}
+```
+
+During generation, the Node.js script reads `process.env.GOOGLE_SHEETS_API_KEY` and writes it into a global JavaScript variable inside every HTML page:
+
+```html
+<script>window.GOOGLE_SHEETS_API_KEY = "AIzaSy...";</script>
+<script>window.SPREADSHEET_ID = "1ABC123...";</script>
+<script>window.SHEET_NAME = "Sheet1";</script>
+```
+
+**If the environment variable is not set**, the generator logs a warning and sets an empty string; the ad functionality will silently fail (no ads shown).
+
+### 4.2 Spreadsheet Data Fetching (Client‑side JavaScript)
+
+On page load, the `BusTimetableApp` class calls `loadAdsFromSheets()`. This function:
+
+1. Builds the Sheets API URL:
+   ```
+   https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}
+   ```
+2. Fetches the data (with cache‑busting `&_t=${Date.now()}`).
+3. Parses the response – the first row contains headers, subsequent rows are ad configurations.
+4. Determines the **current page’s ID**:
+   - For depot pages: extract the last path segment before `index.html` (e.g., `/division/district/tehsil/123/index.html` → `"123"`).
+   - For blog pages: extract from `/blogs/my-post.html` → `"my-post"`.
+   - For home, bus-schedule, and static pages: use `"global"`.
+5. Finds the row where the `id` column matches the current page ID.
+6. For each ad slot (`top`, `middle`, `footer`):
+   - Read the corresponding column (e.g., `row.top`). The value may be `"TRUE"`, `"true"`, `"FALSE"`, `"false"`, or a boolean. Convert to boolean.
+   - If `true`, then read `title`, `mobile`, `desktop` from the same row.
+   - Render the ad inside the corresponding container (`.ad-container.top`, `.middle`, `.footer`).
+   - If `false`, **hide the container completely** (`display: none`) – do not leave an empty placeholder.
+7. If no row is found for the current ID, **all ad containers are hidden** (no error, no console spam).
+
+### 4.3 Ad Rendering Layout (Same as before – title + image)
+
+The ad is rendered as a combined title+image block:
+
+- **Desktop**: flex row, title occupies 1/3 width, image occupies 2/3 width.
+- **Mobile**: flex column, title above image.
+- The entire block can optionally be wrapped in an `<a>` tag if a `link_url` column is added (but the spec does not require it – you can add later). For now, no link.
+
+**HTML structure** (created by JavaScript):
+
+```html
+<div class="ad-container top" style="display: flex;">  <!-- or block -->
+  <div class="ad-content">
+    <div class="ad-block">
+      <div class="ad-title">[title]</div>
+      <picture class="ad-image">
+        <source media="(max-width: 767px)" srcset="[mobile_url]">
+        <img src="[desktop_url]" alt="[title]">
+      </picture>
+    </div>
+  </div>
+</div>
+```
+
+**If the slot is disabled or no row exists**, the container gets `style="display: none;"`.
+
+### 4.4 Manual Image Uploads Without Rebuilding
+
+Because the generator copies `assets/img/ads/` to `public/assets/images/ads/`, you can later upload new images directly to the server (e.g., via FTP) and update the spreadsheet with the new image paths (relative to site root, e.g., `/assets/images/ads/new-ad-mobile.jpg`). No rebuild is required.
+
+---
+
+## 5. Blog Images (Markdown Support) – unchanged from previous spec
+
+### 5.1 Directory & Copying
+
+- Place blog images in `assets/img/blogs/` (any filenames, any subfolder structure).
+- The generator’s `copyImagesToPublic()` recursively copies the entire `assets/img/` directory to `public/assets/images/`.
+
+### 5.2 Markdown Image Syntax
+
+`processBlogContent()` converts `![alt text](image-url)` → `<img src="image-url" alt="alt text" class="blog-image" loading="lazy">`.
+
+### 5.3 CSS for Blog Images – same as before.
+
+---
+
+## 6. Ad Display Layout CSS – unchanged (desktop 1/3 + 2/3, mobile stack)
+
+Already defined in the CSS section – keep as is.
+
+---
+
+## 7. SiteGenerator Class – Required Methods (Updated for Google Sheets)
+
+Keep all existing methods from the original specification. Add or modify the following:
+
+### 7.1 `copyImagesToPublic()` – recursive copy (same as before)
+### 7.2 `processBlogContent()` – add Markdown image conversion (same as before)
+### 7.3 `getInlineJS()` – major changes:
+
+Inside the `BusTimetableApp` class:
+- Add a method `loadAdsFromSheets()` that performs the fetch and rendering as described in 4.2.
+- Add a helper `getCurrentPageId()` (depot ID, blog ID, or `"global"`).
+- Add a helper `renderAd(containerSelector, adConfig, slotType)` that creates the DOM elements.
+- In `init()`, call `loadAdsFromSheets()` after any other initialisation.
+
+### 7.4 `generateNewHomepage()`, `generateBusSchedulePage()`, `generateDepotPages()`, `generateStaticPages()`, `generateBlogPages()`
+
+In each of these methods, ensure the generated HTML includes a `<script>` block that sets the global variables:
+
+```html
+<script>
+  window.GOOGLE_SHEETS_API_KEY = "{{API_KEY}}";
+  window.SPREADSHEET_ID = "{{SPREADSHEET_ID}}";
+  window.SHEET_NAME = "{{SHEET_NAME}}";
+</script>
+```
+
+Where `{{API_KEY}}` is read from `process.env.GOOGLE_SHEETS_API_KEY` (and validated at build time). If the environment variable is missing, set it to an empty string and log a warning.
+
+### 7.5 Ad Containers in HTML
+
+Every generated page must contain three placeholder divs with specific classes **even if they will be hidden**:
+
+```html
+<div class="ad-container top"></div>
+<div class="ad-container middle"></div>
+<div class="ad-container footer"></div>
+```
+
+These containers will be populated or hidden by JavaScript. If hidden, they will have `style="display: none;"`. This ensures no layout shift.
+
+---
+
+## 8. CSS Additions – unchanged from previous spec
+
+Include the same blog image and ad block styles (already provided). Ensure the `.ad-container` has no default margins/padding that could cause empty space when hidden.
+
+---
+
+## 9. Execution & Output – unchanged
+
+- Run `node site-generator.js` (ensure `GOOGLE_SHEETS_API_KEY` is set in the environment, e.g., `export GOOGLE_SHEETS_API_KEY=...`).
+- All files written to `public/`.
+- No external dependencies (except Node.js built‑ins).
+
+---
+
+## 10. Environment Variable Setup
+
+The developer must set the environment variable before running the generator. Example:
+
+```bash
+export GOOGLE_SHEETS_API_KEY="AIzaSy..."
+node site-generator.js
+```
+
+The generator **does not** store the key in any output file except inside the `<script>` tag of each HTML page (exposed to the client). This is necessary because the client‑side JavaScript needs the key to call the Sheets API. To reduce risk, the developer must restrict the API key in Google Cloud Console as follows:
+
+- Enable only the Google Sheets API.
+- Set **Application restrictions** → **HTTP referrers** → add your domain (e.g., `https://your-site.com/*`).
+- Optionally, set **API restrictions** → **Restrict key** → select **Google Sheets API**.
+- Do **not** give the key any other permissions.
+
+---
+
+## 11. Spreadsheet Structure Example
+
+| id      | top   | middle | footer | title                    | mobile                                      | desktop                                     |
+|---------|-------|--------|--------|--------------------------|---------------------------------------------|---------------------------------------------|
+| 123     | TRUE  | FALSE  | TRUE   | Special Pune Offer       | /assets/images/ads/pune-mobile.jpg          | /assets/images/ads/pune-desktop.jpg         |
+| 456     | TRUE  | TRUE   | FALSE  | Mumbai Depot Discount    | /assets/images/ads/mumbai-mobile.jpg        | /assets/images/ads/mumbai-desktop.jpg       |
+| global  | TRUE  | TRUE   | TRUE   | Plan Your Trip with MSRTC | /assets/images/ads/global-mobile.jpg        | /assets/images/ads/global-desktop.jpg       |
+| my-blog | FALSE | TRUE   | FALSE  | Read Our Travel Blog     | /assets/images/ads/blog-mobile.jpg          | /assets/images/ads/blog-desktop.jpg         |
+
+- `TRUE` / `FALSE` can be typed as boolean values in Google Sheets (checkbox) or as text. The JavaScript will treat `"TRUE"`, `true`, `"true"` as true; everything else as false.
+- If an ad slot is `FALSE`, the corresponding container is hidden.
+- If an ID is not found, **all three containers are hidden**.
+- The `global` row is used for pages without a specific ID (home, bus-schedule, about, etc.).
+
+---
+
+## 12. Error Handling & Fallbacks
+
+- If the Sheets API fetch fails (network error, invalid key, quota exceeded), the ad containers remain hidden. No error is displayed to the user (only a silent `console.warn`).
+- If the API key environment variable is missing at build time, the generated pages will have an empty string for the key, and the fetch will fail (silently). The generator logs: `Warning: GOOGLE_SHEETS_API_KEY environment variable not set. Ads will not work.`
+- If the spreadsheet does not contain the expected columns, the script will not render any ads and log a warning.
+
+---
+
+## 13. Deliverables for AI
+
+Produce a single `site-generator.js` file that:
+
+1. Contains the full `SiteGenerator` class with all methods described in **this** final specification.
+2. Reads `process.env.GOOGLE_SHEETS_API_KEY` and injects it into every HTML page.
+3. Recursively copies `assets/img/` to `public/assets/images/`.
+4. Converts Markdown images in blog content.
+5. Includes the complete inline CSS (original + blog images + ad blocks).
+6. Includes the complete inline JavaScript (`BusTimetableApp`) with `loadAdsFromSheets()` using the Sheets API, proper ID detection, and conditional rendering/hiding of ad containers.
+7. Generates all pages as defined, including the three ad containers (`.ad-container.top`, `.middle`, `.footer`) in every page (home, bus-schedule, depot, blog, static).
+
+The AI must not ask for clarifications – this specification is self‑sufficient.
+
+---
+
+**End of Updated Specification (Google Sheets + Environment Variable)**
