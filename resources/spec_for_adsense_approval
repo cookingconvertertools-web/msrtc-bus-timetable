@@ -1,0 +1,246 @@
+Here is the **specification addendum** that extends your original MSRTC Bus Timetable Static Site Generator to incorporate all changes needed to address Google AdSense rejection reasons. Copy this entire document and provide it to your AI agent alongside the original spec.
+
+---
+
+# MSRTC Bus Timetable Static Site Generator – AdSense Compliance Addendum
+
+## Purpose
+Modify the existing static site generator to produce a site that meets Google AdSense Program Policies, specifically addressing “thin content,” “misrepresentation,” and “insufficient policy pages.” All changes are backward‑compatible with the original spec.
+
+## New/Modified Requirements
+
+### 1. Depot Page – Enhanced Content Sections
+Each depot page must now include **three additional content sections** (after the timetable, before FAQs):
+
+#### 1.1 Nearby Attractions (for Maharashtra Darshan angle)
+```html
+<section class="attractions-section">
+  <h2>🌟 Nearby Attractions for Maharashtra Darshan</h2>
+  <div class="attractions-grid">
+    <div class="attraction-card">
+      <h3>Attraction Name</h3>
+      <p>Short description (50‑100 words). How to reach from this depot (auto, bus, walking time). Best time to visit.</p>
+    </div>
+    <!-- repeat up to 3 attractions -->
+  </div>
+</section>
+```
+
+#### 1.2 Travel Tips (specific to this depot/area)
+```html
+<section class="travel-tips-section">
+  <h2>🚌 Travel Tips for This Route</h2>
+  <ul>
+    <li>First bus / last bus timings for popular destinations.</li>
+    <li>Where to buy tickets (online vs counter).</li>
+    <li>Local food recommendations near the bus stand.</li>
+    <li>Safety tips, luggage storage, etc.</li>
+  </ul>
+</section>
+```
+
+#### 1.3 Local Information (unique to the tehsil/district)
+```html
+<section class="local-info-section">
+  <h2>📍 About [Tehsil/District Name]</h2>
+  <p>150‑200 words describing the area, its significance, festivals, or unique characteristics. Must be original text, not copied from Wikipedia.</p>
+</section>
+```
+
+**Data Source:**
+Create a new directory `data/depot-content/` containing JSON files named `<depot-id>.json` with the following schema:
+```json
+{
+  "attractions": [
+    {
+      "name": "Shaniwar Wada",
+      "description": "Historical fort built in 1732. Light and sound show every evening. 20 minutes by auto from Pune City Depot.",
+      "best_time": "Evening for the show, morning for less crowd"
+    }
+  ],
+  "travel_tips": [
+    "First bus to Lonavala is at 06:00 AM, last at 09:00 PM.",
+    "Buy tickets online via MSRTC website to avoid counter queues.",
+    "Try the famous 'Bakarwadi' from Chitale Bandhu near the depot."
+  ],
+  "local_info": "Pune district is known as the cultural capital of Maharashtra. It hosts the famous Ganesh festival, and the surrounding hills offer great trekking spots. The MSRTC depot here is one of the busiest in the state, connecting to Konkan, Marathwada, and Western Maharashtra."
+}
+```
+If a depot has no content file, the generator **skips those sections** (no empty placeholders).
+
+### 2. Prominent Unofficial Disclaimer
+On **every page** (homepage, depot pages, static pages, blog pages), immediately below the `<header>` (or above the main content), insert:
+```html
+<div class="disclaimer-banner">
+  ⚠️ <strong>Unofficial Portal:</strong> This is an independent timetable and travel guide. We are not affiliated with MSRTC. Always verify schedules at the bus depot.
+</div>
+```
+CSS: yellow background, centered text, font‑size 0.9rem, padding 8px, border‑radius 4px, margin‑bottom 1rem.
+
+### 3. Enhanced Policy Pages (Mandatory for AdSense)
+
+#### 3.1 Privacy Policy Page (`privacy.html`)
+Must include the following **exact wording** (can be expanded but not reduced):
+```html
+<h2>Privacy Policy for MSRTC Bus Info</h2>
+<p>Last updated: [dynamic date from generator]</p>
+
+<h3>Google AdSense & Cookies</h3>
+<p>This website uses Google AdSense, a service that serves advertisements. Google may use cookies to serve ads based on a user's prior visits to this website or other websites. You may opt out of personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank">Google Ad Settings</a>.</p>
+
+<h3>Information We Collect</h3>
+<p>We do not directly collect any personal data. However, third-party services (such as Google Analytics if added in future) may collect anonymous usage data.</p>
+
+<h3>External Links</h3>
+<p>Our site may link to external websites. We are not responsible for their privacy practices.</p>
+
+<h3>Children's Privacy</h3>
+<p>Our services are not directed to children under 13. We do not knowingly collect information from children.</p>
+
+<h3>Changes to This Policy</h3>
+<p>Any changes will be posted on this page with an updated revision date.</p>
+```
+
+#### 3.2 About Page (`about.html`)
+Must clearly state:
+```html
+<h2>About MSRTC Bus Info</h2>
+<p>MSRTC Bus Info is an <strong>independent, unofficial</strong> project created to help travelers plan their journeys using Maharashtra State Road Transport Corporation (MSRTC) bus timetables. We are not affiliated with, endorsed by, or connected to the official MSRTC or any government body.</p>
+<p>Our goal is to present bus schedules in a clean, mobile‑friendly format, along with travel tips and nearby attractions – turning a simple timetable into a complete travel guide for Maharashtra Darshan.</p>
+<p>All timetable data is collected from public domain sources. While we strive for accuracy, schedules may change without notice. Please confirm with the depot before traveling.</p>
+<p>Contact us at: <a href="mailto:contact@msrtcbusinfo.org">contact@msrtcbusinfo.org</a></p>
+```
+
+#### 3.3 Contact Page (`contact.html`)
+Must include:
+- A working email address (mailto link).
+- A simple contact form (optional but recommended). If implementing form, use a third‑party service like Formspree or a simple `mailto:` action. Generator can output a basic HTML form that submits via `mailto:` (though that’s not ideal). **Simpler:** Just display:
+```html
+<p>You can reach us at: <a href="mailto:contact@msrtcbusinfo.org">contact@msrtcbusinfo.org</a></p>
+<p>We aim to respond within 48 hours.</p>
+```
+
+### 4. Blog Content Requirement
+The generator must now **enforce a minimum of 5 blog posts** for the site to be fully built. If fewer than 5 blog JSON files exist in `data/blogs/`, the generator shall log a warning but still proceed (for development). For production, you must create at least 5.
+
+Each blog post must be **800+ words** (check by counting words after markdown conversion – optional but recommended to log a warning if shorter). The generator does not need to reject, but you should manually ensure.
+
+Add a new field to `site-config.json`:
+```json
+"blog": {
+  "min_posts_for_approval": 5,
+  "recommended_word_count": 800
+}
+```
+
+### 5. `ads.txt` Generation
+The generator must create a file `ads.txt` in the **root of the public directory** (`public/ads.txt`) with the following content:
+```
+google.com, pub-XXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+```
+Where `pub-XXXXXXXXXXXXX` is read from `site-config.json` under a new key:
+```json
+"adsense": {
+  "publisher_id": "pub-1234567890123456",
+  "enabled": true
+}
+```
+If `publisher_id` is missing or empty, the generator writes a placeholder `pub-YOUR_PUB_ID_HERE` and logs a warning.
+
+### 6. AdSense Script Injection
+In the `<head>` of **every generated HTML page**, inject:
+```html
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+```
+Again, `XXXXXXXXXXXXX` is the publisher ID from `site-config.json`. If not set, skip injection and log a warning.
+
+### 7. Homepage UX Improvements (already in original spec, but emphasise)
+- Ensure the cascading dropdowns are the **primary navigation** – no long lists of tehsils/districts as plain text links.
+- The search bar must be prominent (top of content area, full width on mobile).
+- The depot grid must be the only listing – no “All Divisions” list.
+
+### 8. Additional Metadata for AdSense Review
+Add a meta tag to every page’s `<head>`:
+```html
+<meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXX">
+```
+
+### 9. robots.txt Update
+Ensure `robots.txt` disallows only administrative paths, but allows all content. Add:
+```
+User-agent: *
+Allow: /
+Disallow: /data/
+Sitemap: https://msrtcbusinfo.org/sitemap.xml
+```
+
+### 10. New Method in SiteGenerator Class
+
+Add the following method to the `SiteGenerator` class:
+
+#### `loadDepotContent()`
+- Scan `data/depot-content/*.json`.
+- Store in `this.depotContent[depotId]` as the parsed JSON.
+- If a depot has no matching file, `this.depotContent[depotId] = null`.
+
+Modify `renderDepotPage()` to call `renderAttractions(depotId)`, `renderTravelTips(depotId)`, `renderLocalInfo(depotId)` that return HTML or empty string if no content.
+
+#### `generateAdsTxt()`
+- Write `public/ads.txt` using `this.config.adsense.publisher_id`.
+
+#### `injectAdSenseScript()`
+- Return the script HTML string to be placed in `<head>`.
+
+### 11. Update Static Page Generation
+Modify `generateStaticPages()` to use the new policy page templates (hardcoded strings or read from `content.json` – but the required language must be present). It’s safer to hardcode the required language in the generator while still allowing additional content from `content.json`.
+
+### 12. Disclaimer Banner Integration
+Add a helper method `renderDisclaimerBanner()` that returns the HTML for the disclaimer banner. Call this method immediately after `<header>` in every page template (homepage, depot, static, blog).
+
+## Updated File Structure (Input Additions)
+```
+project-root/
+├── data/
+│   ├── depot-content/       # NEW: <depot-id>.json (attractions, travel_tips, local_info)
+│   └── ... (existing)
+├── site-config.json         # MODIFIED: added "adsense" and "blog" sections
+```
+
+## Example Updated `site-config.json`
+```json
+{
+  "base_url": "https://msrtcbusinfo.org",
+  "site_name": "MSRTC Bus Timetable",
+  "theme": { ... },
+  "ads": { ... },
+  "adsense": {
+    "publisher_id": "pub-1234567890123456",
+    "enabled": true
+  },
+  "blog": {
+    "min_posts_for_approval": 5,
+    "recommended_word_count": 800
+  }
+}
+```
+
+## Execution & Output Changes
+- Running `node site-generator.js` now also creates `public/ads.txt`.
+- Every HTML page includes the disclaimer banner, AdSense script, and meta tag.
+- Depot pages show enhanced content if available; otherwise, those sections are omitted.
+- Policy pages contain the exact required language.
+
+## Testing Checklist for AI
+1. Verify that `ads.txt` is written to `public/` with correct publisher ID.
+2. Check that every page’s `<head>` contains the AdSense script and meta tag.
+3. Confirm disclaimer banner appears below header on all pages.
+4. For a depot with a content file, the three new sections appear after the timetable.
+5. For a depot without a content file, no empty sections are shown.
+6. Privacy policy includes the specific Google AdSense & cookies paragraph.
+7. About page clearly states “unofficial” and no affiliation.
+8. Contact page has a working email link.
+
+---
+
+**End of AdSense Compliance Addendum** – provide this document along with the original specification to your AI agent.

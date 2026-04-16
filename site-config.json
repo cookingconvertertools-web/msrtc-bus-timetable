@@ -11,6 +11,7 @@
     "border_light": "#FBCFE8",
     "border_dark": "#F9A8D4"
   },
+  "ad_config_url": "/ads-config.json",
   "ads": {
     "top_ad": {
       "enabled": true,

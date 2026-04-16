@@ -1,0 +1,362 @@
+# MSRTC Bus Timetable Static Site Generator – Complete Specification
+
+## 1. Overview
+This system is a **Node.js static site generator** that builds a complete, mobile‑first, SEO‑friendly website for MSRTC (Maharashtra State Road Transport Corporation) bus timetables.
+It reads JSON data files, processes markdown‑like blog content, injects advertisements, copies assets, and generates a hierarchy of HTML pages (divisions → districts → tehsils → depots) with interactive features (search, alphabetical navigation, time filters, “next bus” highlighting).
+
+**Key capabilities**
+- Hierarchical data-driven pages (5 levels: homepage, division, district, tehsil, depot)
+- Blog system with markdown‑to‑HTML conversion and URL constant links
+- Client‑side search index (divisions, districts, tehsils, depots)
+- Related depots logic (from `related-depots/*.json`)
+- Ad integration (configurable in `site-config.json` and `data/ads.json`)
+- Automatic sitemap.xml and robots.txt
+- Responsive CSS with vertical alphabet navigation, time‑filter bubbles, and “next bus” calculation
+- Copying of images and URL constants to the public folder
+
+---
+
+## 2. Architecture & File Structure
+
+### 2.1 Source directories (input)
+```
+project-root/
+├── site-config.json          # global settings
+├── content.json              # static page content (homepage, about, contact, etc.)
+├── data/
+│   ├── divisions/            # each file: { id, name, seo?, content? }
+│   ├── districts/            # each file: { id, name, division_id, seo?, content? }
+│   ├── tehsils/              # each file: { id, name, district_id, seo?, content? }
+│   ├── depots/               # each file: { id, name, tehsil_id, villages, contact?, address?, seo?, content? }
+│   ├── related-depots/       # each file: { depots_id, related_depots: [...] } or array format
+│   ├── blogs/                # each file: .json with { title, date, content (markdown), excerpt?, author?, tags?, seo? }
+│   ├── ads.json              # optional – array of ad objects { name, script, show }
+├── assets/
+│   ├── img/                  # all images (favicon.*, logo, blog images)
+│   ├── urls/                 # .js files containing URL constants (e.g., const BOOKING_URL = "...")
+├── templates/                # (optional, currently unused but created)
+```
+
+### 2.2 Output directories (generated)
+```
+public/
+├── index.html
+├── about.html, contact.html, terms.html, privacy.html, disclaimer.html
+├── blogs/
+│   ├── index.html            # blog listing
+│   ├── <blog-id>.html        # individual blog posts
+├── <division-id>/index.html
+├── <division-id>/<district-id>/index.html
+├── <division-id>/<district-id>/<tehsil-id>/index.html
+├── <division-id>/<district-id>/<tehsil-id>/<depot-id>/index.html
+├── assets/
+│   ├── images/               # copied from assets/img (except favicons)
+│   ├── urls/url-constants.js # compiled URL constants for client side
+├── search-index.js           # JSON search index wrapped in window.searchIndex
+├── sitemap.xml
+├── robots.txt
+└── favicon files (favicon.ico, favicon.png, etc.) placed at root
+```
+
+### 2.3 Generation flow (class `SiteGenerator`)
+1. **Constructor** – creates necessary directories, copies images & URL constants to public, loads config, content, ads, blogs, URL constants, all data files, and related depots.
+2. **generateSite()** – calls methods to generate all page types, sitemap, robots.txt, search index, URL constants file.
+3. **Output** – static HTML/CSS/JS ready to serve.
+
+---
+
+## 3. Data Models (JSON Schemas)
+
+### 3.1 `site-config.json`
+```json
+{
+  "base_url": "https://example.com",
+  "site_name": "MSRTC Bus Timetable",
+  "theme": {
+    "bg_gradient_start": "#F5F3FF",
+    "bg_gradient_end": "#EDE9FE"
+  },
+  "ads": {
+    "top_ad": { "enabled": false, "code": "...", "mobile_code": "...", "desktop_code": "..." },
+    "middle_ad": { ... },
+    "footer_ad": { ... }
+  }
+}
+```
+
+### 3.2 `content.json`
+```json
+{
+  "homepage": {
+    "title": "...",
+    "subtitle": "...",
+    "content": "<p>...</p>",
+    "seo": { "title": "...", "description": "...", "keywords": "..." }
+  },
+  "about": { "title": "...", "content": "...", "seo": {...} },
+  "contact": { ... },
+  "terms": { ... },
+  "privacy": { ... },
+  "disclaimer": { ... }
+}
+```
+
+### 3.3 Division, District, Tehsil files
+Each file in `data/divisions/`, `data/districts/`, `data/tehsils/` is named `<id>.json`:
+```json
+{
+  "id": "pune",
+  "name": "Pune Division",
+  "alphabet": "P",           // optional, defaults to first char of name
+  "seo": { "title": "...", "description": "...", "keywords": "..." },
+  "content": {               // optional
+    "description": "...",
+    "seo_content": { "title": "...", "content": "...", "faqs": [...] }
+  }
+}
+```
+**Relationships**:
+- District → `division_id` (string referencing division id)
+- Tehsil → `district_id`
+
+### 3.4 Depot file (`data/depots/<id>.json`)
+```json
+{
+  "id": "pune_city",
+  "name": "Pune City Depot",
+  "tehsil_id": "pune_city_tehsil",
+  "address": "Near Swargate, Pune",
+  "contact": "020-1234567",
+  "villages": {
+    "S": [                                   // key = first letter of bus stop name
+      {
+        "name": "Shivajinagar Bus Stop",
+        "schedule": ["05:30", "06:45", "08:00", "17:20", "18:45"]
+      }
+    ],
+    "K": [...]
+  },
+  "seo": { ... },
+  "content": {
+    "about": "<p>Description of depot...</p>",
+    "faqs": [
+      { "question": "What is the first bus?", "answer": "..." }
+    ],
+    "seo_content": { ... }
+  }
+}
+```
+- `villages`: object grouped by first letter (uppercase) of bus stop name.
+- Each bus stop has `name` (string) and `schedule` (array of "HH:MM" strings in 24‑hour format).
+
+### 3.5 Related depots (`data/related-depots/*.json`)
+Two supported formats:
+```json
+// Format 1 (array, new with hierarchy)
+[
+  {
+    "depots_id": "pune_city",
+    "related_depots": [
+      { "depot_id": "swargate", "division_id": "pune", "district_id": "pune", "tehsil_id": "pune_city" }
+    ]
+  }
+]
+
+// Format 2 (single object, old)
+{
+  "depots_id": "pune_city",
+  "related_depots_id": ["swargate", "katraj"]
+}
+```
+The generator resolves missing hierarchy from actual depot data.
+
+### 3.6 Blog file (`data/blogs/<id>.json`)
+```json
+{
+  "title": "New Timetable from April 2025",
+  "date": "2025-04-01",
+  "updated": "2025-04-02",
+  "author": "MSRTC Admin",
+  "excerpt": "Summary of changes...",
+  "tags": ["timetable", "update"],
+  "content": "Markdown text with # headers, **bold**, `code`, ![alt](image.jpg), [text](URL_CONSTANT)",
+  "seo": { "title": "...", "description": "...", "keywords": "..." },
+  "seo_content": { ... }
+}
+```
+**Markdown processing** (in `processBlogContent()`):
+- Code blocks (```) → preserved with `escapeHtml`
+- Inline code → `<code>`
+- Headers (`#` to `######`) → `<h1>` … `<h6>`
+- Bold `**text**` / `__text__` → `<strong>`
+- Italic `*text*` / `_text_` → `<em>`
+- Tables (pipe‑separated) → `<table>` with alignment from header row
+- Lists (`-`, `*`, `+` or numbered) → `<ul>`/`<ol>`
+- Links `[text](url)` – if `url` matches `[A-Z0-9]+` (URL constant) → `<a href="javascript:void(0);" data-constant="...">`
+- Images `![alt](path)` → `<div class="blog-image-container">` with responsive image. If path is relative, image is copied from `assets/img/` to `public/assets/images/`.
+- Blockquotes (`> text`) → `<blockquote>`
+- Horizontal rules (`---`, `***`, `___`) → `<hr>`
+
+### 3.7 Ads (`data/ads.json`)
+```json
+[
+  { "name": "Google Adsense", "script": "<script async src='...'></script>", "show": true }
+]
+```
+These scripts are injected into `<head>` of every page via `renderHeadScripts()`.
+
+### 3.8 URL constants (`assets/urls/*.js`)
+Example `booking.js`:
+```javascript
+const BOOKING_URL = "https://msrtc.maharashtra.gov.in/booking";
+const HELPLINE = "1800-123-4567";
+```
+Generator extracts `const NAME = "value"` pairs and writes `window.URL_CONSTANTS` object into `public/assets/urls/url-constants.js`.
+
+---
+
+## 4. UI & Front‑end Features
+
+### 4.1 Layout components (all pages)
+- **Fixed header** with site logo and real‑time digital clock (IST, updated every second).
+- **Vertical alphabet navigation** (fixed right side, scrollable) – letters A–Z.
+  - Clicking a letter scrolls to the first card / bus stop section starting with that letter.
+  - Disabled letters (no content) are greyed out.
+  - Active letter is highlighted during scroll.
+- **Search bar** – filters divisions/districts/tehsils/depots (homepage tabs) or bus stops (depot page).
+- **Ad containers** (top, middle, footer) with mobile/desktop responsive switching.
+- **Footer** with links to static pages, official MSRTC sites, and copyright.
+
+### 4.2 Homepage tabs
+- Four tabs: Divisions, Districts, Tehsils, Depots.
+- Each tab shows a grid of **rectangular cards** with name, parent location (if any), and statistics (e.g., number of depots).
+- Cards link to the respective detail page.
+- Tabs preserve active state in `localStorage` and URL hash.
+
+### 4.3 Depot detail page (core feature)
+- Depot header: name, address, contact, total bus stops, total buses.
+- **Search bar** – filters bus stops by name.
+- **Time filters** (All, 5AM‑12PM, 12PM‑5PM, 5PM‑10PM, 10PM‑5AM) – shows/hides time bubbles.
+- **Bus stop sections** – each bus stop has a name and a grid of **time bubbles** (colour‑coded by time of day).
+  - Clicking a bubble alerts the time and bus stop name.
+  - **Next bus** logic:
+    - Every 30 seconds, recalculates upcoming buses within the next **60 minutes** (configurable in JS).
+    - The nearest bus gets a `NEXT` badge; others get a `+Xm` badge.
+    - A sparkle animation highlights the bubble.
+- **About section** (from depot `content.about`) – HTML allowed.
+- **FAQ section** (from depot `content.faqs`).
+- **Related depots** – cards linking to other depots (from `related-depots/` or fallback to same tehsil).
+
+### 4.4 Blog pages
+- Listing page (`blogs/index.html`) shows cards with title, excerpt, date.
+- Individual blog page includes author avatar, date, content (processed HTML), tags, and SEO content.
+- Blog links that use URL constants (e.g., `[Book Ticket](BOOKING_URL)`) are handled by JavaScript – they open the constant URL in a new tab.
+
+### 4.5 Responsive CSS (mobile‑first)
+- Breakpoints:
+  - `< 768px` (mobile) – single column cards, smaller font, compact time bubbles.
+  - `768px – 1024px` (tablet) – two‑column grid.
+  - `> 1024px` (desktop) – three‑column grid.
+- Right padding on `.container` accounts for vertical alphabet strip (28px mobile, 30px tablet, 32px desktop) so content never hides behind it.
+- Cards, search bar, and bus stop sections are full‑width and properly aligned.
+- Print styles remove navigation, ads, and alphabet nav.
+
+---
+
+## 5. Dynamic Features (Client‑side JavaScript)
+
+The generated page includes a single large inline script (`BusTimetableApp` class) that provides:
+- Real‑time clock update.
+- Tab switching and persistence.
+- Search filtering (cards or bus stops).
+- Alphabet navigation (scroll‑to, highlight, active letter detection).
+- Time filter buttons.
+- Next bus highlighting (runs every 30 seconds, checks all time bubbles on depot pages).
+- Advanced search modal (global search over divisions, districts, tehsils, depots) using `search-index.js`.
+- Blog link handler for URL constants.
+- Scroll‑spy for vertical alphabet.
+
+---
+
+## 6. Generation Process Details
+
+### 6.1 Image & favicon handling
+- All images from `assets/img/` are copied to `public/assets/images/`.
+- Favicon files (detected by name containing “favicon” or “icon”, or extension `.ico`) are copied to `public/` root.
+- Any old favicon files in `public/` are deleted before copying (to avoid duplicates).
+
+### 6.2 Page rendering hierarchy
+- **Division page** – lists all districts in that division (cards).
+- **District page** – lists all tehsils in that district, shows parent division.
+- **Tehsil page** – lists all depots in that tehsil, shows parent district & division.
+- **Depot page** – detailed view (as described).
+- Each page includes breadcrumb‑style navigation buttons (“Back to …”).
+
+### 6.3 Search index generation
+`generateSearchIndex()` creates `public/search-index.js`:
+```javascript
+window.searchIndex = {
+  divisions: [ { id, name, type, path, districts, depots, alphabet } ],
+  districts: [ { id, name, type, path, division, tehsils, depots, alphabet } ],
+  tehsils: [ { ... } ],
+  depots: [ { id, name, type, path, division, district, tehsil, busStops, buses, alphabet } ]
+}
+```
+Used by the global search modal.
+
+### 6.4 Sitemap & robots.txt
+- `sitemap.xml` includes all generated pages (home, static, blogs, divisions, districts, tehsils, depots) with priorities and change frequencies.
+- `robots.txt` allows all user agents, disallows `/data/`, and points to the sitemap.
+
+### 6.5 Ads injection
+`renderHeadScripts()` loops over `this.ads` (loaded from `data/ads.json`) and outputs the `script` for any ad where `show === true`.
+Additionally, `renderAd()` places top/middle/footer ad containers (from `site-config.json` ads) with responsive code.
+
+---
+
+## 7. Execution & Usage
+
+### 7.1 Requirements
+- Node.js (any modern version)
+- No external npm dependencies – uses only `fs` and `path` core modules.
+
+### 7.2 Running the generator
+```bash
+node site-generator.js
+```
+This will:
+1. Read all source files.
+2. Generate the entire static site into `public/` folder.
+3. Output console logs for each step.
+
+### 7.3 Deployment
+The `public/` folder can be served by any static web server (Apache, Nginx, Vercel, Netlify, GitHub Pages, etc.).
+
+---
+
+## 8. Extensibility Notes
+
+- **Adding a new entity type** (e.g., “Route”):
+  - Create new folder under `data/`.
+  - Add corresponding page generation method (e.g., `generateRoutePages()`).
+  - Update `loadAllData()` and search index.
+- **Changing time filter range** for next bus: modify `highlightNextBus()` in inline JS (line `timeDiff <= 60`).
+- **Adding more ad slots**: extend `site-config.json` `ads` object and add `renderAd('new_slot')` in templates.
+- **Support for additional markdown syntax**: extend `processBlogContent()`.
+- **Multi‑language**: duplicate content files and add language prefix to URLs; adjust templates to read from `content_<lang>.json`.
+
+---
+
+## 9. Summary of Deliverables for AI Implementation
+
+If another AI needs to rebuild or extend this system, it must implement:
+1. **Node.js class** with the exact directory structure and JSON schemas described.
+2. **Page generation methods** for each hierarchy level, respecting SEO fields, content injection, and relative path calculation for navigation buttons.
+3. **Markdown processor** that handles tables, code blocks, lists, images (copying from assets), and URL constants.
+4. **Client‑side JavaScript** providing all interactive features (tabs, search, alphabet, next bus, modal, etc.) – can be the same inline script (copied from `getInlineJS()`).
+5. **CSS** (copied from `getInlineCSS()`) that is responsive and accounts for the vertical alphabet strip.
+6. **Asset copying** (images, favicons, URL constants).
+7. **Related depots resolution** (using `related-depots` JSON and fallback to same tehsil).
+8. **Sitemap, robots.txt, search index** generation.
+
+This specification provides every detail needed to reproduce the exact behaviour of the original script.
