@@ -60,12 +60,16 @@
     .related-depot-card:hover { border-color:#493dd5; }
     .related-depot-card h3 { color:#5B21B6; margin-bottom:0.3rem; font-size:1.1rem; }
     .ad-container { margin:1rem 0; text-align:center; width:100%; padding:0; }
-    /* Remote ad styles */
-    .ad-block { display: flex; flex-direction: row; align-items: center; gap: 1rem; text-decoration: none; color: inherit; width: 100%; }
-    .ad-title { flex: 1; font-weight: 600; font-size: 1rem; line-height: 1.3; }
-    .ad-image { flex: 2; }
-    .ad-image img { width: 100%; height: auto; border-radius: 8px; }
-    @media (max-width: 767px) { .ad-block { flex-direction: column; text-align: center; } .ad-title { margin-bottom: 0.5rem; } }
+    /* Remote ad styles with fixed heights and proper alignment */
+    .ad-block { display: flex; flex-direction: row; align-items: center; gap: 1rem; text-decoration: none; color: inherit; width: 100%; background: white; border-radius: 12px; padding: 0.75rem; border: 1px solid #C4B5FD; }
+    .ad-title { flex: 1; font-weight: 600; font-size: 1rem; line-height: 1.3; text-align: left; }
+    .ad-image { flex: 2; text-align: center; }
+    .ad-image img, .ad-image picture img { max-height: 250px; width: auto; max-width: 100%; object-fit: contain; border-radius: 8px; }
+    @media (max-width: 767px) {
+        .ad-block { flex-direction: column; text-align: center; padding: 0.5rem; }
+        .ad-title { margin-bottom: 0.5rem; text-align: center; }
+        .ad-image img, .ad-image picture img { max-height: 150px; }
+    }
     .filter-dropdowns { display:flex; flex-wrap:wrap; gap:0.8rem; margin:1rem 0; justify-content:space-between; }
     .dropdown-group { flex:1; min-width:150px; }
     .dropdown-group label { display:block; font-size:0.8rem; font-weight:500; margin-bottom:0.2rem; color:#5B21B6; }
@@ -154,6 +158,7 @@
         <div class="navigation-buttons"><a href="index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search depots, tehsils, districts..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div>
         <h1>Terms of Service</h1><div class="page-content"><h2>Unofficial Service Disclaimer</h2><p>MSRTC Timetable is an unofficial informational website. It is not affiliated with, endorsed by, or connected to Maharashtra State Road Transport Corporation (MSRTC), ST Mahamandal, or any government authority.</p><h2>Information Source</h2><p>All bus timetable information is collected from publicly available MSRTC sources such as depot schedules, bus stand displays, and passenger information channels. We do not generate or modify official timings.</p><h2>No Guarantee of Accuracy</h2><p>While we make every effort to present accurate and up-to-date information, MSRTC bus schedules may change without prior notice due to operational, administrative, or external factors. Therefore, we do not guarantee the correctness, completeness, or reliability of any timetable.</p><h2>User Responsibility</h2><p>Passengers are strongly encouraged to verify bus timings directly with the respective MSRTC depot, bus stand, or official MSRTC communication channels before starting their journey.</p><h2>Limitation of Liability</h2><p>MSRTC Timetable shall not be held responsible for any loss, inconvenience, missed connections, delays, or damages resulting from reliance on the information provided on this website.</p><h2>Service Availability</h2><p>This platform is provided free of charge for public benefit. We reserve the right to modify, suspend, or discontinue any part of the service without prior notice.</p><h2>Acceptance of Terms</h2><p>By using this website, you agree to these terms and conditions and acknowledge that the service is provided on an “as-is” basis.</p></div>
+        <div class="ad-container middle" data-ad-slot="middle"></div>
     </div></main>
     <div class="ad-container footer" data-ad-slot="footer"></div>
     <footer class="site-footer"><div class="container"><div class="footer-content"><div class="footer-section"><h3>Quick Links</h3><div class="footer-links"><a href="index.html">Home</a><a href="bus-schedule.html">Bus Schedule</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="blogs/index.html">Blogs</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></div></div><div class="footer-section"><h3>MSRTC Official</h3><div class="footer-links"><a href="https://msrtc.maharashtra.gov.in" target="_blank" rel="noopener">Official Website</a><a href="https://msrtc.maharashtra.gov.in/booking/ticket_booking.html" target="_blank" rel="noopener">Book Tickets</a><a href="https://msrtc.maharashtra.gov.in/contact_us.html" target="_blank" rel="noopener">Contact MSRTC</a><a href="https://msrtc.maharashtra.gov.in/complaints.html" target="_blank" rel="noopener">Complaints</a></div></div><div class="footer-section"><h3>Useful Links</h3><div class="footer-links"><a href="disclaimer.html">Disclaimer</a><a href="sitemap.xml">Sitemap</a><a href="contact.html#feedback">Feedback</a><a href="contact.html#report">Report Issue</a></div></div><div class="copyright">© 2026 MSRTC Timetable.<br>This is an unofficial timetable portal.<br><small>All bus schedules are for reference only.</small></div></div></div></footer>
@@ -561,6 +566,7 @@ class BusTimetableApp {
             const titleIdx = getColIndex('title');
             const mobileIdx = getColIndex('mobile');
             const desktopIdx = getColIndex('desktop');
+            const linkIdx = getColIndex('link');
             if (idIdx === -1) {
                 console.warn('⚠️ Spreadsheet missing "id" column. Ads disabled.');
                 this.hideAllAdContainers();
@@ -581,9 +587,9 @@ class BusTimetableApp {
             };
             const getValue = (idx) => (idx !== -1 && adRow[idx]) ? adRow[idx].toString() : '';
             const adConfig = {
-                top: { enabled: topIdx !== -1 ? parseBool(adRow[topIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
-                middle: { enabled: middleIdx !== -1 ? parseBool(adRow[middleIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
-                footer: { enabled: footerIdx !== -1 ? parseBool(adRow[footerIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) }
+                top: { enabled: topIdx !== -1 ? parseBool(adRow[topIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx), link: getValue(linkIdx) },
+                middle: { enabled: middleIdx !== -1 ? parseBool(adRow[middleIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx), link: getValue(linkIdx) },
+                footer: { enabled: footerIdx !== -1 ? parseBool(adRow[footerIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx), link: getValue(linkIdx) }
             };
             this.renderAds(adConfig);
         } catch (err) {
@@ -634,6 +640,7 @@ class BusTimetableApp {
         const title = config.title || 'Advertisement';
         const mobileSrc = config.mobile || '';
         const desktopSrc = config.desktop || '';
+        const linkUrl = config.link || '';
         const inner = document.createElement('div');
         inner.className = 'ad-content';
         let pictureHtml = '';
@@ -647,7 +654,10 @@ class BusTimetableApp {
             pictureHtml = `<div class="ad-image"></div>`;
         }
         const titleHtml = `<div class="ad-title">${title}</div>`;
-        const full = `<div class="ad-block">${titleHtml}${pictureHtml}</div>`;
+        let full = `<div class="ad-block">${titleHtml}${pictureHtml}</div>`;
+        if (linkUrl && linkUrl !== '') {
+            full = `<a href="${linkUrl}" class="ad-block" target="_blank" rel="noopener noreferrer">${titleHtml}${pictureHtml}</a>`;
+        }
         inner.innerHTML = full;
         container.innerHTML = '';
         container.appendChild(inner);

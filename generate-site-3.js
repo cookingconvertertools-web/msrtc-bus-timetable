@@ -638,6 +638,7 @@ class SiteGenerator {
         <div class="navigation-buttons"><a href="index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <div class="tab-search-container"><div class="search-bar"><i class="bi bi-search"></i><input type="text" class="search-input" placeholder="Search depots, tehsils, districts..."><button class="clear-search" style="display: none;"><i class="bi bi-x"></i></button></div></div>
         <h1>${this.escapeHtml(pageContent.title)}</h1><div class="page-content">${pageContent.content}</div>${pageContent.seo_content ? this.renderSEOContent(pageContent.seo_content) : ''}
+        ${this.renderAdContainer('middle')}
     </div></main>
     ${this.renderAdContainer('footer')}
     ${this.renderFooter()}
@@ -668,6 +669,7 @@ class SiteGenerator {
         <div class="navigation-buttons"><a href="../index.html" class="back-btn"><i class="bi bi-house"></i> Home</a><a href="../bus-schedule.html" class="back-btn"><i class="bi bi-bus-front"></i> Back to All Bus Schedule</a></div>
         <h1>Blogs & Updates</h1><p>Latest news and articles about MSRTC bus services in Maharashtra</p>
         ${this.blogs.length > 0 ? `<div class="blog-grid">${this.blogs.map(blog => `<a href="${blog.id}.html" class="blog-card"><div class="blog-card-content"><h3>${this.escapeHtml(blog.title)}</h3><div class="blog-card-excerpt">${this.escapeHtml(blog.excerpt || blog.content.substring(0, 120) + '...')}</div><div class="blog-card-meta"><div class="blog-card-date"><i class="bi bi-calendar"></i>${new Date(blog.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div></div></div></a>`).join('')}</div>` : `<div class="empty-state"><i class="bi bi-newspaper"></i><h3>No blog posts yet</h3><p>Check back soon for updates and articles about MSRTC services.</p></div>`}
+        ${this.renderAdContainer('middle')}
     </div></main>
     ${this.renderAdContainer('footer')}
     ${this.renderFooter('../')}
@@ -737,6 +739,7 @@ class SiteGenerator {
         <div class="blog-content">${blog.content}</div>
         ${blog.tags && blog.tags.length > 0 ? `<div class="blog-tags">${blog.tags.map(tag => `<span class="blog-tag">${this.escapeHtml(tag)}</span>`).join('')}</div>` : ''}
         ${blog.seo_content ? this.renderSEOContent(blog.seo_content) : ''}
+        ${this.renderAdContainer('middle')}
         ${relatedDepotsHtml}
     </div></main>
     ${this.renderAdContainer('footer')}
@@ -1102,12 +1105,16 @@ class SiteGenerator {
     .related-depot-card:hover { border-color:${primary}; }
     .related-depot-card h3 { color:${textSecondary}; margin-bottom:0.3rem; font-size:1.1rem; }
     .ad-container { margin:1rem 0; text-align:center; width:100%; padding:0; }
-    /* Remote ad styles */
-    .ad-block { display: flex; flex-direction: row; align-items: center; gap: 1rem; text-decoration: none; color: inherit; width: 100%; }
-    .ad-title { flex: 1; font-weight: 600; font-size: 1rem; line-height: 1.3; }
-    .ad-image { flex: 2; }
-    .ad-image img { width: 100%; height: auto; border-radius: 8px; }
-    @media (max-width: 767px) { .ad-block { flex-direction: column; text-align: center; } .ad-title { margin-bottom: 0.5rem; } }
+    /* Remote ad styles with fixed heights and proper alignment */
+    .ad-block { display: flex; flex-direction: row; align-items: center; gap: 1rem; text-decoration: none; color: inherit; width: 100%; background: white; border-radius: 12px; padding: 0.75rem; border: 1px solid ${borderLight}; }
+    .ad-title { flex: 1; font-weight: 600; font-size: 1rem; line-height: 1.3; text-align: left; }
+    .ad-image { flex: 2; text-align: center; }
+    .ad-image img, .ad-image picture img { max-height: 250px; width: auto; max-width: 100%; object-fit: contain; border-radius: 8px; }
+    @media (max-width: 767px) {
+        .ad-block { flex-direction: column; text-align: center; padding: 0.5rem; }
+        .ad-title { margin-bottom: 0.5rem; text-align: center; }
+        .ad-image img, .ad-image picture img { max-height: 150px; }
+    }
     .filter-dropdowns { display:flex; flex-wrap:wrap; gap:0.8rem; margin:1rem 0; justify-content:space-between; }
     .dropdown-group { flex:1; min-width:150px; }
     .dropdown-group label { display:block; font-size:0.8rem; font-weight:500; margin-bottom:0.2rem; color:${textSecondary}; }
@@ -1594,6 +1601,7 @@ class BusTimetableApp {
             const titleIdx = getColIndex('title');
             const mobileIdx = getColIndex('mobile');
             const desktopIdx = getColIndex('desktop');
+            const linkIdx = getColIndex('link');
             if (idIdx === -1) {
                 console.warn('⚠️ Spreadsheet missing "id" column. Ads disabled.');
                 this.hideAllAdContainers();
@@ -1614,9 +1622,9 @@ class BusTimetableApp {
             };
             const getValue = (idx) => (idx !== -1 && adRow[idx]) ? adRow[idx].toString() : '';
             const adConfig = {
-                top: { enabled: topIdx !== -1 ? parseBool(adRow[topIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
-                middle: { enabled: middleIdx !== -1 ? parseBool(adRow[middleIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) },
-                footer: { enabled: footerIdx !== -1 ? parseBool(adRow[footerIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx) }
+                top: { enabled: topIdx !== -1 ? parseBool(adRow[topIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx), link: getValue(linkIdx) },
+                middle: { enabled: middleIdx !== -1 ? parseBool(adRow[middleIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx), link: getValue(linkIdx) },
+                footer: { enabled: footerIdx !== -1 ? parseBool(adRow[footerIdx]) : false, title: getValue(titleIdx), mobile: getValue(mobileIdx), desktop: getValue(desktopIdx), link: getValue(linkIdx) }
             };
             this.renderAds(adConfig);
         } catch (err) {
@@ -1667,6 +1675,7 @@ class BusTimetableApp {
         const title = config.title || 'Advertisement';
         const mobileSrc = config.mobile || '';
         const desktopSrc = config.desktop || '';
+        const linkUrl = config.link || '';
         const inner = document.createElement('div');
         inner.className = 'ad-content';
         let pictureHtml = '';
@@ -1680,7 +1689,10 @@ class BusTimetableApp {
             pictureHtml = \`<div class="ad-image"></div>\`;
         }
         const titleHtml = \`<div class="ad-title">\${title}</div>\`;
-        const full = \`<div class="ad-block">\${titleHtml}\${pictureHtml}</div>\`;
+        let full = \`<div class="ad-block">\${titleHtml}\${pictureHtml}</div>\`;
+        if (linkUrl && linkUrl !== '') {
+            full = \`<a href="\${linkUrl}" class="ad-block" target="_blank" rel="noopener noreferrer">\${titleHtml}\${pictureHtml}</a>\`;
+        }
         inner.innerHTML = full;
         container.innerHTML = '';
         container.appendChild(inner);
