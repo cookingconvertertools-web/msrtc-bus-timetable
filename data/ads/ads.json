@@ -5,6 +5,11 @@
     "script": "<link rel=\"stylesheet\" href=\"https://b-cdn.monetumo.com/cls-css/msrtcbusinfo-org.css\" />\n<script src=\"https://b-cdn.monetumo.com/cmp/msrtcbusinfo-org.js\" data-cfasync=\"false\"></script>\n<script async src=\"https://securepubads.g.doubleclick.net/tag/js/gpt.js\"></script>\n<script defer src=\"https://b-cdn.monetumo.com/bundles/msrtcbusinfo-org.js\" data-cfasync=\"false\"></script>\n\n"
   },
   {
+    "name": "Hiltop - Banner",
+    "show": true,
+    "script": "<meta name=\"referrer\" content=\"no-referrer-when-downgrade\" />"
+  },
+  {
     "name": "Google AdSense - Auto Ads",
     "show": true,
     "script": "<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8154774751847094\"\n     crossorigin=\"anonymous\"></script>"
